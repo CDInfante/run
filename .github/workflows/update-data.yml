@@ -1,0 +1,40 @@
+# Workflow to update all static data files
+name: 🔄 Update Data
+on:
+  schedule:
+    - cron: "0 */12 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    name: "🔄 Update Ships, Trails, and Amenities"
+    steps:
+      - name: "🐧 Checkout code"
+        uses: actions/checkout@v6
+      - name: "⚙️ Set up Node.js"
+        uses: actions/setup-node@v6
+        with:
+          node-version: "24"
+      - name: "📦 Install dependencies"
+        run: npm install --legacy-peer-deps
+      - name: "🚢 Run ship scraper"
+        run: node scripts/scrape-ships.js
+      - name: "🥾 Run trail scraper"
+        run: node scripts/scrape-trails.js
+      - name: "⛲ Run amenity scraper"
+        run: node scripts/scrape-amenities.js
+      - name: "🔄 Commit changes"
+        run: |
+          git config --global user.name "HarryVasanth"
+          git config --global user.email "hello@harryvasanth.com"
+          git add public/ships-funchal.json public/trails-madeira.json public/amenities.json
+          if git diff --staged --quiet; then
+            echo "No changes in data."
+          else
+            git commit -m "chore(data): 🔄 update ship, trail, and amenity data"
+            git push
+          fi

@@ -1,0 +1,538 @@
+[
+  {
+    "name": "Sé",
+    "type": "Freguesia / Town Center",
+    "municipality": "Funchal",
+    "latitude": 32.6482,
+    "longitude": -16.9082,
+    "location": "South"
+  },
+  {
+    "name": "Santa Maria Maior",
+    "type": "Freguesia",
+    "municipality": "Funchal",
+    "latitude": 32.6477,
+    "longitude": -16.8961,
+    "location": "South"
+  },
+  {
+    "name": "São Pedro",
+    "type": "Freguesia",
+    "municipality": "Funchal",
+    "latitude": 32.6506,
+    "longitude": -16.9116,
+    "location": "South"
+  },
+  {
+    "name": "Imaculado Coração de Maria",
+    "type": "Freguesia",
+    "municipality": "Funchal",
+    "latitude": 32.6593,
+    "longitude": -16.9079,
+    "location": "South"
+  },
+  {
+    "name": "Santa Luzia",
+    "type": "Freguesia",
+    "municipality": "Funchal",
+    "latitude": 32.6534,
+    "longitude": -16.9044,
+    "location": "South"
+  },
+  {
+    "name": "São Roque",
+    "type": "Freguesia",
+    "municipality": "Funchal",
+    "latitude": 32.6715,
+    "longitude": -16.9186,
+    "location": "South"
+  },
+  {
+    "name": "Santo António",
+    "type": "Freguesia",
+    "municipality": "Funchal",
+    "latitude": 32.6657,
+    "longitude": -16.9385,
+    "location": "South"
+  },
+  {
+    "name": "São Martinho",
+    "type": "Freguesia",
+    "municipality": "Funchal",
+    "latitude": 32.6416,
+    "longitude": -16.9405,
+    "location": "South"
+  },
+  {
+    "name": "São Gonçalo",
+    "type": "Freguesia",
+    "municipality": "Funchal",
+    "latitude": 32.6517,
+    "longitude": -16.8821,
+    "location": "South"
+  },
+  {
+    "name": "Monte",
+    "type": "Freguesia",
+    "municipality": "Funchal",
+    "latitude": 32.6756,
+    "longitude": -16.9022,
+    "location": "South"
+  },
+  {
+    "name": "Câmara de Lobos",
+    "type": "Freguesia / Town",
+    "municipality": "Câmara de Lobos",
+    "latitude": 32.6486,
+    "longitude": -16.9744,
+    "location": "South"
+  },
+  {
+    "name": "Estreito de Câmara de Lobos",
+    "type": "Freguesia",
+    "municipality": "Câmara de Lobos",
+    "latitude": 32.6689,
+    "longitude": -16.9794,
+    "location": "South"
+  },
+  {
+    "name": "Jardim da Serra",
+    "type": "Freguesia",
+    "municipality": "Câmara de Lobos",
+    "latitude": 32.6936,
+    "longitude": -16.9936,
+    "location": "Central-South"
+  },
+  {
+    "name": "Quinta Grande",
+    "type": "Freguesia",
+    "municipality": "Câmara de Lobos",
+    "latitude": 32.6569,
+    "longitude": -17.0053,
+    "location": "South"
+  },
+  {
+    "name": "Curral das Freiras",
+    "type": "Freguesia / Region",
+    "municipality": "Câmara de Lobos",
+    "latitude": 32.7196,
+    "longitude": -16.9664,
+    "location": "Central"
+  },
+  {
+    "name": "Ribeira Brava",
+    "type": "Freguesia / Town",
+    "municipality": "Ribeira Brava",
+    "latitude": 32.6706,
+    "longitude": -17.0653,
+    "location": "South-West"
+  },
+  {
+    "name": "Campanário",
+    "type": "Freguesia",
+    "municipality": "Ribeira Brava",
+    "latitude": 32.6631,
+    "longitude": -17.0308,
+    "location": "South-West"
+  },
+  {
+    "name": "Tabua",
+    "type": "Freguesia",
+    "municipality": "Ribeira Brava",
+    "latitude": 32.6775,
+    "longitude": -17.0803,
+    "location": "South-West"
+  },
+  {
+    "name": "Serra de Água",
+    "type": "Freguesia",
+    "municipality": "Ribeira Brava",
+    "latitude": 32.7275,
+    "longitude": -17.0264,
+    "location": "Central"
+  },
+  {
+    "name": "Ponta do Sol",
+    "type": "Freguesia / Town",
+    "municipality": "Ponta do Sol",
+    "latitude": 32.68,
+    "longitude": -17.1022,
+    "location": "South-West"
+  },
+  {
+    "name": "Canhas",
+    "type": "Freguesia",
+    "municipality": "Ponta do Sol",
+    "latitude": 32.6953,
+    "longitude": -17.1133,
+    "location": "South-West"
+  },
+  {
+    "name": "Madalena do Mar",
+    "type": "Freguesia",
+    "municipality": "Ponta do Sol",
+    "latitude": 32.7025,
+    "longitude": -17.135,
+    "location": "South-West"
+  },
+  {
+    "name": "Calheta",
+    "type": "Freguesia / Town",
+    "municipality": "Calheta",
+    "latitude": 32.7225,
+    "longitude": -17.1772,
+    "location": "West"
+  },
+  {
+    "name": "Estreito da Calheta",
+    "type": "Freguesia",
+    "municipality": "Calheta",
+    "latitude": 32.7314,
+    "longitude": -17.1897,
+    "location": "West"
+  },
+  {
+    "name": "Prazeres",
+    "type": "Freguesia",
+    "municipality": "Calheta",
+    "latitude": 32.7533,
+    "longitude": -17.2014,
+    "location": "West"
+  },
+  {
+    "name": "Fajã da Ovelha",
+    "type": "Freguesia",
+    "municipality": "Calheta",
+    "latitude": 32.7758,
+    "longitude": -17.2344,
+    "location": "West"
+  },
+  {
+    "name": "Ponta do Pargo",
+    "type": "Freguesia",
+    "municipality": "Calheta",
+    "latitude": 32.8122,
+    "longitude": -17.2433,
+    "location": "West"
+  },
+  {
+    "name": "Arco da Calheta",
+    "type": "Freguesia",
+    "municipality": "Calheta",
+    "latitude": 32.7153,
+    "longitude": -17.1478,
+    "location": "South-West"
+  },
+  {
+    "name": "Jardim do Mar",
+    "type": "Freguesia",
+    "municipality": "Calheta",
+    "latitude": 32.7375,
+    "longitude": -17.2117,
+    "location": "West"
+  },
+  {
+    "name": "Paul do Mar",
+    "type": "Freguesia",
+    "municipality": "Calheta",
+    "latitude": 32.7533,
+    "longitude": -17.2283,
+    "location": "West"
+  },
+  {
+    "name": "Porto Moniz",
+    "type": "Freguesia / Town",
+    "municipality": "Porto Moniz",
+    "latitude": 32.8672,
+    "longitude": -17.1672,
+    "location": "North-West"
+  },
+  {
+    "name": "Seixal",
+    "type": "Freguesia",
+    "municipality": "Porto Moniz",
+    "latitude": 32.8239,
+    "longitude": -17.1147,
+    "location": "North-West"
+  },
+  {
+    "name": "Ribeira da Janela",
+    "type": "Freguesia",
+    "municipality": "Porto Moniz",
+    "latitude": 32.8469,
+    "longitude": -17.1558,
+    "location": "North-West"
+  },
+  {
+    "name": "Achadas da Cruz",
+    "type": "Freguesia",
+    "municipality": "Porto Moniz",
+    "latitude": 32.8436,
+    "longitude": -17.2103,
+    "location": "North-West"
+  },
+  {
+    "name": "São Vicente",
+    "type": "Freguesia / Town",
+    "municipality": "São Vicente",
+    "latitude": 32.8028,
+    "longitude": -17.045,
+    "location": "North"
+  },
+  {
+    "name": "Ponta Delgada",
+    "type": "Freguesia",
+    "municipality": "São Vicente",
+    "latitude": 32.8258,
+    "longitude": -16.9881,
+    "location": "North"
+  },
+  {
+    "name": "Boaventura",
+    "type": "Freguesia",
+    "municipality": "São Vicente",
+    "latitude": 32.8128,
+    "longitude": -16.9686,
+    "location": "North"
+  },
+  {
+    "name": "Santana",
+    "type": "Freguesia / Town",
+    "municipality": "Santana",
+    "latitude": 32.805,
+    "longitude": -16.8828,
+    "location": "North-East"
+  },
+  {
+    "name": "São Jorge",
+    "type": "Freguesia",
+    "municipality": "Santana",
+    "latitude": 32.8247,
+    "longitude": -16.9039,
+    "location": "North-East"
+  },
+  {
+    "name": "Arco de São Jorge",
+    "type": "Freguesia",
+    "municipality": "Santana",
+    "latitude": 32.8242,
+    "longitude": -16.9536,
+    "location": "North"
+  },
+  {
+    "name": "Ilha",
+    "type": "Freguesia",
+    "municipality": "Santana",
+    "latitude": 32.7933,
+    "longitude": -16.9117,
+    "location": "North-East"
+  },
+  {
+    "name": "Faial",
+    "type": "Freguesia",
+    "municipality": "Santana",
+    "latitude": 32.7889,
+    "longitude": -16.8525,
+    "location": "North-East"
+  },
+  {
+    "name": "São Roque do Faial",
+    "type": "Freguesia",
+    "municipality": "Santana",
+    "latitude": 32.7667,
+    "longitude": -16.8519,
+    "location": "North-East"
+  },
+  {
+    "name": "Machico",
+    "type": "Freguesia / Town",
+    "municipality": "Machico",
+    "latitude": 32.7183,
+    "longitude": -16.7667,
+    "location": "East"
+  },
+  {
+    "name": "Caniçal",
+    "type": "Freguesia",
+    "municipality": "Machico",
+    "latitude": 32.7358,
+    "longitude": -16.7369,
+    "location": "East"
+  },
+  {
+    "name": "Porto da Cruz",
+    "type": "Freguesia",
+    "municipality": "Machico",
+    "latitude": 32.7708,
+    "longitude": -16.8286,
+    "location": "North-East"
+  },
+  {
+    "name": "Água de Pena",
+    "type": "Freguesia",
+    "municipality": "Machico",
+    "latitude": 32.7092,
+    "longitude": -16.7733,
+    "location": "East"
+  },
+  {
+    "name": "Santo António da Serra (Machico)",
+    "type": "Freguesia",
+    "municipality": "Machico",
+    "latitude": 32.7236,
+    "longitude": -16.8189,
+    "location": "East"
+  },
+  {
+    "name": "Santa Cruz",
+    "type": "Freguesia / Town",
+    "municipality": "Santa Cruz",
+    "latitude": 32.6881,
+    "longitude": -16.7936,
+    "location": "South-East"
+  },
+  {
+    "name": "Caniço",
+    "type": "Freguesia",
+    "municipality": "Santa Cruz",
+    "latitude": 32.6419,
+    "longitude": -16.8431,
+    "location": "South-East"
+  },
+  {
+    "name": "Camacha",
+    "type": "Freguesia",
+    "municipality": "Santa Cruz",
+    "latitude": 32.68,
+    "longitude": -16.8467,
+    "location": "South-East"
+  },
+  {
+    "name": "Gaula",
+    "type": "Freguesia",
+    "municipality": "Santa Cruz",
+    "latitude": 32.6781,
+    "longitude": -16.8164,
+    "location": "South-East"
+  },
+  {
+    "name": "Santo António da Serra (Santa Cruz)",
+    "type": "Freguesia",
+    "municipality": "Santa Cruz",
+    "latitude": 32.7242,
+    "longitude": -16.8167,
+    "location": "East"
+  },
+  {
+    "name": "Porto Santo (Vila Baleira)",
+    "type": "Freguesia / Town",
+    "municipality": "Porto Santo",
+    "latitude": 33.0583,
+    "longitude": -16.3353,
+    "location": "Porto Santo Island"
+  },
+  {
+    "name": "Pico Ruivo",
+    "type": "Mountain Peak",
+    "municipality": "Santana",
+    "latitude": 32.7594,
+    "longitude": -16.9439,
+    "location": "Central"
+  },
+  {
+    "name": "Pico do Arieiro",
+    "type": "Mountain Peak",
+    "municipality": "Funchal",
+    "latitude": 32.735,
+    "longitude": -16.9286,
+    "location": "Central"
+  },
+  {
+    "name": "Pico das Torres",
+    "type": "Mountain Peak",
+    "municipality": "Central Massif",
+    "latitude": 32.7444,
+    "longitude": -16.9386,
+    "location": "Central"
+  },
+  {
+    "name": "Pico Grande",
+    "type": "Mountain Peak",
+    "municipality": "Câmara de Lobos",
+    "latitude": 32.7356,
+    "longitude": -16.9614,
+    "location": "Central"
+  },
+  {
+    "name": "Fanal",
+    "type": "Forest / Region",
+    "municipality": "Porto Moniz",
+    "latitude": 32.8167,
+    "longitude": -17.1439,
+    "location": "North-West"
+  },
+  {
+    "name": "Paul da Serra",
+    "type": "Plateau / Region",
+    "municipality": "Ponta do Sol / Calheta",
+    "latitude": 32.7533,
+    "longitude": -17.0567,
+    "location": "Central-West"
+  },
+  {
+    "name": "Cabo Girão",
+    "type": "Cape / Viewpoint",
+    "municipality": "Câmara de Lobos",
+    "latitude": 32.6567,
+    "longitude": -17.0044,
+    "location": "South"
+  },
+  {
+    "name": "Ponta de São Lourenço",
+    "type": "Peninsula / Region",
+    "municipality": "Machico",
+    "latitude": 32.7431,
+    "longitude": -16.7011,
+    "location": "East"
+  },
+  {
+    "name": "Ribeiro Frio",
+    "type": "Forest / Region",
+    "municipality": "Santana",
+    "latitude": 32.7347,
+    "longitude": -16.8864,
+    "location": "Central-East"
+  },
+  {
+    "name": "Rabaçal",
+    "type": "Nature Reserve / Region",
+    "municipality": "Calheta",
+    "latitude": 32.7619,
+    "longitude": -17.1333,
+    "location": "West"
+  },
+  {
+    "name": "Bica da Cana",
+    "type": "Mountain Peak / Viewpoint",
+    "municipality": "Ponta do Sol",
+    "latitude": 32.7567,
+    "longitude": -17.0317,
+    "location": "Central-West"
+  },
+  {
+    "name": "Pico Ruivo do Paul",
+    "type": "Mountain Peak",
+    "municipality": "São Vicente",
+    "latitude": 32.7686,
+    "longitude": -17.0603,
+    "location": "Central-West"
+  },
+  {
+    "name": "Desertas Islands (Ilhas Desertas)",
+    "type": "Nature Reserve",
+    "municipality": "Santa Cruz",
+    "latitude": 32.5186,
+    "longitude": -16.5164,
+    "location": "South-East (Offshore)"
+  }
+]

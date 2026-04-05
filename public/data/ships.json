@@ -1,0 +1,23 @@
+[
+  {
+    "ShipName": "TODAY SHIP",
+    "Arrival": "2026-04-01T08:00:00",
+    "Departure": "2026-04-01T18:00:00",
+    "Terminal": "Funchal - Terminal Sul",
+    "Status": "At Berth"
+  },
+  {
+    "ShipName": "TOMORROW SHIP",
+    "Arrival": "2026-04-02T07:00:00",
+    "Departure": "2026-04-02T19:00:00",
+    "Terminal": "Funchal - Terminal Sul",
+    "Status": "Expected"
+  },
+  {
+    "ShipName": "FUTURE SHIP",
+    "Arrival": "2026-04-04T06:00:00",
+    "Departure": "2026-04-04T22:00:00",
+    "Terminal": "Funchal - Terminal Sul",
+    "Status": "Expected"
+  }
+]

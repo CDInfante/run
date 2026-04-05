@@ -1,0 +1,353 @@
+/** @author Harry Vasanth (harryvasanth.com) */
+import React, { useEffect, useState, memo } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import type { WeatherData } from "../../types";
+import { fetchWeather } from "../../services/weather";
+import { useTranslation } from "../../hooks/useTranslation";
+import {
+  Sun,
+  Cloud,
+  CloudRain,
+  Wind,
+  Droplets,
+  Sunrise,
+  Sunset,
+  Leaf,
+  Navigation,
+  Thermometer,
+  Eye,
+  Activity,
+  Tornado,
+} from "lucide-react";
+
+const WeatherIcon = ({
+  code,
+  className,
+}: {
+  code: number;
+  className?: string;
+}) => {
+  if (code === 0) return <Sun className={`${className} text-yellow-400`} />;
+  if (code < 40) return <Cloud className={`${className} text-gray-400`} />;
+  return <CloudRain className={`${className} text-blue-400`} />;
+};
+
+const WeatherCard: React.FC<{
+  lat: number;
+  lon: number;
+  title: string;
+  municipality?: string;
+  isExpanded?: boolean;
+}> = ({ lat, lon, title, municipality, isExpanded = false }) => {
+  const [weather, setWeather] = useState<WeatherData | null>(null);
+  const { t } = useTranslation();
+
+  useEffect(() => {
+    const loadWeather = async () => {
+      const data = await fetchWeather(lat, lon);
+      setWeather(data);
+    };
+    loadWeather();
+    const interval = setInterval(loadWeather, 10 * 60 * 1000);
+    return () => clearInterval(interval);
+  }, [lat, lon]);
+
+  if (!weather)
+    return (
+      <div className="p-6 md:p-8 glass rounded-[2rem] animate-pulse min-h-[14rem] w-full shadow-xl"></div>
+    );
+
+  // Determine AQI Color
+  const aqiColor =
+    weather.airQuality.european_aqi < 50
+      ? "text-green-500"
+      : weather.airQuality.european_aqi < 100
+        ? "text-yellow-500"
+        : "text-brand-red";
+
+  return (
+    <motion.div
+      layout
+      transition={{ duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
+      className={`p-5 md:p-6 glass rounded-[2rem] shadow-xl transition-colors duration-500 cursor-pointer hover:bg-white/10 group relative overflow-hidden flex flex-col h-fit self-start w-full ${
+        isExpanded
+          ? "border-brand-red/30 shadow-2xl bg-white/5 dark:bg-black/20"
+          : "bg-white/40 dark:bg-slate-900/40"
+      }`}
+    >
+      {/* Base Content (Always Visible) */}
+      <motion.div
+        layout="position"
+        className="flex flex-col relative z-10 flex-1 w-full gap-4"
+      >
+        {/* Header & Temp */}
+        <div className="flex items-start justify-between w-full">
+          <div className="flex flex-col flex-1 pr-2 min-w-0">
+            <h3 className="text-[11px] md:text-xs font-bold text-brand-red uppercase tracking-widest break-words leading-tight opacity-90">
+              {title}
+            </h3>
+            {municipality && (
+              <span className="text-[9px] md:text-[10px] font-bold uppercase opacity-50 tracking-tight break-words mt-0.5">
+                {municipality}
+              </span>
+            )}
+
+            <div className="flex flex-col mt-2">
+              <div className="text-4xl md:text-5xl font-bold text-brand-navy dark:text-white tracking-tighter flex items-baseline">
+                {weather.current.temp}
+                <span className="text-xl md:text-2xl font-semibold ml-1 opacity-40">
+                  °C
+                </span>
+              </div>
+              <div className="text-[9px] md:text-[10px] font-bold text-brand-navy/60 dark:text-white/60 uppercase tracking-widest mt-1">
+                {t("weather.apparent_temp")} {weather.current.apparentTemp}°C
+              </div>
+            </div>
+          </div>
+
+          <div className="p-3 md:p-4 bg-white/10 dark:bg-white/5 rounded-2xl border border-white/20 shadow-inner group-hover:scale-105 transition-transform duration-500 shrink-0">
+            <WeatherIcon
+              code={weather.current.weatherCode}
+              className="w-10 h-10 md:w-12 md:h-12 drop-shadow-md"
+            />
+          </div>
+        </div>
+
+        {/* Collapsed Core Athlete Stats (Always Visible) */}
+        <div className="grid grid-cols-4 gap-2 mt-auto w-full">
+          {[
+            {
+              icon: Wind,
+              val: `${weather.current.windSpeed}`,
+              unit: "km/h",
+              color: "text-blue-500",
+              bg: "bg-blue-500/10",
+            },
+            {
+              icon: Tornado,
+              val: `${weather.current.windGusts}`,
+              unit: "km/h",
+              color: "text-indigo-400",
+              bg: "bg-indigo-500/10",
+            },
+            {
+              icon: Activity,
+              val: weather.airQuality.european_aqi,
+              unit: "AQI",
+              color: aqiColor,
+              bg: "bg-white/5",
+            },
+            {
+              icon: Sun,
+              val: weather.current.uvIndex.toFixed(1),
+              unit: "UV",
+              color: "text-yellow-500",
+              bg: "bg-yellow-500/10",
+            },
+          ].map((stat, idx) => (
+            <div
+              key={idx}
+              className="flex flex-col items-center justify-center p-2 bg-white/20 dark:bg-white/5 rounded-xl border border-white/10 dark:border-white/5"
+            >
+              <stat.icon className={`w-4 h-4 mb-1 ${stat.color}`} />
+              <span className="text-[11px] font-bold text-brand-navy dark:text-white font-mono leading-none">
+                {stat.val}
+              </span>
+              <span className="text-[7px] font-bold uppercase opacity-50 mt-0.5 tracking-wider">
+                {stat.unit}
+              </span>
+            </div>
+          ))}
+        </div>
+      </motion.div>
+
+      {/* Expanded Data for Runners/Cyclists */}
+      <AnimatePresence>
+        {isExpanded && (
+          <motion.div
+            initial={{ opacity: 0, height: 0, marginTop: 0 }}
+            animate={{ opacity: 1, height: "auto", marginTop: 16 }}
+            exit={{ opacity: 0, height: 0, marginTop: 0 }}
+            transition={{ duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
+            className="overflow-hidden relative z-10 w-full"
+          >
+            <div className="pt-4 border-t border-brand-navy/10 dark:border-white/10 space-y-4">
+              {/* Performance Factors (Uses Flex-Wrap for fluid row filling) */}
+              <div>
+                <span className="text-[8px] font-bold uppercase tracking-widest text-brand-red opacity-80 mb-2 block">
+                  {t("weather.performance")}
+                </span>
+                <div className="flex flex-wrap gap-2">
+                  {[
+                    {
+                      label: t("weather.max_temp"),
+                      val: `${weather.daily.maxTemp}°C`,
+                      icon: Thermometer,
+                    },
+                    {
+                      label: t("weather.min_temp"),
+                      val: `${weather.daily.minTemp}°C`,
+                      icon: Thermometer,
+                    },
+                    {
+                      label: t("weather.rain_prob"),
+                      val: `${weather.daily.precipProb}%`,
+                      icon: CloudRain,
+                    },
+                    {
+                      label: t("weather.precipitation"),
+                      val: `${weather.current.precipitation}mm`,
+                      icon: CloudRain,
+                    },
+                    {
+                      label: t("weather.humidity"),
+                      val: `${weather.current.humidity}%`,
+                      icon: Droplets,
+                    },
+                    {
+                      label: t("weather.cloud_cover"),
+                      val: `${weather.current.cloudCover}%`,
+                      icon: Cloud,
+                    },
+                    {
+                      label: t("weather.visibility"),
+                      val: `${(weather.current.visibility / 1000).toFixed(1)}km`,
+                      icon: Eye,
+                    },
+                  ].map((item, idx) => (
+                    <div
+                      key={idx}
+                      className="flex flex-col gap-1 p-2 bg-white/30 dark:bg-white/5 rounded-xl border border-white/10 dark:border-white/5 flex-1 min-w-[30%] sm:min-w-[20%]"
+                    >
+                      <div className="flex items-center justify-between gap-1">
+                        <span className="text-[7px] font-bold uppercase opacity-60 tracking-widest truncate">
+                          {item.label}
+                        </span>
+                        <item.icon
+                          size={10}
+                          className="text-brand-navy/50 dark:text-white/50 shrink-0"
+                        />
+                      </div>
+                      <span className="text-[10px] font-bold text-brand-navy dark:text-white font-mono">
+                        {item.val}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Allergens & Air Quality */}
+              <div className="p-3 bg-white/30 dark:bg-white/5 rounded-2xl border border-white/10 dark:border-white/5">
+                <div className="flex items-center gap-2 text-green-600 dark:text-green-400 mb-3">
+                  <Leaf size={12} />
+                  <span className="text-[8px] font-bold uppercase tracking-widest">
+                    {t("weather.allergens")}
+                  </span>
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  {[
+                    {
+                      key: "pm25",
+                      label: "PM2.5",
+                      val: weather.airQuality.pm2_5,
+                    },
+                    {
+                      key: "pm10",
+                      label: "PM10",
+                      val: weather.airQuality.pm10,
+                    },
+                    {
+                      key: "dust",
+                      label: t("weather.dust"),
+                      val: weather.airQuality.dust,
+                    },
+                    {
+                      key: "grass",
+                      label: t("weather.grass"),
+                      val: weather.airQuality.grass_pollen,
+                    },
+                    {
+                      key: "olive",
+                      label: t("weather.olive"),
+                      val: weather.airQuality.olive_pollen,
+                    },
+                    {
+                      key: "birch",
+                      label: t("weather.birch"),
+                      val: weather.airQuality.birch_pollen,
+                    },
+                    {
+                      key: "mugwort",
+                      label: t("weather.mugwort"),
+                      val: weather.airQuality.mugwort_pollen,
+                    },
+                    {
+                      key: "alder",
+                      label: t("weather.alder"),
+                      val: weather.airQuality.alder_pollen,
+                    },
+                    {
+                      key: "ragweed",
+                      label: t("weather.ragweed"),
+                      val: weather.airQuality.ragweed_pollen,
+                    },
+                  ].map((p) => (
+                    <div
+                      key={p.key}
+                      className="flex flex-col text-center bg-white/20 dark:bg-black/20 rounded-lg py-1.5 px-1 flex-1 min-w-[22%] sm:min-w-[10%]"
+                    >
+                      <span className="text-[7px] font-bold uppercase opacity-60 tracking-tighter mb-0.5 truncate">
+                        {p.label}
+                      </span>
+                      <span className="text-[9px] font-bold text-brand-navy dark:text-white font-mono">
+                        {p.val ?? 0}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Sun Cycle & Wind Direction */}
+              <div className="flex flex-wrap justify-between items-center gap-2 pt-1">
+                <div className="flex items-center gap-2 px-3 py-1.5 bg-orange-500/10 rounded-xl border border-orange-500/20 flex-1 justify-center">
+                  <Sunrise className="w-3 h-3 text-orange-500" />
+                  <span className="text-[10px] font-bold uppercase tracking-widest text-brand-navy dark:text-white font-mono">
+                    {new Date(weather.daily.sunrise).toLocaleTimeString([], {
+                      hour: "2-digit",
+                      minute: "2-digit",
+                    })}
+                  </span>
+                </div>
+
+                <div className="flex items-center gap-2 px-3 py-1.5 bg-blue-500/10 rounded-xl border border-blue-500/20 flex-1 justify-center">
+                  <Navigation
+                    size={12}
+                    className="text-blue-500"
+                    style={{
+                      transform: `rotate(${weather.current.windDirection}deg)`,
+                    }}
+                  />
+                  <span className="text-[10px] font-bold uppercase tracking-widest text-brand-navy dark:text-white font-mono">
+                    {weather.current.windDirection}°
+                  </span>
+                </div>
+
+                <div className="flex items-center gap-2 px-3 py-1.5 bg-orange-500/10 rounded-xl border border-orange-500/20 flex-1 justify-center">
+                  <Sunset className="w-3 h-3 text-orange-600 dark:text-orange-400" />
+                  <span className="text-[10px] font-bold uppercase tracking-widest text-brand-navy dark:text-white font-mono">
+                    {new Date(weather.daily.sunset).toLocaleTimeString([], {
+                      hour: "2-digit",
+                      minute: "2-digit",
+                    })}
+                  </span>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </motion.div>
+  );
+};
+
+export default memo(WeatherCard);

@@ -1,0 +1,639 @@
+{
+  "meta": {
+    "scraped_at": "2026-04-05T12:53:56.032Z",
+    "site_last_updated": "26 março 2026",
+    "total_trails": 42
+  },
+  "trails": [
+    {
+      "id": "Vereda do Areeiro",
+      "pr": "1",
+      "island": "Madeira",
+      "distance": "6,1 km",
+      "description": "Pico do Areeiro – Pico Ruivo\n* Vereda oeste (pelos túneis)\n* Vereda este (pelo Pico das Torres) - Encerrado",
+      "status": "Aberto",
+      "additional_status": "Percurso transitável desde o Pico do Areeiro até ao Miradouro da Pedra Rija, ao km 1,2",
+      "entity_responsible": "IFCN",
+      "coordinates": {
+        "lat": 32.7355,
+        "lon": -16.9281
+      },
+      "last_checked": "2026-04-05T12:53:55.991Z"
+    },
+    {
+      "id": "Vereda da Ilha",
+      "pr": "1.1",
+      "island": "Madeira",
+      "distance": "8,2 km",
+      "description": "",
+      "status": "Aberto",
+      "additional_status": "",
+      "entity_responsible": "IFCN",
+      "coordinates": {
+        "lat": 32.7639,
+        "lon": -16.9039
+      },
+      "last_checked": "2026-04-05T12:53:55.991Z"
+    },
+    {
+      "id": "Vereda do Pico Ruivo",
+      "pr": "1.2",
+      "island": "Madeira",
+      "distance": "2,8 km (+2,8 km de regresso)",
+      "description": "",
+      "status": "Aberto",
+      "additional_status": "",
+      "entity_responsible": "IFCN",
+      "coordinates": {
+        "lat": 32.7638,
+        "lon": -16.9201
+      },
+      "last_checked": "2026-04-05T12:53:55.992Z"
+    },
+    {
+      "id": "Vereda da Encumeada",
+      "pr": "1.3",
+      "island": "Madeira",
+      "distance": "11,2 km",
+      "description": "",
+      "status": "Encerrado",
+      "additional_status": "",
+      "entity_responsible": "IFCN",
+      "coordinates": {
+        "lat": 32.7535,
+        "lon": -17.0211
+      },
+      "last_checked": "2026-04-05T12:53:55.992Z"
+    },
+    {
+      "id": "Vereda do Urzal",
+      "pr": "2",
+      "island": "Madeira",
+      "distance": "10,3 km",
+      "description": "",
+      "status": "Aberto",
+      "additional_status": "",
+      "entity_responsible": "IFCN",
+      "coordinates": {
+        "lat": 32.7214,
+        "lon": -16.985
+      },
+      "last_checked": "2026-04-05T12:53:55.992Z"
+    },
+    {
+      "id": "Vereda do Burro",
+      "pr": "3",
+      "island": "Madeira",
+      "distance": "6,7 km",
+      "description": "",
+      "status": "Aberto",
+      "additional_status": "",
+      "entity_responsible": "Câmara Municipal do Funchal",
+      "coordinates": {
+        "lat": 32.735,
+        "lon": -16.928
+      },
+      "last_checked": "2026-04-05T12:53:55.993Z"
+    },
+    {
+      "id": "Caminho Real do Monte",
+      "pr": "3.1",
+      "island": "Madeira",
+      "distance": "5,5 km",
+      "description": "",
+      "status": "Aberto",
+      "additional_status": "",
+      "entity_responsible": "Câmara Municipal do Funchal",
+      "coordinates": {
+        "lat": 32.715,
+        "lon": -16.915
+      },
+      "last_checked": "2026-04-05T12:53:55.995Z"
+    },
+    {
+      "id": "Levada do Barreiro",
+      "pr": "4",
+      "island": "Madeira",
+      "distance": "6,7 km",
+      "description": "",
+      "status": "Parcialmente transitável",
+      "additional_status": "MAPA",
+      "entity_responsible": "Câmara Municipal do Funchal",
+      "coordinates": {
+        "lat": 32.71,
+        "lon": -16.94
+      },
+      "last_checked": "2026-04-05T12:53:55.995Z"
+    },
+    {
+      "id": "Vereda das Funduras",
+      "pr": "5",
+      "island": "Madeira",
+      "distance": "8,7 km",
+      "description": "",
+      "status": "Aberto",
+      "additional_status": "",
+      "entity_responsible": "IFCN",
+      "coordinates": {
+        "lat": 32.7445,
+        "lon": -16.8261
+      },
+      "last_checked": "2026-04-05T12:53:55.996Z"
+    },
+    {
+      "id": "Levada das 25 Fontes",
+      "pr": "6",
+      "island": "Madeira",
+      "distance": "4,3 km (+ 4,3 km de regresso)",
+      "description": "",
+      "status": "Aberto",
+      "additional_status": "",
+      "entity_responsible": "IFCN",
+      "coordinates": {
+        "lat": 32.7617,
+        "lon": -17.1344
+      },
+      "last_checked": "2026-04-05T12:53:55.996Z"
+    },
+    {
+      "id": "Levada do Risco",
+      "pr": "6.1",
+      "island": "Madeira",
+      "distance": "3 km (+ 3 km de regresso)",
+      "description": "",
+      "status": "Aberto",
+      "additional_status": "",
+      "entity_responsible": "IFCN",
+      "coordinates": {
+        "lat": 32.7617,
+        "lon": -17.1344
+      },
+      "last_checked": "2026-04-05T12:53:55.996Z"
+    },
+    {
+      "id": "Levada do Alecrim",
+      "pr": "6.2",
+      "island": "Madeira",
+      "distance": "3,5 km (+ 3,5 km de regresso)",
+      "description": "",
+      "status": "Aberto",
+      "additional_status": "",
+      "entity_responsible": "IFCN",
+      "coordinates": {
+        "lat": 32.7547,
+        "lon": -17.1339
+      },
+      "last_checked": "2026-04-05T12:53:55.996Z"
+    },
+    {
+      "id": "Vereda da Lagoa do Vento",
+      "pr": "6.3",
+      "island": "Madeira",
+      "distance": "1,8 km (+ 1,8 km de regresso)",
+      "description": "",
+      "status": "Aberto",
+      "additional_status": "",
+      "entity_responsible": "IFCN",
+      "coordinates": {
+        "lat": 32.7547,
+        "lon": -17.1339
+      },
+      "last_checked": "2026-04-05T12:53:55.997Z"
+    },
+    {
+      "id": "Levada Velha do Rabaçal",
+      "pr": "6.4",
+      "island": "Madeira",
+      "distance": "5 Km",
+      "description": "",
+      "status": "Aberto",
+      "additional_status": "",
+      "entity_responsible": "IFCN",
+      "coordinates": {
+        "lat": 32.7551,
+        "lon": -17.1331
+      },
+      "last_checked": "2026-04-05T12:53:55.999Z"
+    },
+    {
+      "id": "Vereda do Pico Fernandes",
+      "pr": "6.5",
+      "island": "Madeira",
+      "distance": "3,8 km",
+      "description": "",
+      "status": "Aberto",
+      "additional_status": "",
+      "entity_responsible": "IFCN",
+      "coordinates": {
+        "lat": 32.7541,
+        "lon": -17.1154
+      },
+      "last_checked": "2026-04-05T12:53:55.999Z"
+    },
+    {
+      "id": "Vereda do Túnel do Cavalo",
+      "pr": "6.6",
+      "island": "Madeira",
+      "distance": "2,3 km",
+      "description": "",
+      "status": "Aberto",
+      "additional_status": "",
+      "entity_responsible": "IFCN",
+      "coordinates": {
+        "lat": 32.7511,
+        "lon": -17.1147
+      },
+      "last_checked": "2026-04-05T12:53:55.999Z"
+    },
+    {
+      "id": "Vereda da Câmara de Carga do Rabaçal",
+      "pr": "6.7",
+      "island": "Madeira",
+      "distance": "1,8 km",
+      "description": "",
+      "status": "Aberto",
+      "additional_status": "",
+      "entity_responsible": "IFCN",
+      "coordinates": {
+        "lat": 32.7511,
+        "lon": -17.1147
+      },
+      "last_checked": "2026-04-05T12:53:56.000Z"
+    },
+    {
+      "id": "Levada do Paul II – Um Caminho para todos",
+      "pr": "6.8",
+      "island": "Madeira",
+      "distance": "1,2 km",
+      "description": "",
+      "status": "Aberto",
+      "additional_status": "",
+      "entity_responsible": "IFCN",
+      "coordinates": {
+        "lat": 32.7602,
+        "lon": -17.1008
+      },
+      "last_checked": "2026-04-05T12:53:56.000Z"
+    },
+    {
+      "id": "Levada do Moinho",
+      "pr": "7",
+      "island": "Madeira",
+      "distance": "10,5 km",
+      "description": "",
+      "status": "Encerrado",
+      "additional_status": "",
+      "entity_responsible": "IFCN",
+      "coordinates": {
+        "lat": 32.8444,
+        "lon": -17.1936
+      },
+      "last_checked": "2026-04-05T12:53:56.000Z"
+    },
+    {
+      "id": "Vereda da Ponta de S. Lourenço",
+      "pr": "8",
+      "island": "Madeira",
+      "distance": "4 km (+ 4 km de regresso)",
+      "description": "",
+      "status": "Aberto",
+      "additional_status": "",
+      "entity_responsible": "IFCN",
+      "coordinates": {
+        "lat": 32.7431,
+        "lon": -16.7011
+      },
+      "last_checked": "2026-04-05T12:53:56.000Z"
+    },
+    {
+      "id": "Levada do Caldeirão Verde",
+      "pr": "9",
+      "island": "Madeira",
+      "distance": "8,7 km (+ 8,7 km de regresso)",
+      "description": "",
+      "status": "Encerrado",
+      "additional_status": "",
+      "entity_responsible": "IFCN",
+      "coordinates": {
+        "lat": 32.7836,
+        "lon": -16.9055
+      },
+      "last_checked": "2026-04-05T12:53:56.001Z"
+    },
+    {
+      "id": "Levada do Caldeirão Verde - Um Caminho para todos",
+      "pr": "9.1",
+      "island": "Madeira",
+      "distance": "1,9 km",
+      "description": "",
+      "status": "Aberto",
+      "additional_status": "",
+      "entity_responsible": "IFCN",
+      "coordinates": {
+        "lat": 32.7836,
+        "lon": -16.9055
+      },
+      "last_checked": "2026-04-05T12:53:56.001Z"
+    },
+    {
+      "id": "Levada do Furado",
+      "pr": "10",
+      "island": "Madeira",
+      "distance": "11 km",
+      "description": "",
+      "status": "Encerrado",
+      "additional_status": "",
+      "entity_responsible": "IFCN",
+      "coordinates": {
+        "lat": 32.7358,
+        "lon": -16.8858
+      },
+      "last_checked": "2026-04-05T12:53:56.003Z"
+    },
+    {
+      "id": "Vereda dos Balcões",
+      "pr": "11",
+      "island": "Madeira",
+      "distance": "1,5 km (+ 1,5 km de regresso)",
+      "description": "",
+      "status": "Aberto",
+      "additional_status": "",
+      "entity_responsible": "IFCN",
+      "coordinates": {
+        "lat": 32.7358,
+        "lon": -16.8858
+      },
+      "last_checked": "2026-04-05T12:53:56.003Z"
+    },
+    {
+      "id": "Caminho Real da Encumeada",
+      "pr": "12",
+      "island": "Madeira",
+      "distance": "12,5 km",
+      "description": "",
+      "status": "Parcialmente aberto",
+      "additional_status": "até ao km 3,5)",
+      "entity_responsible": "IFCN",
+      "coordinates": {
+        "lat": 32.7155,
+        "lon": -17.0135
+      },
+      "last_checked": "2026-04-05T12:53:56.004Z"
+    },
+    {
+      "id": "Vereda do Fanal",
+      "pr": "13",
+      "island": "Madeira",
+      "distance": "10,8 km",
+      "description": "",
+      "status": "Aberto",
+      "additional_status": "",
+      "entity_responsible": "IFCN",
+      "coordinates": {
+        "lat": 32.7511,
+        "lon": -17.1147
+      },
+      "last_checked": "2026-04-05T12:53:56.004Z"
+    },
+    {
+      "id": "Vereda da Palha Carga",
+      "pr": "13.1",
+      "island": "Madeira",
+      "distance": "1,8 km",
+      "description": "",
+      "status": "Aberto",
+      "additional_status": "",
+      "entity_responsible": "IFCN",
+      "coordinates": {
+        "lat": 32.7511,
+        "lon": -17.1147
+      },
+      "last_checked": "2026-04-05T12:53:56.004Z"
+    },
+    {
+      "id": "Levada dos Cedros",
+      "pr": "14",
+      "island": "Madeira",
+      "distance": "7,2 km",
+      "description": "",
+      "status": "Aberto",
+      "additional_status": "",
+      "entity_responsible": "IFCN",
+      "coordinates": {
+        "lat": 32.8083,
+        "lon": -17.1417
+      },
+      "last_checked": "2026-04-05T12:53:56.005Z"
+    },
+    {
+      "id": "Vereda da Ribeira da Janela",
+      "pr": "15",
+      "island": "Madeira",
+      "distance": "2,7 km",
+      "description": "",
+      "status": "Aberto",
+      "additional_status": "",
+      "entity_responsible": "IFCN",
+      "coordinates": {
+        "lat": 32.8242,
+        "lon": -17.1517
+      },
+      "last_checked": "2026-04-05T12:53:56.017Z"
+    },
+    {
+      "id": "Levada Fajã do Rodrigues",
+      "pr": "16",
+      "island": "Madeira",
+      "distance": "3,9 km (+ 3,9 km de regresso)",
+      "description": "",
+      "status": "Encerrado",
+      "additional_status": "",
+      "entity_responsible": "IFCN",
+      "coordinates": {
+        "lat": 32.7824,
+        "lon": -17.0366
+      },
+      "last_checked": "2026-04-05T12:53:56.017Z"
+    },
+    {
+      "id": "Caminho do Pináculo e Folhadal",
+      "pr": "17",
+      "island": "Madeira",
+      "distance": "15 km",
+      "description": "Lombo do Mouro – Caramujo – Folhadal – Encumeada",
+      "status": "Aberto",
+      "additional_status": "Folhadal – Caramujo - Bica da Cana)",
+      "entity_responsible": "IFCN",
+      "coordinates": {
+        "lat": 32.7536,
+        "lon": -17.0212
+      },
+      "last_checked": "2026-04-05T12:53:56.018Z"
+    },
+    {
+      "id": "Levada do Rei",
+      "pr": "18",
+      "island": "Madeira",
+      "distance": "5,3 km (+ 5,3 km de regresso)",
+      "description": "",
+      "status": "Encerrado",
+      "additional_status": "",
+      "entity_responsible": "IFCN",
+      "coordinates": {
+        "lat": 32.8094,
+        "lon": -16.9158
+      },
+      "last_checked": "2026-04-05T12:53:56.018Z"
+    },
+    {
+      "id": "Caminho Real do Paul do Mar",
+      "pr": "19",
+      "island": "Madeira",
+      "distance": "1,8 km",
+      "description": "",
+      "status": "Aberto",
+      "additional_status": "",
+      "entity_responsible": "IFCN",
+      "coordinates": {
+        "lat": 32.7575,
+        "lon": -17.2119
+      },
+      "last_checked": "2026-04-05T12:53:56.018Z"
+    },
+    {
+      "id": "Vereda do Jardim do Mar",
+      "pr": "20",
+      "island": "Madeira",
+      "distance": "1,9 km",
+      "description": "",
+      "status": "Encerrado",
+      "additional_status": "",
+      "entity_responsible": "IFCN",
+      "coordinates": {
+        "lat": 32.7572,
+        "lon": -17.2105
+      },
+      "last_checked": "2026-04-05T12:53:56.018Z"
+    },
+    {
+      "id": "Caminho do Norte",
+      "pr": "21",
+      "island": "Madeira",
+      "distance": "3,2 km",
+      "description": "",
+      "status": "Aberto",
+      "additional_status": "",
+      "entity_responsible": "IFCN",
+      "coordinates": {
+        "lat": 32.7536,
+        "lon": -17.0211
+      },
+      "last_checked": "2026-04-05T12:53:56.018Z"
+    },
+    {
+      "id": "Vereda do Chão dos Louros",
+      "pr": "22",
+      "island": "Madeira",
+      "distance": "1,9 km",
+      "description": "",
+      "status": "Aberto",
+      "additional_status": "",
+      "entity_responsible": "IFCN",
+      "coordinates": {
+        "lat": 32.7445,
+        "lon": -17.0208
+      },
+      "last_checked": "2026-04-05T12:53:56.019Z"
+    },
+    {
+      "id": "Levada da Azenha",
+      "pr": "23",
+      "island": "Madeira",
+      "distance": "1,3 km",
+      "description": "",
+      "status": "Aberto",
+      "additional_status": "",
+      "entity_responsible": "Junta de Freguesia do Caniço",
+      "coordinates": {
+        "lat": 32.6517,
+        "lon": -16.8365
+      },
+      "last_checked": "2026-04-05T12:53:56.019Z"
+    },
+    {
+      "id": "Glaciar de Planalto",
+      "pr": "27",
+      "island": "Madeira",
+      "distance": "4,6 km",
+      "description": "",
+      "status": "Encerrado",
+      "additional_status": "",
+      "entity_responsible": "IFCN",
+      "coordinates": {
+        "lat": 32.7544,
+        "lon": -17.0519
+      },
+      "last_checked": "2026-04-05T12:53:56.020Z"
+    },
+    {
+      "id": "Levada da Rocha Vermelha",
+      "pr": "28",
+      "island": "Madeira",
+      "distance": "10,7 km",
+      "description": "",
+      "status": "Encerrado",
+      "additional_status": "",
+      "entity_responsible": "IFCN",
+      "coordinates": {
+        "lat": 32.7617,
+        "lon": -17.1344
+      },
+      "last_checked": "2026-04-05T12:53:56.020Z"
+    },
+    {
+      "id": "Vereda do Pico Branco e Terra Chã",
+      "pr": "1",
+      "island": "Porto Santo",
+      "distance": "2,7 Km (+ 2,7 km de regresso)",
+      "description": "",
+      "status": "Aberto",
+      "additional_status": "",
+      "entity_responsible": "IFCN",
+      "coordinates": {
+        "lat": 33.0833,
+        "lon": -16.2994
+      },
+      "last_checked": "2026-04-05T12:53:56.021Z"
+    },
+    {
+      "id": "Vereda do Pico do Castelo",
+      "pr": "2",
+      "island": "Porto Santo",
+      "distance": "3,2 Km/4,6 km",
+      "description": "",
+      "status": "Aberto",
+      "additional_status": "",
+      "entity_responsible": "IFCN",
+      "coordinates": {
+        "lat": 33.0722,
+        "lon": -16.3294
+      },
+      "last_checked": "2026-04-05T12:53:56.021Z"
+    },
+    {
+      "id": "Levada do Pico Castelo",
+      "pr": "3",
+      "island": "Porto Santo",
+      "distance": "4,1 km",
+      "description": "",
+      "status": "Encerrado",
+      "additional_status": "",
+      "entity_responsible": "IFCN",
+      "coordinates": {
+        "lat": 33.0722,
+        "lon": -16.3294
+      },
+      "last_checked": "2026-04-05T12:53:56.022Z"
+    }
+  ]
+}
