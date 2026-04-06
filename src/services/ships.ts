@@ -37,25 +37,30 @@ export const fetchShipStatus = async (): Promise<ShipStatus> => {
           a.arrival.getTime() - b.arrival.getTime(),
       );
 
-    const currentlyDocked = processedShips.filter(
+    // Only consider "Terminal Sul" for the overall port open/closed status
+    const sulShips = processedShips.filter((s) =>
+      s.terminal.includes("Terminal Sul"),
+    );
+
+    const currentlyDockedSul = sulShips.filter(
       (s: { arrival: Date; departure: Date }) =>
         now >= s.arrival && now <= s.departure,
     );
 
     let nextAvailableDate: Date | null = null;
 
-    if (currentlyDocked.length === 0) {
+    if (currentlyDockedSul.length === 0) {
       nextAvailableDate = now;
     } else {
       let chainEnd = new Date(
         Math.max(
-          ...currentlyDocked.map((s: { departure: Date }) =>
+          ...currentlyDockedSul.map((s: { departure: Date }) =>
             s.departure.getTime(),
           ),
         ),
       );
 
-      for (const ship of processedShips) {
+      for (const ship of sulShips) {
         if (ship.arrival <= chainEnd && ship.departure > chainEnd) {
           chainEnd = ship.departure;
         }
@@ -64,8 +69,8 @@ export const fetchShipStatus = async (): Promise<ShipStatus> => {
     }
 
     return {
-      isDocked: currentlyDocked.length > 0,
-      count: currentlyDocked.length,
+      isDocked: currentlyDockedSul.length > 0,
+      count: currentlyDockedSul.length,
       nextAvailableDate,
       ships: processedShips.map(
         (s: {
@@ -86,6 +91,7 @@ export const fetchShipStatus = async (): Promise<ShipStatus> => {
             hour: "2-digit",
             minute: "2-digit",
           }),
+          // Keep general docked status for the list UI styling
           isDockedNow: now >= s.arrival && now <= s.departure,
         }),
       ),

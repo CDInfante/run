@@ -81,7 +81,10 @@ const ShipsTab: React.FC<ShipsTabProps> = ({
 
   let nextArrivalDate: Date | null = null;
   if (isPortClearNow && status.ships.length > 0) {
-    const futureShips = status.ships.filter((s) => s.arrivalDate > now);
+    // Only check next arrival for Terminal Sul
+    const futureShips = status.ships.filter(
+      (s) => s.arrivalDate > now && s.terminal.includes("Terminal Sul"),
+    );
     if (futureShips.length > 0) {
       nextArrivalDate = futureShips.reduce(
         (min, s) => (s.arrivalDate < min ? s.arrivalDate : min),

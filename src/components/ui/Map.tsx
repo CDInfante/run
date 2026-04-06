@@ -433,7 +433,11 @@ const Map: React.FC<MapProps> = ({
   const dockedShips = portStatus?.ships.filter((s) => s.isDockedNow) || [];
   const nextArrival =
     !portStatus?.isDocked && portStatus?.ships.length
-      ? portStatus.ships.find((s) => new Date(s.arrivalDate) > new Date())
+      ? portStatus.ships.find(
+          (s) =>
+            new Date(s.arrivalDate) > new Date() &&
+            s.terminal.includes("Terminal Sul"),
+        )
       : null;
 
   return (
