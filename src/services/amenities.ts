@@ -11,10 +11,23 @@ interface AmenitiesData {
 
 export const fetchAmenities = async (): Promise<Amenity[]> => {
   try {
-    const response = await fetch("/amenities.json");
-    if (!response.ok) {
-      throw new Error("Failed to fetch amenities from static source");
+    let response: Response;
+
+    // Try GitHub raw first to bypass local PWA cache
+    try {
+      response = await fetch(
+        "https://raw.githubusercontent.com/CDInfante/run/refs/heads/main/public/amenities.json",
+      );
+      if (!response.ok) throw new Error("GitHub fetch failed");
+    } catch {
+      // Fallback to local (cached) file if offline or blocked
+      response = await fetch("/amenities.json");
     }
+
+    if (!response.ok) {
+      throw new Error("Failed to fetch amenities");
+    }
+
     const data: AmenitiesData = await response.json();
     return data.amenities;
   } catch (error) {

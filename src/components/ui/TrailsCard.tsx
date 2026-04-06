@@ -25,9 +25,23 @@ const TrailsCard: React.FC<TrailsCardProps> = ({
   const [selectedTrail, setSelectedTrail] = useState<Trail | null>(null);
 
   useEffect(() => {
-    fetch("/trails-madeira.json")
-      .then((res) => res.json())
-      .then((data: TrailsData) => {
+    const loadTrails = async () => {
+      try {
+        let response: Response;
+
+        // Try GitHub raw first to bypass local PWA cache
+        try {
+          response = await fetch(
+            "https://raw.githubusercontent.com/CDInfante/run/refs/heads/main/public/trails-madeira.json",
+          );
+          if (!response.ok) throw new Error("GitHub fetch failed");
+        } catch {
+          // Fallback to local (cached) file
+          response = await fetch("/trails-madeira.json");
+        }
+
+        const data: TrailsData = await response.json();
+
         const sortedTrails = data.trails.sort((a, b) => {
           if (a.island !== b.island) {
             return a.island === "Madeira" ? -1 : 1;
@@ -36,9 +50,14 @@ const TrailsCard: React.FC<TrailsCardProps> = ({
           const numB = parseFloat(b.pr.replace(/[^\d.]/g, "")) || 0;
           return numA - numB;
         });
+
         setTrails(sortedTrails);
-      })
-      .catch((err) => console.error("Error loading trails:", err));
+      } catch (err) {
+        console.error("Error loading trails:", err);
+      }
+    };
+
+    loadTrails();
   }, []);
 
   const getStatusColor = (status: string) => {

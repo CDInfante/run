@@ -7,13 +7,17 @@ import MapSection from "./components/sections/MapSection";
 import DashboardSection from "./components/sections/DashboardSection";
 import locationsData from "./content/locations.json";
 import type { Location } from "./types";
+import { useTranslation } from "./hooks/useTranslation";
 
 /**
  * Main Application Component
  * Handles the overall layout, state for map toggles, and weather location management.
+ * Includes graceful PWA update prompt.
  * @author Harry Vasanth (harryvasanth.com)
  */
 const App: React.FC = () => {
+  const { t } = useTranslation();
+
   const [showWater, setShowWater] = useState(() => {
     return localStorage.getItem("showWater") === "true";
   });
@@ -62,8 +66,11 @@ const App: React.FC = () => {
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const containerRef = useRef<HTMLDivElement>(null);
 
-  // Auto-update PWA service worker when a new version is available
-  useRegisterSW({
+  // Auto-update PWA service worker with prompt mode
+  const {
+    needRefresh: [needRefresh, setNeedRefresh],
+    updateServiceWorker,
+  } = useRegisterSW({
     onRegistered(r: ServiceWorkerRegistration | undefined) {
       if (r) {
         setInterval(
@@ -73,10 +80,6 @@ const App: React.FC = () => {
           60 * 60 * 1000,
         ); // Check for updates every hour
       }
-    },
-    onNeedRefresh() {
-      // In autoUpdate mode, this might not be strictly necessary, but good to have
-      window.location.reload();
     },
   });
 
@@ -181,6 +184,29 @@ const App: React.FC = () => {
 
         <Footer />
       </main>
+
+      {/* --- GRACEFUL UPDATE PROMPT UI --- */}
+      {needRefresh && (
+        <div className="fixed bottom-6 right-6 md:bottom-10 md:right-10 z-[9999] p-4 md:p-5 bg-brand-navy dark:bg-slate-800 text-white rounded-2xl shadow-2xl flex flex-wrap items-center gap-4 animate-in slide-in-from-bottom-8 border border-white/10">
+          <span className="text-[11px] md:text-xs font-bold uppercase tracking-widest">
+            {t("app.update_available")}
+          </span>
+          <div className="flex gap-2 w-full sm:w-auto justify-end">
+            <button
+              onClick={() => setNeedRefresh(false)}
+              className="text-[10px] text-white/60 hover:text-white font-bold uppercase tracking-widest transition-colors px-2 py-2"
+            >
+              {t("app.close_btn")}
+            </button>
+            <button
+              onClick={() => updateServiceWorker(true)}
+              className="px-5 py-2 bg-brand-red rounded-full text-[10px] font-bold uppercase tracking-widest hover:scale-105 transition-transform shadow-lg shadow-brand-red/20"
+            >
+              {t("app.update_btn")}
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
