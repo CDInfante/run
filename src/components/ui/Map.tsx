@@ -441,7 +441,7 @@ const Map: React.FC<MapProps> = ({
       : null;
 
   return (
-    <div className="h-[500px] md:h-[700px] w-full relative z-10 group/map">
+    <div className="h-full w-full relative z-10 group/map">
       <style>{mapStyles}</style>
       <div className="absolute bottom-28 right-6 z-[1000] pointer-events-none">
         <button
