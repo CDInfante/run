@@ -10,6 +10,7 @@ import {
   Globe,
   Share2,
   Check,
+  Download,
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "../../lib/utils";
@@ -36,6 +37,10 @@ const Navbar: React.FC<NavbarProps> = ({ setIsSettingsOpen }) => {
   const [scrolled, setScrolled] = useState(false);
   const [showShareSuccess, setShowShareSuccess] = useState(false);
 
+  const [deferredPrompt, setDeferredPrompt] = useState<any>(null);
+  const [isInstallable, setIsInstallable] = useState(false);
+  const [isIOS, setIsIOS] = useState(false);
+
   const handleScroll = useCallback(() => {
     setScrolled(window.scrollY > 20);
   }, []);
@@ -44,6 +49,61 @@ const Navbar: React.FC<NavbarProps> = ({ setIsSettingsOpen }) => {
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, [handleScroll]);
+
+  // PWA Install Logic
+  useEffect(() => {
+    // Check if already installed
+    const isStandalone =
+      window.matchMedia("(display-mode: standalone)").matches ||
+      (window.navigator as any).standalone === true;
+    if (isStandalone) return;
+
+    // Check iOS
+    const ua = window.navigator.userAgent;
+    const webkit = !!ua.match(/WebKit/i);
+    const isiOS =
+      !!ua.match(/iPad/i) || !!ua.match(/iPhone/i) || !!ua.match(/iPod/i);
+    const isSafari = isiOS && webkit && !ua.match(/CriOS/i);
+
+    if (isiOS && isSafari) {
+      setIsIOS(true);
+      setIsInstallable(true);
+    }
+
+    // Check Android/Chrome (beforeinstallprompt)
+    const handleBeforeInstallPrompt = (e: Event) => {
+      e.preventDefault();
+      setDeferredPrompt(e);
+      setIsInstallable(true);
+    };
+
+    window.addEventListener("beforeinstallprompt", handleBeforeInstallPrompt);
+
+    return () => {
+      window.removeEventListener(
+        "beforeinstallprompt",
+        handleBeforeInstallPrompt,
+      );
+    };
+  }, []);
+
+  const handleInstall = async () => {
+    if (deferredPrompt) {
+      deferredPrompt.prompt();
+      const { outcome } = await deferredPrompt.userChoice;
+      if (outcome === "accepted") {
+        setIsInstallable(false);
+      }
+      setDeferredPrompt(null);
+    } else if (isIOS) {
+      alert(
+        t(
+          "nav.ios_install_instructions",
+          'To install: tap Share and then "Add to Home Screen"',
+        ),
+      );
+    }
+  };
 
   // Navigation items used in both desktop and mobile views
   const navLinks = [
@@ -131,6 +191,15 @@ const Navbar: React.FC<NavbarProps> = ({ setIsSettingsOpen }) => {
             </ul>
 
             <div className="hidden lg:flex items-center gap-4">
+              {isInstallable && (
+                <button
+                  onClick={handleInstall}
+                  className="flex items-center gap-2 px-4 py-2 bg-brand-red text-white rounded-full font-bold text-[10px] uppercase tracking-widest hover:scale-105 transition-all shadow-lg animate-pulse hover:animate-none"
+                >
+                  <Download size={14} />
+                  {t("nav.install")}
+                </button>
+              )}
               <button
                 onClick={handleShare}
                 className="p-2.5 hover:bg-slate-100 dark:hover:bg-white/5 rounded-full transition-all text-brand-navy dark:text-slate-300 cursor-pointer relative"
@@ -194,6 +263,14 @@ const Navbar: React.FC<NavbarProps> = ({ setIsSettingsOpen }) => {
 
             {/* Mobile Actions */}
             <div className="flex lg:hidden items-center gap-2">
+              {isInstallable && (
+                <button
+                  onClick={handleInstall}
+                  className="flex items-center gap-1.5 px-3 py-1.5 bg-brand-red text-white rounded-full font-bold text-[9px] uppercase tracking-widest animate-pulse shadow-lg"
+                >
+                  <Download size={12} />
+                </button>
+              )}
               <button
                 onClick={toggleDarkMode}
                 className="p-2 text-brand-navy dark:text-slate-300 cursor-pointer"
@@ -264,6 +341,19 @@ const Navbar: React.FC<NavbarProps> = ({ setIsSettingsOpen }) => {
               ))}
 
               <div className="h-px bg-slate-100 dark:bg-white/10 my-4" />
+
+              {isInstallable && (
+                <button
+                  onClick={() => {
+                    handleInstall();
+                    setIsMenuOpen(false);
+                  }}
+                  className="flex items-center justify-center gap-3 text-brand-red font-bold text-lg cursor-pointer uppercase tracking-widest mb-4 animate-pulse"
+                >
+                  <Download size={24} />
+                  {t("nav.install")}
+                </button>
+              )}
 
               <button
                 onClick={() => {

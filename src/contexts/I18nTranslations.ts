@@ -18,6 +18,9 @@ export const translations: Translations = {
     "nav.ships": "Ships",
     "nav.settings": "Settings",
     "nav.trails": "Trails",
+    "nav.install": "Install App",
+    "nav.ios_install_instructions":
+      "To install: tap Share, then 'Add to Home Screen'",
     "map.title": "Community Map",
     "map.water": "Water",
     "map.toilets": "Toilets",
@@ -146,6 +149,9 @@ export const translations: Translations = {
     "nav.ships": "Navios",
     "nav.settings": "Ajustes",
     "nav.trails": "Trilhos",
+    "nav.install": "Instalar App",
+    "nav.ios_install_instructions":
+      "Para instalar: toque em Partilhar e depois 'Adicionar ao Ecrã Principal'",
     "map.title": "Mapa da Comunidade",
     "map.water": "Água",
     "map.toilets": "WCs",
