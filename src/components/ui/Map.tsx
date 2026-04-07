@@ -1,10 +1,11 @@
 import React, { useEffect, useState, useMemo } from "react";
 import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
 import { useQuery } from "@tanstack/react-query";
+import MarkerClusterGroup from "react-leaflet-cluster";
 import { motion, AnimatePresence } from "framer-motion";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
-import type { Amenity, WeatherWarning, Trail, ShipStatus } from "../../types";
+import type { WeatherWarning } from "../../types";
 
 import { fetchAmenities } from "../../services/amenities";
 import {
@@ -37,6 +38,11 @@ const mapStyles = `
   }
 
   .custom-leaflet-icon {
+    background: none !important;
+    border: none !important;
+  }
+  
+  .custom-marker-cluster {
     background: none !important;
     border: none !important;
   }
@@ -149,17 +155,38 @@ const REGION_COORDS_OVERRIDE: Record<string, [number, number]> = {
 
 const FUNCHAL_PORT_COORDS: [number, number] = [32.6432113, -16.9148545];
 
+// Factory to dynamically generate cluster icons based on the passed color class
+const getClusterIcon = (colorClass: string) => {
+  return function (cluster: any) {
+    const count = cluster.getChildCount();
+    const html = renderToString(
+      <div
+        className={`flex items-center justify-center w-11 h-11 ${colorClass} text-white rounded-[1rem] shadow-xl border border-white/30 font-bold text-sm backdrop-blur-md transition-transform hover:scale-110`}
+      >
+        {count}
+      </div>,
+    );
+
+    return L.divIcon({
+      html: html,
+      className: "custom-marker-cluster",
+      iconSize: L.point(44, 44, true),
+    });
+  };
+};
+
 const createCustomIcon = (
   type: "fountain" | "toilet" | "warning" | "trail" | "port",
   level?: string,
 ) => {
-  let color = "#3b82f6";
+  let color = "#3b82f6"; // Blue for fountains
   let IconComponent = AlertTriangle;
   let shouldPulse = false;
 
-  if (type === "toilet") color = "#8b5cf6";
+  if (type === "toilet") color = "#8b5cf6"; // Violet for toilets
   if (type === "trail") {
-    if (level === "Aberto") color = "#10b981";
+    if (level === "Aberto")
+      color = "#10b981"; // Emerald for open trails
     else if (level === "Encerrado") color = "#ef4444";
     else color = "#f97316";
   }
@@ -213,7 +240,7 @@ const createCustomIcon = (
         transform: "rotate(-45deg)",
         border: "2px solid white",
         boxShadow: "0 10px 15px -3px rgba(0, 0, 0, 0.1)",
-        opacity: isWarning ? 1 : 0.8,
+        opacity: isWarning ? 1 : 0.8, // 80% opacity for normal markers
       }}
     >
       <div style={{ transform: "rotate(45deg)", display: "flex" }}>
@@ -281,16 +308,12 @@ const LocationMarker = ({
 
   useEffect(() => {
     map.locate({ setView: false, maxZoom: 16 });
-
     map.on("locationfound", (e) => {
       setPosition(e.latlng);
       setUserLocation(e.latlng);
       map.flyTo(e.latlng, 14);
     });
-
-    map.on("locationerror", () => {
-      console.warn("Location access denied or unavailable.");
-    });
+    map.on("locationerror", () => console.warn("Location access denied."));
   }, [map, setUserLocation]);
 
   return position === null ? null : (
@@ -321,7 +344,6 @@ const Map: React.FC<MapProps> = ({
   const [userLocation, setUserLocation] = useState<L.LatLng | null>(null);
   const [mapInstance, setMapInstance] = useState<L.Map | null>(null);
 
-  // TanStack Query with isFetching destructured to power our Syncing Overlay
   const { data: amenities = [], isFetching: isFetchingAmenities } = useQuery({
     queryKey: ["amenities"],
     queryFn: fetchAmenities,
@@ -340,21 +362,21 @@ const Map: React.FC<MapProps> = ({
   });
 
   const trails = trailsData?.trails || [];
-
-  // Boolean to determine if any of the map layers are currently pulling fresh data from the network
   const isSyncing =
     isFetchingAmenities ||
     isFetchingWarnings ||
     isFetchingTrails ||
     isFetchingShips;
 
-  const filteredAmenities = useMemo(() => {
-    return amenities.filter((a) => {
-      if (a.type === "fountain" && !showWater) return false;
-      if (a.type === "toilet" && !showToilets) return false;
-      return true;
-    });
-  }, [amenities, showWater, showToilets]);
+  // Pre-filter amenities by type to give them distinct cluster colors
+  const waterAmenities = useMemo(
+    () => (showWater ? amenities.filter((a) => a.type === "fountain") : []),
+    [amenities, showWater],
+  );
+  const toiletAmenities = useMemo(
+    () => (showToilets ? amenities.filter((a) => a.type === "toilet") : []),
+    [amenities, showToilets],
+  );
 
   const tileLayerUrl =
     "https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png";
@@ -422,7 +444,7 @@ const Map: React.FC<MapProps> = ({
     <div className="h-full w-full relative z-10 group/map">
       <style>{mapStyles}</style>
 
-      {/* --- Syncing Live Data Indicator --- */}
+      {/* Syncing Live Data Indicator */}
       <AnimatePresence>
         {isSyncing && (
           <motion.div
@@ -439,7 +461,6 @@ const Map: React.FC<MapProps> = ({
         )}
       </AnimatePresence>
 
-      {/* Locate Me Button */}
       <div className="absolute bottom-28 right-6 z-[1000] pointer-events-none">
         <button
           onClick={() => {
@@ -466,74 +487,122 @@ const Map: React.FC<MapProps> = ({
         <MapBounds />
         <LocationMarker setUserLocation={setUserLocation} />
 
-        {filteredAmenities.map((amenity) => (
-          <Marker
-            key={amenity.id}
-            position={[amenity.lat, amenity.lon]}
-            icon={createCustomIcon(amenity.type)}
+        {/* BLUE WATER CLUSTERS */}
+        {waterAmenities.length > 0 && (
+          <MarkerClusterGroup
+            chunkedLoading
+            iconCreateFunction={getClusterIcon("bg-blue-500/80")}
+            maxClusterRadius={60}
           >
-            <Popup>
-              <div className="p-6 pr-10 min-w-[180px] text-brand-navy dark:text-white">
-                <p className="text-[10px] font-bold uppercase tracking-widest opacity-50 mb-2 border-b border-white/10 pb-2">
-                  {amenity.type}
-                </p>
-                <h3 className="text-sm font-bold uppercase leading-tight">
-                  {amenity.name ||
-                    `${amenity.lat.toFixed(4)}, ${amenity.lon.toFixed(4)}`}
-                </h3>
-              </div>
-            </Popup>
-          </Marker>
-        ))}
-
-        {showTrails &&
-          trails.map((trail) => (
-            <Marker
-              key={`trail-${trail.id}`}
-              position={[trail.coordinates.lat, trail.coordinates.lon]}
-              icon={createCustomIcon("trail", trail.status)}
-            >
-              <Popup>
-                <div className="p-6 pr-10 min-w-[220px] text-brand-navy dark:text-white">
-                  <p className="text-[10px] font-bold uppercase tracking-widest opacity-50 mb-2 border-b border-white/10 pb-2">
-                    PR{trail.pr} • {trail.island}
-                  </p>
-                  <h3 className="text-sm font-bold uppercase leading-tight mb-2">
-                    {trail.id}
-                  </h3>
-                  <div className="space-y-2">
-                    <p className="text-[10px] uppercase tracking-wider">
-                      <span className="opacity-50">Status:</span>{" "}
-                      <span
-                        className={
-                          trail.status === "Aberto"
-                            ? "text-emerald-500"
-                            : trail.status === "Encerrado"
-                              ? "text-red-500"
-                              : "text-orange-500"
-                        }
-                      >
-                        {trail.status}
-                      </span>
+            {waterAmenities.map((amenity) => (
+              <Marker
+                key={amenity.id}
+                position={[amenity.lat, amenity.lon]}
+                icon={createCustomIcon(amenity.type)}
+              >
+                <Popup>
+                  <div className="p-6 pr-10 min-w-[180px] text-brand-navy dark:text-white">
+                    <p className="text-[10px] font-bold uppercase tracking-widest opacity-50 mb-2 border-b border-white/10 pb-2">
+                      {amenity.type}
                     </p>
-                    <p className="text-[10px] uppercase tracking-wider">
-                      <span className="opacity-50">Dist:</span> {trail.distance}
-                    </p>
-                    <a
-                      href="https://ifcn.madeira.gov.pt/atividades-de-natureza/percursos-pedestres-recomendados/percursos-pedestres-recomendados.html"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center justify-center gap-2 mt-4 p-2 bg-emerald-500 text-white rounded-xl text-[10px] font-bold uppercase tracking-widest hover:opacity-90 transition-all"
-                    >
-                      <ExternalLink size={10} />
-                      IFCN Info
-                    </a>
+                    <h3 className="text-sm font-bold uppercase leading-tight">
+                      {amenity.name ||
+                        `${amenity.lat.toFixed(4)}, ${amenity.lon.toFixed(4)}`}
+                    </h3>
                   </div>
-                </div>
-              </Popup>
-            </Marker>
-          ))}
+                </Popup>
+              </Marker>
+            ))}
+          </MarkerClusterGroup>
+        )}
 
+        {/* VIOLET TOILET CLUSTERS */}
+        {toiletAmenities.length > 0 && (
+          <MarkerClusterGroup
+            chunkedLoading
+            iconCreateFunction={getClusterIcon("bg-violet-500/80")}
+            maxClusterRadius={60}
+          >
+            {toiletAmenities.map((amenity) => (
+              <Marker
+                key={amenity.id}
+                position={[amenity.lat, amenity.lon]}
+                icon={createCustomIcon(amenity.type)}
+              >
+                <Popup>
+                  <div className="p-6 pr-10 min-w-[180px] text-brand-navy dark:text-white">
+                    <p className="text-[10px] font-bold uppercase tracking-widest opacity-50 mb-2 border-b border-white/10 pb-2">
+                      {amenity.type}
+                    </p>
+                    <h3 className="text-sm font-bold uppercase leading-tight">
+                      {amenity.name ||
+                        `${amenity.lat.toFixed(4)}, ${amenity.lon.toFixed(4)}`}
+                    </h3>
+                  </div>
+                </Popup>
+              </Marker>
+            ))}
+          </MarkerClusterGroup>
+        )}
+
+        {/* EMERALD TRAIL CLUSTERS */}
+        {showTrails && trails.length > 0 && (
+          <MarkerClusterGroup
+            chunkedLoading
+            iconCreateFunction={getClusterIcon("bg-emerald-500/80")}
+            maxClusterRadius={40}
+          >
+            {trails.map((trail) => (
+              <Marker
+                key={`trail-${trail.id}`}
+                position={[trail.coordinates.lat, trail.coordinates.lon]}
+                icon={createCustomIcon("trail", trail.status)}
+              >
+                <Popup>
+                  <div className="p-6 pr-10 min-w-[220px] text-brand-navy dark:text-white">
+                    <p className="text-[10px] font-bold uppercase tracking-widest opacity-50 mb-2 border-b border-white/10 pb-2">
+                      PR{trail.pr} • {trail.island}
+                    </p>
+                    <h3 className="text-sm font-bold uppercase leading-tight mb-2">
+                      {trail.id}
+                    </h3>
+                    <div className="space-y-2">
+                      <p className="text-[10px] uppercase tracking-wider">
+                        <span className="opacity-50">Status:</span>{" "}
+                        <span
+                          className={
+                            trail.status === "Aberto"
+                              ? "text-emerald-500"
+                              : trail.status === "Encerrado"
+                                ? "text-red-500"
+                                : "text-orange-500"
+                          }
+                        >
+                          {trail.status}
+                        </span>
+                      </p>
+                      <p className="text-[10px] uppercase tracking-wider">
+                        <span className="opacity-50">Dist:</span>{" "}
+                        {trail.distance}
+                      </p>
+                      <a
+                        href="https://ifcn.madeira.gov.pt/atividades-de-natureza/percursos-pedestres-recomendados/percursos-pedestres-recomendados.html"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center justify-center gap-2 mt-4 p-2 bg-emerald-500 text-white rounded-xl text-[10px] font-bold uppercase tracking-widest hover:opacity-90 transition-all"
+                      >
+                        <ExternalLink size={10} />
+                        IFCN Info
+                      </a>
+                    </div>
+                  </div>
+                </Popup>
+              </Marker>
+            ))}
+          </MarkerClusterGroup>
+        )}
+
+        {/* NON-CLUSTERED SHIPS & WARNINGS */}
         {portStatus && (
           <Marker
             position={FUNCHAL_PORT_COORDS}

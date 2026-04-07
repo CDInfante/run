@@ -1,5 +1,5 @@
 /** @author Harry Vasanth (harryvasanth.com) */
-import type { Trail, TrailsData } from "../types";
+import type { TrailsData } from "../types";
 
 export const fetchTrails = async (): Promise<TrailsData> => {
   try {
