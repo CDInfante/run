@@ -1,8 +1,8 @@
 /** @author Harry Vasanth (harryvasanth.com) */
 import React, { useEffect, useState, memo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useQuery } from "@tanstack/react-query";
 import { fetchShipStatus } from "../../services/ships";
-import type { ShipStatus } from "../../types";
 import {
   CheckCircle,
   XCircle,
@@ -27,9 +27,19 @@ const ShipsTab: React.FC<ShipsTabProps> = ({
   isCollapsed,
   setIsCollapsed,
 }) => {
-  const [status, setStatus] = useState<ShipStatus | null>(null);
   const [now, setNow] = useState<Date>(new Date());
   const { t, language } = useTranslation();
+
+  const { data: status, isLoading } = useQuery({
+    queryKey: ["ships"],
+    queryFn: fetchShipStatus,
+    refetchInterval: 10 * 60 * 1000,
+  });
+
+  useEffect(() => {
+    const clockInterval = setInterval(() => setNow(new Date()), 60000);
+    return () => clearInterval(clockInterval);
+  }, []);
 
   const formatDateLabel = (date: Date): string => {
     const today = new Date();
@@ -56,20 +66,21 @@ const ShipsTab: React.FC<ShipsTabProps> = ({
     return `${mins}m`;
   };
 
-  useEffect(() => {
-    const load = async () => setStatus(await fetchShipStatus());
-    load();
-    const interval = setInterval(load, 10 * 60 * 1000);
-    return () => clearInterval(interval);
-  }, []);
-
-  useEffect(() => {
-    const clockInterval = setInterval(() => setNow(new Date()), 60000);
-    return () => clearInterval(clockInterval);
-  }, []);
-
-  if (!status)
-    return <div className="p-8 glass animate-pulse h-32 rounded-[2.5rem]" />;
+  // Structured Skeleton Loader
+  if (isLoading || !status) {
+    return (
+      <div className="space-y-4">
+        <div className="p-4 md:p-5 glass rounded-[2rem] flex items-center gap-3 md:gap-4 animate-pulse bg-white/5 dark:bg-slate-900/40">
+          <div className="p-2.5 md:p-3 rounded-2xl shrink-0 bg-brand-navy/10 dark:bg-white/10 w-10 h-10" />
+          <div className="flex-1 min-w-0 space-y-2">
+            <div className="h-2 w-16 bg-brand-navy/10 dark:bg-white/10 rounded-full" />
+            <div className="h-4 w-32 bg-brand-navy/20 dark:bg-white/20 rounded-full" />
+          </div>
+          <div className="w-12 h-6 bg-brand-navy/10 dark:bg-white/10 rounded-full shrink-0" />
+        </div>
+      </div>
+    );
+  }
 
   const isPortClearNow = !status.isDocked;
   const dockedShipsCount = status.ships.filter((s) => s.isDockedNow).length;
@@ -81,7 +92,6 @@ const ShipsTab: React.FC<ShipsTabProps> = ({
 
   let nextArrivalDate: Date | null = null;
   if (isPortClearNow && status.ships.length > 0) {
-    // Only check next arrival for Terminal Sul
     const futureShips = status.ships.filter(
       (s) => s.arrivalDate > now && s.terminal.includes("Terminal Sul"),
     );
@@ -102,21 +112,15 @@ const ShipsTab: React.FC<ShipsTabProps> = ({
 
   return (
     <div className="space-y-4">
-      {/* Port Status Header - Standardized */}
       <div
         onClick={() => setIsCollapsed(!isCollapsed)}
         className="p-4 md:p-5 glass rounded-[2rem] flex items-center gap-3 md:gap-4 transition-all duration-300 cursor-pointer group/header relative"
       >
         <div
-          className={`p-2.5 md:p-3 rounded-2xl shrink-0 transition-colors ${
-            status.isDocked
-              ? "bg-brand-red text-white shadow-lg shadow-brand-red/20"
-              : "bg-green-500 text-white shadow-lg shadow-green-500/20"
-          }`}
+          className={`p-2.5 md:p-3 rounded-2xl shrink-0 transition-colors ${status.isDocked ? "bg-brand-red text-white shadow-lg shadow-brand-red/20" : "bg-green-500 text-white shadow-lg shadow-green-500/20"}`}
         >
           {status.isDocked ? <XCircle size={20} /> : <CheckCircle size={20} />}
         </div>
-
         <div className="flex-1 min-w-0 pr-1">
           <div className="flex flex-col mb-1">
             <span className="text-[8px] md:text-[9px] font-bold text-brand-red dark:text-white/60 uppercase tracking-[0.2em] leading-none mb-1">
@@ -126,8 +130,6 @@ const ShipsTab: React.FC<ShipsTabProps> = ({
               {status.isDocked ? t("port.busy") : t("port.clear")}
             </h2>
           </div>
-
-          {/* Informative Collapsed Summary */}
           <div className="flex flex-wrap items-center gap-1.5 mt-1.5">
             <div className="flex items-center gap-1 text-[9px] font-bold uppercase tracking-widest bg-white/10 dark:bg-white/5 px-2 py-0.5 rounded border border-white/10 opacity-80">
               <Anchor size={10} />
@@ -142,16 +144,10 @@ const ShipsTab: React.FC<ShipsTabProps> = ({
             )}
           </div>
         </div>
-
-        {/* Status Indicators Group */}
         <div className="flex flex-col items-end gap-2 shrink-0">
           {durationRemaining && (
             <div
-              className={`flex items-center gap-1 px-2.5 py-1 md:px-3 md:py-1.5 rounded-full text-[9px] md:text-[10px] font-bold font-mono tracking-tight ${
-                status.isDocked
-                  ? "bg-brand-red/10 text-brand-red shadow-sm"
-                  : "bg-green-500/10 text-green-500"
-              }`}
+              className={`flex items-center gap-1 px-2.5 py-1 md:px-3 md:py-1.5 rounded-full text-[9px] md:text-[10px] font-bold font-mono tracking-tight ${status.isDocked ? "bg-brand-red/10 text-brand-red shadow-sm" : "bg-green-500/10 text-green-500"}`}
             >
               <Clock size={10} />
               <span>{durationRemaining}</span>
@@ -175,16 +171,11 @@ const ShipsTab: React.FC<ShipsTabProps> = ({
             exit={{ opacity: 0, height: 0, marginTop: 0 }}
             className="overflow-hidden space-y-6"
           >
-            {/* Ships List */}
             <div className="space-y-2">
               {status.ships.slice(0, limit).map((ship, i) => (
                 <div
                   key={i}
-                  className={`px-4 py-3 rounded-2xl border transition-all ${
-                    ship.isDockedNow
-                      ? "bg-brand-red/[0.03] border-brand-red/10"
-                      : "bg-white/[0.03] border-white/5 hover:border-white/10"
-                  }`}
+                  className={`px-4 py-3 rounded-2xl border transition-all ${ship.isDockedNow ? "bg-brand-red/[0.03] border-brand-red/10" : "bg-white/[0.03] border-white/5 hover:border-white/10"}`}
                 >
                   <div className="flex justify-between items-start gap-2 mb-2">
                     <div className="flex items-start gap-2 flex-1 min-w-0">
@@ -197,16 +188,11 @@ const ShipsTab: React.FC<ShipsTabProps> = ({
                       </h4>
                     </div>
                     <span
-                      className={`text-[7px] font-bold px-1.5 py-0.5 rounded-full uppercase tracking-widest shrink-0 ${
-                        ship.isDockedNow
-                          ? "bg-brand-red text-white"
-                          : "bg-white/10 opacity-50"
-                      }`}
+                      className={`text-[7px] font-bold px-1.5 py-0.5 rounded-full uppercase tracking-widest shrink-0 ${ship.isDockedNow ? "bg-brand-red text-white" : "bg-white/10 opacity-50"}`}
                     >
                       {ship.terminal}
                     </span>
                   </div>
-
                   <div className="flex flex-wrap items-center justify-between text-[8px] font-bold uppercase tracking-widest opacity-60 mt-3 gap-2">
                     <div className="flex flex-col gap-1">
                       <span className="opacity-40 text-[7px]">
@@ -236,12 +222,7 @@ const ShipsTab: React.FC<ShipsTabProps> = ({
                           </span>
                         )}
                         <span
-                          className={`font-mono ${
-                            ship.departureDate.toDateString() !==
-                            ship.arrivalDate.toDateString()
-                              ? "text-orange-500"
-                              : ""
-                          }`}
+                          className={`font-mono ${ship.departureDate.toDateString() !== ship.arrivalDate.toDateString() ? "text-orange-500" : ""}`}
                         >
                           {ship.departure}
                         </span>
@@ -251,7 +232,6 @@ const ShipsTab: React.FC<ShipsTabProps> = ({
                 </div>
               ))}
             </div>
-
             <div className="grid grid-cols-2 gap-3 pt-2 px-1 pb-1">
               <a
                 href="https://apram.pt/movimento-navios"
@@ -262,7 +242,6 @@ const ShipsTab: React.FC<ShipsTabProps> = ({
                 <ExternalLink size={12} />
                 <span>APRAM</span>
               </a>
-
               <a
                 href="https://www.marinetraffic.com/en/ais/home/centerx:-16.911/centery:32.644/zoom:16"
                 target="_blank"

@@ -1,7 +1,7 @@
 /** @author Harry Vasanth (harryvasanth.com) */
-import React, { useEffect, useState, memo } from "react";
+import React, { memo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import type { WeatherData } from "../../types";
+import { useQuery } from "@tanstack/react-query";
 import { fetchWeather } from "../../services/weather";
 import { useTranslation } from "../../hooks/useTranslation";
 import {
@@ -35,15 +35,13 @@ const WeatherIcon = ({
   return <CloudRain className={`${className} text-blue-400`} />;
 };
 
-// Safe formatter to prevent "Invalid Date"
-const formatTime = (isoString: string | null) => {
+const formatTime = (isoString: string | null | undefined) => {
   if (!isoString) return "-";
   const date = new Date(isoString);
   if (isNaN(date.getTime())) return "-";
   return date.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
 };
 
-// Helper for displaying metrics gracefully
 const displayMetric = (
   val: number | null | undefined,
   unit: string = "",
@@ -60,38 +58,18 @@ const WeatherCard: React.FC<{
   municipality?: string;
   isExpanded?: boolean;
 }> = ({ lat, lon, title, municipality, isExpanded = false }) => {
-  const [weather, setWeather] = useState<WeatherData | null>(null);
-  const [isLoading, setIsLoading] = useState<boolean>(true);
-  const [error, setError] = useState<boolean>(false);
   const { t } = useTranslation();
 
-  useEffect(() => {
-    let isMounted = true;
-
-    const loadWeather = async () => {
-      setIsLoading(true);
-      setError(false);
-
-      const data = await fetchWeather(lat, lon);
-
-      if (!isMounted) return;
-
-      if (data) {
-        setWeather(data);
-      } else {
-        setError(true);
-      }
-      setIsLoading(false);
-    };
-
-    loadWeather();
-    const interval = setInterval(loadWeather, 10 * 60 * 1000);
-
-    return () => {
-      isMounted = false;
-      clearInterval(interval);
-    };
-  }, [lat, lon]);
+  // TanStack Query handles caching, background fetching, and deduplication
+  const {
+    data: weather,
+    isLoading,
+    isError: error,
+  } = useQuery({
+    queryKey: ["weather", lat, lon],
+    queryFn: () => fetchWeather(lat, lon),
+    refetchInterval: 10 * 60 * 1000, // 10 minutes
+  });
 
   if (isLoading && !weather) {
     return (
@@ -145,22 +123,19 @@ const WeatherCard: React.FC<{
           : "bg-white/40 dark:bg-slate-900/40"
       }`}
     >
-      {/* Tiny non-intrusive backup indicator */}
       {weather.isBackup && (
-        <div className="absolute bottom-3 right-5 flex items-center gap-1 opacity-40 text-brand-navy dark:text-white">
-          <Info size={8} />
-          <span className="text-[6px] font-bold uppercase tracking-widest">
+        <div className="absolute top-4 right-5 flex items-center gap-1 opacity-40 text-brand-navy dark:text-white">
+          <Info size={10} />
+          <span className="text-[8px] font-bold uppercase tracking-widest">
             Backup
           </span>
         </div>
       )}
 
-      {/* Base Content */}
       <motion.div
         layout="position"
         className="flex flex-col relative z-10 flex-1 w-full gap-4 mt-2"
       >
-        {/* Header & Temp */}
         <div className="flex items-start justify-between w-full">
           <div className="flex flex-col flex-1 pr-2 min-w-0">
             <h3 className="text-[11px] md:text-xs font-bold text-brand-red uppercase tracking-widest break-words leading-tight opacity-90">
@@ -171,7 +146,6 @@ const WeatherCard: React.FC<{
                 {municipality}
               </span>
             )}
-
             <div className="flex flex-col mt-2">
               <div className="text-4xl md:text-5xl font-bold text-brand-navy dark:text-white tracking-tighter flex items-baseline">
                 {displayMetric(weather.current.temp)}
@@ -185,7 +159,6 @@ const WeatherCard: React.FC<{
               </div>
             </div>
           </div>
-
           <div className="p-3 md:p-4 bg-white/10 dark:bg-white/5 rounded-2xl border border-white/20 shadow-inner group-hover:scale-105 transition-transform duration-500 shrink-0">
             <WeatherIcon
               code={weather.current.weatherCode}
@@ -194,7 +167,6 @@ const WeatherCard: React.FC<{
           </div>
         </div>
 
-        {/* Collapsed Core Stats */}
         <div className="grid grid-cols-4 gap-2 mt-auto w-full">
           {[
             {
@@ -242,7 +214,6 @@ const WeatherCard: React.FC<{
         </div>
       </motion.div>
 
-      {/* Expanded Data */}
       <AnimatePresence>
         {isExpanded && (
           <motion.div
@@ -253,7 +224,6 @@ const WeatherCard: React.FC<{
             className="overflow-hidden relative z-10 w-full"
           >
             <div className="pt-4 border-t border-brand-navy/10 dark:border-white/10 space-y-4">
-              {/* Performance Factors */}
               <div>
                 <span className="text-[8px] font-bold uppercase tracking-widest text-brand-red opacity-80 mb-2 block">
                   {t("weather.performance")}
@@ -328,7 +298,6 @@ const WeatherCard: React.FC<{
                 </div>
               </div>
 
-              {/* Allergens & Air Quality */}
               <div className="p-3 bg-white/30 dark:bg-white/5 rounded-2xl border border-white/10 dark:border-white/5">
                 <div className="flex items-center gap-2 text-green-600 dark:text-green-400 mb-3">
                   <Leaf size={12} />
@@ -399,7 +368,6 @@ const WeatherCard: React.FC<{
                 </div>
               </div>
 
-              {/* Sun Cycle & Wind Direction */}
               <div className="flex flex-wrap justify-between items-center gap-2 pt-1">
                 <div className="flex items-center gap-2 px-3 py-1.5 bg-orange-500/10 rounded-xl border border-orange-500/20 flex-1 justify-center">
                   <Sunrise className="w-3 h-3 text-orange-500" />
@@ -407,7 +375,6 @@ const WeatherCard: React.FC<{
                     {formatTime(weather.daily.sunrise)}
                   </span>
                 </div>
-
                 <div className="flex items-center gap-2 px-3 py-1.5 bg-blue-500/10 rounded-xl border border-blue-500/20 flex-1 justify-center">
                   <Navigation
                     size={12}
@@ -422,7 +389,6 @@ const WeatherCard: React.FC<{
                       : "-"}
                   </span>
                 </div>
-
                 <div className="flex items-center gap-2 px-3 py-1.5 bg-orange-500/10 rounded-xl border border-orange-500/20 flex-1 justify-center">
                   <Sunset className="w-3 h-3 text-orange-600 dark:text-orange-400" />
                   <span className="text-[10px] font-bold uppercase tracking-widest text-brand-navy dark:text-white font-mono">

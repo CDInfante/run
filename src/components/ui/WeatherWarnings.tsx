@@ -1,6 +1,7 @@
 /** @author Harry Vasanth (harryvasanth.com) */
-import React, { useEffect, useState, memo } from "react";
+import React, { memo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useQuery } from "@tanstack/react-query";
 import type { WeatherWarning } from "../../types";
 import {
   fetchWeatherWarnings,
@@ -32,23 +33,25 @@ const WeatherWarnings: React.FC<WeatherWarningsProps> = ({
   isCollapsed,
   setIsCollapsed,
 }) => {
-  const [warnings, setWarnings] = useState<WeatherWarning[]>([]);
-  const [loading, setLoading] = useState(true);
   const { t } = useTranslation();
 
-  useEffect(() => {
-    const load = async () => {
-      const data = await fetchWeatherWarnings();
-      setWarnings(data);
-      setLoading(false);
-    };
-    load();
-    const interval = setInterval(load, 10 * 60 * 1000);
-    return () => clearInterval(interval);
-  }, []);
+  const { data: warnings = [], isLoading } = useQuery({
+    queryKey: ["warnings"],
+    queryFn: fetchWeatherWarnings,
+    refetchInterval: 10 * 60 * 1000,
+  });
 
-  if (loading)
-    return <div className="h-24 glass animate-pulse rounded-[2rem]"></div>;
+  if (isLoading) {
+    return (
+      <div className="p-4 md:p-5 glass rounded-[2rem] flex items-center gap-3 md:gap-4 animate-pulse bg-white/5 dark:bg-slate-900/40">
+        <div className="p-2.5 md:p-3 rounded-2xl shrink-0 bg-brand-navy/10 dark:bg-white/10 w-10 h-10" />
+        <div className="flex-1 min-w-0 space-y-2">
+          <div className="h-4 w-32 bg-brand-navy/20 dark:bg-white/20 rounded-full" />
+          <div className="h-2 w-20 bg-brand-navy/10 dark:bg-white/10 rounded-full" />
+        </div>
+      </div>
+    );
+  }
 
   const getRegionName = (id: string) => {
     switch (id) {
@@ -125,7 +128,6 @@ const WeatherWarnings: React.FC<WeatherWarningsProps> = ({
     IPMA_REGIONS.PORTO_SANTO,
   ];
 
-  // Determine overall severity
   let highestSeverity = "green";
   if (activeWarnings.some((w) => w.awarenessLevelID === "red"))
     highestSeverity = "red";
@@ -134,7 +136,6 @@ const WeatherWarnings: React.FC<WeatherWarningsProps> = ({
   else if (activeWarnings.some((w) => w.awarenessLevelID === "yellow"))
     highestSeverity = "yellow";
 
-  // Unique active warning types for summary
   const activeTypes = Array.from(
     new Set(activeWarnings.map((w) => w.awarenessTypeName)),
   );
@@ -148,15 +149,7 @@ const WeatherWarnings: React.FC<WeatherWarningsProps> = ({
         className="p-4 md:p-5 glass rounded-[2rem] flex items-center gap-3 md:gap-4 transition-all duration-300 cursor-pointer hover:bg-white/10 group relative"
       >
         <div
-          className={`p-2.5 rounded-2xl shrink-0 shadow-lg ${
-            highestSeverity === "red"
-              ? "bg-red-500 text-white shadow-red-500/20"
-              : highestSeverity === "orange"
-                ? "bg-orange-500 text-white shadow-orange-500/20"
-                : highestSeverity === "yellow"
-                  ? "bg-yellow-500 text-white shadow-yellow-500/20"
-                  : "bg-green-500 text-white shadow-green-500/20"
-          }`}
+          className={`p-2.5 rounded-2xl shrink-0 shadow-lg ${highestSeverity === "red" ? "bg-red-500 text-white shadow-red-500/20" : highestSeverity === "orange" ? "bg-orange-500 text-white shadow-orange-500/20" : highestSeverity === "yellow" ? "bg-yellow-500 text-white shadow-yellow-500/20" : "bg-green-500 text-white shadow-green-500/20"}`}
         >
           {highestSeverity === "green" ? (
             <CheckCircle size={20} />
@@ -164,7 +157,6 @@ const WeatherWarnings: React.FC<WeatherWarningsProps> = ({
             <AlertTriangle size={20} className="animate-pulse" />
           )}
         </div>
-
         <div className="flex-1 min-w-0 pr-2">
           <h3 className="font-bold text-sm md:text-base uppercase tracking-widest leading-tight text-brand-navy dark:text-white break-words">
             {t("weather.warnings")}
@@ -175,7 +167,6 @@ const WeatherWarnings: React.FC<WeatherWarningsProps> = ({
               : t("weather.no_warnings")}
           </p>
         </div>
-
         <div className="flex items-center gap-2 md:gap-3 shrink-0">
           {activeWarnings.length > 0 && (
             <div className="flex items-center gap-1.5 px-2 md:px-3 py-1.5 rounded-full bg-white/5 border border-white/10">
@@ -196,7 +187,6 @@ const WeatherWarnings: React.FC<WeatherWarningsProps> = ({
               </div>
             </div>
           )}
-
           <div className="p-1 md:p-1.5 bg-white/5 rounded-full border border-white/10 group-hover:bg-white/10 transition-colors">
             {isCollapsed ? (
               <ChevronDown size={14} className="opacity-60" />

@@ -1,6 +1,8 @@
 //** @author Harry Vasanth (harryvasanth.com) */
-import React, { useEffect, useState, memo } from "react";
+import React, { useState, memo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useQuery } from "@tanstack/react-query";
+import { fetchTrails } from "../../services/trails";
 import {
   Mountain,
   ExternalLink,
@@ -9,7 +11,7 @@ import {
   ChevronUp,
 } from "lucide-react";
 import { useTranslation } from "../../hooks/useTranslation";
-import type { Trail, TrailsData } from "../../types";
+import type { Trail } from "../../types";
 
 interface TrailsCardProps {
   isCollapsed: boolean;
@@ -21,50 +23,25 @@ const TrailsCard: React.FC<TrailsCardProps> = ({
   setIsCollapsed,
 }) => {
   const { t } = useTranslation();
-  const [trails, setTrails] = useState<Trail[]>([]);
   const [selectedTrail, setSelectedTrail] = useState<Trail | null>(null);
 
-  useEffect(() => {
-    const loadTrails = async () => {
-      try {
-        let response: Response;
+  const { data: trails = [], isLoading } = useQuery({
+    queryKey: ["trails"],
+    queryFn: fetchTrails,
+    refetchInterval: 10 * 60 * 1000,
+  });
 
-        const controller = new AbortController();
-        const timeoutId = setTimeout(() => controller.abort(), 3000);
-
-        // Try GitHub raw first to bypass local PWA cache
-        try {
-          response = await fetch(
-            "https://raw.githubusercontent.com/CDInfante/run/refs/heads/main/public/trails-madeira.json",
-            { signal: controller.signal },
-          );
-          clearTimeout(timeoutId);
-          if (!response.ok) throw new Error("GitHub fetch failed");
-        } catch {
-          clearTimeout(timeoutId);
-          // Fallback to local (cached) file
-          response = await fetch("/trails-madeira.json");
-        }
-
-        const data: TrailsData = await response.json();
-
-        const sortedTrails = data.trails.sort((a, b) => {
-          if (a.island !== b.island) {
-            return a.island === "Madeira" ? -1 : 1;
-          }
-          const numA = parseFloat(a.pr.replace(/[^\d.]/g, "")) || 0;
-          const numB = parseFloat(b.pr.replace(/[^\d.]/g, "")) || 0;
-          return numA - numB;
-        });
-
-        setTrails(sortedTrails);
-      } catch (err) {
-        console.error("Error loading trails:", err);
-      }
-    };
-
-    loadTrails();
-  }, []);
+  if (isLoading) {
+    return (
+      <div className="p-4 md:p-5 glass rounded-[2rem] flex items-center gap-3 md:gap-4 animate-pulse bg-white/5 dark:bg-slate-900/40">
+        <div className="p-2.5 md:p-3 rounded-2xl shrink-0 bg-brand-navy/10 dark:bg-white/10 w-10 h-10" />
+        <div className="flex-1 min-w-0 space-y-2">
+          <div className="h-4 w-24 bg-brand-navy/20 dark:bg-white/20 rounded-full" />
+          <div className="h-2 w-32 bg-brand-navy/10 dark:bg-white/10 rounded-full" />
+        </div>
+      </div>
+    );
+  }
 
   const getStatusColor = (status: string) => {
     if (status === "Aberto") return "bg-emerald-500";
@@ -93,7 +70,6 @@ const TrailsCard: React.FC<TrailsCardProps> = ({
         <div className="p-2.5 rounded-2xl bg-emerald-500 text-white shadow-lg shadow-emerald-500/20 shrink-0">
           <Mountain size={20} />
         </div>
-
         <div className="flex-1 min-w-0 pr-2">
           <h3 className="font-bold text-sm md:text-base uppercase tracking-widest leading-tight text-brand-navy dark:text-white break-words">
             {t("nav.trails")}
@@ -102,9 +78,7 @@ const TrailsCard: React.FC<TrailsCardProps> = ({
             MADEIRA & PORTO SANTO
           </p>
         </div>
-
         <div className="flex items-center gap-2 md:gap-3 shrink-0">
-          {/* Industry Standard Status Summary (Mini Badges) */}
           {trails.length > 0 && (
             <div className="flex items-center gap-1.5 px-2 md:px-3 py-1.5 rounded-full bg-white/5 border border-white/10">
               <div className="flex items-center gap-1">
@@ -134,7 +108,6 @@ const TrailsCard: React.FC<TrailsCardProps> = ({
               )}
             </div>
           )}
-
           <div className="p-1 md:p-1.5 bg-white/5 rounded-full border border-white/10 group-hover:bg-white/10 transition-colors">
             {isCollapsed ? (
               <ChevronDown size={14} className="opacity-60" />
@@ -153,7 +126,6 @@ const TrailsCard: React.FC<TrailsCardProps> = ({
             exit={{ opacity: 0, height: 0 }}
             className="overflow-hidden space-y-4"
           >
-            {/* Trails Grid Container */}
             <div className="bg-white/[0.03] border border-white/5 rounded-2xl p-4 space-y-4 relative z-10 overflow-y-auto pr-2 custom-scrollbar max-h-[300px]">
               {["Madeira", "Porto Santo"].map((island) => {
                 const islandTrails = trails.filter((t) => t.island === island);
@@ -173,11 +145,7 @@ const TrailsCard: React.FC<TrailsCardProps> = ({
                               selectedTrail?.id === trail.id ? null : trail,
                             )
                           }
-                          className={`
-                            aspect-square rounded-lg flex items-center justify-center text-[10px] font-bold transition-all
-                            ${getStatusColor(trail.status)} text-white shadow-lg shadow-black/10 hover:scale-110 active:scale-95
-                            ${selectedTrail?.id === trail.id ? "ring-2 ring-white ring-offset-2 ring-offset-brand-navy/20 scale-110 z-20" : "opacity-90 hover:opacity-100"}
-                          `}
+                          className={`aspect-square rounded-lg flex items-center justify-center text-[10px] font-bold transition-all ${getStatusColor(trail.status)} text-white shadow-lg shadow-black/10 hover:scale-110 active:scale-95 ${selectedTrail?.id === trail.id ? "ring-2 ring-white ring-offset-2 ring-offset-brand-navy/20 scale-110 z-20" : "opacity-90 hover:opacity-100"}`}
                           title={`${trail.pr} - ${trail.id}`}
                         >
                           {trail.pr}
@@ -189,7 +157,6 @@ const TrailsCard: React.FC<TrailsCardProps> = ({
               })}
             </div>
 
-            {/* Selected Trail Details Container */}
             <div className="bg-white/[0.03] border border-white/5 rounded-2xl p-4 relative z-10 min-h-[100px]">
               {selectedTrail ? (
                 <div className="space-y-3 animate-in fade-in slide-in-from-bottom-2 duration-300">
