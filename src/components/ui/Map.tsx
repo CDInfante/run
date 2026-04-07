@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useMemo } from "react";
 import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
 import { useQuery } from "@tanstack/react-query";
+import { motion, AnimatePresence } from "framer-motion";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import type { Amenity, WeatherWarning, Trail, ShipStatus } from "../../types";
@@ -25,6 +26,7 @@ import {
   Clock,
   Anchor,
   ArrowRight,
+  Loader2,
 } from "lucide-react";
 import { renderToString } from "react-dom/server";
 
@@ -319,24 +321,32 @@ const Map: React.FC<MapProps> = ({
   const [userLocation, setUserLocation] = useState<L.LatLng | null>(null);
   const [mapInstance, setMapInstance] = useState<L.Map | null>(null);
 
-  // TanStack Query handles background fetching automatically for the map!
-  const { data: amenities = [] } = useQuery({
+  // TanStack Query with isFetching destructured to power our Syncing Overlay
+  const { data: amenities = [], isFetching: isFetchingAmenities } = useQuery({
     queryKey: ["amenities"],
     queryFn: fetchAmenities,
   });
-  const { data: warnings = [] } = useQuery({
+  const { data: warnings = [], isFetching: isFetchingWarnings } = useQuery({
     queryKey: ["warnings"],
     queryFn: fetchWeatherWarnings,
   });
-  const { data: trailsData = [] } = useQuery({
+  const { data: trailsData, isFetching: isFetchingTrails } = useQuery({
     queryKey: ["trails"],
     queryFn: fetchTrails,
   });
-  const { data: portStatus } = useQuery({
+  const { data: portStatus, isFetching: isFetchingShips } = useQuery({
     queryKey: ["ships"],
     queryFn: fetchShipStatus,
   });
+
   const trails = trailsData?.trails || [];
+
+  // Boolean to determine if any of the map layers are currently pulling fresh data from the network
+  const isSyncing =
+    isFetchingAmenities ||
+    isFetchingWarnings ||
+    isFetchingTrails ||
+    isFetchingShips;
 
   const filteredAmenities = useMemo(() => {
     return amenities.filter((a) => {
@@ -411,6 +421,25 @@ const Map: React.FC<MapProps> = ({
   return (
     <div className="h-full w-full relative z-10 group/map">
       <style>{mapStyles}</style>
+
+      {/* --- Syncing Live Data Indicator --- */}
+      <AnimatePresence>
+        {isSyncing && (
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            className="absolute top-4 left-1/2 -translate-x-1/2 z-[1000] flex items-center gap-2.5 px-4 py-2 bg-white/95 dark:bg-brand-navy/95 backdrop-blur-xl rounded-full shadow-[0_8px_30px_rgba(0,0,0,0.12)] border border-brand-navy/10 dark:border-white/10 pointer-events-none"
+          >
+            <Loader2 size={12} className="animate-spin text-brand-red" />
+            <span className="text-[9px] font-bold uppercase tracking-widest text-brand-navy dark:text-white/90">
+              Syncing Data
+            </span>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Locate Me Button */}
       <div className="absolute bottom-28 right-6 z-[1000] pointer-events-none">
         <button
           onClick={() => {
