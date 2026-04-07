@@ -1,7 +1,7 @@
 {
   "meta": {
-    "scraped_at": "2026-04-07T13:11:11.202Z",
-    "total_ships": 11
+    "scraped_at": "2026-04-07T19:00:37.770Z",
+    "total_ships": 14
   },
   "ships": [
     {
@@ -68,6 +68,15 @@
       "destination_port": "Santa Cruz De Tenerife"
     },
     {
+      "ship": "MSC POESIA",
+      "port_of_call": "Funchal - Terminal Sul",
+      "agent": "JFM Shipping, Lda.",
+      "arrival": "2026-04-12T07:00",
+      "origin_port": "Barcelona",
+      "departure": "2026-04-12T17:00",
+      "destination_port": "Philipsburg"
+    },
+    {
       "ship": "COSTA FORTUNA",
       "port_of_call": "Funchal - Terminal Sul",
       "agent": "Blatas, Lda.",
@@ -75,6 +84,24 @@
       "origin_port": "Santa Cruz De Tenerife",
       "departure": "2026-04-12T20:00",
       "destination_port": "Casablanca"
+    },
+    {
+      "ship": "MEIN SCHIFF RELAX",
+      "port_of_call": "Funchal - Terminal Sul",
+      "agent": "JFM Shipping, Lda.",
+      "arrival": "2026-04-14T06:00",
+      "origin_port": "Las Palmas (Gran Canaria)",
+      "departure": "2026-04-14T22:00",
+      "destination_port": "Santa Cruz De La Palma"
+    },
+    {
+      "ship": "MSC PREZIOSA",
+      "port_of_call": "Funchal - Terminal Sul",
+      "agent": "JFM Shipping, Lda.",
+      "arrival": "2026-04-14T08:00",
+      "origin_port": "Maceio",
+      "departure": "2026-04-14T19:00",
+      "destination_port": "Vigo"
     },
     {
       "ship": "HEBRIDEAN SKY",
