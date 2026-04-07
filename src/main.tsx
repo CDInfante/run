@@ -19,8 +19,8 @@ const queryClient = new QueryClient({
       // Only show error toasts if the user is online.
       // If they are offline, the NetworkMonitor handles the warning.
       if (navigator.onLine) {
-        // queryKey[0] tells us what failed (e.g., 'weather', 'ships', etc)
-        toast.error(`Sync failed: ${query.queryKey[0]}`);
+        // We now use the error object here, satisfying TypeScript and improving the toast!
+        toast.error(`Sync failed: ${query.queryKey[0]} (${error.message})`);
       }
     },
   }),
