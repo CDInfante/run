@@ -5,29 +5,11 @@ import type { WeatherData } from "../../types";
 import { fetchWeather } from "../../services/weather";
 import { useTranslation } from "../../hooks/useTranslation";
 import {
-  Sun,
-  Cloud,
-  CloudRain,
-  Wind,
-  Droplets,
-  Sunrise,
-  Sunset,
-  Leaf,
-  Navigation,
-  Thermometer,
-  Eye,
-  Activity,
-  Tornado,
-  CloudOff,
+  Sun, Cloud, CloudRain, Wind, Droplets, Sunrise, Sunset, Leaf,
+  Navigation, Thermometer, Eye, Activity, Tornado, CloudOff, Loader2,
 } from "lucide-react";
 
-const WeatherIcon = ({
-  code,
-  className,
-}: {
-  code: number;
-  className?: string;
-}) => {
+const WeatherIcon = ({ code, className }: { code: number; className?: string }) => {
   if (code === 0) return <Sun className={`${className} text-yellow-400`} />;
   if (code < 40) return <Cloud className={`${className} text-gray-400`} />;
   return <CloudRain className={`${className} text-blue-400`} />;
@@ -41,28 +23,57 @@ const WeatherCard: React.FC<{
   isExpanded?: boolean;
 }> = ({ lat, lon, title, municipality, isExpanded = false }) => {
   const [weather, setWeather] = useState<WeatherData | null>(null);
-  const [error, setError] = useState<boolean>(false); // Added error state
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [error, setError] = useState<boolean>(false);
   const { t } = useTranslation();
 
   useEffect(() => {
+    let isMounted = true;
+
     const loadWeather = async () => {
-      setError(false); // Reset error state before fetching
+      setIsLoading(true);
+      setError(false);
+
       const data = await fetchWeather(lat, lon);
+
+      if (!isMounted) return;
 
       if (data) {
         setWeather(data);
       } else {
-        setError(true); // If fetch fails, show error UI
+        setError(true);
       }
+      setIsLoading(false);
     };
 
     loadWeather();
     const interval = setInterval(loadWeather, 10 * 60 * 1000);
-    return () => clearInterval(interval);
+    
+    return () => {
+      isMounted = false;
+      clearInterval(interval);
+    };
   }, [lat, lon]);
 
+  // --- Simple Throbber / Loading Indicator ---
+  if (isLoading && !weather) {
+    return (
+      <div className="p-5 md:p-6 glass rounded-[2rem] shadow-xl min-h-[14rem] w-full flex flex-col items-center justify-center gap-3 bg-white/40 dark:bg-slate-900/40 transition-colors duration-500">
+        <Loader2 className="w-8 h-8 text-brand-red animate-spin opacity-80" />
+        <div className="text-center">
+          <h3 className="text-[11px] md:text-xs font-bold text-brand-red uppercase tracking-widest leading-tight opacity-90">
+            {title}
+          </h3>
+          <p className="text-[9px] font-bold uppercase tracking-widest text-brand-navy dark:text-white opacity-50 mt-1 animate-pulse">
+            Loading...
+          </p>
+        </div>
+      </div>
+    );
+  }
+
   // Graceful Error UI
-  if (error) {
+  if (error || !weather) {
     return (
       <div className="p-5 md:p-6 glass rounded-[2rem] shadow-xl min-h-[14rem] w-full flex flex-col items-center justify-center gap-3 bg-brand-red/5 border border-brand-red/20 transition-colors duration-500">
         <CloudOff className="w-8 h-8 text-brand-red opacity-60" />
@@ -78,12 +89,6 @@ const WeatherCard: React.FC<{
     );
   }
 
-  if (!weather)
-    return (
-      <div className="p-6 md:p-8 glass rounded-[2rem] animate-pulse min-h-[14rem] w-full shadow-xl"></div>
-    );
-
-  // Determine AQI Color
   const aqiColor =
     weather.airQuality.european_aqi < 50
       ? "text-green-500"
@@ -198,7 +203,7 @@ const WeatherCard: React.FC<{
             className="overflow-hidden relative z-10 w-full"
           >
             <div className="pt-4 border-t border-brand-navy/10 dark:border-white/10 space-y-4">
-              {/* Performance Factors (Uses Flex-Wrap for fluid row filling) */}
+              {/* Performance Factors */}
               <div>
                 <span className="text-[8px] font-bold uppercase tracking-widest text-brand-red opacity-80 mb-2 block">
                   {t("weather.performance")}
@@ -272,51 +277,15 @@ const WeatherCard: React.FC<{
                 </div>
                 <div className="flex flex-wrap gap-2">
                   {[
-                    {
-                      key: "pm25",
-                      label: "PM2.5",
-                      val: weather.airQuality.pm2_5,
-                    },
-                    {
-                      key: "pm10",
-                      label: "PM10",
-                      val: weather.airQuality.pm10,
-                    },
-                    {
-                      key: "dust",
-                      label: t("weather.dust"),
-                      val: weather.airQuality.dust,
-                    },
-                    {
-                      key: "grass",
-                      label: t("weather.grass"),
-                      val: weather.airQuality.grass_pollen,
-                    },
-                    {
-                      key: "olive",
-                      label: t("weather.olive"),
-                      val: weather.airQuality.olive_pollen,
-                    },
-                    {
-                      key: "birch",
-                      label: t("weather.birch"),
-                      val: weather.airQuality.birch_pollen,
-                    },
-                    {
-                      key: "mugwort",
-                      label: t("weather.mugwort"),
-                      val: weather.airQuality.mugwort_pollen,
-                    },
-                    {
-                      key: "alder",
-                      label: t("weather.alder"),
-                      val: weather.airQuality.alder_pollen,
-                    },
-                    {
-                      key: "ragweed",
-                      label: t("weather.ragweed"),
-                      val: weather.airQuality.ragweed_pollen,
-                    },
+                    { key: "pm25", label: "PM2.5", val: weather.airQuality.pm2_5 },
+                    { key: "pm10", label: "PM10", val: weather.airQuality.pm10 },
+                    { key: "dust", label: t("weather.dust"), val: weather.airQuality.dust },
+                    { key: "grass", label: t("weather.grass"), val: weather.airQuality.grass_pollen },
+                    { key: "olive", label: t("weather.olive"), val: weather.airQuality.olive_pollen },
+                    { key: "birch", label: t("weather.birch"), val: weather.airQuality.birch_pollen },
+                    { key: "mugwort", label: t("weather.mugwort"), val: weather.airQuality.mugwort_pollen },
+                    { key: "alder", label: t("weather.alder"), val: weather.airQuality.alder_pollen },
+                    { key: "ragweed", label: t("weather.ragweed"), val: weather.airQuality.ragweed_pollen },
                   ].map((p) => (
                     <div
                       key={p.key}
@@ -338,10 +307,7 @@ const WeatherCard: React.FC<{
                 <div className="flex items-center gap-2 px-3 py-1.5 bg-orange-500/10 rounded-xl border border-orange-500/20 flex-1 justify-center">
                   <Sunrise className="w-3 h-3 text-orange-500" />
                   <span className="text-[10px] font-bold uppercase tracking-widest text-brand-navy dark:text-white font-mono">
-                    {new Date(weather.daily.sunrise).toLocaleTimeString([], {
-                      hour: "2-digit",
-                      minute: "2-digit",
-                    })}
+                    {new Date(weather.daily.sunrise).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}
                   </span>
                 </div>
 
@@ -349,9 +315,7 @@ const WeatherCard: React.FC<{
                   <Navigation
                     size={12}
                     className="text-blue-500"
-                    style={{
-                      transform: `rotate(${weather.current.windDirection}deg)`,
-                    }}
+                    style={{ transform: `rotate(${weather.current.windDirection}deg)` }}
                   />
                   <span className="text-[10px] font-bold uppercase tracking-widest text-brand-navy dark:text-white font-mono">
                     {weather.current.windDirection}°
@@ -361,10 +325,7 @@ const WeatherCard: React.FC<{
                 <div className="flex items-center gap-2 px-3 py-1.5 bg-orange-500/10 rounded-xl border border-orange-500/20 flex-1 justify-center">
                   <Sunset className="w-3 h-3 text-orange-600 dark:text-orange-400" />
                   <span className="text-[10px] font-bold uppercase tracking-widest text-brand-navy dark:text-white font-mono">
-                    {new Date(weather.daily.sunset).toLocaleTimeString([], {
-                      hour: "2-digit",
-                      minute: "2-digit",
-                    })}
+                    {new Date(weather.daily.sunset).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}
                   </span>
                 </div>
               </div>
