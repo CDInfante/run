@@ -1,18 +1,34 @@
 /** @author Harry Vasanth (harryvasanth.com) */
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import {
+  QueryClient,
+  QueryClientProvider,
+  QueryCache,
+} from "@tanstack/react-query";
+import { toast } from "./lib/toast";
 import "./index.css";
 import App from "./App.tsx";
 import { I18nProvider } from "./contexts/I18nProvider";
 import { DarkModeProvider } from "./contexts/DarkModeProvider";
 
 const queryClient = new QueryClient({
+  // Global cache observer to catch background sync failures
+  queryCache: new QueryCache({
+    onError: (error, query) => {
+      // Only show error toasts if the user is online.
+      // If they are offline, the NetworkMonitor handles the warning.
+      if (navigator.onLine) {
+        // queryKey[0] tells us what failed (e.g., 'weather', 'ships', etc)
+        toast.error(`Sync failed: ${query.queryKey[0]}`);
+      }
+    },
+  }),
   defaultOptions: {
     queries: {
       refetchOnWindowFocus: false,
-      staleTime: 5 * 60 * 1000, // Data stays fresh for 5 mins
-      retry: 2, // Auto-retry failed requests twice
+      staleTime: 5 * 60 * 1000,
+      retry: 2,
     },
   },
 });

@@ -142,6 +142,9 @@ export const translations: Translations = {
     "settings.search": "Search...",
     "settings.reset": "Reset",
     "status.open": "Open",
+    "toast.offline": "You are offline. Showing cached data.",
+    "toast.online": "Back online. Syncing data...",
+    "toast.sync_error": "Background sync failed:",
   },
   "pt-PT": {
     "app.title": "Run - CDInfante",
@@ -245,7 +248,8 @@ export const translations: Translations = {
     "weather.performance": "Métricas de Desempenho",
     "weather.allergens": "Ar e Alergénios",
     "weather.safe_conditions_title": "Seguro p/ atividades ao ar livre",
-    "weather.service_unavailable": "Serviço de meteorologia indisponível no momento",
+    "weather.service_unavailable":
+      "Serviço de meteorologia indisponível no momento",
     "location.funchal": "Funchal",
     "location.camara_de_lobos": "Câmara de Lobos",
     "location.ribeira_brava": "Ribeira Brava",
@@ -277,5 +281,8 @@ export const translations: Translations = {
     "settings.search": "Procurar...",
     "settings.reset": "Redefinir",
     "status.open": "Aberto",
+    "toast.offline": "Está offline. A mostrar dados em cache.",
+    "toast.online": "Novamente online. A sincronizar dados...",
+    "toast.sync_error": "A sincronização falhou:",
   },
 };

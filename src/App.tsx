@@ -5,6 +5,8 @@ import Navbar from "./components/layout/Navbar";
 import Footer from "./components/layout/Footer";
 import MapSection from "./components/sections/MapSection";
 import DashboardSection from "./components/sections/DashboardSection";
+import ToastContainer from "./components/ui/ToastContainer";
+import NetworkMonitor from "./components/layout/NetworkMonitor";
 import locationsData from "./content/locations.json";
 import type { Location } from "./types";
 import { useTranslation } from "./hooks/useTranslation";
@@ -156,6 +158,9 @@ const App: React.FC = () => {
           background: `radial-gradient(600px at ${mousePos.x}px ${mousePos.y}px, rgba(182, 23, 30, 0.1), transparent 80%)`,
         }}
       />
+
+      <ToastContainer />
+      <NetworkMonitor />
 
       <Navbar setIsSettingsOpen={setIsSettingsOpen} />
 
