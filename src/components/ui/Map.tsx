@@ -655,7 +655,7 @@ const Map: React.FC<MapProps> = ({
                           <div className="flex items-center justify-between px-1">
                             <div className="flex flex-col">
                               <span className="text-[7px] uppercase tracking-widest opacity-40 font-bold mb-0.5">
-                                Arrival
+                                {t("port.arrival")}
                               </span>
                               <span className="text-[10px] font-mono font-bold">
                                 {ship.arrival}
@@ -666,7 +666,7 @@ const Map: React.FC<MapProps> = ({
                             </div>
                             <div className="flex flex-col items-end">
                               <span className="text-[7px] uppercase tracking-widest opacity-40 font-bold mb-0.5">
-                                Departure
+                                {t("port.departure")}
                               </span>
                               <span
                                 className={`text-[10px] font-mono font-bold ${new Date(ship.departureDate).toDateString() !== new Date(ship.arrivalDate).toDateString() ? "text-orange-500" : ""}`}
