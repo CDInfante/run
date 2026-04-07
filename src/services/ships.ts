@@ -1,18 +1,9 @@
 /** @author Harry Vasanth (harryvasanth.com) */
 import type { ShipStatus } from "../types";
 
-interface RawShipData {
-  ship: string;
-  port_of_call: string;
-  arrival: string;
-  departure: string;
-}
-
 export const fetchShipStatus = async (): Promise<ShipStatus> => {
   try {
     let response: Response;
-
-    // Timeout controller for 3 seconds
     const controller = new AbortController();
     const timeoutId = setTimeout(() => controller.abort(), 3000);
 
@@ -28,11 +19,17 @@ export const fetchShipStatus = async (): Promise<ShipStatus> => {
       response = await fetch("/ships-funchal.json");
     }
 
-    const data: RawShipData[] = await response.json();
+    const rawResponse = await response.json();
     const now = new Date();
 
+    // Fallback support for older cached versions of the JSON
+    const data = Array.isArray(rawResponse) ? rawResponse : rawResponse.ships;
+    const scrapedAt = Array.isArray(rawResponse)
+      ? null
+      : rawResponse.meta?.scraped_at;
+
     const processedShips = data
-      .map((s: RawShipData) => ({
+      .map((s: any) => ({
         name: s.ship,
         terminal: s.port_of_call,
         arrival: new Date(s.arrival),
@@ -44,18 +41,15 @@ export const fetchShipStatus = async (): Promise<ShipStatus> => {
           a.arrival.getTime() - b.arrival.getTime(),
       );
 
-    // Only consider "Terminal Sul" for the overall port open/closed status
-    const sulShips = processedShips.filter((s) =>
+    const sulShips = processedShips.filter((s: any) =>
       s.terminal.includes("Terminal Sul"),
     );
-
     const currentlyDockedSul = sulShips.filter(
       (s: { arrival: Date; departure: Date }) =>
         now >= s.arrival && now <= s.departure,
     );
 
     let nextAvailableDate: Date | null = null;
-
     if (currentlyDockedSul.length === 0) {
       nextAvailableDate = now;
     } else {
@@ -66,11 +60,9 @@ export const fetchShipStatus = async (): Promise<ShipStatus> => {
           ),
         ),
       );
-
       for (const ship of sulShips) {
-        if (ship.arrival <= chainEnd && ship.departure > chainEnd) {
+        if (ship.arrival <= chainEnd && ship.departure > chainEnd)
           chainEnd = ship.departure;
-        }
       }
       nextAvailableDate = chainEnd;
     }
@@ -79,29 +71,22 @@ export const fetchShipStatus = async (): Promise<ShipStatus> => {
       isDocked: currentlyDockedSul.length > 0,
       count: currentlyDockedSul.length,
       nextAvailableDate,
-      ships: processedShips.map(
-        (s: {
-          name: string;
-          terminal: string;
-          arrival: Date;
-          departure: Date;
-        }) => ({
-          name: s.name,
-          terminal: s.terminal,
-          arrivalDate: s.arrival,
-          departureDate: s.departure,
-          arrival: s.arrival.toLocaleTimeString("en-GB", {
-            hour: "2-digit",
-            minute: "2-digit",
-          }),
-          departure: s.departure.toLocaleTimeString("en-GB", {
-            hour: "2-digit",
-            minute: "2-digit",
-          }),
-          // Keep general docked status for the list UI styling
-          isDockedNow: now >= s.arrival && now <= s.departure,
+      scrapedAt: scrapedAt || null, // <--- Return the timestamp
+      ships: processedShips.map((s: any) => ({
+        name: s.name,
+        terminal: s.terminal,
+        arrivalDate: s.arrival,
+        departureDate: s.departure,
+        arrival: s.arrival.toLocaleTimeString("en-GB", {
+          hour: "2-digit",
+          minute: "2-digit",
         }),
-      ),
+        departure: s.departure.toLocaleTimeString("en-GB", {
+          hour: "2-digit",
+          minute: "2-digit",
+        }),
+        isDockedNow: now >= s.arrival && now <= s.departure,
+      })),
     };
   } catch {
     return {
@@ -109,6 +94,7 @@ export const fetchShipStatus = async (): Promise<ShipStatus> => {
       ships: [],
       count: 0,
       nextAvailableDate: null,
+      scrapedAt: null,
     };
   }
 };

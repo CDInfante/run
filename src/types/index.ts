@@ -69,6 +69,7 @@ export interface ShipStatus {
   ships: Ship[];
   nextAvailableDate: Date | null;
   count: number;
+  scrapedAt: string | null;
 }
 
 export interface Location {

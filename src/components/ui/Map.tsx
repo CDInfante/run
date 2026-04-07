@@ -6,13 +6,25 @@ import "leaflet/dist/leaflet.css";
 import type { Amenity, WeatherWarning, Trail, ShipStatus } from "../../types";
 
 import { fetchAmenities } from "../../services/amenities";
-import { fetchWeatherWarnings, REGION_URLS, IPMA_REGIONS } from "../../services/ipma";
+import {
+  fetchWeatherWarnings,
+  REGION_URLS,
+  IPMA_REGIONS,
+} from "../../services/ipma";
 import { fetchShipStatus } from "../../services/ships";
 import { fetchTrails } from "../../services/trails";
 import { useTranslation } from "../../hooks/useTranslation";
 import {
-  Droplet, Toilet as Toilet, AlertTriangle, Check, Navigation,
-  ExternalLink, Mountain, Clock, Anchor, ArrowRight
+  Droplet,
+  Toilet as Toilet,
+  AlertTriangle,
+  Check,
+  Navigation,
+  ExternalLink,
+  Mountain,
+  Clock,
+  Anchor,
+  ArrowRight,
 } from "lucide-react";
 import { renderToString } from "react-dom/server";
 
@@ -308,10 +320,23 @@ const Map: React.FC<MapProps> = ({
   const [mapInstance, setMapInstance] = useState<L.Map | null>(null);
 
   // TanStack Query handles background fetching automatically for the map!
-  const { data: amenities = [] } = useQuery({ queryKey: ['amenities'], queryFn: fetchAmenities });
-  const { data: warnings = [] } = useQuery({ queryKey: ['warnings'], queryFn: fetchWeatherWarnings });
-  const { data: trails = [] } = useQuery({ queryKey: ['trails'], queryFn: fetchTrails });
-  const { data: portStatus } = useQuery({ queryKey: ['ships'], queryFn: fetchShipStatus });
+  const { data: amenities = [] } = useQuery({
+    queryKey: ["amenities"],
+    queryFn: fetchAmenities,
+  });
+  const { data: warnings = [] } = useQuery({
+    queryKey: ["warnings"],
+    queryFn: fetchWeatherWarnings,
+  });
+  const { data: trailsData = [] } = useQuery({
+    queryKey: ["trails"],
+    queryFn: fetchTrails,
+  });
+  const { data: portStatus } = useQuery({
+    queryKey: ["ships"],
+    queryFn: fetchShipStatus,
+  });
+  const trails = trailsData?.trails || [];
 
   const filteredAmenities = useMemo(() => {
     return amenities.filter((a) => {
@@ -321,44 +346,67 @@ const Map: React.FC<MapProps> = ({
     });
   }, [amenities, showWater, showToilets]);
 
-  const tileLayerUrl = "https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png";
+  const tileLayerUrl =
+    "https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png";
 
   const getRegionName = (id: string) => {
     switch (id) {
-      case IPMA_REGIONS.NORTH_COAST: return t("weather.north_coast");
-      case IPMA_REGIONS.MOUNTAIN_REGIONS: return t("weather.mountain_regions");
-      case IPMA_REGIONS.SOUTH_COAST: return t("weather.south_coast");
-      case IPMA_REGIONS.PORTO_SANTO: return t("weather.porto_santo");
-      default: return id;
+      case IPMA_REGIONS.NORTH_COAST:
+        return t("weather.north_coast");
+      case IPMA_REGIONS.MOUNTAIN_REGIONS:
+        return t("weather.mountain_regions");
+      case IPMA_REGIONS.SOUTH_COAST:
+        return t("weather.south_coast");
+      case IPMA_REGIONS.PORTO_SANTO:
+        return t("weather.porto_santo");
+      default:
+        return id;
     }
   };
 
   const getAwarenessTranslation = (type: string) => {
     switch (type) {
-      case "Agitação Marítima": return t("weather.awareness.maritime");
-      case "Nevoeiro": return t("weather.awareness.fog");
-      case "Tempo Frio": return t("weather.awareness.cold");
-      case "Tempo Quente": return t("weather.awareness.hot");
-      case "Precipitação": return t("weather.awareness.rain");
-      case "Neve": return t("weather.awareness.snow");
-      case "Trovoada": return t("weather.awareness.thunder");
-      case "Vento": return t("weather.awareness.wind");
-      default: return type;
+      case "Agitação Marítima":
+        return t("weather.awareness.maritime");
+      case "Nevoeiro":
+        return t("weather.awareness.fog");
+      case "Tempo Frio":
+        return t("weather.awareness.cold");
+      case "Tempo Quente":
+        return t("weather.awareness.hot");
+      case "Precipitação":
+        return t("weather.awareness.rain");
+      case "Neve":
+        return t("weather.awareness.snow");
+      case "Trovoada":
+        return t("weather.awareness.thunder");
+      case "Vento":
+        return t("weather.awareness.wind");
+      default:
+        return type;
     }
   };
 
   const groupedWarnings = useMemo(() => {
-    return warnings.reduce((acc, warning) => {
-      if (!acc[warning.idAreaAviso]) acc[warning.idAreaAviso] = [];
-      acc[warning.idAreaAviso].push(warning);
-      return acc;
-    }, {} as Record<string, WeatherWarning[]>);
+    return warnings.reduce(
+      (acc, warning) => {
+        if (!acc[warning.idAreaAviso]) acc[warning.idAreaAviso] = [];
+        acc[warning.idAreaAviso].push(warning);
+        return acc;
+      },
+      {} as Record<string, WeatherWarning[]>,
+    );
   }, [warnings]);
 
   const dockedShips = portStatus?.ships.filter((s) => s.isDockedNow) || [];
-  const nextArrival = !portStatus?.isDocked && portStatus?.ships?.length
-    ? portStatus.ships.find((s) => new Date(s.arrivalDate) > new Date() && s.terminal.includes("Terminal Sul"))
-    : null;
+  const nextArrival =
+    !portStatus?.isDocked && portStatus?.ships?.length
+      ? portStatus.ships.find(
+          (s) =>
+            new Date(s.arrivalDate) > new Date() &&
+            s.terminal.includes("Terminal Sul"),
+        )
+      : null;
 
   return (
     <div className="h-full w-full relative z-10 group/map">
@@ -366,8 +414,10 @@ const Map: React.FC<MapProps> = ({
       <div className="absolute bottom-28 right-6 z-[1000] pointer-events-none">
         <button
           onClick={() => {
-            if (userLocation && mapInstance) mapInstance.flyTo(userLocation, 16);
-            else if (mapInstance) mapInstance.locate({ setView: true, maxZoom: 16 });
+            if (userLocation && mapInstance)
+              mapInstance.flyTo(userLocation, 16);
+            else if (mapInstance)
+              mapInstance.locate({ setView: true, maxZoom: 16 });
           }}
           className="pointer-events-auto p-4 bg-white/90 dark:bg-brand-navy/90 backdrop-blur-xl rounded-2xl shadow-[0_10px_30px_rgba(0,0,0,0.2)] border border-white/20 hover:scale-110 active:scale-95 transition-all group/btn"
           title="Locate Me"
@@ -375,7 +425,7 @@ const Map: React.FC<MapProps> = ({
           <Navigation className="w-6 h-6 text-brand-red group-hover/btn:rotate-12 transition-transform" />
         </button>
       </div>
-      
+
       <MapContainer
         center={[32.72, -16.95]}
         zoom={11}
@@ -388,53 +438,95 @@ const Map: React.FC<MapProps> = ({
         <LocationMarker setUserLocation={setUserLocation} />
 
         {filteredAmenities.map((amenity) => (
-          <Marker key={amenity.id} position={[amenity.lat, amenity.lon]} icon={createCustomIcon(amenity.type)}>
+          <Marker
+            key={amenity.id}
+            position={[amenity.lat, amenity.lon]}
+            icon={createCustomIcon(amenity.type)}
+          >
             <Popup>
               <div className="p-6 pr-10 min-w-[180px] text-brand-navy dark:text-white">
-                <p className="text-[10px] font-bold uppercase tracking-widest opacity-50 mb-2 border-b border-white/10 pb-2">{amenity.type}</p>
-                <h3 className="text-sm font-bold uppercase leading-tight">{amenity.name || `${amenity.lat.toFixed(4)}, ${amenity.lon.toFixed(4)}`}</h3>
+                <p className="text-[10px] font-bold uppercase tracking-widest opacity-50 mb-2 border-b border-white/10 pb-2">
+                  {amenity.type}
+                </p>
+                <h3 className="text-sm font-bold uppercase leading-tight">
+                  {amenity.name ||
+                    `${amenity.lat.toFixed(4)}, ${amenity.lon.toFixed(4)}`}
+                </h3>
               </div>
             </Popup>
           </Marker>
         ))}
 
-        {showTrails && trails.map((trail) => (
-          <Marker key={`trail-${trail.id}`} position={[trail.coordinates.lat, trail.coordinates.lon]} icon={createCustomIcon("trail", trail.status)}>
-            <Popup>
-              <div className="p-6 pr-10 min-w-[220px] text-brand-navy dark:text-white">
-                <p className="text-[10px] font-bold uppercase tracking-widest opacity-50 mb-2 border-b border-white/10 pb-2">
-                  PR{trail.pr} • {trail.island}
-                </p>
-                <h3 className="text-sm font-bold uppercase leading-tight mb-2">{trail.id}</h3>
-                <div className="space-y-2">
-                  <p className="text-[10px] uppercase tracking-wider">
-                    <span className="opacity-50">Status:</span>{" "}
-                    <span className={trail.status === "Aberto" ? "text-emerald-500" : trail.status === "Encerrado" ? "text-red-500" : "text-orange-500"}>
-                      {trail.status}
-                    </span>
+        {showTrails &&
+          trails.map((trail) => (
+            <Marker
+              key={`trail-${trail.id}`}
+              position={[trail.coordinates.lat, trail.coordinates.lon]}
+              icon={createCustomIcon("trail", trail.status)}
+            >
+              <Popup>
+                <div className="p-6 pr-10 min-w-[220px] text-brand-navy dark:text-white">
+                  <p className="text-[10px] font-bold uppercase tracking-widest opacity-50 mb-2 border-b border-white/10 pb-2">
+                    PR{trail.pr} • {trail.island}
                   </p>
-                  <p className="text-[10px] uppercase tracking-wider">
-                    <span className="opacity-50">Dist:</span> {trail.distance}
-                  </p>
-                  <a href="https://ifcn.madeira.gov.pt/atividades-de-natureza/percursos-pedestres-recomendados/percursos-pedestres-recomendados.html" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2 mt-4 p-2 bg-emerald-500 text-white rounded-xl text-[10px] font-bold uppercase tracking-widest hover:opacity-90 transition-all">
-                    <ExternalLink size={10} />
-                    IFCN Info
-                  </a>
+                  <h3 className="text-sm font-bold uppercase leading-tight mb-2">
+                    {trail.id}
+                  </h3>
+                  <div className="space-y-2">
+                    <p className="text-[10px] uppercase tracking-wider">
+                      <span className="opacity-50">Status:</span>{" "}
+                      <span
+                        className={
+                          trail.status === "Aberto"
+                            ? "text-emerald-500"
+                            : trail.status === "Encerrado"
+                              ? "text-red-500"
+                              : "text-orange-500"
+                        }
+                      >
+                        {trail.status}
+                      </span>
+                    </p>
+                    <p className="text-[10px] uppercase tracking-wider">
+                      <span className="opacity-50">Dist:</span> {trail.distance}
+                    </p>
+                    <a
+                      href="https://ifcn.madeira.gov.pt/atividades-de-natureza/percursos-pedestres-recomendados/percursos-pedestres-recomendados.html"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center justify-center gap-2 mt-4 p-2 bg-emerald-500 text-white rounded-xl text-[10px] font-bold uppercase tracking-widest hover:opacity-90 transition-all"
+                    >
+                      <ExternalLink size={10} />
+                      IFCN Info
+                    </a>
+                  </div>
                 </div>
-              </div>
-            </Popup>
-          </Marker>
-        ))}
+              </Popup>
+            </Marker>
+          ))}
 
         {portStatus && (
-          <Marker position={FUNCHAL_PORT_COORDS} icon={createCustomIcon("port", portStatus.isDocked ? "busy" : "clear")}>
+          <Marker
+            position={FUNCHAL_PORT_COORDS}
+            icon={createCustomIcon(
+              "port",
+              portStatus.isDocked ? "busy" : "clear",
+            )}
+          >
             <Popup>
               <div className="p-6 min-w-[280px] max-w-[320px] text-brand-navy dark:text-white">
                 <div className="flex items-center justify-between gap-4 mb-4 border-b border-brand-navy/5 dark:border-white/5 pb-3">
                   <div className="flex flex-col gap-0.5">
-                    <h3 className="font-bold text-sm uppercase tracking-tight truncate">{t("port.name")}</h3>
-                    <div className={`flex items-center justify-center gap-1.5 px-2.5 py-1 rounded-full text-[9px] font-bold uppercase tracking-widest shadow-sm ${portStatus.isDocked ? "bg-red-500 text-white" : "bg-emerald-500 text-white"}`}>
-                      <Anchor size={12} className="text-brand-white animate-pulse" />
+                    <h3 className="font-bold text-sm uppercase tracking-tight truncate">
+                      {t("port.name")}
+                    </h3>
+                    <div
+                      className={`flex items-center justify-center gap-1.5 px-2.5 py-1 rounded-full text-[9px] font-bold uppercase tracking-widest shadow-sm ${portStatus.isDocked ? "bg-red-500 text-white" : "bg-emerald-500 text-white"}`}
+                    >
+                      <Anchor
+                        size={12}
+                        className="text-brand-white animate-pulse"
+                      />
                       {portStatus.isDocked ? t("port.busy") : t("port.clear")}
                     </div>
                   </div>
@@ -444,13 +536,18 @@ const Map: React.FC<MapProps> = ({
                   <div className="grid grid-cols-1 gap-2.5">
                     {dockedShips.length > 0 ? (
                       dockedShips.map((ship, idx) => (
-                        <div key={idx} className="group/ship flex flex-col p-3 rounded-2xl border border-brand-navy/5 dark:border-white/5 bg-brand-navy/[0.02] dark:bg-white/[0.02] hover:bg-brand-navy/[0.04] dark:hover:bg-white/[0.04] transition-colors">
+                        <div
+                          key={idx}
+                          className="group/ship flex flex-col p-3 rounded-2xl border border-brand-navy/5 dark:border-white/5 bg-brand-navy/[0.02] dark:bg-white/[0.02] hover:bg-brand-navy/[0.04] dark:hover:bg-white/[0.04] transition-colors"
+                        >
                           <div className="flex items-center justify-between gap-3 mb-2.5">
                             <div className="flex items-center gap-2.5 min-w-0">
                               <div className="p-1.5 bg-brand-red/10 rounded-lg">
                                 <Anchor size={12} className="text-brand-red" />
                               </div>
-                              <span className="text-[10px] font-bold uppercase tracking-wide truncate">{ship.name}</span>
+                              <span className="text-[10px] font-bold uppercase tracking-wide truncate">
+                                {ship.name}
+                              </span>
                             </div>
                             <span className="flex-shrink-0 text-[8px] font-bold px-2 py-0.5 rounded-lg bg-brand-navy/5 dark:bg-white/10 uppercase tracking-widest opacity-60">
                               {ship.terminal.split("-").pop()?.trim()}
@@ -459,13 +556,23 @@ const Map: React.FC<MapProps> = ({
 
                           <div className="flex items-center justify-between px-1">
                             <div className="flex flex-col">
-                              <span className="text-[7px] uppercase tracking-widest opacity-40 font-bold mb-0.5">Arrival</span>
-                              <span className="text-[10px] font-mono font-bold">{ship.arrival}</span>
+                              <span className="text-[7px] uppercase tracking-widest opacity-40 font-bold mb-0.5">
+                                Arrival
+                              </span>
+                              <span className="text-[10px] font-mono font-bold">
+                                {ship.arrival}
+                              </span>
                             </div>
-                            <div className="flex flex-col items-center justify-center opacity-20"><ArrowRight size={10} /></div>
+                            <div className="flex flex-col items-center justify-center opacity-20">
+                              <ArrowRight size={10} />
+                            </div>
                             <div className="flex flex-col items-end">
-                              <span className="text-[7px] uppercase tracking-widest opacity-40 font-bold mb-0.5">Departure</span>
-                              <span className={`text-[10px] font-mono font-bold ${new Date(ship.departureDate).toDateString() !== new Date(ship.arrivalDate).toDateString() ? "text-orange-500" : ""}`}>
+                              <span className="text-[7px] uppercase tracking-widest opacity-40 font-bold mb-0.5">
+                                Departure
+                              </span>
+                              <span
+                                className={`text-[10px] font-mono font-bold ${new Date(ship.departureDate).toDateString() !== new Date(ship.arrivalDate).toDateString() ? "text-orange-500" : ""}`}
+                              >
                                 {ship.departure}
                               </span>
                             </div>
@@ -475,18 +582,31 @@ const Map: React.FC<MapProps> = ({
                     ) : (
                       <div className="flex flex-col p-4 rounded-2xl border border-emerald-500/20 bg-emerald-500/[0.03]">
                         <div className="flex items-center gap-2.5 text-emerald-500 mb-2">
-                          <div className="p-1.5 bg-emerald-500/10 rounded-lg"><Check size={14} strokeWidth={3} /></div>
-                          <span className="text-[10px] font-bold uppercase tracking-widest">{t("port.clear_now")}</span>
+                          <div className="p-1.5 bg-emerald-500/10 rounded-lg">
+                            <Check size={14} strokeWidth={3} />
+                          </div>
+                          <span className="text-[10px] font-bold uppercase tracking-widest">
+                            {t("port.clear_now")}
+                          </span>
                         </div>
                         {nextArrival && (
                           <div className="flex flex-col gap-1 pl-9 border-l border-emerald-500/10 ml-2.5 py-1">
-                            <span className="text-[8px] uppercase tracking-widest opacity-50 font-bold">Próxima Escala</span>
+                            <span className="text-[8px] uppercase tracking-widest opacity-50 font-bold">
+                              Próxima Escala
+                            </span>
                             <div className="flex items-center gap-2">
                               <span className="text-[11px] font-mono font-bold">
-                                {new Date(nextArrival.arrivalDate).toLocaleDateString(language, { month: "short", day: "2-digit" })}
+                                {new Date(
+                                  nextArrival.arrivalDate,
+                                ).toLocaleDateString(language, {
+                                  month: "short",
+                                  day: "2-digit",
+                                })}
                               </span>
                               <span className="w-1 h-1 rounded-full bg-emerald-500/30" />
-                              <span className="text-[11px] font-mono font-bold">{nextArrival.arrival}</span>
+                              <span className="text-[11px] font-mono font-bold">
+                                {nextArrival.arrival}
+                              </span>
                             </div>
                           </div>
                         )}
@@ -495,9 +615,17 @@ const Map: React.FC<MapProps> = ({
                   </div>
 
                   <div className="pt-2">
-                    <a href="https://apram.pt/movimento-navios" target="_blank" rel="noopener noreferrer" className="group/btn flex items-center justify-center gap-2.5 w-full p-3 bg-brand-navy dark:bg-white text-white dark:text-brand-navy rounded-2xl text-[10px] font-bold uppercase tracking-widest hover:scale-[1.02] active:scale-[0.98] transition-all shadow-lg shadow-brand-navy/10 dark:shadow-white/5">
+                    <a
+                      href="https://apram.pt/movimento-navios"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group/btn flex items-center justify-center gap-2.5 w-full p-3 bg-brand-navy dark:bg-white text-white dark:text-brand-navy rounded-2xl text-[10px] font-bold uppercase tracking-widest hover:scale-[1.02] active:scale-[0.98] transition-all shadow-lg shadow-brand-navy/10 dark:shadow-white/5"
+                    >
                       <span>APRAM Info</span>
-                      <ExternalLink size={12} className="group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform" />
+                      <ExternalLink
+                        size={12}
+                        className="group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform"
+                      />
                     </a>
                   </div>
                 </div>
@@ -506,55 +634,88 @@ const Map: React.FC<MapProps> = ({
           </Marker>
         )}
 
-        {showAlerts && Object.entries(groupedWarnings).map(([regionId, regionWarnings]) => {
-          const worstLevel = regionWarnings.reduce((worst, w) => {
-            if (w.awarenessLevelID === "red") return "red";
-            if (w.awarenessLevelID === "orange" && worst !== "red") return "orange";
-            if (w.awarenessLevelID === "yellow" && worst !== "red" && worst !== "orange") return "yellow";
-            return worst;
-          }, "green");
+        {showAlerts &&
+          Object.entries(groupedWarnings).map(([regionId, regionWarnings]) => {
+            const worstLevel = regionWarnings.reduce((worst, w) => {
+              if (w.awarenessLevelID === "red") return "red";
+              if (w.awarenessLevelID === "orange" && worst !== "red")
+                return "orange";
+              if (
+                w.awarenessLevelID === "yellow" &&
+                worst !== "red" &&
+                worst !== "orange"
+              )
+                return "yellow";
+              return worst;
+            }, "green");
 
-          return (
-            <Marker key={`warning-${regionId}`} position={REGION_COORDS_OVERRIDE[regionId] || [32.7, -17.0]} icon={createCustomIcon("warning", worstLevel)}>
-              <Popup>
-                <div className="p-6 pr-10 min-w-[280px] max-w-[320px] text-brand-navy dark:text-white">
-                  <div className="flex items-center justify-between gap-4 mb-4 border-b border-white/10 pb-2">
-                    <h3 className="font-bold text-xs uppercase tracking-widest">{getRegionName(regionId)}</h3>
-                    <a href={REGION_URLS[regionId]} target="_blank" rel="noopener noreferrer" className="p-1.5 bg-white/5 hover:bg-white/10 rounded-lg transition-colors">
-                      <ExternalLink size={12} className="opacity-40" />
-                    </a>
-                  </div>
-                  <div className="grid grid-cols-2 gap-1.5">
-                    {regionWarnings.map((warning, index) => {
-                      const isGreen = warning.awarenessLevelID === "green";
-                      let levelColor = "bg-green-500";
-                      if (warning.awarenessLevelID === "red") levelColor = "bg-red-500";
-                      else if (warning.awarenessLevelID === "orange") levelColor = "bg-orange-500";
-                      else if (warning.awarenessLevelID === "yellow") levelColor = "bg-yellow-500";
+            return (
+              <Marker
+                key={`warning-${regionId}`}
+                position={REGION_COORDS_OVERRIDE[regionId] || [32.7, -17.0]}
+                icon={createCustomIcon("warning", worstLevel)}
+              >
+                <Popup>
+                  <div className="p-6 pr-10 min-w-[280px] max-w-[320px] text-brand-navy dark:text-white">
+                    <div className="flex items-center justify-between gap-4 mb-4 border-b border-white/10 pb-2">
+                      <h3 className="font-bold text-xs uppercase tracking-widest">
+                        {getRegionName(regionId)}
+                      </h3>
+                      <a
+                        href={REGION_URLS[regionId]}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="p-1.5 bg-white/5 hover:bg-white/10 rounded-lg transition-colors"
+                      >
+                        <ExternalLink size={12} className="opacity-40" />
+                      </a>
+                    </div>
+                    <div className="grid grid-cols-2 gap-1.5">
+                      {regionWarnings.map((warning, index) => {
+                        const isGreen = warning.awarenessLevelID === "green";
+                        let levelColor = "bg-green-500";
+                        if (warning.awarenessLevelID === "red")
+                          levelColor = "bg-red-500";
+                        else if (warning.awarenessLevelID === "orange")
+                          levelColor = "bg-orange-500";
+                        else if (warning.awarenessLevelID === "yellow")
+                          levelColor = "bg-yellow-500";
 
-                      return (
-                        <div key={index} className={`flex flex-col p-2 rounded-xl border ${isGreen ? "bg-green-500/[0.03] border-green-500/10" : "bg-white/[0.03] border-white/10"}`}>
-                          <div className="flex items-center gap-1.5 mb-1">
-                            <div className={`w-1.5 h-1.5 rounded-full ${levelColor} ${!isGreen ? "animate-pulse" : ""}`} />
-                            <span className="text-[7px] font-bold uppercase tracking-widest opacity-70 truncate">{getAwarenessTranslation(warning.awarenessTypeName)}</span>
-                          </div>
-                          {!isGreen && (
-                            <div className="flex items-center gap-1 opacity-40">
-                              <Clock size={7} />
-                              <span className="text-[7px] font-mono">
-                                {new Date(warning.endTime).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}
+                        return (
+                          <div
+                            key={index}
+                            className={`flex flex-col p-2 rounded-xl border ${isGreen ? "bg-green-500/[0.03] border-green-500/10" : "bg-white/[0.03] border-white/10"}`}
+                          >
+                            <div className="flex items-center gap-1.5 mb-1">
+                              <div
+                                className={`w-1.5 h-1.5 rounded-full ${levelColor} ${!isGreen ? "animate-pulse" : ""}`}
+                              />
+                              <span className="text-[7px] font-bold uppercase tracking-widest opacity-70 truncate">
+                                {getAwarenessTranslation(
+                                  warning.awarenessTypeName,
+                                )}
                               </span>
                             </div>
-                          )}
-                        </div>
-                      );
-                    })}
+                            {!isGreen && (
+                              <div className="flex items-center gap-1 opacity-40">
+                                <Clock size={7} />
+                                <span className="text-[7px] font-mono">
+                                  {new Date(warning.endTime).toLocaleTimeString(
+                                    [],
+                                    { hour: "2-digit", minute: "2-digit" },
+                                  )}
+                                </span>
+                              </div>
+                            )}
+                          </div>
+                        );
+                      })}
+                    </div>
                   </div>
-                </div>
-              </Popup>
-            </Marker>
-          );
-        })}
+                </Popup>
+              </Marker>
+            );
+          })}
       </MapContainer>
     </div>
   );

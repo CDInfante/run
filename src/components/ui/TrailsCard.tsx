@@ -9,6 +9,7 @@ import {
   Info,
   ChevronDown,
   ChevronUp,
+  Clock,
 } from "lucide-react";
 import { useTranslation } from "../../hooks/useTranslation";
 import type { Trail } from "../../types";
@@ -25,19 +26,26 @@ const TrailsCard: React.FC<TrailsCardProps> = ({
   const { t } = useTranslation();
   const [selectedTrail, setSelectedTrail] = useState<Trail | null>(null);
 
-  const { data: trails = [], isLoading } = useQuery({
+  const { data: trailsData, isLoading } = useQuery({
     queryKey: ["trails"],
     queryFn: fetchTrails,
     refetchInterval: 10 * 60 * 1000,
   });
 
+  const trails = trailsData?.trails || [];
+
+  // Structured Skeleton Loader
   if (isLoading) {
     return (
-      <div className="p-4 md:p-5 glass rounded-[2rem] flex items-center gap-3 md:gap-4 animate-pulse bg-white/5 dark:bg-slate-900/40">
+      <div className="p-4 md:p-5 glass rounded-[2rem] flex items-center gap-3 md:gap-4 animate-pulse bg-white/5 dark:bg-slate-900/40 shadow-sm">
         <div className="p-2.5 md:p-3 rounded-2xl shrink-0 bg-brand-navy/10 dark:bg-white/10 w-10 h-10" />
-        <div className="flex-1 min-w-0 space-y-2">
-          <div className="h-4 w-24 bg-brand-navy/20 dark:bg-white/20 rounded-full" />
-          <div className="h-2 w-32 bg-brand-navy/10 dark:bg-white/10 rounded-full" />
+        <div className="flex-1 min-w-0 space-y-2.5">
+          <div className="h-3 w-28 bg-brand-navy/20 dark:bg-white/20 rounded-full" />
+          <div className="h-2 w-40 bg-brand-navy/10 dark:bg-white/10 rounded-full" />
+        </div>
+        <div className="flex gap-1.5 shrink-0">
+          <div className="w-10 h-6 bg-brand-navy/10 dark:bg-white/10 rounded-full" />
+          <div className="w-6 h-6 bg-brand-navy/10 dark:bg-white/10 rounded-full" />
         </div>
       </div>
     );
@@ -74,8 +82,20 @@ const TrailsCard: React.FC<TrailsCardProps> = ({
           <h3 className="font-bold text-sm md:text-base uppercase tracking-widest leading-tight text-brand-navy dark:text-white break-words">
             {t("nav.trails")}
           </h3>
-          <p className="text-[8px] md:text-[9px] font-bold uppercase tracking-widest opacity-50 mt-0.5 break-words">
+          <p className="text-[8px] md:text-[9px] font-bold uppercase tracking-widest opacity-50 mt-0.5 break-words flex items-center gap-1.5">
             MADEIRA & PORTO SANTO
+            {trailsData?.meta?.scraped_at && (
+              <>
+                <span className="w-1 h-1 rounded-full bg-brand-navy/20 dark:bg-white/20" />
+                <span className="flex items-center gap-0.5 opacity-70 font-mono text-[7px] text-brand-navy dark:text-white">
+                  <Clock size={8} />
+                  {new Date(trailsData.meta.scraped_at).toLocaleTimeString([], {
+                    hour: "2-digit",
+                    minute: "2-digit",
+                  })}
+                </span>
+              </>
+            )}
           </p>
         </div>
         <div className="flex items-center gap-2 md:gap-3 shrink-0">
