@@ -52,89 +52,85 @@ export default defineConfig({
         globPatterns: ["**/*.{js,css,html,ico,png,svg}"],
         maximumFileSizeToCacheInBytes: 5 * 1024 * 1024,
         runtimeCaching: [
-          // 1. GitHub Raw Data (Ships, Trails, Amenities)
           {
             urlPattern: /^https:\/\/raw\.githubusercontent\.com\/.*\.json$/,
             handler: "NetworkFirst",
             options: {
               cacheName: "github-data-cache",
-              networkTimeoutSeconds: 4, // Fallback to cache after 4 seconds
-              expiration: {
-                maxEntries: 20,
-                maxAgeSeconds: 60 * 60 * 24, // 24 hours
-              },
-              cacheableResponse: {
-                statuses: [0, 200],
-              },
+              networkTimeoutSeconds: 4,
+              expiration: { maxEntries: 20, maxAgeSeconds: 60 * 60 * 24 },
+              cacheableResponse: { statuses: [0, 200] },
             },
           },
-          // 2. Local Data Fallback (If GitHub is blocked)
           {
             urlPattern: /^\/.*\.json$/,
             handler: "NetworkFirst",
             options: {
               cacheName: "local-data-cache",
               networkTimeoutSeconds: 3,
-              expiration: {
-                maxEntries: 20,
-                maxAgeSeconds: 60 * 60 * 24, // 24 hours
-              },
-              cacheableResponse: {
-                statuses: [0, 200],
-              },
+              expiration: { maxEntries: 20, maxAgeSeconds: 60 * 60 * 24 },
+              cacheableResponse: { statuses: [0, 200] },
             },
           },
-          // 3. IPMA Warnings
           {
             urlPattern:
               /^https:\/\/api\.ipma\.pt\/open-data\/forecast\/warnings\/warnings_www\.json/,
             handler: "NetworkFirst",
             options: {
               cacheName: "ipma-warnings-cache",
-              networkTimeoutSeconds: 4, // IPMA can be slow, cut it off at 4s
-              expiration: {
-                maxEntries: 10,
-                maxAgeSeconds: 60 * 60 * 2, // 2 hours
-              },
-              cacheableResponse: {
-                statuses: [0, 200],
-              },
+              networkTimeoutSeconds: 4,
+              expiration: { maxEntries: 10, maxAgeSeconds: 60 * 60 * 2 },
+              cacheableResponse: { statuses: [0, 200] },
             },
           },
-          // 4. Open-Meteo (Weather & Air Quality)
           {
             urlPattern: /^https:\/\/(api|air-quality-api)\.open-meteo\.com\/.*/,
             handler: "NetworkFirst",
             options: {
               cacheName: "open-meteo-cache",
               networkTimeoutSeconds: 4,
-              expiration: {
-                maxEntries: 30, // Higher entries since we fetch multiple locations
-                maxAgeSeconds: 60 * 60, // 1 hour
-              },
-              cacheableResponse: {
-                statuses: [0, 200],
-              },
+              expiration: { maxEntries: 30, maxAgeSeconds: 60 * 60 },
+              cacheableResponse: { statuses: [0, 200] },
             },
           },
-          // 5. Wttr.in (Backup Weather Service)
           {
             urlPattern: /^https:\/\/wttr\.in\/.*/,
             handler: "NetworkFirst",
             options: {
               cacheName: "wttr-backup-cache",
               networkTimeoutSeconds: 4,
-              expiration: {
-                maxEntries: 30,
-                maxAgeSeconds: 60 * 60, // 1 hour
-              },
-              cacheableResponse: {
-                statuses: [0, 200],
-              },
+              expiration: { maxEntries: 30, maxAgeSeconds: 60 * 60 },
+              cacheableResponse: { statuses: [0, 200] },
             },
           },
         ],
       },
     }),
   ],
+  // --- NEW BUILD CONFIGURATION FOR CHUNKING ---
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks(id) {
+          if (id.includes("node_modules")) {
+            if (id.includes("leaflet") || id.includes("react-leaflet")) {
+              return "vendor-leaflet";
+            }
+            if (id.includes("framer-motion")) {
+              return "vendor-framer";
+            }
+            if (id.includes("@tanstack/react-query")) {
+              return "vendor-query";
+            }
+            if (id.includes("react") || id.includes("react-dom")) {
+              return "vendor-react";
+            }
+            return "vendor-core"; // All other dependencies
+          }
+        },
+      },
+    },
+    // Slightly increase the warning limit since 500kb is quite strict for modern React apps
+    chunkSizeWarningLimit: 600,
+  },
 });
