@@ -38,7 +38,7 @@ export const fetchWeatherWarnings = async (): Promise<WeatherWarning[]> => {
   try {
     const response = await axios.get(
       "https://api.ipma.pt/open-data/forecast/warnings/warnings_www.json",
-      { timeout: 8000 }
+      { timeout: 8000 },
     );
 
     const madeiraIds = Object.values(IPMA_REGIONS);
@@ -48,10 +48,9 @@ export const fetchWeatherWarnings = async (): Promise<WeatherWarning[]> => {
 
     const result: WeatherWarning[] = [];
 
-    // For each region, we want to ensure we have an entry for each awareness type
+    // For each region, ensure we have an entry for each awareness type
     madeiraIds.forEach((regionId) => {
       AWARENESS_TYPES.forEach((type) => {
-        // Find if there is an active (non-green) warning for this type and region
         const activeWarning = allWarnings.find(
           (w: WeatherWarning) =>
             w.idAreaAviso === regionId &&
@@ -62,7 +61,6 @@ export const fetchWeatherWarnings = async (): Promise<WeatherWarning[]> => {
         if (activeWarning) {
           result.push(activeWarning);
         } else {
-          // If no active warning, provide a green status for this type
           result.push({
             idAreaAviso: regionId,
             awarenessTypeName: type,
@@ -79,6 +77,7 @@ export const fetchWeatherWarnings = async (): Promise<WeatherWarning[]> => {
     return result;
   } catch (error) {
     console.error("Error fetching IPMA warnings:", error);
-    return [];
+    // THROW the error instead of returning [] so React Query knows it failed
+    throw new Error("Failed to fetch IPMA warnings");
   }
 };

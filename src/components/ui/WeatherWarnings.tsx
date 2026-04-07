@@ -20,6 +20,7 @@ import {
   ThermometerSnowflake,
   Waves,
   Zap,
+  CloudOff,
 } from "lucide-react";
 import { format } from "date-fns";
 import { useTranslation } from "../../hooks/useTranslation";
@@ -35,7 +36,12 @@ const WeatherWarnings: React.FC<WeatherWarningsProps> = ({
 }) => {
   const { t } = useTranslation();
 
-  const { data: warnings = [], isLoading } = useQuery({
+  // Destructure isError so we can handle the fallback
+  const {
+    data: warnings = [],
+    isLoading,
+    isError,
+  } = useQuery({
     queryKey: ["warnings"],
     queryFn: fetchWeatherWarnings,
     refetchInterval: 10 * 60 * 1000,
@@ -48,6 +54,25 @@ const WeatherWarnings: React.FC<WeatherWarningsProps> = ({
         <div className="flex-1 min-w-0 space-y-2">
           <div className="h-4 w-32 bg-brand-navy/20 dark:bg-white/20 rounded-full" />
           <div className="h-2 w-20 bg-brand-navy/10 dark:bg-white/10 rounded-full" />
+        </div>
+      </div>
+    );
+  }
+
+  // --- NEW: Graceful Error UI for IPMA API Failures ---
+  if (isError) {
+    return (
+      <div className="p-4 md:p-5 glass rounded-[2rem] flex items-center gap-3 md:gap-4 bg-brand-red/5 border border-brand-red/20 transition-all duration-300">
+        <div className="p-2.5 rounded-2xl shrink-0 bg-brand-red/10 text-brand-red">
+          <CloudOff size={20} />
+        </div>
+        <div className="flex-1 min-w-0">
+          <h3 className="font-bold text-sm md:text-base uppercase tracking-widest leading-tight text-brand-red break-words">
+            {t("weather.warnings")}
+          </h3>
+          <p className="text-[9px] font-bold uppercase tracking-widest text-brand-navy dark:text-white opacity-50 mt-0.5 leading-tight">
+            IPMA Service Unavailable. Proceed with caution.
+          </p>
         </div>
       </div>
     );
