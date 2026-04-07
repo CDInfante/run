@@ -5,14 +5,52 @@ import type { WeatherData } from "../../types";
 import { fetchWeather } from "../../services/weather";
 import { useTranslation } from "../../hooks/useTranslation";
 import {
-  Sun, Cloud, CloudRain, Wind, Droplets, Sunrise, Sunset, Leaf,
-  Navigation, Thermometer, Eye, Activity, Tornado, CloudOff, Loader2,
+  Sun,
+  Cloud,
+  CloudRain,
+  Wind,
+  Droplets,
+  Sunrise,
+  Sunset,
+  Leaf,
+  Navigation,
+  Thermometer,
+  Eye,
+  Activity,
+  Tornado,
+  CloudOff,
+  Loader2,
+  Info,
 } from "lucide-react";
 
-const WeatherIcon = ({ code, className }: { code: number; className?: string }) => {
+const WeatherIcon = ({
+  code,
+  className,
+}: {
+  code: number;
+  className?: string;
+}) => {
   if (code === 0) return <Sun className={`${className} text-yellow-400`} />;
   if (code < 40) return <Cloud className={`${className} text-gray-400`} />;
   return <CloudRain className={`${className} text-blue-400`} />;
+};
+
+// Safe formatter to prevent "Invalid Date"
+const formatTime = (isoString: string | null) => {
+  if (!isoString) return "-";
+  const date = new Date(isoString);
+  if (isNaN(date.getTime())) return "-";
+  return date.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
+};
+
+// Helper for displaying metrics gracefully
+const displayMetric = (
+  val: number | null | undefined,
+  unit: string = "",
+  isDecimal: boolean = false,
+) => {
+  if (val === null || val === undefined) return "-";
+  return `${isDecimal ? val.toFixed(1) : Math.round(val)}${unit}`;
 };
 
 const WeatherCard: React.FC<{
@@ -48,14 +86,13 @@ const WeatherCard: React.FC<{
 
     loadWeather();
     const interval = setInterval(loadWeather, 10 * 60 * 1000);
-    
+
     return () => {
       isMounted = false;
       clearInterval(interval);
     };
   }, [lat, lon]);
 
-  // --- Simple Throbber / Loading Indicator ---
   if (isLoading && !weather) {
     return (
       <div className="p-5 md:p-6 glass rounded-[2rem] shadow-xl min-h-[14rem] w-full flex flex-col items-center justify-center gap-3 bg-white/40 dark:bg-slate-900/40 transition-colors duration-500">
@@ -72,7 +109,6 @@ const WeatherCard: React.FC<{
     );
   }
 
-  // Graceful Error UI
   if (error || !weather) {
     return (
       <div className="p-5 md:p-6 glass rounded-[2rem] shadow-xl min-h-[14rem] w-full flex flex-col items-center justify-center gap-3 bg-brand-red/5 border border-brand-red/20 transition-colors duration-500">
@@ -89,12 +125,15 @@ const WeatherCard: React.FC<{
     );
   }
 
+  const aqi = weather.airQuality.european_aqi;
   const aqiColor =
-    weather.airQuality.european_aqi < 50
-      ? "text-green-500"
-      : weather.airQuality.european_aqi < 100
-        ? "text-yellow-500"
-        : "text-brand-red";
+    aqi === null
+      ? "text-gray-400"
+      : aqi < 50
+        ? "text-green-500"
+        : aqi < 100
+          ? "text-yellow-500"
+          : "text-brand-red";
 
   return (
     <motion.div
@@ -106,10 +145,20 @@ const WeatherCard: React.FC<{
           : "bg-white/40 dark:bg-slate-900/40"
       }`}
     >
-      {/* Base Content (Always Visible) */}
+      {/* Tiny non-intrusive backup indicator */}
+      {weather.isBackup && (
+        <div className="absolute bottom-3 right-5 flex items-center gap-1 opacity-40 text-brand-navy dark:text-white">
+          <Info size={8} />
+          <span className="text-[6px] font-bold uppercase tracking-widest">
+            Backup
+          </span>
+        </div>
+      )}
+
+      {/* Base Content */}
       <motion.div
         layout="position"
-        className="flex flex-col relative z-10 flex-1 w-full gap-4"
+        className="flex flex-col relative z-10 flex-1 w-full gap-4 mt-2"
       >
         {/* Header & Temp */}
         <div className="flex items-start justify-between w-full">
@@ -125,13 +174,14 @@ const WeatherCard: React.FC<{
 
             <div className="flex flex-col mt-2">
               <div className="text-4xl md:text-5xl font-bold text-brand-navy dark:text-white tracking-tighter flex items-baseline">
-                {weather.current.temp}
+                {displayMetric(weather.current.temp)}
                 <span className="text-xl md:text-2xl font-semibold ml-1 opacity-40">
                   °C
                 </span>
               </div>
               <div className="text-[9px] md:text-[10px] font-bold text-brand-navy/60 dark:text-white/60 uppercase tracking-widest mt-1">
-                {t("weather.apparent_temp")} {weather.current.apparentTemp}°C
+                {t("weather.apparent_temp")}{" "}
+                {displayMetric(weather.current.apparentTemp, "°C")}
               </div>
             </div>
           </div>
@@ -144,33 +194,33 @@ const WeatherCard: React.FC<{
           </div>
         </div>
 
-        {/* Collapsed Core Athlete Stats (Always Visible) */}
+        {/* Collapsed Core Stats */}
         <div className="grid grid-cols-4 gap-2 mt-auto w-full">
           {[
             {
               icon: Wind,
-              val: `${weather.current.windSpeed}`,
+              val: displayMetric(weather.current.windSpeed),
               unit: "km/h",
               color: "text-blue-500",
               bg: "bg-blue-500/10",
             },
             {
               icon: Tornado,
-              val: `${weather.current.windGusts}`,
+              val: displayMetric(weather.current.windGusts),
               unit: "km/h",
               color: "text-indigo-400",
               bg: "bg-indigo-500/10",
             },
             {
               icon: Activity,
-              val: weather.airQuality.european_aqi,
+              val: displayMetric(weather.airQuality.european_aqi),
               unit: "AQI",
               color: aqiColor,
               bg: "bg-white/5",
             },
             {
               icon: Sun,
-              val: weather.current.uvIndex.toFixed(1),
+              val: displayMetric(weather.current.uvIndex, "", true),
               unit: "UV",
               color: "text-yellow-500",
               bg: "bg-yellow-500/10",
@@ -192,7 +242,7 @@ const WeatherCard: React.FC<{
         </div>
       </motion.div>
 
-      {/* Expanded Data for Runners/Cyclists */}
+      {/* Expanded Data */}
       <AnimatePresence>
         {isExpanded && (
           <motion.div
@@ -212,37 +262,48 @@ const WeatherCard: React.FC<{
                   {[
                     {
                       label: t("weather.max_temp"),
-                      val: `${weather.daily.maxTemp}°C`,
+                      val: displayMetric(weather.daily.maxTemp, "°C"),
                       icon: Thermometer,
                     },
                     {
                       label: t("weather.min_temp"),
-                      val: `${weather.daily.minTemp}°C`,
+                      val: displayMetric(weather.daily.minTemp, "°C"),
                       icon: Thermometer,
                     },
                     {
                       label: t("weather.rain_prob"),
-                      val: `${weather.daily.precipProb}%`,
+                      val: displayMetric(weather.daily.precipProb, "%"),
                       icon: CloudRain,
                     },
                     {
                       label: t("weather.precipitation"),
-                      val: `${weather.current.precipitation}mm`,
+                      val: displayMetric(
+                        weather.current.precipitation,
+                        "mm",
+                        true,
+                      ),
                       icon: CloudRain,
                     },
                     {
                       label: t("weather.humidity"),
-                      val: `${weather.current.humidity}%`,
+                      val: displayMetric(weather.current.humidity, "%"),
                       icon: Droplets,
                     },
                     {
                       label: t("weather.cloud_cover"),
-                      val: `${weather.current.cloudCover}%`,
+                      val: displayMetric(weather.current.cloudCover, "%"),
                       icon: Cloud,
                     },
                     {
                       label: t("weather.visibility"),
-                      val: `${(weather.current.visibility / 1000).toFixed(1)}km`,
+                      val:
+                        weather.current.visibility !== null
+                          ? displayMetric(
+                              weather.current.visibility / 1000,
+                              "km",
+                              true,
+                            )
+                          : "-",
                       icon: Eye,
                     },
                   ].map((item, idx) => (
@@ -277,15 +338,51 @@ const WeatherCard: React.FC<{
                 </div>
                 <div className="flex flex-wrap gap-2">
                   {[
-                    { key: "pm25", label: "PM2.5", val: weather.airQuality.pm2_5 },
-                    { key: "pm10", label: "PM10", val: weather.airQuality.pm10 },
-                    { key: "dust", label: t("weather.dust"), val: weather.airQuality.dust },
-                    { key: "grass", label: t("weather.grass"), val: weather.airQuality.grass_pollen },
-                    { key: "olive", label: t("weather.olive"), val: weather.airQuality.olive_pollen },
-                    { key: "birch", label: t("weather.birch"), val: weather.airQuality.birch_pollen },
-                    { key: "mugwort", label: t("weather.mugwort"), val: weather.airQuality.mugwort_pollen },
-                    { key: "alder", label: t("weather.alder"), val: weather.airQuality.alder_pollen },
-                    { key: "ragweed", label: t("weather.ragweed"), val: weather.airQuality.ragweed_pollen },
+                    {
+                      key: "pm25",
+                      label: "PM2.5",
+                      val: weather.airQuality.pm2_5,
+                    },
+                    {
+                      key: "pm10",
+                      label: "PM10",
+                      val: weather.airQuality.pm10,
+                    },
+                    {
+                      key: "dust",
+                      label: t("weather.dust"),
+                      val: weather.airQuality.dust,
+                    },
+                    {
+                      key: "grass",
+                      label: t("weather.grass"),
+                      val: weather.airQuality.grass_pollen,
+                    },
+                    {
+                      key: "olive",
+                      label: t("weather.olive"),
+                      val: weather.airQuality.olive_pollen,
+                    },
+                    {
+                      key: "birch",
+                      label: t("weather.birch"),
+                      val: weather.airQuality.birch_pollen,
+                    },
+                    {
+                      key: "mugwort",
+                      label: t("weather.mugwort"),
+                      val: weather.airQuality.mugwort_pollen,
+                    },
+                    {
+                      key: "alder",
+                      label: t("weather.alder"),
+                      val: weather.airQuality.alder_pollen,
+                    },
+                    {
+                      key: "ragweed",
+                      label: t("weather.ragweed"),
+                      val: weather.airQuality.ragweed_pollen,
+                    },
                   ].map((p) => (
                     <div
                       key={p.key}
@@ -295,7 +392,7 @@ const WeatherCard: React.FC<{
                         {p.label}
                       </span>
                       <span className="text-[9px] font-bold text-brand-navy dark:text-white font-mono">
-                        {p.val ?? 0}
+                        {p.val !== null ? p.val : "-"}
                       </span>
                     </div>
                   ))}
@@ -307,7 +404,7 @@ const WeatherCard: React.FC<{
                 <div className="flex items-center gap-2 px-3 py-1.5 bg-orange-500/10 rounded-xl border border-orange-500/20 flex-1 justify-center">
                   <Sunrise className="w-3 h-3 text-orange-500" />
                   <span className="text-[10px] font-bold uppercase tracking-widest text-brand-navy dark:text-white font-mono">
-                    {new Date(weather.daily.sunrise).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}
+                    {formatTime(weather.daily.sunrise)}
                   </span>
                 </div>
 
@@ -315,17 +412,21 @@ const WeatherCard: React.FC<{
                   <Navigation
                     size={12}
                     className="text-blue-500"
-                    style={{ transform: `rotate(${weather.current.windDirection}deg)` }}
+                    style={{
+                      transform: `rotate(${weather.current.windDirection ?? 0}deg)`,
+                    }}
                   />
                   <span className="text-[10px] font-bold uppercase tracking-widest text-brand-navy dark:text-white font-mono">
-                    {weather.current.windDirection}°
+                    {weather.current.windDirection !== null
+                      ? `${weather.current.windDirection}°`
+                      : "-"}
                   </span>
                 </div>
 
                 <div className="flex items-center gap-2 px-3 py-1.5 bg-orange-500/10 rounded-xl border border-orange-500/20 flex-1 justify-center">
                   <Sunset className="w-3 h-3 text-orange-600 dark:text-orange-400" />
                   <span className="text-[10px] font-bold uppercase tracking-widest text-brand-navy dark:text-white font-mono">
-                    {new Date(weather.daily.sunset).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}
+                    {formatTime(weather.daily.sunset)}
                   </span>
                 </div>
               </div>

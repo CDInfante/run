@@ -1,37 +1,38 @@
 /** @author Harry Vasanth (harryvasanth.com) */
 export interface WeatherData {
+  isBackup?: boolean;
   current: {
-    temp: number;
-    windSpeed: number;
-    windDirection: number;
+    temp: number | null;
+    windSpeed: number | null;
+    windDirection: number | null;
     weatherCode: number;
-    humidity: number;
-    apparentTemp: number;
-    uvIndex: number;
-    precipitation: number;
-    visibility: number;
-    cloudCover: number;
-    windGusts: number; // Added this
+    humidity: number | null;
+    apparentTemp: number | null;
+    uvIndex: number | null;
+    precipitation: number | null;
+    visibility: number | null;
+    cloudCover: number | null;
+    windGusts: number | null;
   };
   daily: {
-    maxTemp: number;
-    minTemp: number;
-    sunrise: string;
-    sunset: string;
-    uvIndexMax: number;
-    precipProb: number; // Added this
+    maxTemp: number | null;
+    minTemp: number | null;
+    sunrise: string | null;
+    sunset: string | null;
+    uvIndexMax: number | null;
+    precipProb: number | null;
   };
   airQuality: {
-    pm2_5: number;
-    pm10: number;
-    european_aqi: number;
-    alder_pollen: number;
-    birch_pollen: number;
-    grass_pollen: number;
-    mugwort_pollen: number;
-    olive_pollen: number;
-    ragweed_pollen: number;
-    dust: number; // Added this
+    pm2_5: number | null;
+    pm10: number | null;
+    european_aqi: number | null;
+    alder_pollen: number | null;
+    birch_pollen: number | null;
+    grass_pollen: number | null;
+    mugwort_pollen: number | null;
+    olive_pollen: number | null;
+    ragweed_pollen: number | null;
+    dust: number | null;
   };
 }
 
@@ -56,9 +57,9 @@ export interface WeatherWarning {
 export interface Ship {
   name: string;
   terminal: string;
-  arrival: string; // Time string
+  arrival: string;
   arrivalDate: Date;
-  departure: string; // Time string
+  departure: string;
   departureDate: Date;
   isDockedNow: boolean;
 }

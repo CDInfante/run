@@ -9,19 +9,16 @@ export const fetchWeather = async (
   lat: number,
   lon: number,
 ): Promise<WeatherData | null> => {
-  // 1. JITTER: Random delay between 0 and 1500ms to stagger simultaneous requests
+  // Stagger simultaneous requests
   await delay(Math.random() * 1500);
 
   try {
-    // 2. Try the primary service (Open-Meteo)
     return await fetchOpenMeteo(lat, lon);
   } catch (error) {
     console.warn(
       `[Weather] Open-Meteo failed for ${lat},${lon}. Trying backup service...`,
-      error,
     );
     try {
-      // 3. Fallback to free backup service (wttr.in)
       return await fetchBackupWeather(lat, lon);
     } catch (backupError) {
       console.error(
@@ -69,7 +66,6 @@ const fetchOpenMeteo = async (
     airQualityPromise,
   ]);
 
-  // If the main weather API fails entirely, THROW so the fallback catches it
   if (weatherResult.status === "rejected") {
     throw new Error("Open-Meteo primary API failed or timed out");
   }
@@ -78,47 +74,64 @@ const fetchOpenMeteo = async (
   const airRes = airResult.status === "fulfilled" ? airResult.value : null;
 
   return {
+    isBackup: false,
     current: {
-      temp: weatherRes.data.current.temperature_2m,
-      windSpeed: weatherRes.data.current.wind_speed_10m,
-      windGusts: weatherRes.data.current.wind_gusts_10m,
-      windDirection: weatherRes.data.current.wind_direction_10m,
-      weatherCode: weatherRes.data.current.weather_code,
-      humidity: weatherRes.data.current.relative_humidity_2m,
-      apparentTemp: weatherRes.data.current.apparent_temperature,
-      uvIndex: weatherRes.data.current.uv_index,
-      precipitation: weatherRes.data.current.precipitation,
-      visibility: weatherRes.data.current.visibility,
-      cloudCover: weatherRes.data.current.cloud_cover,
+      temp: weatherRes.data.current.temperature_2m ?? null,
+      windSpeed: weatherRes.data.current.wind_speed_10m ?? null,
+      windGusts: weatherRes.data.current.wind_gusts_10m ?? null,
+      windDirection: weatherRes.data.current.wind_direction_10m ?? null,
+      weatherCode: weatherRes.data.current.weather_code ?? 0,
+      humidity: weatherRes.data.current.relative_humidity_2m ?? null,
+      apparentTemp: weatherRes.data.current.apparent_temperature ?? null,
+      uvIndex: weatherRes.data.current.uv_index ?? null,
+      precipitation: weatherRes.data.current.precipitation ?? null,
+      visibility: weatherRes.data.current.visibility ?? null,
+      cloudCover: weatherRes.data.current.cloud_cover ?? null,
     },
     daily: {
-      maxTemp: weatherRes.data.daily.temperature_2m_max[0],
-      minTemp: weatherRes.data.daily.temperature_2m_min[0],
-      sunrise: weatherRes.data.daily.sunrise[0],
-      sunset: weatherRes.data.daily.sunset[0],
-      uvIndexMax: weatherRes.data.daily.uv_index_max[0],
-      precipProb: weatherRes.data.daily.precipitation_probability_max[0],
+      maxTemp: weatherRes.data.daily.temperature_2m_max?.[0] ?? null,
+      minTemp: weatherRes.data.daily.temperature_2m_min?.[0] ?? null,
+      sunrise: weatherRes.data.daily.sunrise?.[0] ?? null,
+      sunset: weatherRes.data.daily.sunset?.[0] ?? null,
+      uvIndexMax: weatherRes.data.daily.uv_index_max?.[0] ?? null,
+      precipProb:
+        weatherRes.data.daily.precipitation_probability_max?.[0] ?? null,
     },
     airQuality: {
-      pm2_5: airRes?.data?.current?.pm2_5 ?? 0,
-      pm10: airRes?.data?.current?.pm10 ?? 0,
-      dust: airRes?.data?.current?.dust ?? 0,
-      european_aqi: airRes?.data?.current?.european_aqi ?? 0,
-      alder_pollen: airRes?.data?.current?.alder_pollen ?? 0,
-      birch_pollen: airRes?.data?.current?.birch_pollen ?? 0,
-      grass_pollen: airRes?.data?.current?.grass_pollen ?? 0,
-      mugwort_pollen: airRes?.data?.current?.mugwort_pollen ?? 0,
-      olive_pollen: airRes?.data?.current?.olive_pollen ?? 0,
-      ragweed_pollen: airRes?.data?.current?.ragweed_pollen ?? 0,
+      pm2_5: airRes?.data?.current?.pm2_5 ?? null,
+      pm10: airRes?.data?.current?.pm10 ?? null,
+      dust: airRes?.data?.current?.dust ?? null,
+      european_aqi: airRes?.data?.current?.european_aqi ?? null,
+      alder_pollen: airRes?.data?.current?.alder_pollen ?? null,
+      birch_pollen: airRes?.data?.current?.birch_pollen ?? null,
+      grass_pollen: airRes?.data?.current?.grass_pollen ?? null,
+      mugwort_pollen: airRes?.data?.current?.mugwort_pollen ?? null,
+      olive_pollen: airRes?.data?.current?.olive_pollen ?? null,
+      ragweed_pollen: airRes?.data?.current?.ragweed_pollen ?? null,
     },
   };
+};
+
+// Helper to convert "07:34 AM" to a valid ISO Date string for today
+const parseWttrTime = (timeStr: string): string | null => {
+  if (!timeStr) return null;
+  const match = timeStr.match(/(\d+):(\d+)\s*(AM|PM)/i);
+  if (!match) return null;
+
+  let [_, h, m, ampm] = match;
+  let hours = parseInt(h, 10);
+  if (ampm.toUpperCase() === "PM" && hours < 12) hours += 12;
+  if (ampm.toUpperCase() === "AM" && hours === 12) hours = 0;
+
+  const date = new Date();
+  date.setHours(hours, parseInt(m, 10), 0, 0);
+  return date.toISOString();
 };
 
 const fetchBackupWeather = async (
   lat: number,
   lon: number,
 ): Promise<WeatherData> => {
-  // wttr.in is a completely free backup API that doesn't require an API key
   const res = await axios.get(`https://wttr.in/${lat},${lon}?format=j1`, {
     timeout: 8000,
   });
@@ -126,47 +139,63 @@ const fetchBackupWeather = async (
   const current = data.current_condition[0];
   const today = data.weather[0];
 
+  // Try to rescue AQI/Pollen data from Open-Meteo's secondary AQI server
+  let airRes = null;
+  try {
+    const aqRes = await axios.get(
+      `https://air-quality-api.open-meteo.com/v1/air-quality`,
+      {
+        timeout: 4000,
+        params: {
+          latitude: lat,
+          longitude: lon,
+          current:
+            "pm10,pm2_5,european_aqi,alder_pollen,birch_pollen,grass_pollen,mugwort_pollen,olive_pollen,ragweed_pollen,dust",
+          timezone: "auto",
+        },
+      },
+    );
+    airRes = aqRes.data;
+  } catch (e) {
+    console.warn("Backup also failed to retrieve Air Quality data.");
+  }
+
   return {
+    isBackup: true,
     current: {
-      temp: Number(current.temp_C),
-      windSpeed: Number(current.windspeedKmph),
-      windDirection: Number(current.winddirDegree),
-      windGusts: Number(current.windspeedKmph) * 1.5, // Estimated, as wttr often omits gusts
-      weatherCode: 0, // Fallback uses generic clear icon to prevent crash
-      humidity: Number(current.humidity),
-      apparentTemp: Number(current.FeelsLikeC),
-      uvIndex: Number(current.uvIndex),
-      precipitation: Number(current.precipMM),
-      visibility: Number(current.visibility) * 1000,
-      cloudCover: Number(current.cloudcover),
+      temp: Number(current.temp_C) ?? null,
+      windSpeed: Number(current.windspeedKmph) ?? null,
+      windDirection: Number(current.winddirDegree) ?? null,
+      windGusts: current.windspeedKmph
+        ? Number(current.windspeedKmph) * 1.5
+        : null,
+      weatherCode: 0,
+      humidity: Number(current.humidity) ?? null,
+      apparentTemp: Number(current.FeelsLikeC) ?? null,
+      uvIndex: Number(current.uvIndex) ?? null,
+      precipitation: Number(current.precipMM) ?? null,
+      visibility: current.visibility ? Number(current.visibility) * 1000 : null,
+      cloudCover: Number(current.cloudcover) ?? null,
     },
     daily: {
-      maxTemp: Number(today.maxtempC),
-      minTemp: Number(today.mintempC),
-      // Approximate time map from their astronomy payload
-      sunrise:
-        new Date().toISOString().split("T")[0] +
-        "T" +
-        today.astronomy[0].sunrise,
-      sunset:
-        new Date().toISOString().split("T")[0] +
-        "T" +
-        today.astronomy[0].sunset,
-      uvIndexMax: Number(today.uvIndex),
-      precipProb: Number(today.hourly[0]?.chanceofrain ?? 0),
+      maxTemp: Number(today.maxtempC) ?? null,
+      minTemp: Number(today.mintempC) ?? null,
+      sunrise: parseWttrTime(today.astronomy[0]?.sunrise),
+      sunset: parseWttrTime(today.astronomy[0]?.sunset),
+      uvIndexMax: Number(today.uvIndex) ?? null,
+      precipProb: Number(today.hourly[0]?.chanceofrain) ?? null,
     },
     airQuality: {
-      // Backup doesn't provide allergens/AQI, safe default to 0
-      pm2_5: 0,
-      pm10: 0,
-      european_aqi: 0,
-      dust: 0,
-      alder_pollen: 0,
-      birch_pollen: 0,
-      grass_pollen: 0,
-      mugwort_pollen: 0,
-      olive_pollen: 0,
-      ragweed_pollen: 0,
+      pm2_5: airRes?.current?.pm2_5 ?? null,
+      pm10: airRes?.current?.pm10 ?? null,
+      dust: airRes?.current?.dust ?? null,
+      european_aqi: airRes?.current?.european_aqi ?? null,
+      alder_pollen: airRes?.current?.alder_pollen ?? null,
+      birch_pollen: airRes?.current?.birch_pollen ?? null,
+      grass_pollen: airRes?.current?.grass_pollen ?? null,
+      mugwort_pollen: airRes?.current?.mugwort_pollen ?? null,
+      olive_pollen: airRes?.current?.olive_pollen ?? null,
+      ragweed_pollen: airRes?.current?.ragweed_pollen ?? null,
     },
   };
 };
