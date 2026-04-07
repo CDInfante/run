@@ -1,23 +1,5 @@
 [
   {
-    "ship": "AIDAbella",
-    "port_of_call": "Funchal - Terminal Norte",
-    "agent": "Blatas, Lda.",
-    "arrival": "2026-04-06T05:55",
-    "origin_port": "Las Palmas (Gran Canaria)",
-    "departure": "2026-04-06T23:59",
-    "destination_port": "Santa Cruz De Tenerife"
-  },
-  {
-    "ship": "VIKING SEA",
-    "port_of_call": "Funchal - Terminal Sul",
-    "agent": "Blatas, Lda.",
-    "arrival": "2026-04-06T06:55",
-    "origin_port": "Philipsburg",
-    "departure": "2026-04-06T18:00",
-    "destination_port": "Tangier"
-  },
-  {
     "ship": "CEMENT TRADER",
     "port_of_call": "Funchal - Terminal Cimenteiro",
     "agent": "Transinsular (Madeira)-Transp. Marit. Insulares, Lda.",
