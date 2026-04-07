@@ -1,6 +1,6 @@
 /** @author Harry Vasanth (harryvasanth.com) */
 import axios from "axios";
-import type { WeatherData } from "../types"; // Make sure to add the new fields to your WeatherData type!
+import type { WeatherData } from "../types";
 
 export const fetchWeather = async (
   lat: number,
@@ -32,10 +32,27 @@ export const fetchWeather = async (
       },
     );
 
-    const [weatherRes, airRes] = await Promise.all([
+    // Use allSettled so if Air Quality fails, we still get the main Weather data
+    const [weatherResult, airResult] = await Promise.allSettled([
       weatherPromise,
       airQualityPromise,
     ]);
+
+    // If the main weather API fails entirely, return null to trigger the Error UI
+    if (weatherResult.status === "rejected") {
+      console.warn("Weather API failed", weatherResult.reason);
+      return null;
+    }
+
+    const weatherRes = weatherResult.value;
+    const airRes = airResult.status === "fulfilled" ? airResult.value : null;
+
+    if (airResult.status === "rejected") {
+      console.warn(
+        "Air Quality API failed. Defaulting to 0s.",
+        airResult.reason,
+      );
+    }
 
     return {
       current: {
@@ -60,16 +77,17 @@ export const fetchWeather = async (
         precipProb: weatherRes.data.daily.precipitation_probability_max[0],
       },
       airQuality: {
-        pm2_5: airRes.data.current.pm2_5,
-        pm10: airRes.data.current.pm10,
-        dust: airRes.data.current.dust,
-        european_aqi: airRes.data.current.european_aqi,
-        alder_pollen: airRes.data.current.alder_pollen,
-        birch_pollen: airRes.data.current.birch_pollen,
-        grass_pollen: airRes.data.current.grass_pollen,
-        mugwort_pollen: airRes.data.current.mugwort_pollen,
-        olive_pollen: airRes.data.current.olive_pollen,
-        ragweed_pollen: airRes.data.current.ragweed_pollen,
+        // Fallback to 0 if the airQualityPromise was rejected
+        pm2_5: airRes?.data?.current?.pm2_5 ?? 0,
+        pm10: airRes?.data?.current?.pm10 ?? 0,
+        dust: airRes?.data?.current?.dust ?? 0,
+        european_aqi: airRes?.data?.current?.european_aqi ?? 0,
+        alder_pollen: airRes?.data?.current?.alder_pollen ?? 0,
+        birch_pollen: airRes?.data?.current?.birch_pollen ?? 0,
+        grass_pollen: airRes?.data?.current?.grass_pollen ?? 0,
+        mugwort_pollen: airRes?.data?.current?.mugwort_pollen ?? 0,
+        olive_pollen: airRes?.data?.current?.olive_pollen ?? 0,
+        ragweed_pollen: airRes?.data?.current?.ragweed_pollen ?? 0,
       },
     };
   } catch (error) {

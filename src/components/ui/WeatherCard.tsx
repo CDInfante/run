@@ -18,6 +18,7 @@ import {
   Eye,
   Activity,
   Tornado,
+  CloudOff,
 } from "lucide-react";
 
 const WeatherIcon = ({
@@ -40,17 +41,42 @@ const WeatherCard: React.FC<{
   isExpanded?: boolean;
 }> = ({ lat, lon, title, municipality, isExpanded = false }) => {
   const [weather, setWeather] = useState<WeatherData | null>(null);
+  const [error, setError] = useState<boolean>(false); // Added error state
   const { t } = useTranslation();
 
   useEffect(() => {
     const loadWeather = async () => {
+      setError(false); // Reset error state before fetching
       const data = await fetchWeather(lat, lon);
-      setWeather(data);
+
+      if (data) {
+        setWeather(data);
+      } else {
+        setError(true); // If fetch fails, show error UI
+      }
     };
+
     loadWeather();
     const interval = setInterval(loadWeather, 10 * 60 * 1000);
     return () => clearInterval(interval);
   }, [lat, lon]);
+
+  // Graceful Error UI
+  if (error) {
+    return (
+      <div className="p-5 md:p-6 glass rounded-[2rem] shadow-xl min-h-[14rem] w-full flex flex-col items-center justify-center gap-3 bg-brand-red/5 border border-brand-red/20 transition-colors duration-500">
+        <CloudOff className="w-8 h-8 text-brand-red opacity-60" />
+        <div className="text-center">
+          <h3 className="text-[11px] md:text-xs font-bold text-brand-red uppercase tracking-widest leading-tight opacity-90">
+            {title}
+          </h3>
+          <p className="text-[9px] font-bold uppercase tracking-widest text-brand-navy dark:text-white opacity-50 mt-1">
+            {t("weather.service_unavailable")}
+          </p>
+        </div>
+      </div>
+    );
+  }
 
   if (!weather)
     return (
