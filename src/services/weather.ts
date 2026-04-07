@@ -8,6 +8,7 @@ export const fetchWeather = async (
 ): Promise<WeatherData | null> => {
   try {
     const weatherPromise = axios.get(`https://api.open-meteo.com/v1/forecast`, {
+      timeout: 8000,
       params: {
         latitude: lat,
         longitude: lon,
@@ -17,6 +18,7 @@ export const fetchWeather = async (
           "temperature_2m_max,temperature_2m_min,sunrise,sunset,uv_index_max,precipitation_probability_max",
         timezone: "auto",
       },
+      
     });
 
     const airQualityPromise = axios.get(

@@ -36,10 +36,22 @@ const App: React.FC = () => {
   });
 
   const defaultLocations = ["Sé", "Pico Ruivo", "Porto Moniz", "Machico"];
+
+  // Safe JSON Parsing for LocalStorage
   const [visibleLocationNames, setVisibleLocationNames] = useState<string[]>(
     () => {
       const saved = localStorage.getItem("visibleLocationNames");
-      return saved ? JSON.parse(saved) : defaultLocations;
+      if (!saved) return defaultLocations;
+      try {
+        const parsed = JSON.parse(saved);
+        // Ensure it is actually an array to prevent mapping errors later
+        return Array.isArray(parsed) ? parsed : defaultLocations;
+      } catch (e) {
+        console.warn(
+          "Corrupted local storage for locations, resetting to defaults.",
+        );
+        return defaultLocations;
+      }
     },
   );
 

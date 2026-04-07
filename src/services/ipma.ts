@@ -38,6 +38,7 @@ export const fetchWeatherWarnings = async (): Promise<WeatherWarning[]> => {
   try {
     const response = await axios.get(
       "https://api.ipma.pt/open-data/forecast/warnings/warnings_www.json",
+      { timeout: 8000 }
     );
 
     const madeiraIds = Object.values(IPMA_REGIONS);

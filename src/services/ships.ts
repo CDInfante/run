@@ -10,14 +10,21 @@ interface RawShipData {
 
 export const fetchShipStatus = async (): Promise<ShipStatus> => {
   try {
-    // try github raw first, fallback to local if it fails (e.g., due to CORS or network issues)
     let response: Response;
+
+    // Timeout controller for 3 seconds
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 3000);
+
     try {
       response = await fetch(
         "https://raw.githubusercontent.com/CDInfante/run/refs/heads/main/public/ships-funchal.json",
+        { signal: controller.signal },
       );
+      clearTimeout(timeoutId);
       if (!response.ok) throw new Error("GitHub fetch failed");
     } catch {
+      clearTimeout(timeoutId);
       response = await fetch("/ships-funchal.json");
     }
 

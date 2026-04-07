@@ -29,13 +29,19 @@ const TrailsCard: React.FC<TrailsCardProps> = ({
       try {
         let response: Response;
 
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 3000);
+
         // Try GitHub raw first to bypass local PWA cache
         try {
           response = await fetch(
             "https://raw.githubusercontent.com/CDInfante/run/refs/heads/main/public/trails-madeira.json",
+            { signal: controller.signal },
           );
+          clearTimeout(timeoutId);
           if (!response.ok) throw new Error("GitHub fetch failed");
         } catch {
+          clearTimeout(timeoutId);
           // Fallback to local (cached) file
           response = await fetch("/trails-madeira.json");
         }
