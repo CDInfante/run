@@ -1,7 +1,7 @@
 {
   "meta": {
-    "scraped_at": "2026-04-08T10:06:51.850Z",
-    "total_amenities": 725
+    "scraped_at": "2026-04-08T16:58:05.627Z",
+    "total_amenities": 727
   },
   "amenities": [
     {
@@ -4422,6 +4422,13 @@
       "name": null
     },
     {
+      "id": 11917643007,
+      "lat": 32.6451252,
+      "lon": -16.9144363,
+      "type": "fountain",
+      "name": null
+    },
+    {
       "id": 11936896858,
       "lat": 32.6868428,
       "lon": -17.0928142,
@@ -5076,6 +5083,13 @@
       "id": 13714598001,
       "lat": 32.7297788,
       "lon": -16.7716379,
+      "type": "toilet",
+      "name": null
+    },
+    {
+      "id": 13716239301,
+      "lat": 32.7204029,
+      "lon": -16.9651171,
       "type": "toilet",
       "name": null
     }
