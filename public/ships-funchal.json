@@ -1,7 +1,7 @@
 {
   "meta": {
-    "scraped_at": "2026-04-08T23:34:28.691Z",
-    "total_ships": 14
+    "scraped_at": "2026-04-09T10:09:49.333Z",
+    "total_ships": 12
   },
   "ships": [
     {
@@ -14,31 +14,13 @@
       "destination_port": "Setúbal"
     },
     {
-      "ship": "MEIN SCHIFF RELAX",
-      "port_of_call": "Funchal - Terminal Sul",
-      "agent": "JFM Shipping, Lda.",
-      "arrival": "2026-04-08T06:00",
-      "origin_port": "Santa Cruz De La Palma",
-      "departure": "2026-04-08T22:00",
-      "destination_port": "Santa Cruz De Tenerife"
-    },
-    {
-      "ship": "MARELLA VOYAGER",
-      "port_of_call": "Funchal - Terminal Sul",
-      "agent": "Agência Ferraz - J. M. Ferraz Simões, Lda.",
-      "arrival": "2026-04-07T21:00",
-      "origin_port": "Puerto Del Rosario-Fuerteventura",
-      "departure": "2026-04-08T18:00",
-      "destination_port": "Santa Cruz De La Palma"
-    },
-    {
       "ship": "HAMBURG",
       "port_of_call": "Funchal - Terminal Norte",
       "agent": "Transinsular (Madeira)-Transp. Marit. Insulares, Lda.",
       "arrival": "2026-04-08T11:00",
       "origin_port": "Santa Cruz De La Palma",
       "departure": "2026-04-09T16:59",
-      "destination_port": "La Coruna (A Coruna)"
+      "destination_port": "Lisboa"
     },
     {
       "ship": "MEIN SCHIFF 7",
