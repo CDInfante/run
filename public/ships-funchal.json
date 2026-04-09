@@ -1,7 +1,7 @@
 {
   "meta": {
-    "scraped_at": "2026-04-09T11:52:56.288Z",
-    "total_ships": 12
+    "scraped_at": "2026-04-09T13:17:35.959Z",
+    "total_ships": 14
   },
   "ships": [
     {
@@ -102,6 +102,24 @@
       "origin_port": "Southampton",
       "departure": "2026-04-15T16:30",
       "destination_port": "Santa Cruz De Tenerife"
+    },
+    {
+      "ship": "LE BOUGAINVILLE",
+      "port_of_call": "Funchal - Terminal Norte",
+      "agent": "Blatas, Lda.",
+      "arrival": "2026-04-16T07:00",
+      "origin_port": "La Estaca",
+      "departure": "2026-04-17T11:30",
+      "destination_port": "Santa Cruz De La Palma"
+    },
+    {
+      "ship": "SEVEN SEAS GRANDEUR",
+      "port_of_call": "Funchal - Terminal Sul",
+      "agent": "JFM Shipping, Lda.",
+      "arrival": "2026-04-16T08:00",
+      "origin_port": "Miami",
+      "departure": "2026-04-16T18:00",
+      "destination_port": "Casablanca"
     },
     {
       "ship": "OOSTERDAM",
