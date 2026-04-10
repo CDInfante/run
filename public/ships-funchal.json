@@ -1,7 +1,7 @@
 {
   "meta": {
-    "scraped_at": "2026-04-10T16:45:47.091Z",
-    "total_ships": 14
+    "scraped_at": "2026-04-10T22:33:23.634Z",
+    "total_ships": 15
   },
   "ships": [
     {
@@ -100,7 +100,7 @@
       "agent": "Blatas, Lda.",
       "arrival": "2026-04-16T07:00",
       "origin_port": "La Estaca",
-      "departure": "2026-04-17T11:30",
+      "departure": "2026-04-17T11:00",
       "destination_port": "Santa Cruz De La Palma"
     },
     {
@@ -129,6 +129,15 @@
       "origin_port": "La Coruna (A Coruna)",
       "departure": "2026-04-21T16:00",
       "destination_port": "Santa Cruz De La Palma"
+    },
+    {
+      "ship": "VENTURA",
+      "port_of_call": "Funchal - Terminal Sul",
+      "agent": "Blatas, Lda.",
+      "arrival": "2026-04-28T08:00",
+      "origin_port": "Santa Cruz De La Palma",
+      "departure": "2026-04-28T18:00",
+      "destination_port": "Southampton"
     }
   ]
 }
