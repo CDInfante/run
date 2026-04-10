@@ -8,7 +8,11 @@
     "build": "tsc -b && vite build",
     "lint": "biome check .",
     "format": "biome format --write .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "scrape:amenities": "tsx scripts/scrape-amenities.ts",
+    "scrape:ships": "tsx scripts/scrape-ships.ts",
+    "scrape:trails": "tsx scripts/scrape-trails.ts",
+    "scrape:all": "npm run scrape:amenities && npm run scrape:ships && npm run scrape:trails"
   },
   "dependencies": {
     "@tailwindcss/forms": "^0.5.11",
@@ -34,6 +38,7 @@
     "@vitejs/plugin-react": "^6.0.1",
     "autoprefixer": "^10.4.20",
     "axios": "^1.8.1",
+    "axios-retry": "^4.5.0",
     "cheerio": "^1.2.0",
     "date-fns": "^4.1.0",
     "globals": "^17.4.0",
@@ -42,6 +47,7 @@
     "postcss": "^8.5.3",
     "react-leaflet": "^5.0.0",
     "tailwindcss": "^4.0.9",
+    "tsx": "^4.7.1",
     "typescript": "~6.0.2",
     "vite": "^8.0.5",
     "vite-plugin-pwa": "^1.2.0"

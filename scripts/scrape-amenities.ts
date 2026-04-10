@@ -2,11 +2,33 @@
 import fs from 'node:fs'
 import path from 'node:path'
 import axios from 'axios'
+import axiosRetry from 'axios-retry'
+import type { Amenity } from '../src/types/index'
+
+// Apply retry logic with exponential backoff
+axiosRetry(axios, {
+  retries: 3,
+  retryDelay: axiosRetry.exponentialDelay,
+  retryCondition: error =>
+    axiosRetry.isNetworkOrIdempotentRequestError(error) ||
+    error.response?.status === 429, // Retry on rate limit (common with Overpass)
+})
 
 const OVERPASS_URL = 'https://overpass-api.de/api/interpreter'
-// Mirrors if the main one is down:
-// const OVERPASS_URL = "https://overpass.openstreetmap.fr/api/interpreter";
-// const OVERPASS_URL = "https://overpass.kumi.systems/api/interpreter";
+
+interface OverpassElement {
+  id: number
+  lat: number
+  lon: number
+  tags: {
+    amenity: string
+    name?: string
+  }
+}
+
+interface OverpassResponse {
+  elements: OverpassElement[]
+}
 
 async function scrapeAmenities() {
   const query = `
@@ -19,7 +41,7 @@ async function scrapeAmenities() {
 
   try {
     console.log('Fetching amenities from Overpass API...')
-    const response = await axios.get(OVERPASS_URL, {
+    const response = await axios.get<OverpassResponse>(OVERPASS_URL, {
       params: { data: query },
       timeout: 30000,
     })
@@ -28,12 +50,12 @@ async function scrapeAmenities() {
       throw new Error('Invalid response from Overpass API')
     }
 
-    const amenities = response.data.elements.map(el => ({
+    const amenities: Amenity[] = response.data.elements.map(el => ({
       id: el.id,
       lat: el.lat,
       lon: el.lon,
       type: el.tags.amenity === 'drinking_water' ? 'fountain' : 'toilet',
-      name: el.tags.name || null,
+      name: el.tags.name || undefined, // undefined drops it from JSON if null, saving space
     }))
 
     const outputPath = path.join(process.cwd(), 'public', 'amenities.json')
@@ -54,7 +76,11 @@ async function scrapeAmenities() {
 
     console.log(`✅ Scraped ${amenities.length} amenities.`)
   } catch (error) {
-    console.error('Scrape failed:', error.message)
+    if (axios.isAxiosError(error)) {
+      console.error(`Scrape failed: ${error.message}`)
+    } else {
+      console.error('Scrape failed:', error)
+    }
     process.exit(1)
   }
 }

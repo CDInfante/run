@@ -1,12 +1,28 @@
+/** @author Harry Vasanth (harryvasanth.com) */
 import fs from 'node:fs'
 import path from 'node:path'
 import axios from 'axios'
+import axiosRetry from 'axios-retry'
 
-/**
- * Scraper for APRAM ship movement data
- * Fetches HTML from apram.pt and parses ship information
- * @author Harry Vasanth (harryvasanth.com)
- */
+// Apply retry logic with exponential backoff
+axiosRetry(axios, {
+  retries: 3,
+  retryDelay: axiosRetry.exponentialDelay,
+  retryCondition: error =>
+    axiosRetry.isNetworkOrIdempotentRequestError(error) ||
+    error.response?.status === 429,
+})
+
+interface RawShip {
+  ship: string
+  port_of_call: string
+  agent: string
+  arrival: string
+  origin_port: string
+  departure: string
+  destination_port: string
+}
+
 async function scrapeShips() {
   const url = 'https://apram.pt/movimento-navios?port=ptfnc'
   console.log(`Fetching data from ${url}...`)
@@ -21,7 +37,7 @@ async function scrapeShips() {
     })
 
     const html = response.data
-    const ships = []
+    const ships: RawShip[] = []
 
     const blocks = html
       .split('<h1 class="uppercase text-xl text-cardHeading font-bold m-2">')
@@ -31,7 +47,7 @@ async function scrapeShips() {
     for (const block of blocks) {
       const shipName = block.split('</h1>')[0].trim()
 
-      const extractP = label => {
+      const extractP = (label: string) => {
         const parts = block.split(label)
         if (parts.length < 2) return ''
         const subPart = parts[1].split('<p class="justify-start capitalize')[1]
@@ -43,7 +59,7 @@ async function scrapeShips() {
           .trim()
       }
 
-      const extractH3 = label => {
+      const extractH3 = (label: string) => {
         const parts = block.split(label)
         if (parts.length < 2) return ''
         const subPart = parts[1].split('<h3 class="font-medium">')[1]
@@ -62,7 +78,7 @@ async function scrapeShips() {
       const destinationPort = extractP('Porto de Destino')
 
       if (shipName && arrival) {
-        const parseDate = d => {
+        const parseDate = (d: string) => {
           const parts = d.trim().split(' ')
           if (parts.length < 2) return d
           const [date, time] = parts
@@ -89,18 +105,16 @@ async function scrapeShips() {
         'ships-funchal.json',
       )
 
-      const oldData = { ships: [] }
+      let oldShips: RawShip[] = []
       try {
         if (fs.existsSync(outputPath)) {
           const raw = JSON.parse(fs.readFileSync(outputPath, 'utf8'))
-          // Support migration from old array format to new object format
-          oldData.ships = Array.isArray(raw) ? raw : raw.ships || []
+          oldShips = Array.isArray(raw) ? raw : raw.ships || []
         }
       } catch (_err) {
         console.warn('Could not read existing data. Starting fresh.')
       }
 
-      // Format output with metadata block
       const outputData = {
         meta: {
           scraped_at: new Date().toISOString(),
@@ -111,16 +125,14 @@ async function scrapeShips() {
 
       fs.writeFileSync(outputPath, JSON.stringify(outputData, null, 2))
       console.log(
-        `Successfully scraped ${ships.length} ships and updated ${outputPath}`,
+        `✅ Successfully scraped ${ships.length} ships and updated ${outputPath}`,
       )
 
       const added = ships.filter(
         s =>
-          !oldData.ships.some(
-            os => os.ship === s.ship && os.arrival === s.arrival,
-          ),
+          !oldShips.some(os => os.ship === s.ship && os.arrival === s.arrival),
       )
-      const removed = oldData.ships.filter(
+      const removed = oldShips.filter(
         os => !ships.some(s => s.ship === os.ship && s.arrival === os.arrival),
       )
 
@@ -141,7 +153,11 @@ async function scrapeShips() {
       process.exit(1)
     }
   } catch (error) {
-    console.error('Error scraping ships:', error.message)
+    if (axios.isAxiosError(error)) {
+      console.error(`Error scraping ships: ${error.message}`)
+    } else {
+      console.error('Error scraping ships:', error)
+    }
     process.exit(1)
   }
 }
