@@ -13,23 +13,34 @@ test.describe('Run - CDInfante App', () => {
     await expect(mapElement).toBeVisible()
   })
 
-  test('should open settings modal', async ({ page }) => {
-    // Click the settings button (Desktop view)
-    const settingsButton = page.locator('button[aria-label="Settings"]').first()
-    await settingsButton.click()
+  test('should open settings modal', async ({ page, isMobile }) => {
+    if (isMobile) {
+      // Open the hamburger menu on mobile devices
+      await page.locator('button[aria-label="Menu"]').click()
+      // Click the settings button inside the mobile drawer
+      await page
+        .locator('button', { hasText: /(Definições|Settings)/i })
+        .click()
+    } else {
+      // Click the desktop settings button
+      const settingsButton = page
+        .locator('button[aria-label="Settings"]')
+        .locator('visible=true')
+      await settingsButton.click()
+    }
 
-    // Modal should appear
-    const modalTitle = page
-      .getByText('Definições', { exact: true })
-      .or(page.getByText('Settings', { exact: true }))
+    // Modal should appear - the title is an h2
+    const modalTitle = page.locator('h2', {
+      hasText: /(Definições|Settings)/i,
+    })
     await expect(modalTitle).toBeVisible()
   })
 
   test('should toggle dark mode', async ({ page }) => {
-    // Click the theme toggle button
+    // Target the currently visible theme toggle button (handles both mobile/desktop layouts)
     const themeButton = page
       .locator('button[aria-label="Toggle theme"]')
-      .first()
+      .locator('visible=true')
     await themeButton.click()
 
     // Check if the html element has or doesn't have the 'dark' class
