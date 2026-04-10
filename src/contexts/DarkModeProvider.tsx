@@ -24,10 +24,16 @@ export const DarkModeProvider: React.FC<{ children: React.ReactNode }> = ({
 
   useEffect(() => {
     const root = window.document.documentElement
+    const metaThemeColor = document.querySelector('meta[name="theme-color"]')
+
     if (isDark) {
       root.classList.add('dark')
+      // Update mobile status bar to match dark mode (Tailwind slate-950)
+      if (metaThemeColor) metaThemeColor.setAttribute('content', '#020617')
     } else {
       root.classList.remove('dark')
+      // Update mobile status bar to match light mode (Brand Navy)
+      if (metaThemeColor) metaThemeColor.setAttribute('content', '#001e40')
     }
   }, [isDark])
 
