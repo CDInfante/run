@@ -1,23 +1,11 @@
+/** @author Harry Vasanth (harryvasanth.com) */
 import { useQuery } from '@tanstack/react-query'
 import { AnimatePresence, motion } from 'framer-motion'
 import L from 'leaflet'
 import 'leaflet/dist/leaflet.css'
-import {
-  AlertTriangle,
-  Anchor,
-  ArrowRight,
-  Check,
-  Clock,
-  Droplet,
-  ExternalLink,
-  Loader2,
-  Mountain,
-  Navigation,
-  Toilet,
-} from 'lucide-react'
+import { Loader2, Navigation } from 'lucide-react'
 import type React from 'react'
 import { useEffect, useMemo, useState } from 'react'
-import { renderToString } from 'react-dom/server'
 import { MapContainer, Marker, Popup, TileLayer, useMap } from 'react-leaflet'
 import MarkerClusterGroup from 'react-leaflet-cluster'
 import type { WeatherWarning } from '../../types'
@@ -156,17 +144,21 @@ const REGION_COORDS_OVERRIDE: Record<string, [number, number]> = {
 
 const FUNCHAL_PORT_COORDS: [number, number] = [32.6432113, -16.9148545]
 
+// SVG strings for highly optimized raw HTML injection
+const ICONS_SVG = {
+  fountain: `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5s-3.5-4-4-6.5c-.5 2.5-2 4.9-4 6.5C6 11.1 5 13 5 15a7 7 0 0 0 7 7z" /></svg>`,
+  toilet: `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h6a2 2 0 0 1 2 2v4H7V5a2 2 0 0 1 2-2Z" /><path d="M5 9h14a2 2 0 0 1 2 2v2a7 7 0 0 1-14 0v-2a2 2 0 0 1 2-2Z" /><path d="M12 20v2" /><path d="M8 22h8" /></svg>`,
+  trail: `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m8 3 4 8 5-5 5 15H2L8 3z" /></svg>`,
+  port: `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="replace-pulse"><circle cx="12" cy="5" r="3" /><line x1="12" y1="22" x2="12" y2="8" /><path d="M5 12H2a10 10 0 0 0 20 0h-3" /></svg>`,
+  check: `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12" /></svg>`,
+  warning: `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="replace-pulse"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z" /><line x1="12" y1="9" x2="12" y2="13" /><line x1="12" y1="17" x2="12.01" y2="17" /></svg>`,
+}
+
 // Factory to dynamically generate cluster icons based on the passed color class
 const getClusterIcon = (colorClass: string) => {
   return (cluster: { getChildCount: () => number }) => {
     const count = cluster.getChildCount()
-    const html = renderToString(
-      <div
-        className={`flex items-center justify-center w-11 h-11 ${colorClass} text-white rounded-[1rem] shadow-xl border border-white/30 font-bold text-sm backdrop-blur-md transition-transform hover:scale-110`}
-      >
-        {count}
-      </div>,
-    )
+    const html = `<div class="flex items-center justify-center w-11 h-11 ${colorClass} text-white rounded-[1rem] shadow-xl border border-white/30 font-bold text-sm backdrop-blur-md transition-transform hover:scale-110">${count}</div>`
 
     return L.divIcon({
       html: html,
@@ -176,23 +168,29 @@ const getClusterIcon = (colorClass: string) => {
   }
 }
 
+// Pure HTML string generation replaces the heavy react-dom/server renderToString
 const createCustomIcon = (
   type: 'fountain' | 'toilet' | 'warning' | 'trail' | 'port',
   level?: string,
 ) => {
   let color = '#3b82f6' // Blue for fountains
-  let IconComponent = AlertTriangle
+  let svgString = ICONS_SVG.warning
   let shouldPulse = false
 
-  if (type === 'toilet') color = '#8b5cf6' // Violet for toilets
-  if (type === 'trail') {
+  if (type === 'fountain') {
+    svgString = ICONS_SVG.fountain
+  } else if (type === 'toilet') {
+    color = '#8b5cf6' // Violet
+    svgString = ICONS_SVG.toilet
+  } else if (type === 'trail') {
+    svgString = ICONS_SVG.trail
     if (level === 'Aberto')
-      color = '#10b981' // Emerald for open trails
-    else if (level === 'Encerrado') color = '#ef4444'
-    else color = '#f97316'
-  }
-
-  if (type === 'port') {
+      color = '#10b981' // Emerald
+    else if (level === 'Encerrado')
+      color = '#ef4444' // Red
+    else color = '#f97316' // Orange
+  } else if (type === 'port') {
+    svgString = ICONS_SVG.port
     if (level === 'busy') {
       color = '#b6171e'
       shouldPulse = true
@@ -200,10 +198,7 @@ const createCustomIcon = (
       color = '#10b981'
       shouldPulse = false
     }
-    IconComponent = Anchor
-  }
-
-  if (type === 'warning') {
+  } else if (type === 'warning') {
     switch (level) {
       case 'yellow':
         color = '#eab308'
@@ -219,55 +214,29 @@ const createCustomIcon = (
         break
       default:
         color = '#22c55e'
-        IconComponent = Check
+        svgString = ICONS_SVG.check
         shouldPulse = false
     }
+  }
+
+  // Inject animation class if needed
+  if (shouldPulse) {
+    svgString = svgString.replace('replace-pulse', 'animate-pulse')
+  } else {
+    svgString = svgString.replace('class="replace-pulse"', '')
   }
 
   const isWarning = type === 'warning' || type === 'port'
   const size = isWarning ? 40 : 32
 
-  const iconMarkup = renderToString(
-    <div
-      style={{
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        width: `${size}px`,
-        height: `${size}px`,
-        color: 'white',
-        backgroundColor: color,
-        borderRadius: '40% 40% 40% 0',
-        transform: 'rotate(-45deg)',
-        border: '2px solid white',
-        boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1)',
-        opacity: isWarning ? 1 : 0.8, // 80% opacity for normal markers
-      }}
-    >
-      <div style={{ transform: 'rotate(45deg)', display: 'flex' }}>
-        {type === 'fountain' && <Droplet size={18} strokeWidth={3} />}
-        {type === 'toilet' && <Toilet size={18} strokeWidth={3} />}
-        {type === 'trail' && <Mountain size={18} strokeWidth={3} />}
-        {type === 'port' && (
-          <Anchor
-            size={18}
-            strokeWidth={3}
-            className={shouldPulse ? 'animate-pulse' : ''}
-          />
-        )}
-        {type === 'warning' && (
-          <IconComponent
-            size={18}
-            strokeWidth={3}
-            className={shouldPulse ? 'animate-pulse' : ''}
-          />
-        )}
-      </div>
-    </div>,
-  )
+  const html = `<div style="display:flex; align-items:center; justify-content:center; width:${size}px; height:${size}px; color:white; background-color:${color}; border-radius:40% 40% 40% 0; transform:rotate(-45deg); border:2px solid white; box-shadow:0 10px 15px -3px rgba(0,0,0,0.1); opacity:${isWarning ? 1 : 0.8};">
+    <div style="transform:rotate(45deg); display:flex;">
+      ${svgString}
+    </div>
+  </div>`
 
   return L.divIcon({
-    html: iconMarkup,
+    html: html,
     className: 'custom-leaflet-icon',
     iconSize: [size, size],
     iconAnchor: [size / 2, size],
@@ -592,7 +561,23 @@ const MapComponent: React.FC<MapProps> = ({
                         rel="noopener noreferrer"
                         className="flex items-center justify-center gap-2 mt-4 p-2 bg-emerald-500 text-white rounded-xl text-[10px] font-bold uppercase tracking-widest hover:opacity-90 transition-all"
                       >
-                        <ExternalLink size={10} />
+                        <span className="sr-only">IFCN Information link</span>
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="10"
+                          height="10"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="3"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          aria-hidden="true"
+                        >
+                          <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                          <polyline points="15 3 21 3 21 9" />
+                          <line x1="10" y1="14" x2="21" y2="3" />
+                        </svg>
                         IFCN Info
                       </a>
                     </div>
@@ -626,10 +611,23 @@ const MapComponent: React.FC<MapProps> = ({
                           : 'bg-emerald-500 text-white'
                       }`}
                     >
-                      <Anchor
-                        size={12}
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="12"
+                        height="12"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="3"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
                         className="text-brand-white animate-pulse"
-                      />
+                        aria-hidden="true"
+                      >
+                        <circle cx="12" cy="5" r="3" />
+                        <line x1="12" y1="22" x2="12" y2="8" />
+                        <path d="M5 12H2a10 10 0 0 0 20 0h-3" />
+                      </svg>
                       {portStatus.isDocked ? t('port.busy') : t('port.clear')}
                     </div>
                   </div>
@@ -646,7 +644,23 @@ const MapComponent: React.FC<MapProps> = ({
                           <div className="flex items-center justify-between gap-3 mb-2.5">
                             <div className="flex items-center gap-2.5 min-w-0">
                               <div className="p-1.5 bg-brand-red/10 rounded-lg">
-                                <Anchor size={12} className="text-brand-red" />
+                                <svg
+                                  xmlns="http://www.w3.org/2000/svg"
+                                  width="12"
+                                  height="12"
+                                  viewBox="0 0 24 24"
+                                  fill="none"
+                                  stroke="currentColor"
+                                  strokeWidth="3"
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                  className="text-brand-red"
+                                  aria-hidden="true"
+                                >
+                                  <circle cx="12" cy="5" r="3" />
+                                  <line x1="12" y1="22" x2="12" y2="8" />
+                                  <path d="M5 12H2a10 10 0 0 0 20 0h-3" />
+                                </svg>
                               </div>
                               <span className="text-[10px] font-bold uppercase tracking-wide truncate">
                                 {ship.name}
@@ -667,7 +681,21 @@ const MapComponent: React.FC<MapProps> = ({
                               </span>
                             </div>
                             <div className="flex flex-col items-center justify-center opacity-20">
-                              <ArrowRight size={10} />
+                              <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="10"
+                                height="10"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                strokeWidth="3"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                aria-hidden="true"
+                              >
+                                <line x1="5" y1="12" x2="19" y2="12" />
+                                <polyline points="12 5 19 12 12 19" />
+                              </svg>
                             </div>
                             <div className="flex flex-col items-end">
                               <span className="text-[7px] uppercase tracking-widest opacity-40 font-bold mb-0.5">
@@ -693,7 +721,20 @@ const MapComponent: React.FC<MapProps> = ({
                       <div className="flex flex-col p-4 rounded-2xl border border-emerald-500/20 bg-emerald-500/[0.03]">
                         <div className="flex items-center gap-2.5 text-emerald-500 mb-2">
                           <div className="p-1.5 bg-emerald-500/10 rounded-lg">
-                            <Check size={14} strokeWidth={3} />
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="14"
+                              height="14"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              stroke="currentColor"
+                              strokeWidth="3"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              aria-hidden="true"
+                            >
+                              <polyline points="20 6 9 17 4 12" />
+                            </svg>
                           </div>
                           <span className="text-[10px] font-bold uppercase tracking-widest">
                             {t('port.clear_now')}
@@ -731,11 +772,25 @@ const MapComponent: React.FC<MapProps> = ({
                       rel="noopener noreferrer"
                       className="group/btn flex items-center justify-center gap-2.5 w-full p-3 bg-brand-navy dark:bg-white text-white dark:text-brand-navy rounded-2xl text-[10px] font-bold uppercase tracking-widest hover:scale-[1.02] active:scale-[0.98] transition-all shadow-lg shadow-brand-navy/10 dark:shadow-white/5"
                     >
+                      <span className="sr-only">APRAM Information link</span>
                       <span>APRAM Info</span>
-                      <ExternalLink
-                        size={12}
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="12"
+                        height="12"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="3"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
                         className="group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform"
-                      />
+                        aria-hidden="true"
+                      >
+                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                        <polyline points="15 3 21 3 21 9" />
+                        <line x1="10" y1="14" x2="21" y2="3" />
+                      </svg>
                     </a>
                   </div>
                 </div>
@@ -775,9 +830,28 @@ const MapComponent: React.FC<MapProps> = ({
                         href={REGION_URLS[regionId]}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="p-1.5 bg-white/5 hover:bg-white/10 rounded-lg transition-colors"
+                        className="p-1.5 bg-white/5 hover:bg-white/10 rounded-lg transition-colors flex items-center justify-center"
                       >
-                        <ExternalLink size={12} className="opacity-40" />
+                        <span className="sr-only">
+                          {`Mais informações para a região ${getRegionName(regionId)}`}
+                        </span>
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="12"
+                          height="12"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="3"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          className="opacity-40"
+                          aria-hidden="true"
+                        >
+                          <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                          <polyline points="15 3 21 3 21 9" />
+                          <line x1="10" y1="14" x2="21" y2="3" />
+                        </svg>
                       </a>
                     </div>
                     <div className="grid grid-cols-2 gap-1.5">
@@ -814,7 +888,21 @@ const MapComponent: React.FC<MapProps> = ({
                             </div>
                             {!isGreen && (
                               <div className="flex items-center gap-1 opacity-40">
-                                <Clock size={7} />
+                                <svg
+                                  xmlns="http://www.w3.org/2000/svg"
+                                  width="7"
+                                  height="7"
+                                  viewBox="0 0 24 24"
+                                  fill="none"
+                                  stroke="currentColor"
+                                  strokeWidth="3"
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                  aria-hidden="true"
+                                >
+                                  <circle cx="12" cy="12" r="10" />
+                                  <polyline points="12 6 12 12 16 14" />
+                                </svg>
                                 <span className="text-[7px] font-mono">
                                   {new Date(warning.endTime).toLocaleTimeString(
                                     [],
