@@ -67,7 +67,6 @@ const ShipsTab: React.FC<ShipsTabProps> = ({
     return `${mins}m`
   }
 
-  // Structured Skeleton Loader
   if (isLoading || !status) {
     return (
       <div className="space-y-4">
@@ -117,6 +116,8 @@ const ShipsTab: React.FC<ShipsTabProps> = ({
       <div
         role="button"
         tabIndex={0}
+        aria-expanded={!isCollapsed}
+        aria-controls="ships-content"
         onClick={() => setIsCollapsed(!isCollapsed)}
         onKeyUp={e => {
           if (e.key === 'Enter' || e.key === ' ') {
@@ -132,7 +133,11 @@ const ShipsTab: React.FC<ShipsTabProps> = ({
               : 'bg-green-500 text-white shadow-lg shadow-green-500/20'
           }`}
         >
-          {status.isDocked ? <XCircle size={20} /> : <CheckCircle size={20} />}
+          {status.isDocked ? (
+            <XCircle size={20} aria-hidden="true" />
+          ) : (
+            <CheckCircle size={20} aria-hidden="true" />
+          )}
         </div>
 
         <div className="flex-1 min-w-0 pr-1">
@@ -141,12 +146,11 @@ const ShipsTab: React.FC<ShipsTabProps> = ({
               <span className="text-[8px] md:text-[9px] font-bold text-brand-red dark:text-white/60 uppercase tracking-[0.2em] leading-none">
                 {t('port.name')}
               </span>
-              {/* Dynamic Last Updated Indicator */}
               {status.scrapedAt && (
                 <>
                   <span className="w-1 h-1 rounded-full bg-brand-red/20 dark:bg-white/20" />
                   <span className="flex items-center gap-0.5 text-[7px] font-mono font-bold opacity-40 uppercase tracking-widest text-brand-navy dark:text-white">
-                    <Clock size={8} />
+                    <Clock size={8} aria-hidden="true" />
                     {new Date(status.scrapedAt).toLocaleTimeString([], {
                       hour: '2-digit',
                       minute: '2-digit',
@@ -162,7 +166,7 @@ const ShipsTab: React.FC<ShipsTabProps> = ({
 
           <div className="flex flex-wrap items-center gap-1.5 mt-1.5">
             <div className="flex items-center gap-1 text-[9px] font-bold uppercase tracking-widest bg-white/10 dark:bg-white/5 px-2 py-0.5 rounded border border-white/10 opacity-80">
-              <Anchor size={10} />
+              <Anchor size={10} aria-hidden="true" />
               <span>
                 {dockedShipsCount} {t('settings.ships')}
               </span>
@@ -184,15 +188,19 @@ const ShipsTab: React.FC<ShipsTabProps> = ({
                   : 'bg-green-500/10 text-green-500'
               }`}
             >
-              <Clock size={10} />
+              <Clock size={10} aria-hidden="true" />
               <span>{durationRemaining}</span>
             </div>
           )}
           <div className="p-1 hover:bg-white/10 rounded-full transition-all">
             {isCollapsed ? (
-              <ChevronDown size={16} className="opacity-40" />
+              <ChevronDown
+                size={16}
+                className="opacity-40"
+                aria-hidden="true"
+              />
             ) : (
-              <ChevronUp size={16} className="opacity-40" />
+              <ChevronUp size={16} className="opacity-40" aria-hidden="true" />
             )}
           </div>
         </div>
@@ -201,6 +209,7 @@ const ShipsTab: React.FC<ShipsTabProps> = ({
       <AnimatePresence>
         {!isCollapsed && (
           <motion.div
+            id="ships-content"
             initial={{ opacity: 0, height: 0, marginTop: 0 }}
             animate={{ opacity: 1, height: 'auto', marginTop: 16 }}
             exit={{ opacity: 0, height: 0, marginTop: 0 }}
@@ -220,6 +229,7 @@ const ShipsTab: React.FC<ShipsTabProps> = ({
                     <div className="flex items-start gap-2 flex-1 min-w-0">
                       <Anchor
                         size={12}
+                        aria-hidden="true"
                         className={`mt-0.5 shrink-0 ${
                           ship.isDockedNow ? 'text-brand-red' : 'opacity-30'
                         }`}
@@ -255,6 +265,7 @@ const ShipsTab: React.FC<ShipsTabProps> = ({
                     <ArrowRight
                       size={10}
                       className="opacity-20 hidden md:block"
+                      aria-hidden="true"
                     />
                     <div className="flex flex-col gap-1 items-end text-right">
                       <span className="opacity-40 text-[7px]">
@@ -289,7 +300,7 @@ const ShipsTab: React.FC<ShipsTabProps> = ({
                 rel="noopener noreferrer"
                 className="flex items-center justify-center gap-2 p-3 bg-brand-navy dark:bg-white text-white dark:text-brand-navy rounded-xl text-[10px] font-bold uppercase tracking-widest hover:opacity-90 transition-all"
               >
-                <ExternalLink size={12} />
+                <ExternalLink size={12} aria-hidden="true" />
                 <span>APRAM</span>
               </a>
               <a
@@ -298,7 +309,7 @@ const ShipsTab: React.FC<ShipsTabProps> = ({
                 rel="noopener noreferrer"
                 className="flex items-center justify-center gap-2 p-3 bg-white/5 border border-white/10 text-brand-navy dark:text-white rounded-xl text-[10px] font-bold uppercase tracking-widest hover:bg-white/10 transition-all"
               >
-                <MapIcon size={12} />
+                <MapIcon size={12} aria-hidden="true" />
                 <span>Live Traffic</span>
               </a>
             </div>

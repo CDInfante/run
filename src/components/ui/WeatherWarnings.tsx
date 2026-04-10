@@ -37,7 +37,6 @@ const WeatherWarnings: React.FC<WeatherWarningsProps> = ({
 }) => {
   const { t } = useTranslation()
 
-  // Destructure isError so we can handle the fallback
   const {
     data: warnings = [],
     isLoading,
@@ -60,12 +59,11 @@ const WeatherWarnings: React.FC<WeatherWarningsProps> = ({
     )
   }
 
-  // --- NEW: Graceful Error UI for IPMA API Failures ---
   if (isError) {
     return (
       <div className="p-4 md:p-5 glass rounded-[2rem] flex items-center gap-3 md:gap-4 bg-brand-red/5 border border-brand-red/20 transition-all duration-300">
         <div className="p-2.5 rounded-2xl shrink-0 bg-brand-red/10 text-brand-red">
-          <CloudOff size={20} />
+          <CloudOff size={20} aria-hidden="true" />
         </div>
         <div className="flex-1 min-w-0">
           <h3 className="font-bold text-sm md:text-base uppercase tracking-widest leading-tight text-brand-red break-words">
@@ -120,20 +118,20 @@ const WeatherWarnings: React.FC<WeatherWarningsProps> = ({
   const getWarningIcon = (type: string, className = '') => {
     switch (type) {
       case 'Vento':
-        return <Wind className={className} />
+        return <Wind className={className} aria-hidden="true" />
       case 'Precipitação':
-        return <Droplets className={className} />
+        return <Droplets className={className} aria-hidden="true" />
       case 'Tempo Quente':
-        return <ThermometerSun className={className} />
+        return <ThermometerSun className={className} aria-hidden="true" />
       case 'Tempo Frio':
       case 'Neve':
-        return <ThermometerSnowflake className={className} />
+        return <ThermometerSnowflake className={className} aria-hidden="true" />
       case 'Agitação Marítima':
-        return <Waves className={className} />
+        return <Waves className={className} aria-hidden="true" />
       case 'Trovoada':
-        return <Zap className={className} />
+        return <Zap className={className} aria-hidden="true" />
       default:
-        return <AlertTriangle className={className} />
+        return <AlertTriangle className={className} aria-hidden="true" />
     }
   }
 
@@ -171,6 +169,8 @@ const WeatherWarnings: React.FC<WeatherWarningsProps> = ({
       <div
         role="button"
         tabIndex={0}
+        aria-expanded={!isCollapsed}
+        aria-controls="warnings-content"
         onClick={() => setIsCollapsed(!isCollapsed)}
         onKeyUp={e => {
           if (e.key === 'Enter' || e.key === ' ') {
@@ -191,9 +191,13 @@ const WeatherWarnings: React.FC<WeatherWarningsProps> = ({
           }`}
         >
           {highestSeverity === 'green' ? (
-            <CheckCircle size={20} />
+            <CheckCircle size={20} aria-hidden="true" />
           ) : (
-            <AlertTriangle size={20} className="animate-pulse" />
+            <AlertTriangle
+              size={20}
+              className="animate-pulse"
+              aria-hidden="true"
+            />
           )}
         </div>
         <div className="flex-1 min-w-0 pr-2">
@@ -208,7 +212,10 @@ const WeatherWarnings: React.FC<WeatherWarningsProps> = ({
         </div>
         <div className="flex items-center gap-2 md:gap-3 shrink-0">
           {activeWarnings.length > 0 && (
-            <div className="flex items-center gap-1.5 px-2 md:px-3 py-1.5 rounded-full bg-white/5 border border-white/10">
+            <div
+              className="flex items-center gap-1.5 px-2 md:px-3 py-1.5 rounded-full bg-white/5 border border-white/10"
+              aria-label={`${activeWarnings.length} active warnings`}
+            >
               <span className="text-[9px] md:text-[10px] font-bold font-mono opacity-80 mr-1">
                 {activeWarnings.length}
               </span>
@@ -228,9 +235,13 @@ const WeatherWarnings: React.FC<WeatherWarningsProps> = ({
           )}
           <div className="p-1 md:p-1.5 bg-white/5 rounded-full border border-white/10 group-hover:bg-white/10 transition-colors">
             {isCollapsed ? (
-              <ChevronDown size={14} className="opacity-60" />
+              <ChevronDown
+                size={14}
+                className="opacity-60"
+                aria-hidden="true"
+              />
             ) : (
-              <ChevronUp size={14} className="opacity-60" />
+              <ChevronUp size={14} className="opacity-60" aria-hidden="true" />
             )}
           </div>
         </div>
@@ -239,6 +250,7 @@ const WeatherWarnings: React.FC<WeatherWarningsProps> = ({
       <AnimatePresence>
         {!isCollapsed && (
           <motion.div
+            id="warnings-content"
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
@@ -281,13 +293,14 @@ const WeatherWarnings: React.FC<WeatherWarningsProps> = ({
                             href={REGION_URLS[regionId]}
                             target="_blank"
                             rel="noopener noreferrer"
+                            aria-label={`View details for ${getAwarenessTranslation(warning.awarenessTypeName)} warning in ${getRegionName(regionId)}`}
                             className={`px-3 py-2 rounded-xl border transition-all hover:bg-white/10 duration-300 flex items-center gap-3 group/warning ${colorStyles}`}
                           >
                             <div
                               className={`p-1.5 rounded-lg shrink-0 ${iconColor}`}
                             >
                               {isGreen ? (
-                                <CheckCircle size={12} />
+                                <CheckCircle size={12} aria-hidden="true" />
                               ) : (
                                 getWarningIcon(
                                   warning.awarenessTypeName,
@@ -307,7 +320,7 @@ const WeatherWarnings: React.FC<WeatherWarningsProps> = ({
                               </p>
                               {!isGreen && (
                                 <div className="flex items-center gap-1 opacity-60">
-                                  <Clock size={8} />
+                                  <Clock size={8} aria-hidden="true" />
                                   <span className="text-[8px] font-bold font-mono">
                                     {format(
                                       new Date(warning.startTime),

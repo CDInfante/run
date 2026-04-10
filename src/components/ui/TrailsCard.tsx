@@ -35,7 +35,6 @@ const TrailsCard: React.FC<TrailsCardProps> = ({
 
   const trails = trailsData?.trails || []
 
-  // Structured Skeleton Loader
   if (isLoading) {
     return (
       <div className="p-4 md:p-5 glass rounded-[2rem] flex items-center gap-3 md:gap-4 animate-pulse bg-white/5 dark:bg-slate-900/40 shadow-sm">
@@ -67,6 +66,8 @@ const TrailsCard: React.FC<TrailsCardProps> = ({
       <div
         role="button"
         tabIndex={0}
+        aria-expanded={!isCollapsed}
+        aria-controls="trails-content"
         onClick={() => setIsCollapsed(!isCollapsed)}
         onKeyDown={e => {
           if (e.key === 'Enter' || e.key === ' ') {
@@ -77,7 +78,7 @@ const TrailsCard: React.FC<TrailsCardProps> = ({
         className="p-4 md:p-5 glass rounded-[2rem] flex items-center gap-3 md:gap-4 transition-all duration-300 cursor-pointer hover:bg-white/10 group relative"
       >
         <div className="p-2.5 rounded-2xl bg-emerald-500 text-white shadow-lg shadow-emerald-500/20 shrink-0">
-          <Mountain size={20} />
+          <Mountain size={20} aria-hidden="true" />
         </div>
         <div className="flex-1 min-w-0 pr-2">
           <h3 className="font-bold text-sm md:text-base uppercase tracking-widest leading-tight text-brand-navy dark:text-white break-words">
@@ -89,7 +90,7 @@ const TrailsCard: React.FC<TrailsCardProps> = ({
               <>
                 <span className="w-1 h-1 rounded-full bg-brand-navy/20 dark:bg-white/20" />
                 <span className="flex items-center gap-0.5 opacity-70 font-mono text-[7px] text-brand-navy dark:text-white">
-                  <Clock size={8} />
+                  <Clock size={8} aria-hidden="true" />
                   {new Date(trailsData.meta.scraped_at).toLocaleTimeString([], {
                     hour: '2-digit',
                     minute: '2-digit',
@@ -102,7 +103,10 @@ const TrailsCard: React.FC<TrailsCardProps> = ({
         <div className="flex items-center gap-2 md:gap-3 shrink-0">
           {trails.length > 0 && (
             <div className="flex items-center gap-1.5 px-2 md:px-3 py-1.5 rounded-full bg-white/5 border border-white/10">
-              <div className="flex items-center gap-1">
+              <div
+                className="flex items-center gap-1"
+                aria-label={`${openTrails} open trails`}
+              >
                 <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.8)]" />
                 <span className="text-[9px] md:text-[10px] font-bold font-mono text-emerald-600 dark:text-emerald-400">
                   {openTrails}
@@ -112,7 +116,10 @@ const TrailsCard: React.FC<TrailsCardProps> = ({
                 <div className="w-px h-3 bg-white/10" />
               )}
               {warningTrails > 0 && (
-                <div className="flex items-center gap-1">
+                <div
+                  className="flex items-center gap-1"
+                  aria-label={`${warningTrails} trails with warnings`}
+                >
                   <div className="w-1.5 h-1.5 rounded-full bg-orange-500" />
                   <span className="text-[9px] md:text-[10px] font-bold font-mono text-orange-600 dark:text-orange-400">
                     {warningTrails}
@@ -120,7 +127,10 @@ const TrailsCard: React.FC<TrailsCardProps> = ({
                 </div>
               )}
               {closedTrails > 0 && (
-                <div className="flex items-center gap-1">
+                <div
+                  className="flex items-center gap-1"
+                  aria-label={`${closedTrails} closed trails`}
+                >
                   <div className="w-1.5 h-1.5 rounded-full bg-red-500" />
                   <span className="text-[9px] md:text-[10px] font-bold font-mono text-red-600 dark:text-red-400">
                     {closedTrails}
@@ -131,9 +141,13 @@ const TrailsCard: React.FC<TrailsCardProps> = ({
           )}
           <div className="p-1 md:p-1.5 bg-white/5 rounded-full border border-white/10 group-hover:bg-white/10 transition-colors">
             {isCollapsed ? (
-              <ChevronDown size={14} className="opacity-60" />
+              <ChevronDown
+                size={14}
+                className="opacity-60"
+                aria-hidden="true"
+              />
             ) : (
-              <ChevronUp size={14} className="opacity-60" />
+              <ChevronUp size={14} className="opacity-60" aria-hidden="true" />
             )}
           </div>
         </div>
@@ -142,6 +156,7 @@ const TrailsCard: React.FC<TrailsCardProps> = ({
       <AnimatePresence>
         {!isCollapsed && (
           <motion.div
+            id="trails-content"
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
@@ -175,6 +190,7 @@ const TrailsCard: React.FC<TrailsCardProps> = ({
                               : 'opacity-90 hover:opacity-100'
                           }`}
                           title={`${trail.pr} - ${trail.id}`}
+                          aria-label={`Trail ${trail.pr}: ${trail.id}`}
                         >
                           {trail.pr}
                         </button>
@@ -203,10 +219,12 @@ const TrailsCard: React.FC<TrailsCardProps> = ({
                       target="_blank"
                       rel="noopener noreferrer"
                       className="p-2 bg-white/5 hover:bg-white/10 rounded-full transition-colors group/link"
+                      aria-label="More info from IFCN"
                     >
                       <ExternalLink
                         size={14}
                         className="opacity-40 group-hover/link:opacity-100 transition-opacity"
+                        aria-hidden="true"
                       />
                     </a>
                   </div>
@@ -217,7 +235,11 @@ const TrailsCard: React.FC<TrailsCardProps> = ({
                   )}
                   {selectedTrail.additional_status && (
                     <div className="flex gap-2 items-start bg-white/5 p-2 rounded-xl">
-                      <Info size={12} className="mt-0.5 shrink-0 opacity-40" />
+                      <Info
+                        size={12}
+                        className="mt-0.5 shrink-0 opacity-40"
+                        aria-hidden="true"
+                      />
                       <p className="text-[10px] leading-tight opacity-60">
                         {selectedTrail.additional_status}
                       </p>
@@ -226,7 +248,7 @@ const TrailsCard: React.FC<TrailsCardProps> = ({
                 </div>
               ) : (
                 <p className="text-[10px] opacity-40 uppercase tracking-widest flex items-center justify-center h-full gap-2 italic">
-                  <Info size={12} />
+                  <Info size={12} aria-hidden="true" />
                   {t('map.instructions')}
                 </p>
               )}
