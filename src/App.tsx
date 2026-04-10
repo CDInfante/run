@@ -9,6 +9,7 @@ import MapSection from './components/sections/MapSection'
 import SettingsModal from './components/ui/SettingsModal'
 import ToastContainer from './components/ui/ToastContainer'
 import locationsData from './content/locations.json'
+import { useLocalStorage } from './hooks/useLocalStorage'
 import { useTranslation } from './hooks/useTranslation'
 import type { Location } from './types'
 
@@ -21,62 +22,44 @@ import type { Location } from './types'
 const App: React.FC = () => {
   const { t } = useTranslation()
 
-  const [showWater, setShowWater] = useState(() => {
-    return localStorage.getItem('showWater') === 'true'
-  })
-  const [showToilets, setShowToilets] = useState(() => {
-    return localStorage.getItem('showToilets') === 'true'
-  })
-  const [showAlerts, setShowAlerts] = useState(() => {
-    const saved = localStorage.getItem('showAlerts')
-    return saved !== null ? saved === 'true' : true
-  })
-  const [showTrails, setShowTrails] = useState(() => {
-    return localStorage.getItem('showTrails') === 'true'
-  })
-  const [numShips, setNumShips] = useState(() => {
-    return Number(localStorage.getItem('numShips')) || 4
-  })
-
   const defaultLocations = ['Sé', 'Pico Ruivo', 'Porto Moniz', 'Machico']
+  const isMobileInitial =
+    typeof window !== 'undefined' ? window.innerWidth < 1024 : false
 
-  // Safe JSON Parsing for LocalStorage
-  const [visibleLocationNames, setVisibleLocationNames] = useState<string[]>(
-    () => {
-      const saved = localStorage.getItem('visibleLocationNames')
-      if (!saved) return defaultLocations
-      try {
-        const parsed = JSON.parse(saved)
-        // Ensure it is actually an array to prevent mapping errors later
-        return Array.isArray(parsed) ? parsed : defaultLocations
-      } catch (_e) {
-        console.warn(
-          'Corrupted local storage for locations, resetting to defaults.',
-        )
-        return defaultLocations
-      }
-    },
+  // Refactored LocalStorage States
+  const [showWater, setShowWater] = useLocalStorage<boolean>('showWater', false)
+  const [showToilets, setShowToilets] = useLocalStorage<boolean>(
+    'showToilets',
+    false,
+  )
+  const [showAlerts, setShowAlerts] = useLocalStorage<boolean>(
+    'showAlerts',
+    true,
+  )
+  const [showTrails, setShowTrails] = useLocalStorage<boolean>(
+    'showTrails',
+    false,
+  )
+  const [numShips, setNumShips] = useLocalStorage<number>('numShips', 4)
+  const [visibleLocationNames, setVisibleLocationNames] = useLocalStorage<
+    string[]
+  >('visibleLocationNames', defaultLocations)
+
+  const [isShipsCollapsed, setIsShipsCollapsed] = useLocalStorage<boolean>(
+    'isShipsCollapsed',
+    isMobileInitial,
+  )
+  const [isWeatherCollapsed, setIsWeatherCollapsed] = useLocalStorage<boolean>(
+    'isWeatherCollapsed',
+    isMobileInitial,
+  )
+  const [isTrailsCollapsed, setIsTrailsCollapsed] = useLocalStorage<boolean>(
+    'isTrailsCollapsed',
+    isMobileInitial,
   )
 
   const [isSettingsOpen, setIsSettingsOpen] = useState(false)
   const [expandedCard, setExpandedCard] = useState<string | null>(null)
-
-  // Card collapse states with persistence
-  const [isShipsCollapsed, setIsShipsCollapsed] = useState(() => {
-    const saved = localStorage.getItem('isShipsCollapsed')
-    if (saved !== null) return saved === 'true'
-    return window.innerWidth < 1024 // Default to collapsed on mobile
-  })
-  const [isWeatherCollapsed, setIsWeatherCollapsed] = useState(() => {
-    const saved = localStorage.getItem('isWeatherCollapsed')
-    if (saved !== null) return saved === 'true'
-    return window.innerWidth < 1024
-  })
-  const [isTrailsCollapsed, setIsTrailsCollapsed] = useState(() => {
-    const saved = localStorage.getItem('isTrailsCollapsed')
-    if (saved !== null) return saved === 'true'
-    return window.innerWidth < 1024
-  })
 
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 })
   const containerRef = useRef<HTMLDivElement>(null)
@@ -106,36 +89,6 @@ const App: React.FC = () => {
     return () => window.removeEventListener('mousemove', handleMouseMove)
   }, [])
 
-  useEffect(() => {
-    localStorage.setItem(
-      'visibleLocationNames',
-      JSON.stringify(visibleLocationNames),
-    )
-  }, [visibleLocationNames])
-
-  useEffect(() => {
-    localStorage.setItem('numShips', numShips.toString())
-  }, [numShips])
-
-  useEffect(() => {
-    localStorage.setItem('showWater', showWater.toString())
-    localStorage.setItem('showToilets', showToilets.toString())
-    localStorage.setItem('showAlerts', showAlerts.toString())
-    localStorage.setItem('showTrails', showTrails.toString())
-  }, [showWater, showToilets, showAlerts, showTrails])
-
-  useEffect(() => {
-    localStorage.setItem('isShipsCollapsed', isShipsCollapsed.toString())
-  }, [isShipsCollapsed])
-
-  useEffect(() => {
-    localStorage.setItem('isWeatherCollapsed', isWeatherCollapsed.toString())
-  }, [isWeatherCollapsed])
-
-  useEffect(() => {
-    localStorage.setItem('isTrailsCollapsed', isTrailsCollapsed.toString())
-  }, [isTrailsCollapsed])
-
   const toggleLocation = (name: string) => {
     setVisibleLocationNames(prev =>
       prev.includes(name) ? prev.filter(n => n !== name) : [...prev, name],
@@ -143,8 +96,12 @@ const App: React.FC = () => {
   }
 
   const activeWeatherLocations = useMemo(() => {
+    // Failsafe in case localStorage was corrupted and isn't an array
+    const safeLocations = Array.isArray(visibleLocationNames)
+      ? visibleLocationNames
+      : defaultLocations
     return (locationsData as Location[]).filter(loc =>
-      visibleLocationNames.includes(loc.name),
+      safeLocations.includes(loc.name),
     )
   }, [visibleLocationNames])
 
@@ -168,7 +125,11 @@ const App: React.FC = () => {
       <SettingsModal
         isOpen={isSettingsOpen}
         onClose={() => setIsSettingsOpen(false)}
-        visibleLocationNames={visibleLocationNames}
+        visibleLocationNames={
+          Array.isArray(visibleLocationNames)
+            ? visibleLocationNames
+            : defaultLocations
+        }
         toggleLocation={toggleLocation}
         numShips={numShips}
         setNumShips={setNumShips}
