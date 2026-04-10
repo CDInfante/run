@@ -19,7 +19,7 @@ export const DarkModeProvider: React.FC<{ children: React.ReactNode }> = ({
     'theme',
     getSystemTheme(),
   )
-  
+
   const isDark = theme === 'dark'
 
   useEffect(() => {
