@@ -1,38 +1,39 @@
-//** @author Harry Vasanth (harryvasanth.com) */
-import React, { useState, memo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { useQuery } from "@tanstack/react-query";
-import { fetchTrails } from "../../services/trails";
+/** @author Harry Vasanth (harryvasanth.com) */
+import { useQuery } from '@tanstack/react-query'
+import { AnimatePresence, motion } from 'framer-motion'
 import {
-  Mountain,
-  ExternalLink,
-  Info,
   ChevronDown,
   ChevronUp,
   Clock,
-} from "lucide-react";
-import { useTranslation } from "../../hooks/useTranslation";
-import type { Trail } from "../../types";
+  ExternalLink,
+  Info,
+  Mountain,
+} from 'lucide-react'
+import type React from 'react'
+import { memo, useState } from 'react'
+import { useTranslation } from '../../hooks/useTranslation'
+import { fetchTrails } from '../../services/trails'
+import type { Trail } from '../../types'
 
 interface TrailsCardProps {
-  isCollapsed: boolean;
-  setIsCollapsed: (val: boolean) => void;
+  isCollapsed: boolean
+  setIsCollapsed: (val: boolean) => void
 }
 
 const TrailsCard: React.FC<TrailsCardProps> = ({
   isCollapsed,
   setIsCollapsed,
 }) => {
-  const { t } = useTranslation();
-  const [selectedTrail, setSelectedTrail] = useState<Trail | null>(null);
+  const { t } = useTranslation()
+  const [selectedTrail, setSelectedTrail] = useState<Trail | null>(null)
 
   const { data: trailsData, isLoading } = useQuery({
-    queryKey: ["trails"],
+    queryKey: ['trails'],
     queryFn: fetchTrails,
     refetchInterval: 10 * 60 * 1000,
-  });
+  })
 
-  const trails = trailsData?.trails || [];
+  const trails = trailsData?.trails || []
 
   // Structured Skeleton Loader
   if (isLoading) {
@@ -48,18 +49,18 @@ const TrailsCard: React.FC<TrailsCardProps> = ({
           <div className="w-6 h-6 bg-brand-navy/10 dark:bg-white/10 rounded-full" />
         </div>
       </div>
-    );
+    )
   }
 
   const getStatusColor = (status: string) => {
-    if (status === "Aberto") return "bg-emerald-500";
-    if (status === "Encerrado") return "bg-red-500";
-    return "bg-orange-500";
-  };
+    if (status === 'Aberto') return 'bg-emerald-500'
+    if (status === 'Encerrado') return 'bg-red-500'
+    return 'bg-orange-500'
+  }
 
-  const openTrails = trails.filter((t) => t.status === "Aberto").length;
-  const closedTrails = trails.filter((t) => t.status === "Encerrado").length;
-  const warningTrails = trails.length - openTrails - closedTrails;
+  const openTrails = trails.filter(t => t.status === 'Aberto').length
+  const closedTrails = trails.filter(t => t.status === 'Encerrado').length
+  const warningTrails = trails.length - openTrails - closedTrails
 
   return (
     <div className="space-y-4">
@@ -67,10 +68,10 @@ const TrailsCard: React.FC<TrailsCardProps> = ({
         role="button"
         tabIndex={0}
         onClick={() => setIsCollapsed(!isCollapsed)}
-        onKeyDown={(e) => {
-          if (e.key === "Enter" || e.key === " ") {
-            e.preventDefault();
-            setIsCollapsed(!isCollapsed);
+        onKeyDown={e => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault()
+            setIsCollapsed(!isCollapsed)
           }
         }}
         className="p-4 md:p-5 glass rounded-[2rem] flex items-center gap-3 md:gap-4 transition-all duration-300 cursor-pointer hover:bg-white/10 group relative"
@@ -80,7 +81,7 @@ const TrailsCard: React.FC<TrailsCardProps> = ({
         </div>
         <div className="flex-1 min-w-0 pr-2">
           <h3 className="font-bold text-sm md:text-base uppercase tracking-widest leading-tight text-brand-navy dark:text-white break-words">
-            {t("nav.trails")}
+            {t('nav.trails')}
           </h3>
           <p className="text-[8px] md:text-[9px] font-bold uppercase tracking-widest opacity-50 mt-0.5 break-words flex items-center gap-1.5">
             MADEIRA & PORTO SANTO
@@ -90,8 +91,8 @@ const TrailsCard: React.FC<TrailsCardProps> = ({
                 <span className="flex items-center gap-0.5 opacity-70 font-mono text-[7px] text-brand-navy dark:text-white">
                   <Clock size={8} />
                   {new Date(trailsData.meta.scraped_at).toLocaleTimeString([], {
-                    hour: "2-digit",
-                    minute: "2-digit",
+                    hour: '2-digit',
+                    minute: '2-digit',
                   })}
                 </span>
               </>
@@ -142,14 +143,14 @@ const TrailsCard: React.FC<TrailsCardProps> = ({
         {!isCollapsed && (
           <motion.div
             initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
+            animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             className="overflow-hidden space-y-4"
           >
             <div className="bg-white/[0.03] border border-white/5 rounded-2xl p-4 space-y-4 relative z-10 overflow-y-auto pr-2 custom-scrollbar max-h-[300px]">
-              {["Madeira", "Porto Santo"].map((island) => {
-                const islandTrails = trails.filter((t) => t.island === island);
-                if (islandTrails.length === 0) return null;
+              {['Madeira', 'Porto Santo'].map(island => {
+                const islandTrails = trails.filter(t => t.island === island)
+                if (islandTrails.length === 0) return null
 
                 return (
                   <div key={island} className="space-y-2">
@@ -157,15 +158,22 @@ const TrailsCard: React.FC<TrailsCardProps> = ({
                       {island}
                     </h4>
                     <div className="grid grid-cols-5 sm:grid-cols-8 md:grid-cols-5 xl:grid-cols-7 gap-2">
-                      {islandTrails.map((trail) => (
+                      {islandTrails.map(trail => (
                         <button
+                          type="button"
                           key={`${trail.island}-${trail.pr}-${trail.id}`}
                           onClick={() =>
                             setSelectedTrail(
                               selectedTrail?.id === trail.id ? null : trail,
                             )
                           }
-                          className={`aspect-square rounded-lg flex items-center justify-center text-[10px] font-bold transition-all ${getStatusColor(trail.status)} text-white shadow-lg shadow-black/10 hover:scale-110 active:scale-95 ${selectedTrail?.id === trail.id ? "ring-2 ring-white ring-offset-2 ring-offset-brand-navy/20 scale-110 z-20" : "opacity-90 hover:opacity-100"}`}
+                          className={`aspect-square rounded-lg flex items-center justify-center text-[10px] font-bold transition-all ${getStatusColor(
+                            trail.status,
+                          )} text-white shadow-lg shadow-black/10 hover:scale-110 active:scale-95 ${
+                            selectedTrail?.id === trail.id
+                              ? 'ring-2 ring-white ring-offset-2 ring-offset-brand-navy/20 scale-110 z-20'
+                              : 'opacity-90 hover:opacity-100'
+                          }`}
                           title={`${trail.pr} - ${trail.id}`}
                         >
                           {trail.pr}
@@ -173,7 +181,7 @@ const TrailsCard: React.FC<TrailsCardProps> = ({
                       ))}
                     </div>
                   </div>
-                );
+                )
               })}
             </div>
 
@@ -186,7 +194,7 @@ const TrailsCard: React.FC<TrailsCardProps> = ({
                         PR{selectedTrail.pr} - {selectedTrail.id}
                       </h4>
                       <p className="text-[10px] opacity-60 uppercase tracking-wider mt-1 font-mono">
-                        {selectedTrail.distance} •{" "}
+                        {selectedTrail.distance} •{' '}
                         {selectedTrail.status.toUpperCase()}
                       </p>
                     </div>
@@ -219,7 +227,7 @@ const TrailsCard: React.FC<TrailsCardProps> = ({
               ) : (
                 <p className="text-[10px] opacity-40 uppercase tracking-widest flex items-center justify-center h-full gap-2 italic">
                   <Info size={12} />
-                  {t("map.instructions")}
+                  {t('map.instructions')}
                 </p>
               )}
             </div>
@@ -227,7 +235,7 @@ const TrailsCard: React.FC<TrailsCardProps> = ({
         )}
       </AnimatePresence>
     </div>
-  );
-};
+  )
+}
 
-export default memo(TrailsCard);
+export default memo(TrailsCard)

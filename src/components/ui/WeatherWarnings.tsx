@@ -1,40 +1,41 @@
 /** @author Harry Vasanth (harryvasanth.com) */
-import React, { memo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { useQuery } from "@tanstack/react-query";
-import type { WeatherWarning } from "../../types";
-import {
-  fetchWeatherWarnings,
-  IPMA_REGIONS,
-  REGION_URLS,
-} from "../../services/ipma";
+import { useQuery } from '@tanstack/react-query'
+import { format } from 'date-fns'
+import { AnimatePresence, motion } from 'framer-motion'
 import {
   AlertTriangle,
   CheckCircle,
-  Clock,
   ChevronDown,
   ChevronUp,
-  Wind,
-  Droplets,
-  ThermometerSun,
-  ThermometerSnowflake,
-  Waves,
-  Zap,
+  Clock,
   CloudOff,
-} from "lucide-react";
-import { format } from "date-fns";
-import { useTranslation } from "../../hooks/useTranslation";
+  Droplets,
+  ThermometerSnowflake,
+  ThermometerSun,
+  Waves,
+  Wind,
+  Zap,
+} from 'lucide-react'
+import type React from 'react'
+import { memo } from 'react'
+import { useTranslation } from '../../hooks/useTranslation'
+import {
+  IPMA_REGIONS,
+  REGION_URLS,
+  fetchWeatherWarnings,
+} from '../../services/ipma'
+import type { WeatherWarning } from '../../types'
 
 interface WeatherWarningsProps {
-  isCollapsed: boolean;
-  setIsCollapsed: (val: boolean) => void;
+  isCollapsed: boolean
+  setIsCollapsed: (val: boolean) => void
 }
 
 const WeatherWarnings: React.FC<WeatherWarningsProps> = ({
   isCollapsed,
   setIsCollapsed,
 }) => {
-  const { t } = useTranslation();
+  const { t } = useTranslation()
 
   // Destructure isError so we can handle the fallback
   const {
@@ -42,10 +43,10 @@ const WeatherWarnings: React.FC<WeatherWarningsProps> = ({
     isLoading,
     isError,
   } = useQuery({
-    queryKey: ["warnings"],
+    queryKey: ['warnings'],
     queryFn: fetchWeatherWarnings,
     refetchInterval: 10 * 60 * 1000,
-  });
+  })
 
   if (isLoading) {
     return (
@@ -56,7 +57,7 @@ const WeatherWarnings: React.FC<WeatherWarningsProps> = ({
           <div className="h-2 w-20 bg-brand-navy/10 dark:bg-white/10 rounded-full" />
         </div>
       </div>
-    );
+    )
   }
 
   // --- NEW: Graceful Error UI for IPMA API Failures ---
@@ -68,102 +69,102 @@ const WeatherWarnings: React.FC<WeatherWarningsProps> = ({
         </div>
         <div className="flex-1 min-w-0">
           <h3 className="font-bold text-sm md:text-base uppercase tracking-widest leading-tight text-brand-red break-words">
-            {t("weather.warnings")}
+            {t('weather.warnings')}
           </h3>
           <p className="text-[9px] font-bold uppercase tracking-widest text-brand-navy dark:text-white opacity-50 mt-0.5 leading-tight">
             IPMA Service Unavailable. Proceed with caution.
           </p>
         </div>
       </div>
-    );
+    )
   }
 
   const getRegionName = (id: string) => {
     switch (id) {
       case IPMA_REGIONS.NORTH_COAST:
-        return t("weather.north_coast");
+        return t('weather.north_coast')
       case IPMA_REGIONS.MOUNTAIN_REGIONS:
-        return t("weather.mountain_regions");
+        return t('weather.mountain_regions')
       case IPMA_REGIONS.SOUTH_COAST:
-        return t("weather.south_coast");
+        return t('weather.south_coast')
       case IPMA_REGIONS.PORTO_SANTO:
-        return t("weather.porto_santo");
+        return t('weather.porto_santo')
       default:
-        return id;
+        return id
     }
-  };
+  }
 
   const getAwarenessTranslation = (type: string) => {
     switch (type) {
-      case "Agitação Marítima":
-        return t("weather.awareness.maritime");
-      case "Nevoeiro":
-        return t("weather.awareness.fog");
-      case "Tempo Frio":
-        return t("weather.awareness.cold");
-      case "Tempo Quente":
-        return t("weather.awareness.hot");
-      case "Precipitação":
-        return t("weather.awareness.rain");
-      case "Neve":
-        return t("weather.awareness.snow");
-      case "Trovoada":
-        return t("weather.awareness.thunder");
-      case "Vento":
-        return t("weather.awareness.wind");
+      case 'Agitação Marítima':
+        return t('weather.awareness.maritime')
+      case 'Nevoeiro':
+        return t('weather.awareness.fog')
+      case 'Tempo Frio':
+        return t('weather.awareness.cold')
+      case 'Tempo Quente':
+        return t('weather.awareness.hot')
+      case 'Precipitação':
+        return t('weather.awareness.rain')
+      case 'Neve':
+        return t('weather.awareness.snow')
+      case 'Trovoada':
+        return t('weather.awareness.thunder')
+      case 'Vento':
+        return t('weather.awareness.wind')
       default:
-        return type;
+        return type
     }
-  };
+  }
 
-  const getWarningIcon = (type: string, className = "") => {
+  const getWarningIcon = (type: string, className = '') => {
     switch (type) {
-      case "Vento":
-        return <Wind className={className} />;
-      case "Precipitação":
-        return <Droplets className={className} />;
-      case "Tempo Quente":
-        return <ThermometerSun className={className} />;
-      case "Tempo Frio":
-      case "Neve":
-        return <ThermometerSnowflake className={className} />;
-      case "Agitação Marítima":
-        return <Waves className={className} />;
-      case "Trovoada":
-        return <Zap className={className} />;
+      case 'Vento':
+        return <Wind className={className} />
+      case 'Precipitação':
+        return <Droplets className={className} />
+      case 'Tempo Quente':
+        return <ThermometerSun className={className} />
+      case 'Tempo Frio':
+      case 'Neve':
+        return <ThermometerSnowflake className={className} />
+      case 'Agitação Marítima':
+        return <Waves className={className} />
+      case 'Trovoada':
+        return <Zap className={className} />
       default:
-        return <AlertTriangle className={className} />;
+        return <AlertTriangle className={className} />
     }
-  };
+  }
 
-  const activeWarnings = warnings.filter((w) => w.awarenessLevelID !== "green");
+  const activeWarnings = warnings.filter(w => w.awarenessLevelID !== 'green')
   const groupedWarnings = warnings.reduce(
     (acc, warning) => {
-      if (!acc[warning.idAreaAviso]) acc[warning.idAreaAviso] = [];
-      acc[warning.idAreaAviso].push(warning);
-      return acc;
+      if (!acc[warning.idAreaAviso]) acc[warning.idAreaAviso] = []
+      acc[warning.idAreaAviso].push(warning)
+      return acc
     },
     {} as Record<string, WeatherWarning[]>,
-  );
+  )
 
   const regionOrder = [
     IPMA_REGIONS.NORTH_COAST,
     IPMA_REGIONS.MOUNTAIN_REGIONS,
     IPMA_REGIONS.SOUTH_COAST,
     IPMA_REGIONS.PORTO_SANTO,
-  ];
+  ]
 
-  let highestSeverity = "green";
-  if (activeWarnings.some((w) => w.awarenessLevelID === "red"))
-    highestSeverity = "red";
-  else if (activeWarnings.some((w) => w.awarenessLevelID === "orange"))
-    highestSeverity = "orange";
-  else if (activeWarnings.some((w) => w.awarenessLevelID === "yellow"))
-    highestSeverity = "yellow";
+  let highestSeverity = 'green'
+  if (activeWarnings.some(w => w.awarenessLevelID === 'red'))
+    highestSeverity = 'red'
+  else if (activeWarnings.some(w => w.awarenessLevelID === 'orange'))
+    highestSeverity = 'orange'
+  else if (activeWarnings.some(w => w.awarenessLevelID === 'yellow'))
+    highestSeverity = 'yellow'
 
   const activeTypes = Array.from(
-    new Set(activeWarnings.map((w) => w.awarenessTypeName)),
-  );
+    new Set(activeWarnings.map(w => w.awarenessTypeName)),
+  )
 
   return (
     <div className="space-y-4">
@@ -171,12 +172,25 @@ const WeatherWarnings: React.FC<WeatherWarningsProps> = ({
         role="button"
         tabIndex={0}
         onClick={() => setIsCollapsed(!isCollapsed)}
+        onKeyUp={e => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            setIsCollapsed(!isCollapsed)
+          }
+        }}
         className="p-4 md:p-5 glass rounded-[2rem] flex items-center gap-3 md:gap-4 transition-all duration-300 cursor-pointer hover:bg-white/10 group relative"
       >
         <div
-          className={`p-2.5 rounded-2xl shrink-0 shadow-lg ${highestSeverity === "red" ? "bg-red-500 text-white shadow-red-500/20" : highestSeverity === "orange" ? "bg-orange-500 text-white shadow-orange-500/20" : highestSeverity === "yellow" ? "bg-yellow-500 text-white shadow-yellow-500/20" : "bg-green-500 text-white shadow-green-500/20"}`}
+          className={`p-2.5 rounded-2xl shrink-0 shadow-lg ${
+            highestSeverity === 'red'
+              ? 'bg-red-500 text-white shadow-red-500/20'
+              : highestSeverity === 'orange'
+                ? 'bg-orange-500 text-white shadow-orange-500/20'
+                : highestSeverity === 'yellow'
+                  ? 'bg-yellow-500 text-white shadow-yellow-500/20'
+                  : 'bg-green-500 text-white shadow-green-500/20'
+          }`}
         >
-          {highestSeverity === "green" ? (
+          {highestSeverity === 'green' ? (
             <CheckCircle size={20} />
           ) : (
             <AlertTriangle size={20} className="animate-pulse" />
@@ -184,12 +198,12 @@ const WeatherWarnings: React.FC<WeatherWarningsProps> = ({
         </div>
         <div className="flex-1 min-w-0 pr-2">
           <h3 className="font-bold text-sm md:text-base uppercase tracking-widest leading-tight text-brand-navy dark:text-white break-words">
-            {t("weather.warnings")}
+            {t('weather.warnings')}
           </h3>
           <p className="text-[8px] md:text-[9px] font-bold uppercase tracking-widest opacity-50 mt-0.5 break-words">
             {activeWarnings.length > 0
-              ? "IPMA - MADEIRA"
-              : t("weather.no_warnings")}
+              ? 'IPMA - MADEIRA'
+              : t('weather.no_warnings')}
           </p>
         </div>
         <div className="flex items-center gap-2 md:gap-3 shrink-0">
@@ -199,9 +213,9 @@ const WeatherWarnings: React.FC<WeatherWarningsProps> = ({
                 {activeWarnings.length}
               </span>
               <div className="flex items-center gap-1">
-                {activeTypes.slice(0, 3).map((type, idx) => (
-                  <div key={idx} className="opacity-80">
-                    {getWarningIcon(type, "w-3 h-3")}
+                {activeTypes.slice(0, 3).map(type => (
+                  <div key={type} className="opacity-80">
+                    {getWarningIcon(type, 'w-3 h-3')}
                   </div>
                 ))}
                 {activeTypes.length > 3 && (
@@ -226,14 +240,14 @@ const WeatherWarnings: React.FC<WeatherWarningsProps> = ({
         {!isCollapsed && (
           <motion.div
             initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
+            animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             className="overflow-hidden"
           >
             <div className="space-y-4 pt-2">
-              {regionOrder.map((regionId) => {
-                const regionWarnings = groupedWarnings[regionId] || [];
-                if (regionWarnings.length === 0) return null;
+              {regionOrder.map(regionId => {
+                const regionWarnings = groupedWarnings[regionId] || []
+                if (regionWarnings.length === 0) return null
 
                 return (
                   <div key={regionId} className="space-y-2">
@@ -241,29 +255,29 @@ const WeatherWarnings: React.FC<WeatherWarningsProps> = ({
                       {getRegionName(regionId)}
                     </h4>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 px-1">
-                      {regionWarnings.map((warning, index) => {
-                        const isGreen = warning.awarenessLevelID === "green";
+                      {regionWarnings.map(warning => {
+                        const isGreen = warning.awarenessLevelID === 'green'
                         let colorStyles =
-                          "border-green-500/10 text-green-600 dark:text-green-400 bg-green-500/[0.03]";
-                        let iconColor = "bg-green-500/10";
+                          'border-green-500/10 text-green-600 dark:text-green-400 bg-green-500/[0.03]'
+                        let iconColor = 'bg-green-500/10'
 
-                        if (warning.awarenessLevelID === "red") {
+                        if (warning.awarenessLevelID === 'red') {
                           colorStyles =
-                            "border-red-500/30 text-red-600 dark:text-red-400 bg-red-500/[0.08]";
-                          iconColor = "bg-red-500/20";
-                        } else if (warning.awarenessLevelID === "orange") {
+                            'border-red-500/30 text-red-600 dark:text-red-400 bg-red-500/[0.08]'
+                          iconColor = 'bg-red-500/20'
+                        } else if (warning.awarenessLevelID === 'orange') {
                           colorStyles =
-                            "border-orange-500/30 text-orange-600 dark:text-orange-400 bg-orange-500/[0.08]";
-                          iconColor = "bg-orange-500/20";
-                        } else if (warning.awarenessLevelID === "yellow") {
+                            'border-orange-500/30 text-orange-600 dark:text-orange-400 bg-orange-500/[0.08]'
+                          iconColor = 'bg-orange-500/20'
+                        } else if (warning.awarenessLevelID === 'yellow') {
                           colorStyles =
-                            "border-yellow-500/30 text-yellow-600 dark:text-yellow-400 bg-yellow-500/[0.08]";
-                          iconColor = "bg-yellow-500/20";
+                            'border-yellow-500/30 text-yellow-600 dark:text-yellow-400 bg-yellow-500/[0.08]'
+                          iconColor = 'bg-yellow-500/20'
                         }
 
                         return (
                           <a
-                            key={`${regionId}-${index}`}
+                            key={`${regionId}-${warning.awarenessTypeName}`}
                             href={REGION_URLS[regionId]}
                             target="_blank"
                             rel="noopener noreferrer"
@@ -277,7 +291,11 @@ const WeatherWarnings: React.FC<WeatherWarningsProps> = ({
                               ) : (
                                 getWarningIcon(
                                   warning.awarenessTypeName,
-                                  `w-3 h-3 ${warning.awarenessLevelID !== "yellow" ? "animate-pulse" : ""}`,
+                                  `w-3 h-3 ${
+                                    warning.awarenessLevelID !== 'yellow'
+                                      ? 'animate-pulse'
+                                      : ''
+                                  }`,
                                 )
                               )}
                             </div>
@@ -293,27 +311,27 @@ const WeatherWarnings: React.FC<WeatherWarningsProps> = ({
                                   <span className="text-[8px] font-bold font-mono">
                                     {format(
                                       new Date(warning.startTime),
-                                      "HH:mm",
-                                    )}{" "}
-                                    -{" "}
-                                    {format(new Date(warning.endTime), "HH:mm")}
+                                      'HH:mm',
+                                    )}{' '}
+                                    -{' '}
+                                    {format(new Date(warning.endTime), 'HH:mm')}
                                   </span>
                                 </div>
                               )}
                             </div>
                           </a>
-                        );
+                        )
                       })}
                     </div>
                   </div>
-                );
+                )
               })}
             </div>
           </motion.div>
         )}
       </AnimatePresence>
     </div>
-  );
-};
+  )
+}
 
-export default memo(WeatherWarnings);
+export default memo(WeatherWarnings)

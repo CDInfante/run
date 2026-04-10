@@ -1,34 +1,34 @@
 /** @author Harry Vasanth (harryvasanth.com) */
-import axios from "axios";
-import type { WeatherData } from "../types";
+import axios from 'axios'
+import type { WeatherData } from '../types'
 
 // Helper to stagger API requests to avoid burst rate-limits
-const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
+const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms))
 
 export const fetchWeather = async (
   lat: number,
   lon: number,
 ): Promise<WeatherData | null> => {
   // Stagger simultaneous requests
-  await delay(Math.random() * 1500);
+  await delay(Math.random() * 1500)
 
   try {
-    return await fetchOpenMeteo(lat, lon);
-  } catch (error) {
+    return await fetchOpenMeteo(lat, lon)
+  } catch (_error) {
     console.warn(
       `[Weather] Open-Meteo failed for ${lat},${lon}. Trying backup service...`,
-    );
+    )
     try {
-      return await fetchBackupWeather(lat, lon);
+      return await fetchBackupWeather(lat, lon)
     } catch (backupError) {
       console.error(
-        "[Weather] Both primary and backup services failed.",
+        '[Weather] Both primary and backup services failed.',
         backupError,
-      );
-      return null;
+      )
+      return null
     }
   }
-};
+}
 
 const fetchOpenMeteo = async (
   lat: number,
@@ -40,12 +40,12 @@ const fetchOpenMeteo = async (
       latitude: lat,
       longitude: lon,
       current:
-        "temperature_2m,wind_speed_10m,wind_direction_10m,wind_gusts_10m,weather_code,relative_humidity_2m,apparent_temperature,uv_index,precipitation,visibility,cloud_cover",
+        'temperature_2m,wind_speed_10m,wind_direction_10m,wind_gusts_10m,weather_code,relative_humidity_2m,apparent_temperature,uv_index,precipitation,visibility,cloud_cover',
       daily:
-        "temperature_2m_max,temperature_2m_min,sunrise,sunset,uv_index_max,precipitation_probability_max",
-      timezone: "auto",
+        'temperature_2m_max,temperature_2m_min,sunrise,sunset,uv_index_max,precipitation_probability_max',
+      timezone: 'auto',
     },
-  });
+  })
 
   const airQualityPromise = axios.get(
     `https://air-quality-api.open-meteo.com/v1/air-quality`,
@@ -55,23 +55,23 @@ const fetchOpenMeteo = async (
         latitude: lat,
         longitude: lon,
         current:
-          "pm10,pm2_5,european_aqi,alder_pollen,birch_pollen,grass_pollen,mugwort_pollen,olive_pollen,ragweed_pollen,dust",
-        timezone: "auto",
+          'pm10,pm2_5,european_aqi,alder_pollen,birch_pollen,grass_pollen,mugwort_pollen,olive_pollen,ragweed_pollen,dust',
+        timezone: 'auto',
       },
     },
-  );
+  )
 
   const [weatherResult, airResult] = await Promise.allSettled([
     weatherPromise,
     airQualityPromise,
-  ]);
+  ])
 
-  if (weatherResult.status === "rejected") {
-    throw new Error("Open-Meteo primary API failed or timed out");
+  if (weatherResult.status === 'rejected') {
+    throw new Error('Open-Meteo primary API failed or timed out')
   }
 
-  const weatherRes = weatherResult.value;
-  const airRes = airResult.status === "fulfilled" ? airResult.value : null;
+  const weatherRes = weatherResult.value
+  const airRes = airResult.status === 'fulfilled' ? airResult.value : null
 
   return {
     isBackup: false,
@@ -109,24 +109,24 @@ const fetchOpenMeteo = async (
       olive_pollen: airRes?.data?.current?.olive_pollen ?? null,
       ragweed_pollen: airRes?.data?.current?.ragweed_pollen ?? null,
     },
-  };
-};
+  }
+}
 
 // Helper to convert "07:34 AM" to a valid ISO Date string for today
 const parseWttrTime = (timeStr: string): string | null => {
-  if (!timeStr) return null;
-  const match = timeStr.match(/(\d+):(\d+)\s*(AM|PM)/i);
-  if (!match) return null;
+  if (!timeStr) return null
+  const match = timeStr.match(/(\d+):(\d+)\s*(AM|PM)/i)
+  if (!match) return null
 
-  let [_, h, m, ampm] = match;
-  let hours = parseInt(h, 10);
-  if (ampm.toUpperCase() === "PM" && hours < 12) hours += 12;
-  if (ampm.toUpperCase() === "AM" && hours === 12) hours = 0;
+  const [_, h, m, ampm] = match
+  let hours = Number.parseInt(h, 10)
+  if (ampm.toUpperCase() === 'PM' && hours < 12) hours += 12
+  if (ampm.toUpperCase() === 'AM' && hours === 12) hours = 0
 
-  const date = new Date();
-  date.setHours(hours, parseInt(m, 10), 0, 0);
-  return date.toISOString();
-};
+  const date = new Date()
+  date.setHours(hours, Number.parseInt(m, 10), 0, 0)
+  return date.toISOString()
+}
 
 const fetchBackupWeather = async (
   lat: number,
@@ -134,13 +134,13 @@ const fetchBackupWeather = async (
 ): Promise<WeatherData> => {
   const res = await axios.get(`https://wttr.in/${lat},${lon}?format=j1`, {
     timeout: 8000,
-  });
-  const data = res.data;
-  const current = data.current_condition[0];
-  const today = data.weather[0];
+  })
+  const data = res.data
+  const current = data.current_condition[0]
+  const today = data.weather[0]
 
   // Try to rescue AQI/Pollen data from Open-Meteo's secondary AQI server
-  let airRes = null;
+  let airRes = null
   try {
     const aqRes = await axios.get(
       `https://air-quality-api.open-meteo.com/v1/air-quality`,
@@ -150,14 +150,14 @@ const fetchBackupWeather = async (
           latitude: lat,
           longitude: lon,
           current:
-            "pm10,pm2_5,european_aqi,alder_pollen,birch_pollen,grass_pollen,mugwort_pollen,olive_pollen,ragweed_pollen,dust",
-          timezone: "auto",
+            'pm10,pm2_5,european_aqi,alder_pollen,birch_pollen,grass_pollen,mugwort_pollen,olive_pollen,ragweed_pollen,dust',
+          timezone: 'auto',
         },
       },
-    );
-    airRes = aqRes.data;
-  } catch (e) {
-    console.warn("Backup also failed to retrieve Air Quality data.");
+    )
+    airRes = aqRes.data
+  } catch (_e) {
+    console.warn('Backup also failed to retrieve Air Quality data.')
   }
 
   return {
@@ -197,5 +197,5 @@ const fetchBackupWeather = async (
       olive_pollen: airRes?.current?.olive_pollen ?? null,
       ragweed_pollen: airRes?.current?.ragweed_pollen ?? null,
     },
-  };
-};
+  }
+}

@@ -44,7 +44,8 @@
 
   /* Optimize glass for mobile */
   @media (max-width: 768px) {
-    .glass, .glass-heavy {
+    .glass,
+    .glass-heavy {
       backdrop-filter: blur(12px) saturate(160%);
       -webkit-backdrop-filter: blur(12px) saturate(160%);
     }
@@ -77,7 +78,8 @@
     background-color: rgba(255, 255, 255, 0.15);
     border-color: rgba(255, 255, 255, 0.2);
     transform: translateY(-2px);
-    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px
+      rgba(0, 0, 0, 0.04);
   }
 
   .dark .glass-hover:hover {
@@ -124,7 +126,8 @@
   z-index: 1 !important;
 }
 
-.leaflet-top, .leaflet-bottom {
+.leaflet-top,
+.leaflet-bottom {
   z-index: 2 !important;
 }
 

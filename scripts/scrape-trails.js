@@ -1,7 +1,7 @@
-import axios from "axios";
-import fs from "fs";
-import path from "path";
-import * as cheerio from "cheerio";
+import fs from 'node:fs'
+import path from 'node:path'
+import axios from 'axios'
+import * as cheerio from 'cheerio'
 
 // Coordinates for the trailhead (starting point) of all Recommended Pedestrian Routes (PR)
 const TRAIL_COORDS = {
@@ -46,58 +46,58 @@ const TRAIL_COORDS = {
   27: { lat: 32.7544, lon: -17.0519 }, // PR27 Glaciar de Planalto
   28: { lat: 32.7617, lon: -17.1344 }, // PR28 Levada da Rocha Vermelha
   // Porto Santo Island
-  "1ps": { lat: 33.0833, lon: -16.2994 }, // PR1ps Vereda do Pico Branco
-  "2ps": { lat: 33.0722, lon: -16.3294 }, // PR2ps Vereda do Pico do Castelo
-  "3ps": { lat: 33.0722, lon: -16.3294 }, // PR3ps Levada do Pico Castelo
-};
+  '1ps': { lat: 33.0833, lon: -16.2994 }, // PR1ps Vereda do Pico Branco
+  '2ps': { lat: 33.0722, lon: -16.3294 }, // PR2ps Vereda do Pico do Castelo
+  '3ps': { lat: 33.0722, lon: -16.3294 }, // PR3ps Levada do Pico Castelo
+}
 
 async function scrapeTrails() {
   const url =
-    "https://ifcn.madeira.gov.pt/pt/atividades-de-natureza/percursos-pedestres-recomendados/percursos-pedestres-recomendados.html";
+    'https://ifcn.madeira.gov.pt/pt/atividades-de-natureza/percursos-pedestres-recomendados/percursos-pedestres-recomendados.html'
 
   try {
     const response = await axios.get(url, {
-      headers: { "User-Agent": "Mozilla/5.0" },
+      headers: { 'User-Agent': 'Mozilla/5.0' },
       timeout: 30000,
-    });
+    })
 
-    const $ = cheerio.load(response.data);
-    const trails = [];
+    const $ = cheerio.load(response.data)
+    const trails = []
 
-    $("table#data-table").each((tableIdx, table) => {
+    $('table#data-table').each((tableIdx, table) => {
       // Determine island based on context (Madeira is first table, Porto Santo is second)
-      const island = tableIdx === 0 ? "Madeira" : "Porto Santo";
+      const island = tableIdx === 0 ? 'Madeira' : 'Porto Santo'
 
       $(table)
-        .find("tbody tr")
+        .find('tbody tr')
         .each((_, row) => {
-          const cells = $(row).find("td");
+          const cells = $(row).find('td')
 
           if (cells.length >= 6) {
-            let pr = $(cells[1]).text().trim();
-            const name = $(cells[2]).text().trim();
-            const distance = $(cells[3]).text().trim();
+            const pr = $(cells[1]).text().trim()
+            const name = $(cells[2]).text().trim()
+            const distance = $(cells[3]).text().trim()
             const description = $(cells[4])
-              .find("p")
-              .map((i, el) => $(el).text().trim())
+              .find('p')
+              .map((_i, el) => $(el).text().trim())
               .get()
-              .join("\n");
+              .join('\n')
 
-            const statusCell = $(cells[5]);
+            const statusCell = $(cells[5])
             const statusText =
-              statusCell.find("strong").first().text().trim() ||
-              statusCell.text().split("\n")[0].trim();
-            const additionalStatus = statusCell.find("p").last().text().trim();
-            const entity = $(cells[6]).text().trim();
+              statusCell.find('strong').first().text().trim() ||
+              statusCell.text().split('\n')[0].trim()
+            const additionalStatus = statusCell.find('p').last().text().trim()
+            const entity = $(cells[6]).text().trim()
 
-            if (pr && name && pr !== "PR") {
+            if (pr && name && pr !== 'PR') {
               // Normalize Porto Santo IDs to match our coordinate database (e.g., "1" becomes "1ps")
-              const lookupKey = island === "Porto Santo" ? `${pr}ps` : pr;
+              const lookupKey = island === 'Porto Santo' ? `${pr}ps` : pr
 
               const coords = TRAIL_COORDS[lookupKey] || {
                 lat: null,
                 lon: null,
-              };
+              }
 
               trails.push({
                 id: name,
@@ -109,25 +109,21 @@ async function scrapeTrails() {
                   statusText.charAt(0).toUpperCase() +
                   statusText.slice(1).toLowerCase(),
                 additional_status:
-                  additionalStatus !== statusText ? additionalStatus : "",
+                  additionalStatus !== statusText ? additionalStatus : '',
                 entity_responsible: entity,
                 coordinates: coords,
                 last_checked: new Date().toISOString(),
-              });
+              })
             }
           }
-        });
-    });
+        })
+    })
 
-    const outputPath = path.join(
-      process.cwd(),
-      "public",
-      "trails-madeira.json",
-    );
-    const updatedOnSite = $(".modified time")
+    const outputPath = path.join(process.cwd(), 'public', 'trails-madeira.json')
+    const updatedOnSite = $('.modified time')
       .text()
-      .replace("Atualizado em", "")
-      .trim();
+      .replace('Atualizado em', '')
+      .trim()
 
     fs.writeFileSync(
       outputPath,
@@ -135,7 +131,7 @@ async function scrapeTrails() {
         {
           meta: {
             scraped_at: new Date().toISOString(),
-            site_last_updated: updatedOnSite || "Unknown",
+            site_last_updated: updatedOnSite || 'Unknown',
             total_trails: trails.length,
           },
           trails,
@@ -143,15 +139,15 @@ async function scrapeTrails() {
         null,
         2,
       ),
-    );
+    )
 
     console.log(
       `✅ Scraped ${trails.length} trails with GPS coordinates for OpenStreetMap.`,
-    );
+    )
   } catch (error) {
-    console.error("Scrape failed:", error.message);
-    process.exit(1);
+    console.error('Scrape failed:', error.message)
+    process.exit(1)
   }
 }
 
-scrapeTrails();
+scrapeTrails()

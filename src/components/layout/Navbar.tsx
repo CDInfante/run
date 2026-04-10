@@ -1,19 +1,30 @@
-import React, { useState, useEffect, useCallback } from "react";
-import { useDarkMode } from "../../hooks/useDarkMode";
-import { useTranslation } from "../../hooks/useTranslation";
+import { AnimatePresence, motion } from 'framer-motion'
 import {
-  Sun,
-  Moon,
-  Settings,
-  X,
-  Menu,
-  Globe,
-  Share2,
   Check,
   Download,
-} from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
-import { cn } from "../../lib/utils";
+  Globe,
+  Menu,
+  Moon,
+  Settings,
+  Share2,
+  Sun,
+  X,
+} from 'lucide-react'
+import type React from 'react'
+import { useCallback, useEffect, useState } from 'react'
+import { useDarkMode } from '../../hooks/useDarkMode'
+import { useTranslation } from '../../hooks/useTranslation'
+import { cn } from '../../lib/utils'
+
+// Explicit typing for PWA Install Prompt to fix "any" warning
+interface BeforeInstallPromptEvent extends Event {
+  readonly platforms: string[]
+  readonly userChoice: Promise<{
+    outcome: 'accepted' | 'dismissed'
+    platform: string
+  }>
+  prompt(): Promise<void>
+}
 
 /**
  * Navbar Component
@@ -27,136 +38,138 @@ import { cn } from "../../lib/utils";
  */
 interface NavbarProps {
   /** Callback to open the settings modal */
-  setIsSettingsOpen: (isOpen: boolean) => void;
+  setIsSettingsOpen: (isOpen: boolean) => void
 }
 
 const Navbar: React.FC<NavbarProps> = ({ setIsSettingsOpen }) => {
-  const { isDark, toggleDarkMode } = useDarkMode();
-  const { language, setLanguage, t } = useTranslation();
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-  const [showShareSuccess, setShowShareSuccess] = useState(false);
+  const { isDark, toggleDarkMode } = useDarkMode()
+  const { language, setLanguage, t } = useTranslation()
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
+  const [showShareSuccess, setShowShareSuccess] = useState(false)
 
-  const [deferredPrompt, setDeferredPrompt] = useState<any>(null);
-  const [isInstallable, setIsInstallable] = useState(false);
-  const [isIOS, setIsIOS] = useState(false);
+  const [deferredPrompt, setDeferredPrompt] =
+    useState<BeforeInstallPromptEvent | null>(null)
+  const [isInstallable, setIsInstallable] = useState(false)
+  const [isIOS, setIsIOS] = useState(false)
 
   const handleScroll = useCallback(() => {
-    setScrolled(window.scrollY > 20);
-  }, []);
+    setScrolled(window.scrollY > 20)
+  }, [])
 
   useEffect(() => {
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [handleScroll]);
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [handleScroll])
 
   // PWA Install Logic
   useEffect(() => {
     // Check if already installed
     const isStandalone =
-      window.matchMedia("(display-mode: standalone)").matches ||
-      (window.navigator as any).standalone === true;
-    if (isStandalone) return;
+      window.matchMedia('(display-mode: standalone)').matches ||
+      (window.navigator as unknown as { standalone: boolean }).standalone ===
+        true
+    if (isStandalone) return
 
     // Check iOS
-    const ua = window.navigator.userAgent;
-    const webkit = !!ua.match(/WebKit/i);
+    const ua = window.navigator.userAgent
+    const webkit = !!ua.match(/WebKit/i)
     const isiOS =
-      !!ua.match(/iPad/i) || !!ua.match(/iPhone/i) || !!ua.match(/iPod/i);
-    const isSafari = isiOS && webkit && !ua.match(/CriOS/i);
+      !!ua.match(/iPad/i) || !!ua.match(/iPhone/i) || !!ua.match(/iPod/i)
+    const isSafari = isiOS && webkit && !ua.match(/CriOS/i)
 
     if (isiOS && isSafari) {
-      setIsIOS(true);
-      setIsInstallable(true);
+      setIsIOS(true)
+      setIsInstallable(true)
     }
 
     // Check Android/Chrome (beforeinstallprompt)
     const handleBeforeInstallPrompt = (e: Event) => {
-      e.preventDefault();
-      setDeferredPrompt(e);
-      setIsInstallable(true);
-    };
+      e.preventDefault()
+      setDeferredPrompt(e as BeforeInstallPromptEvent)
+      setIsInstallable(true)
+    }
 
-    window.addEventListener("beforeinstallprompt", handleBeforeInstallPrompt);
+    window.addEventListener('beforeinstallprompt', handleBeforeInstallPrompt)
 
     return () => {
       window.removeEventListener(
-        "beforeinstallprompt",
+        'beforeinstallprompt',
         handleBeforeInstallPrompt,
-      );
-    };
-  }, []);
+      )
+    }
+  }, [])
 
   const handleInstall = async () => {
     if (deferredPrompt) {
-      deferredPrompt.prompt();
-      const { outcome } = await deferredPrompt.userChoice;
-      if (outcome === "accepted") {
-        setIsInstallable(false);
+      deferredPrompt.prompt()
+      const { outcome } = await deferredPrompt.userChoice
+      if (outcome === 'accepted') {
+        setIsInstallable(false)
       }
-      setDeferredPrompt(null);
+      setDeferredPrompt(null)
     } else if (isIOS) {
       alert(
         t(
-          "nav.ios_install_instructions",
+          'nav.ios_install_instructions',
           'To install: tap Share and then "Add to Home Screen"',
         ),
-      );
+      )
     }
-  };
+  }
 
   // Navigation items used in both desktop and mobile views
   const navLinks = [
-    { name: t("nav.dashboard"), href: "#dashboard" },
-    { name: t("nav.map"), href: "#map" },
-  ];
+    { name: t('nav.dashboard'), href: '#dashboard' },
+    { name: t('nav.map'), href: '#map' },
+  ]
 
   /**
    * Handles internal navigation with smooth scrolling
    */
   const handleNavLinkClick = (href: string) => {
-    const id = href.replace("#", "");
-    const element = document.getElementById(id);
+    const id = href.replace('#', '')
+    const element = document.getElementById(id)
     if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
+      element.scrollIntoView({ behavior: 'smooth' })
     }
-    setIsMenuOpen(false);
-  };
+    setIsMenuOpen(false)
+  }
 
   const handleShare = async () => {
     const shareData = {
-      title: "Run - CDInfante",
-      text: "Meteorologia em tempo real, alertas, mapa comunitário e horários de navios para atletas na Madeira e Porto Santo.",
+      title: 'Run - CDInfante',
+      text: 'Meteorologia em tempo real, alertas, mapa comunitário e horários de navios para atletas na Madeira e Porto Santo.',
       url: window.location.origin,
-    };
+    }
 
     try {
       if (navigator.share) {
-        await navigator.share(shareData);
+        await navigator.share(shareData)
       } else {
-        await navigator.clipboard.writeText(window.location.origin);
-        setShowShareSuccess(true);
-        setTimeout(() => setShowShareSuccess(false), 2000);
+        await navigator.clipboard.writeText(window.location.origin)
+        setShowShareSuccess(true)
+        setTimeout(() => setShowShareSuccess(false), 2000)
       }
     } catch (err) {
-      console.error("Error sharing:", err);
+      console.error('Error sharing:', err)
     }
-  };
+  }
 
   return (
     <>
       <nav
         className={cn(
-          "fixed top-0 left-0 right-0 z-[9999] transition-all duration-500 px-6",
-          scrolled ? "mt-6" : "mt-0",
+          'fixed top-0 left-0 right-0 z-[9999] transition-all duration-500 px-6',
+          scrolled ? 'mt-6' : 'mt-0',
         )}
       >
         <div
           className={cn(
-            "max-w-7xl mx-auto transition-all duration-500",
+            'max-w-7xl mx-auto transition-all duration-500',
             scrolled
-              ? "bg-white/70 dark:bg-black/60 backdrop-blur-2xl border border-white/30 dark:border-white/10 py-3 px-8 rounded-full shadow-[0_8px_32px_rgba(0,0,0,0.12)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.4)]"
-              : "bg-transparent border-transparent py-8 px-0",
+              ? 'bg-white/70 dark:bg-black/60 backdrop-blur-2xl border border-white/30 dark:border-white/10 py-3 px-8 rounded-full shadow-[0_8px_32px_rgba(0,0,0,0.12)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.4)]'
+              : 'bg-transparent border-transparent py-8 px-0',
           )}
         >
           <div className="flex items-center justify-between">
@@ -178,9 +191,10 @@ const Navbar: React.FC<NavbarProps> = ({ setIsSettingsOpen }) => {
 
             {/* Desktop Nav Links */}
             <ul className="hidden lg:flex items-center gap-10">
-              {navLinks.map((link) => (
+              {navLinks.map(link => (
                 <li key={link.name}>
                   <button
+                    type="button"
                     onClick={() => handleNavLinkClick(link.href)}
                     className="text-sm font-bold text-brand-navy/70 hover:text-brand-red dark:text-slate-300 dark:hover:text-brand-red transition-all py-2 px-1 tracking-widest uppercase cursor-pointer"
                   >
@@ -193,14 +207,16 @@ const Navbar: React.FC<NavbarProps> = ({ setIsSettingsOpen }) => {
             <div className="hidden lg:flex items-center gap-4">
               {isInstallable && (
                 <button
+                  type="button"
                   onClick={handleInstall}
                   className="flex items-center gap-2 px-4 py-2 bg-brand-red text-white rounded-full font-bold text-[10px] uppercase tracking-widest hover:scale-105 transition-all shadow-lg animate-pulse hover:animate-none"
                 >
                   <Download size={14} />
-                  {t("nav.install")}
+                  {t('nav.install')}
                 </button>
               )}
               <button
+                type="button"
                 onClick={handleShare}
                 className="p-2.5 hover:bg-slate-100 dark:hover:bg-white/5 rounded-full transition-all text-brand-navy dark:text-slate-300 cursor-pointer relative"
                 aria-label="Share"
@@ -228,13 +244,14 @@ const Navbar: React.FC<NavbarProps> = ({ setIsSettingsOpen }) => {
                 </AnimatePresence>
                 {showShareSuccess && (
                   <span className="absolute top-full mt-2 right-0 bg-white dark:bg-slate-800 text-brand-navy dark:text-white text-[10px] font-bold py-1 px-2 rounded-lg shadow-xl whitespace-nowrap border border-slate-100 dark:border-white/10">
-                    {t("nav.share_success")}
+                    {t('nav.share_success')}
                   </span>
                 )}
               </button>
               <button
+                type="button"
                 onClick={() =>
-                  setLanguage(language === "en-GB" ? "pt-PT" : "en-GB")
+                  setLanguage(language === 'en-GB' ? 'pt-PT' : 'en-GB')
                 }
                 className="p-2.5 hover:bg-slate-100 dark:hover:bg-white/5 rounded-full transition-all text-brand-navy dark:text-slate-300 cursor-pointer"
                 aria-label="Toggle language"
@@ -242,6 +259,7 @@ const Navbar: React.FC<NavbarProps> = ({ setIsSettingsOpen }) => {
                 <Globe size={20} />
               </button>
               <button
+                type="button"
                 onClick={() => setIsSettingsOpen(true)}
                 className="p-2.5 hover:bg-slate-100 dark:hover:bg-white/5 rounded-full transition-all text-brand-navy dark:text-slate-300 cursor-pointer"
                 aria-label="Settings"
@@ -249,6 +267,7 @@ const Navbar: React.FC<NavbarProps> = ({ setIsSettingsOpen }) => {
                 <Settings size={20} />
               </button>
               <button
+                type="button"
                 onClick={toggleDarkMode}
                 className="p-2.5 hover:bg-slate-100 dark:hover:bg-white/5 rounded-full transition-all text-brand-navy dark:text-slate-300 cursor-pointer"
                 aria-label="Toggle theme"
@@ -265,6 +284,7 @@ const Navbar: React.FC<NavbarProps> = ({ setIsSettingsOpen }) => {
             <div className="flex lg:hidden items-center gap-2">
               {isInstallable && (
                 <button
+                  type="button"
                   onClick={handleInstall}
                   className="flex items-center gap-1.5 px-3 py-1.5 bg-brand-red text-white rounded-full font-bold text-[9px] uppercase tracking-widest animate-pulse shadow-lg"
                 >
@@ -272,6 +292,7 @@ const Navbar: React.FC<NavbarProps> = ({ setIsSettingsOpen }) => {
                 </button>
               )}
               <button
+                type="button"
                 onClick={toggleDarkMode}
                 className="p-2 text-brand-navy dark:text-slate-300 cursor-pointer"
                 aria-label="Toggle theme"
@@ -283,6 +304,7 @@ const Navbar: React.FC<NavbarProps> = ({ setIsSettingsOpen }) => {
                 )}
               </button>
               <button
+                type="button"
                 onClick={() => setIsMenuOpen(true)}
                 className="p-2 text-brand-navy dark:text-slate-300 cursor-pointer"
                 aria-label="Menu"
@@ -298,10 +320,10 @@ const Navbar: React.FC<NavbarProps> = ({ setIsSettingsOpen }) => {
       <AnimatePresence>
         {isMenuOpen && (
           <motion.div
-            initial={{ opacity: 0, x: "100%" }}
+            initial={{ opacity: 0, x: '100%' }}
             animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: "100%" }}
-            transition={{ type: "spring", damping: 30, stiffness: 300 }}
+            exit={{ opacity: 0, x: '100%' }}
+            transition={{ type: 'spring', damping: 30, stiffness: 300 }}
             className="fixed inset-0 z-[1000] bg-white/95 dark:bg-black/95 backdrop-blur-xl pt-24 px-6 lg:hidden flex flex-col"
           >
             {/* Updated Drawer Header */}
@@ -322,6 +344,7 @@ const Navbar: React.FC<NavbarProps> = ({ setIsSettingsOpen }) => {
                 </div>
               </div>
               <button
+                type="button"
                 onClick={() => setIsMenuOpen(false)}
                 className="p-2 hover:bg-brand-red/10 rounded-xl transition-all text-brand-navy dark:text-white shrink-0"
               >
@@ -330,8 +353,9 @@ const Navbar: React.FC<NavbarProps> = ({ setIsSettingsOpen }) => {
             </div>
 
             <div className="flex flex-col gap-8 text-center mt-20">
-              {navLinks.map((link) => (
+              {navLinks.map(link => (
                 <button
+                  type="button"
                   key={link.name}
                   onClick={() => handleNavLinkClick(link.href)}
                   className="text-4xl font-black text-brand-navy dark:text-white uppercase tracking-tighter"
@@ -344,44 +368,48 @@ const Navbar: React.FC<NavbarProps> = ({ setIsSettingsOpen }) => {
 
               {isInstallable && (
                 <button
+                  type="button"
                   onClick={() => {
-                    handleInstall();
-                    setIsMenuOpen(false);
+                    handleInstall()
+                    setIsMenuOpen(false)
                   }}
                   className="flex items-center justify-center gap-3 text-brand-red font-bold text-lg cursor-pointer uppercase tracking-widest mb-4 animate-pulse"
                 >
                   <Download size={24} />
-                  {t("nav.install")}
+                  {t('nav.install')}
                 </button>
               )}
 
               <button
+                type="button"
                 onClick={() => {
-                  setLanguage(language === "en-GB" ? "pt-PT" : "en-GB");
-                  setIsMenuOpen(false);
+                  setLanguage(language === 'en-GB' ? 'pt-PT' : 'en-GB')
+                  setIsMenuOpen(false)
                 }}
                 className="flex items-center justify-center gap-3 text-brand-navy/70 dark:text-slate-400 font-bold text-lg cursor-pointer uppercase tracking-widest"
               >
                 <Globe size={24} />
-                {language === "pt-PT" ? "English" : "Português"}
+                {language === 'pt-PT' ? 'English' : 'Português'}
               </button>
 
               <button
+                type="button"
                 onClick={() => {
-                  setIsSettingsOpen(true);
-                  setIsMenuOpen(false);
+                  setIsSettingsOpen(true)
+                  setIsMenuOpen(false)
                 }}
                 className="w-full flex items-center justify-center gap-3 py-5 rounded-3xl bg-brand-navy text-white dark:bg-white dark:text-brand-navy font-bold uppercase tracking-widest text-sm shadow-xl mt-4"
               >
                 <Settings size={20} />
-                {t("settings.title")}
+                {t('settings.title')}
               </button>
 
               {/* Share Button (Already in Drawer) */}
               <button
+                type="button"
                 onClick={() => {
-                  handleShare();
-                  if (navigator.share !== undefined) setIsMenuOpen(false);
+                  handleShare()
+                  if (navigator.share !== undefined) setIsMenuOpen(false)
                 }}
                 className="flex items-center justify-center gap-3 text-brand-navy/70 dark:text-slate-400 font-bold text-lg cursor-pointer uppercase tracking-widest mt-4"
               >
@@ -390,14 +418,14 @@ const Navbar: React.FC<NavbarProps> = ({ setIsSettingsOpen }) => {
                 ) : (
                   <Share2 size={24} />
                 )}
-                {showShareSuccess ? t("nav.share_success") : t("nav.share")}
+                {showShareSuccess ? t('nav.share_success') : t('nav.share')}
               </button>
             </div>
           </motion.div>
         )}
       </AnimatePresence>
     </>
-  );
-};
+  )
+}
 
-export default Navbar;
+export default Navbar

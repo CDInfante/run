@@ -1,16 +1,16 @@
 /** @author Harry Vasanth (harryvasanth.com) */
-import { StrictMode } from "react";
-import { createRoot } from "react-dom/client";
 import {
+  QueryCache,
   QueryClient,
   QueryClientProvider,
-  QueryCache,
-} from "@tanstack/react-query";
-import { toast } from "./lib/toast";
-import "./index.css";
-import App from "./App.tsx";
-import { I18nProvider } from "./contexts/I18nProvider";
-import { DarkModeProvider } from "./contexts/DarkModeProvider";
+} from '@tanstack/react-query'
+import { StrictMode } from 'react'
+import { createRoot } from 'react-dom/client'
+import App from './App.tsx'
+import { DarkModeProvider } from './contexts/DarkModeProvider'
+import { I18nProvider } from './contexts/I18nProvider'
+import './index.css'
+import { toast } from './lib/toast'
 
 const queryClient = new QueryClient({
   // Global cache observer to catch background sync failures
@@ -20,7 +20,7 @@ const queryClient = new QueryClient({
       // If they are offline, the NetworkMonitor handles the warning.
       if (navigator.onLine) {
         // We now use the error object here, satisfying TypeScript and improving the toast!
-        toast.error(`Sync failed: ${query.queryKey[0]} (${error.message})`);
+        toast.error(`Sync failed: ${query.queryKey[0]} (${error.message})`)
       }
     },
   }),
@@ -31,9 +31,14 @@ const queryClient = new QueryClient({
       retry: 2,
     },
   },
-});
+})
 
-createRoot(document.getElementById("root")!).render(
+const rootElement = document.getElementById('root')
+if (!rootElement) {
+  throw new Error('Failed to find the root element.')
+}
+
+createRoot(rootElement).render(
   <StrictMode>
     <QueryClientProvider client={queryClient}>
       <DarkModeProvider>
@@ -43,4 +48,4 @@ createRoot(document.getElementById("root")!).render(
       </DarkModeProvider>
     </QueryClientProvider>
   </StrictMode>,
-);
+)
