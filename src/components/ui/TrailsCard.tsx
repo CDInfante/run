@@ -221,6 +221,7 @@ const TrailsCard: React.FC<TrailsCardProps> = ({
                       className="p-2 bg-white/5 hover:bg-white/10 rounded-full transition-colors group/link"
                       aria-label="More info from IFCN"
                     >
+                      <span className="sr-only">More info from IFCN</span>
                       <ExternalLink
                         size={14}
                         className="opacity-40 group-hover/link:opacity-100 transition-opacity"
