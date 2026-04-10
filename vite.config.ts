@@ -54,20 +54,18 @@ export default defineConfig({
         runtimeCaching: [
           {
             urlPattern: /^https:\/\/raw\.githubusercontent\.com\/.*\.json$/,
-            handler: 'NetworkFirst',
+            handler: 'StaleWhileRevalidate',
             options: {
               cacheName: 'github-data-cache',
-              networkTimeoutSeconds: 4,
               expiration: { maxEntries: 20, maxAgeSeconds: 60 * 60 * 24 },
               cacheableResponse: { statuses: [0, 200] },
             },
           },
           {
             urlPattern: /^\/.*\.json$/,
-            handler: 'NetworkFirst',
+            handler: 'StaleWhileRevalidate',
             options: {
               cacheName: 'local-data-cache',
-              networkTimeoutSeconds: 3,
               expiration: { maxEntries: 20, maxAgeSeconds: 60 * 60 * 24 },
               cacheableResponse: { statuses: [0, 200] },
             },
