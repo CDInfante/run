@@ -15,6 +15,7 @@ import { useCallback, useEffect, useState } from 'react'
 import { useDarkMode } from '../../hooks/useDarkMode'
 import { useTranslation } from '../../hooks/useTranslation'
 import { cn } from '../../lib/utils'
+import { APP_VERSION } from '../../lib/version'
 
 // Explicit typing for PWA Install Prompt to fix "any" warning
 interface BeforeInstallPromptEvent extends Event {
@@ -420,6 +421,13 @@ const Navbar: React.FC<NavbarProps> = ({ setIsSettingsOpen }) => {
                 )}
                 {showShareSuccess ? t('nav.share_success') : t('nav.share')}
               </button>
+            </div>
+
+            {/* App Version at the bottom of Mobile Drawer */}
+            <div className="mt-auto pb-8 pt-4">
+              <p className="text-[10px] font-bold text-brand-navy/30 dark:text-slate-600 uppercase tracking-widest text-center">
+                {APP_VERSION}
+              </p>
             </div>
           </motion.div>
         )}

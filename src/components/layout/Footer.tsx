@@ -1,6 +1,7 @@
 /** @author Harry Vasanth (harryvasanth.com) */
 import type React from 'react'
 import { useTranslation } from '../../hooks/useTranslation'
+import { APP_VERSION } from '../../lib/version'
 
 const Footer: React.FC = () => {
   const { t } = useTranslation()
@@ -28,6 +29,9 @@ const Footer: React.FC = () => {
           © {new Date().getFullYear()} Clube Desportivo Infante Dom Henrique{' '}
           <br className="md:hidden" />
           <span className="hidden md:inline mx-2">•</span> {t('footer.rights')}
+        </p>
+        <p className="text-brand-navy/30 dark:text-slate-600 text-[8px] font-bold uppercase tracking-widest text-center mt-2">
+          {APP_VERSION}
         </p>
       </div>
     </footer>
