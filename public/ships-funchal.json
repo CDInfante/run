@@ -1,7 +1,7 @@
 {
   "meta": {
-    "scraped_at": "2026-04-09T22:37:18.917Z",
-    "total_ships": 13
+    "scraped_at": "2026-04-10T13:01:27.564Z",
+    "total_ships": 14
   },
   "ships": [
     {
@@ -84,6 +84,15 @@
       "origin_port": "Santa Cruz De La Palma",
       "departure": "2026-04-15T19:00",
       "destination_port": "Horta"
+    },
+    {
+      "ship": "MARELLA VOYAGER",
+      "port_of_call": "Funchal - Terminal Sul",
+      "agent": "Agência Ferraz - J. M. Ferraz Simões, Lda.",
+      "arrival": "2026-04-15T06:00",
+      "origin_port": "Puerto Del Rosario-Fuerteventura",
+      "departure": "2026-04-15T18:00",
+      "destination_port": "San Sebastian De La Gomera"
     },
     {
       "ship": "QUEEN VICTORIA",
