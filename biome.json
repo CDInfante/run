@@ -6,9 +6,6 @@
     "useIgnoreFile": true,
     "defaultBranch": "main"
   },
-  "organizeImports": {
-    "enabled": true
-  },
   "css": {
     "parser": { "cssModules": true }
   },
@@ -25,9 +22,6 @@
   "linter": {
     "enabled": true,
     "rules": {
-      "nursery": {
-        "noStaticElementInteractions": "off"
-      },
       "a11y": {
         "useSemanticElements": "off"
       },
