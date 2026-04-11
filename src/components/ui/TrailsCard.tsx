@@ -10,7 +10,7 @@ import {
   Mountain,
 } from 'lucide-react'
 import type React from 'react'
-import { memo, useState } from 'react'
+import { memo, useMemo, useState } from 'react'
 import { useTranslation } from '../../hooks/useTranslation'
 import { fetchTrails } from '../../services/trails'
 import type { Trail } from '../../types'
@@ -34,6 +34,14 @@ const TrailsCard: React.FC<TrailsCardProps> = ({
   })
 
   const trails = trailsData?.trails || []
+
+  // Memoize grouped arrays to avoid filtering on every re-render
+  const groupedTrails = useMemo(() => {
+    return {
+      Madeira: trails.filter(t => t.island === 'Madeira'),
+      'Porto Santo': trails.filter(t => t.island === 'Porto Santo'),
+    }
+  }, [trails])
 
   if (isLoading) {
     return (
@@ -163,8 +171,8 @@ const TrailsCard: React.FC<TrailsCardProps> = ({
             className="overflow-hidden space-y-4"
           >
             <div className="bg-white/[0.03] border border-white/5 rounded-2xl p-4 space-y-4 relative z-10 overflow-y-auto pr-2 custom-scrollbar max-h-[300px]">
-              {['Madeira', 'Porto Santo'].map(island => {
-                const islandTrails = trails.filter(t => t.island === island)
+              {(['Madeira', 'Porto Santo'] as const).map(island => {
+                const islandTrails = groupedTrails[island]
                 if (islandTrails.length === 0) return null
 
                 return (
