@@ -1,5 +1,5 @@
 /** @author Harry Vasanth (harryvasanth.com) */
-import { useEffect, useState } from 'react'
+import { useCallback, useState } from 'react'
 
 export function useLocalStorage<T>(key: string, initialValue: T) {
   const [value, setValue] = useState<T>(() => {
@@ -20,14 +20,27 @@ export function useLocalStorage<T>(key: string, initialValue: T) {
     return initialValue
   })
 
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      localStorage.setItem(
-        key,
-        typeof value === 'string' ? value : JSON.stringify(value),
-      )
-    }
-  }, [key, value])
+  const setStoredValue = useCallback(
+    (newValue: T | ((val: T) => T)) => {
+      setValue(prev => {
+        const valueToStore =
+          newValue instanceof Function
+            ? (newValue as (val: T) => T)(prev)
+            : newValue
 
-  return [value, setValue] as const
+        if (typeof window !== 'undefined') {
+          localStorage.setItem(
+            key,
+            typeof valueToStore === 'string'
+              ? valueToStore
+              : JSON.stringify(valueToStore),
+          )
+        }
+        return valueToStore
+      })
+    },
+    [key],
+  )
+
+  return [value, setStoredValue] as const
 }
