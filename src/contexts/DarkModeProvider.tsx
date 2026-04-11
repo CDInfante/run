@@ -4,17 +4,17 @@ import { useEffect } from 'react'
 import { useLocalStorage } from '../hooks/useLocalStorage'
 import { DarkModeContext } from './DarkModeContext'
 
+// OPTIMIZATION: Hoisted outside the component to prevent recreation
+const getSystemTheme = () => {
+  if (typeof window === 'undefined') return 'light'
+  return window.matchMedia('(prefers-color-scheme: dark)').matches
+    ? 'dark'
+    : 'light'
+}
+
 export const DarkModeProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
-  // Determine initial system preference safely
-  const getSystemTheme = () => {
-    if (typeof window === 'undefined') return 'light'
-    return window.matchMedia('(prefers-color-scheme: dark)').matches
-      ? 'dark'
-      : 'light'
-  }
-
   const [theme, setTheme] = useLocalStorage<'dark' | 'light'>(
     'theme',
     getSystemTheme(),
