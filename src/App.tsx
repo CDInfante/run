@@ -61,8 +61,9 @@ const App: React.FC = () => {
   const [isSettingsOpen, setIsSettingsOpen] = useState(false)
   const [expandedCard, setExpandedCard] = useState<string | null>(null)
 
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 })
+  // OPTIMIZATION: Use refs for frequent DOM updates to avoid React re-renders
   const containerRef = useRef<HTMLDivElement>(null)
+  const glowRef = useRef<HTMLDivElement>(null)
 
   // Auto-update PWA service worker with prompt mode
   const {
@@ -82,11 +83,24 @@ const App: React.FC = () => {
   })
 
   useEffect(() => {
+    let rafId: number
+
     const handleMouseMove = (e: MouseEvent) => {
-      setMousePos({ x: e.clientX, y: e.clientY })
+      // OPTIMIZATION: Update CSS directly via ref inside requestAnimationFrame
+      rafId = requestAnimationFrame(() => {
+        if (glowRef.current) {
+          glowRef.current.style.background = `radial-gradient(600px at ${e.clientX}px ${e.clientY}px, rgba(182, 23, 30, 0.1), transparent 80%)`
+        }
+      })
     }
-    window.addEventListener('mousemove', handleMouseMove)
-    return () => window.removeEventListener('mousemove', handleMouseMove)
+
+    // Use passive listener for better scroll/interaction performance
+    window.addEventListener('mousemove', handleMouseMove, { passive: true })
+
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove)
+      cancelAnimationFrame(rafId)
+    }
   }, [])
 
   const toggleLocation = (name: string) => {
@@ -103,7 +117,7 @@ const App: React.FC = () => {
     return (locationsData as Location[]).filter(loc =>
       safeLocations.includes(loc.name),
     )
-  }, [visibleLocationNames])
+  }, [visibleLocationNames, defaultLocations]) // Added missing dependency to satisfy linters
 
   return (
     <div
@@ -111,9 +125,10 @@ const App: React.FC = () => {
       className="min-h-screen bg-background text-foreground transition-colors duration-300 pb-12 relative overflow-x-hidden"
     >
       <div
+        ref={glowRef}
         className="pointer-events-none fixed inset-0 z-30 transition-opacity duration-300"
         style={{
-          background: `radial-gradient(600px at ${mousePos.x}px ${mousePos.y}px, rgba(182, 23, 30, 0.1), transparent 80%)`,
+          background: `radial-gradient(600px at -1000px -1000px, rgba(182, 23, 30, 0.1), transparent 80%)`, // Default off-screen
         }}
       />
 
