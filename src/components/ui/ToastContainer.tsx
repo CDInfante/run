@@ -31,7 +31,10 @@ const ToastContainer: React.FC = () => {
   }
 
   return (
-    <div className="fixed top-24 left-1/2 -translate-x-1/2 z-[9999] flex flex-col gap-3 w-full max-w-sm px-4 pointer-events-none">
+    <div
+      aria-live="polite" // Biome/A11y: Tells screen readers to announce new toasts
+      className="fixed top-24 left-1/2 -translate-x-1/2 z-[9999] flex flex-col gap-3 w-full max-w-sm px-4 pointer-events-none"
+    >
       <AnimatePresence>
         {toasts.map(toast => {
           let Icon = Info
@@ -54,6 +57,7 @@ const ToastContainer: React.FC = () => {
           return (
             <motion.div
               key={toast.id}
+              role="alert" // Biome/A11y: Proper role for toast notifications
               initial={{ opacity: 0, y: -30, scale: 0.9 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: -20, scale: 0.9 }}
@@ -62,7 +66,7 @@ const ToastContainer: React.FC = () => {
               <div
                 className={`p-1.5 rounded-xl shrink-0 ${bgColor} ${textColor}`}
               >
-                <Icon size={18} />
+                <Icon size={18} aria-hidden="true" />
               </div>
               <p className="flex-1 text-[10px] md:text-[11px] font-bold uppercase tracking-widest text-brand-navy dark:text-white leading-tight">
                 {toast.message}
@@ -70,9 +74,14 @@ const ToastContainer: React.FC = () => {
               <button
                 type="button"
                 onClick={() => removeToast(toast.id)}
+                aria-label="Close notification" // Biome/A11y Fix
                 className="p-1 opacity-40 hover:opacity-100 transition-opacity shrink-0"
               >
-                <X size={14} className="text-brand-navy dark:text-white" />
+                <X
+                  size={14}
+                  className="text-brand-navy dark:text-white"
+                  aria-hidden="true"
+                />
               </button>
             </motion.div>
           )
