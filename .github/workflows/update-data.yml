@@ -22,12 +22,13 @@ jobs:
           cache: 'npm'
       - name: "📦 Install dependencies"
         run: npm install
+        
       - name: "🚢 Run ship scraper"
-        run: node scripts/scrape-ships.js
+        run: node scripts/scrape-ships.ts
       - name: "🥾 Run trail scraper"
-        run: node scripts/scrape-trails.js
+        run: node scripts/scrape-trails.ts
       - name: "⛲ Run amenity scraper"
-        run: node scripts/scrape-amenities.js
+        run: node scripts/scrape-amenities.ts
       - name: "🔄 Commit changes"
         run: |
           git config --global user.name "HarryVasanth"
