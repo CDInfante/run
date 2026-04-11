@@ -1,10 +1,20 @@
 /** @author Harry Vasanth (harryvasanth.com) */
-import type { TrailsData } from '../types'
+import type { Trail } from '../types'
 
-export const fetchTrails = async (): Promise<TrailsData> => {
+export interface TrailsResponse {
+  meta: {
+    scraped_at: string
+    site_last_updated: string
+    total_trails: number
+  }
+  trails: Trail[]
+}
+
+export const fetchTrails = async (): Promise<TrailsResponse> => {
   try {
     let response: Response
     const controller = new AbortController()
+    // 3-second timeout before falling back to local storage
     const timeoutId = setTimeout(() => controller.abort(), 3000)
 
     try {
@@ -17,31 +27,13 @@ export const fetchTrails = async (): Promise<TrailsData> => {
     } catch {
       clearTimeout(timeoutId)
       response = await fetch('/trails-madeira.json')
+      if (!response.ok) throw new Error('Local fetch failed')
     }
 
-    const data: TrailsData = await response.json()
-
-    // Sort trails inside the object
-    data.trails = data.trails.sort((a, b) => {
-      if (a.island !== b.island) {
-        return a.island === 'Madeira' ? -1 : 1
-      }
-      const numA = Number.parseFloat(a.pr.replace(/[^\d.]/g, '')) || 0
-      const numB = Number.parseFloat(b.pr.replace(/[^\d.]/g, '')) || 0
-      return numA - numB
-    })
-
-    return data
-  } catch (err) {
-    console.error('Error loading trails:', err)
-    // Fallback if network totally fails
-    return {
-      meta: {
-        scraped_at: new Date().toISOString(),
-        site_last_updated: '',
-        total_trails: 0,
-      },
-      trails: [],
-    }
+    return await response.json()
+  } catch (error) {
+    console.error('Failed to fetch trails:', error)
+    // Throw error so React Query knows the fetch completely failed
+    throw new Error('Unable to retrieve trails data')
   }
 }
