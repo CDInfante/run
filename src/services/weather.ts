@@ -2,15 +2,21 @@
 import axios from 'axios'
 import type { WeatherData } from '../types'
 
-// Helper to stagger API requests to avoid burst rate-limits
+// Concurrency lock to prevent 429 Too Many Requests
+let activeRequests = 0
+const MAX_CONCURRENT = 3
 const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms))
 
 export const fetchWeather = async (
   lat: number,
   lon: number,
 ): Promise<WeatherData | null> => {
-  // Stagger simultaneous requests
-  await delay(Math.random() * 1500)
+  // Wait in queue if we are at the concurrency limit
+  while (activeRequests >= MAX_CONCURRENT) {
+    await delay(100)
+  }
+
+  activeRequests++
 
   try {
     return await fetchOpenMeteo(lat, lon)
@@ -27,6 +33,9 @@ export const fetchWeather = async (
       )
       return null
     }
+  } finally {
+    // Release the lock
+    activeRequests--
   }
 }
 
