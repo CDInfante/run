@@ -46,17 +46,20 @@ export const fetchWeatherWarnings = async (): Promise<WeatherWarning[]> => {
       madeiraIds.includes(w.idAreaAviso),
     )
 
+    // OPTIMIZATION: Build a lookup map for O(1) access instead of repeated .find()
+    const warningsMap = new Map<string, WeatherWarning>()
+    for (const w of allWarnings) {
+      if (w.awarenessLevelID !== 'green') {
+        warningsMap.set(`${w.idAreaAviso}-${w.awarenessTypeName}`, w)
+      }
+    }
+
     const result: WeatherWarning[] = []
 
-    // For each region, ensure we have an entry for each awareness type
     for (const regionId of madeiraIds) {
       for (const type of AWARENESS_TYPES) {
-        const activeWarning = allWarnings.find(
-          (w: WeatherWarning) =>
-            w.idAreaAviso === regionId &&
-            w.awarenessTypeName === type &&
-            w.awarenessLevelID !== 'green',
-        )
+        const key = `${regionId}-${type}`
+        const activeWarning = warningsMap.get(key)
 
         if (activeWarning) {
           result.push(activeWarning)
