@@ -20,7 +20,7 @@ import {
   Wind,
 } from 'lucide-react'
 import type React from 'react'
-import { memo } from 'react'
+import { memo, useMemo } from 'react'
 import { useTranslation } from '../../hooks/useTranslation'
 import { fetchWeather } from '../../services/weather'
 
@@ -61,7 +61,6 @@ const WeatherCard: React.FC<{
 }> = ({ lat, lon, title, municipality, isExpanded = false }) => {
   const { t } = useTranslation()
 
-  // TanStack Query handles caching, background fetching, and deduplication
   const {
     data: weather,
     isLoading,
@@ -69,8 +68,132 @@ const WeatherCard: React.FC<{
   } = useQuery({
     queryKey: ['weather', lat, lon],
     queryFn: () => fetchWeather(lat, lon),
-    refetchInterval: 10 * 60 * 1000, // 10 minutes
+    refetchInterval: 10 * 60 * 1000,
   })
+
+  // Memoize arrays to prevent unnecessary re-creations during renders/animations
+  const currentStats = useMemo(() => {
+    if (!weather) return []
+    const aqi = weather.airQuality.european_aqi
+    const aqiColor =
+      aqi === null
+        ? 'text-gray-400'
+        : aqi < 50
+          ? 'text-green-500'
+          : aqi < 100
+            ? 'text-yellow-500'
+            : 'text-brand-red'
+
+    return [
+      {
+        icon: Wind,
+        val: displayMetric(weather.current.windSpeed),
+        unit: 'km/h',
+        color: 'text-blue-500',
+      },
+      {
+        icon: Tornado,
+        val: displayMetric(weather.current.windGusts),
+        unit: 'km/h',
+        color: 'text-indigo-400',
+      },
+      {
+        icon: Activity,
+        val: displayMetric(weather.airQuality.european_aqi),
+        unit: 'AQI',
+        color: aqiColor,
+      },
+      {
+        icon: Sun,
+        val: displayMetric(weather.current.uvIndex, '', true),
+        unit: 'UV',
+        color: 'text-yellow-500',
+      },
+    ]
+  }, [weather])
+
+  const performanceStats = useMemo(() => {
+    if (!weather) return []
+    return [
+      {
+        label: t('weather.max_temp'),
+        val: displayMetric(weather.daily.maxTemp, '°C'),
+        icon: Thermometer,
+      },
+      {
+        label: t('weather.min_temp'),
+        val: displayMetric(weather.daily.minTemp, '°C'),
+        icon: Thermometer,
+      },
+      {
+        label: t('weather.rain_prob'),
+        val: displayMetric(weather.daily.precipProb, '%'),
+        icon: CloudRain,
+      },
+      {
+        label: t('weather.precipitation'),
+        val: displayMetric(weather.current.precipitation, 'mm', true),
+        icon: CloudRain,
+      },
+      {
+        label: t('weather.humidity'),
+        val: displayMetric(weather.current.humidity, '%'),
+        icon: Droplets,
+      },
+      {
+        label: t('weather.cloud_cover'),
+        val: displayMetric(weather.current.cloudCover, '%'),
+        icon: Cloud,
+      },
+      {
+        label: t('weather.visibility'),
+        val:
+          weather.current.visibility !== null
+            ? displayMetric(weather.current.visibility / 1000, 'km', true)
+            : '-',
+        icon: Eye,
+      },
+    ]
+  }, [weather, t])
+
+  const allergenStats = useMemo(() => {
+    if (!weather) return []
+    return [
+      { key: 'pm25', label: 'PM2.5', val: weather.airQuality.pm2_5 },
+      { key: 'pm10', label: 'PM10', val: weather.airQuality.pm10 },
+      { key: 'dust', label: t('weather.dust'), val: weather.airQuality.dust },
+      {
+        key: 'grass',
+        label: t('weather.grass'),
+        val: weather.airQuality.grass_pollen,
+      },
+      {
+        key: 'olive',
+        label: t('weather.olive'),
+        val: weather.airQuality.olive_pollen,
+      },
+      {
+        key: 'birch',
+        label: t('weather.birch'),
+        val: weather.airQuality.birch_pollen,
+      },
+      {
+        key: 'mugwort',
+        label: t('weather.mugwort'),
+        val: weather.airQuality.mugwort_pollen,
+      },
+      {
+        key: 'alder',
+        label: t('weather.alder'),
+        val: weather.airQuality.alder_pollen,
+      },
+      {
+        key: 'ragweed',
+        label: t('weather.ragweed'),
+        val: weather.airQuality.ragweed_pollen,
+      },
+    ]
+  }, [weather, t])
 
   if (isLoading && !weather) {
     return (
@@ -103,16 +226,6 @@ const WeatherCard: React.FC<{
       </div>
     )
   }
-
-  const aqi = weather.airQuality.european_aqi
-  const aqiColor =
-    aqi === null
-      ? 'text-gray-400'
-      : aqi < 50
-        ? 'text-green-500'
-        : aqi < 100
-          ? 'text-yellow-500'
-          : 'text-brand-red'
 
   return (
     <motion.div
@@ -169,36 +282,7 @@ const WeatherCard: React.FC<{
         </div>
 
         <div className="grid grid-cols-4 gap-2 mt-auto w-full">
-          {[
-            {
-              icon: Wind,
-              val: displayMetric(weather.current.windSpeed),
-              unit: 'km/h',
-              color: 'text-blue-500',
-              bg: 'bg-blue-500/10',
-            },
-            {
-              icon: Tornado,
-              val: displayMetric(weather.current.windGusts),
-              unit: 'km/h',
-              color: 'text-indigo-400',
-              bg: 'bg-indigo-500/10',
-            },
-            {
-              icon: Activity,
-              val: displayMetric(weather.airQuality.european_aqi),
-              unit: 'AQI',
-              color: aqiColor,
-              bg: 'bg-white/5',
-            },
-            {
-              icon: Sun,
-              val: displayMetric(weather.current.uvIndex, '', true),
-              unit: 'UV',
-              color: 'text-yellow-500',
-              bg: 'bg-yellow-500/10',
-            },
-          ].map(stat => (
+          {currentStats.map(stat => (
             <div
               key={stat.unit}
               className="flex flex-col items-center justify-center p-2 bg-white/20 dark:bg-white/5 rounded-xl border border-white/10 dark:border-white/5"
@@ -230,54 +314,7 @@ const WeatherCard: React.FC<{
                   {t('weather.performance')}
                 </span>
                 <div className="flex flex-wrap gap-2">
-                  {[
-                    {
-                      label: t('weather.max_temp'),
-                      val: displayMetric(weather.daily.maxTemp, '°C'),
-                      icon: Thermometer,
-                    },
-                    {
-                      label: t('weather.min_temp'),
-                      val: displayMetric(weather.daily.minTemp, '°C'),
-                      icon: Thermometer,
-                    },
-                    {
-                      label: t('weather.rain_prob'),
-                      val: displayMetric(weather.daily.precipProb, '%'),
-                      icon: CloudRain,
-                    },
-                    {
-                      label: t('weather.precipitation'),
-                      val: displayMetric(
-                        weather.current.precipitation,
-                        'mm',
-                        true,
-                      ),
-                      icon: CloudRain,
-                    },
-                    {
-                      label: t('weather.humidity'),
-                      val: displayMetric(weather.current.humidity, '%'),
-                      icon: Droplets,
-                    },
-                    {
-                      label: t('weather.cloud_cover'),
-                      val: displayMetric(weather.current.cloudCover, '%'),
-                      icon: Cloud,
-                    },
-                    {
-                      label: t('weather.visibility'),
-                      val:
-                        weather.current.visibility !== null
-                          ? displayMetric(
-                              weather.current.visibility / 1000,
-                              'km',
-                              true,
-                            )
-                          : '-',
-                      icon: Eye,
-                    },
-                  ].map(item => (
+                  {performanceStats.map(item => (
                     <div
                       key={item.label}
                       className="flex flex-col gap-1 p-2 bg-white/30 dark:bg-white/5 rounded-xl border border-white/10 dark:border-white/5 flex-1 min-w-[30%] sm:min-w-[20%]"
@@ -307,53 +344,7 @@ const WeatherCard: React.FC<{
                   </span>
                 </div>
                 <div className="flex flex-wrap gap-2">
-                  {[
-                    {
-                      key: 'pm25',
-                      label: 'PM2.5',
-                      val: weather.airQuality.pm2_5,
-                    },
-                    {
-                      key: 'pm10',
-                      label: 'PM10',
-                      val: weather.airQuality.pm10,
-                    },
-                    {
-                      key: 'dust',
-                      label: t('weather.dust'),
-                      val: weather.airQuality.dust,
-                    },
-                    {
-                      key: 'grass',
-                      label: t('weather.grass'),
-                      val: weather.airQuality.grass_pollen,
-                    },
-                    {
-                      key: 'olive',
-                      label: t('weather.olive'),
-                      val: weather.airQuality.olive_pollen,
-                    },
-                    {
-                      key: 'birch',
-                      label: t('weather.birch'),
-                      val: weather.airQuality.birch_pollen,
-                    },
-                    {
-                      key: 'mugwort',
-                      label: t('weather.mugwort'),
-                      val: weather.airQuality.mugwort_pollen,
-                    },
-                    {
-                      key: 'alder',
-                      label: t('weather.alder'),
-                      val: weather.airQuality.alder_pollen,
-                    },
-                    {
-                      key: 'ragweed',
-                      label: t('weather.ragweed'),
-                      val: weather.airQuality.ragweed_pollen,
-                    },
-                  ].map(p => (
+                  {allergenStats.map(p => (
                     <div
                       key={p.key}
                       className="flex flex-col text-center bg-white/20 dark:bg-black/20 rounded-lg py-1.5 px-1 flex-1 min-w-[22%] sm:min-w-[10%]"

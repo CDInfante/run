@@ -1,11 +1,11 @@
 import { useRegisterSW } from 'virtual:pwa-register/react'
+/** @author Harry Vasanth (harryvasanth.com) */
+import { Loader2 } from 'lucide-react'
 import type React from 'react'
-import { useEffect, useMemo, useRef, useState } from 'react'
+import { Suspense, lazy, useEffect, useMemo, useRef, useState } from 'react'
 import Footer from './components/layout/Footer'
 import Navbar from './components/layout/Navbar'
 import NetworkMonitor from './components/layout/NetworkMonitor'
-import DashboardSection from './components/sections/DashboardSection'
-import MapSection from './components/sections/MapSection'
 import SettingsModal from './components/ui/SettingsModal'
 import ToastContainer from './components/ui/ToastContainer'
 import locationsData from './content/locations.json'
@@ -13,12 +13,12 @@ import { useLocalStorage } from './hooks/useLocalStorage'
 import { useTranslation } from './hooks/useTranslation'
 import type { Location } from './types'
 
-/**
- * Main Application Component
- * Handles the overall layout, state for map toggles, and weather location management.
- * Includes graceful PWA update prompt.
- * @author Harry Vasanth (harryvasanth.com)
- */
+// Lazy load heavy sections to reduce initial bundle size
+const MapSection = lazy(() => import('./components/sections/MapSection'))
+const DashboardSection = lazy(
+  () => import('./components/sections/DashboardSection'),
+)
+
 const App: React.FC = () => {
   const { t } = useTranslation()
 
@@ -136,30 +136,38 @@ const App: React.FC = () => {
       />
 
       <main className="container mx-auto px-4 mt-8 max-w-7xl space-y-12">
-        <MapSection
-          showWater={showWater}
-          setShowWater={setShowWater}
-          showToilets={showToilets}
-          setShowToilets={setShowToilets}
-          showAlerts={showAlerts}
-          setShowAlerts={setShowAlerts}
-          showTrails={showTrails}
-          setShowTrails={setShowTrails}
-        />
+        <Suspense
+          fallback={
+            <div className="flex items-center justify-center min-h-[50vh]">
+              <Loader2 className="w-8 h-8 text-brand-red animate-spin opacity-80" />
+            </div>
+          }
+        >
+          <MapSection
+            showWater={showWater}
+            setShowWater={setShowWater}
+            showToilets={showToilets}
+            setShowToilets={setShowToilets}
+            showAlerts={showAlerts}
+            setShowAlerts={setShowAlerts}
+            showTrails={showTrails}
+            setShowTrails={setShowTrails}
+          />
 
-        <DashboardSection
-          numShips={numShips}
-          activeWeatherLocations={activeWeatherLocations}
-          expandedCard={expandedCard}
-          setExpandedCard={setExpandedCard}
-          setIsSettingsOpen={setIsSettingsOpen}
-          isShipsCollapsed={isShipsCollapsed}
-          setIsShipsCollapsed={setIsShipsCollapsed}
-          isWeatherCollapsed={isWeatherCollapsed}
-          setIsWeatherCollapsed={setIsWeatherCollapsed}
-          isTrailsCollapsed={isTrailsCollapsed}
-          setIsTrailsCollapsed={setIsTrailsCollapsed}
-        />
+          <DashboardSection
+            numShips={numShips}
+            activeWeatherLocations={activeWeatherLocations}
+            expandedCard={expandedCard}
+            setExpandedCard={setExpandedCard}
+            setIsSettingsOpen={setIsSettingsOpen}
+            isShipsCollapsed={isShipsCollapsed}
+            setIsShipsCollapsed={setIsShipsCollapsed}
+            isWeatherCollapsed={isWeatherCollapsed}
+            setIsWeatherCollapsed={setIsWeatherCollapsed}
+            isTrailsCollapsed={isTrailsCollapsed}
+            setIsTrailsCollapsed={setIsTrailsCollapsed}
+          />
+        </Suspense>
 
         <Footer />
       </main>

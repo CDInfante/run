@@ -3,15 +3,7 @@ import { useQuery } from '@tanstack/react-query'
 import { AnimatePresence, motion } from 'framer-motion'
 import L from 'leaflet'
 import 'leaflet/dist/leaflet.css'
-import {
-  Anchor,
-  ArrowRight,
-  Check,
-  Clock,
-  ExternalLink,
-  Loader2,
-  Navigation,
-} from 'lucide-react'
+import { Loader2, Navigation } from 'lucide-react'
 import type React from 'react'
 import { useEffect, useMemo, useState } from 'react'
 import { MapContainer, Marker, Popup, TileLayer, useMap } from 'react-leaflet'
@@ -284,12 +276,26 @@ const LocationMarker = ({
 
   useEffect(() => {
     map.locate({ setView: false, maxZoom: 16 })
-    map.on('locationfound', e => {
+
+    // Explicitly define handlers to allow for proper cleanup
+    const onLocationFound = (e: L.LocationEvent) => {
       setPosition(e.latlng)
       setUserLocation(e.latlng)
       map.flyTo(e.latlng, 14)
-    })
-    map.on('locationerror', () => console.warn('Location access denied.'))
+    }
+
+    const onLocationError = () => {
+      console.warn('Location access denied.')
+    }
+
+    map.on('locationfound', onLocationFound)
+    map.on('locationerror', onLocationError)
+
+    // Cleanup listeners on unmount to prevent memory leaks
+    return () => {
+      map.off('locationfound', onLocationFound)
+      map.off('locationerror', onLocationError)
+    }
   }, [map, setUserLocation])
 
   return position === null ? null : (
@@ -567,11 +573,22 @@ const MapComponent: React.FC<MapProps> = ({
                         className="flex items-center justify-center gap-2 mt-4 p-2 bg-emerald-500 text-white rounded-xl text-[10px] font-bold uppercase tracking-widest hover:opacity-90 transition-all"
                       >
                         <span className="sr-only">IFCN Information link</span>
-                        <ExternalLink
-                          size={10}
-                          strokeWidth={2.5}
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="10"
+                          height="10"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="3"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
                           aria-hidden="true"
-                        />
+                        >
+                          <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                          <polyline points="15 3 21 3 21 9" />
+                          <line x1="10" y1="14" x2="21" y2="3" />
+                        </svg>
                         IFCN Info
                       </a>
                     </div>
@@ -605,12 +622,23 @@ const MapComponent: React.FC<MapProps> = ({
                           : 'bg-emerald-500 text-white'
                       }`}
                     >
-                      <Anchor
-                        size={12}
-                        strokeWidth={2.5}
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="12"
+                        height="12"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="3"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
                         className="text-brand-white animate-pulse"
                         aria-hidden="true"
-                      />
+                      >
+                        <circle cx="12" cy="5" r="3" />
+                        <line x1="12" y1="22" x2="12" y2="8" />
+                        <path d="M5 12H2a10 10 0 0 0 20 0h-3" />
+                      </svg>
                       {portStatus.isDocked ? t('port.busy') : t('port.clear')}
                     </div>
                   </div>
@@ -627,12 +655,23 @@ const MapComponent: React.FC<MapProps> = ({
                           <div className="flex items-center justify-between gap-3 mb-2.5">
                             <div className="flex items-center gap-2.5 min-w-0">
                               <div className="p-1.5 bg-brand-red/10 rounded-lg">
-                                <Anchor
-                                  size={12}
-                                  strokeWidth={2.5}
+                                <svg
+                                  xmlns="http://www.w3.org/2000/svg"
+                                  width="12"
+                                  height="12"
+                                  viewBox="0 0 24 24"
+                                  fill="none"
+                                  stroke="currentColor"
+                                  strokeWidth="3"
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
                                   className="text-brand-red"
                                   aria-hidden="true"
-                                />
+                                >
+                                  <circle cx="12" cy="5" r="3" />
+                                  <line x1="12" y1="22" x2="12" y2="8" />
+                                  <path d="M5 12H2a10 10 0 0 0 20 0h-3" />
+                                </svg>
                               </div>
                               <span className="text-[10px] font-bold uppercase tracking-wide truncate">
                                 {ship.name}
@@ -653,11 +692,21 @@ const MapComponent: React.FC<MapProps> = ({
                               </span>
                             </div>
                             <div className="flex flex-col items-center justify-center opacity-20">
-                              <ArrowRight
-                                size={10}
-                                strokeWidth={2.5}
+                              <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="10"
+                                height="10"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                strokeWidth="3"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
                                 aria-hidden="true"
-                              />
+                              >
+                                <line x1="5" y1="12" x2="19" y2="12" />
+                                <polyline points="12 5 19 12 12 19" />
+                              </svg>
                             </div>
                             <div className="flex flex-col items-end">
                               <span className="text-[7px] uppercase tracking-widest opacity-40 font-bold mb-0.5">
@@ -683,11 +732,20 @@ const MapComponent: React.FC<MapProps> = ({
                       <div className="flex flex-col p-4 rounded-2xl border border-emerald-500/20 bg-emerald-500/[0.03]">
                         <div className="flex items-center gap-2.5 text-emerald-500 mb-2">
                           <div className="p-1.5 bg-emerald-500/10 rounded-lg">
-                            <Check
-                              size={14}
-                              strokeWidth={2.5}
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="14"
+                              height="14"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              stroke="currentColor"
+                              strokeWidth="3"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
                               aria-hidden="true"
-                            />
+                            >
+                              <polyline points="20 6 9 17 4 12" />
+                            </svg>
                           </div>
                           <span className="text-[10px] font-bold uppercase tracking-widest">
                             {t('port.clear_now')}
@@ -727,12 +785,23 @@ const MapComponent: React.FC<MapProps> = ({
                     >
                       <span className="sr-only">APRAM Information link</span>
                       <span>APRAM Info</span>
-                      <ExternalLink
-                        size={12}
-                        strokeWidth={2.5}
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="12"
+                        height="12"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="3"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
                         className="group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform"
                         aria-hidden="true"
-                      />
+                      >
+                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                        <polyline points="15 3 21 3 21 9" />
+                        <line x1="10" y1="14" x2="21" y2="3" />
+                      </svg>
                     </a>
                   </div>
                 </div>
@@ -777,12 +846,23 @@ const MapComponent: React.FC<MapProps> = ({
                         <span className="sr-only">
                           {`Mais informações para a região ${getRegionName(regionId)}`}
                         </span>
-                        <ExternalLink
-                          size={12}
-                          strokeWidth={2.5}
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="12"
+                          height="12"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="3"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
                           className="opacity-40"
                           aria-hidden="true"
-                        />
+                        >
+                          <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                          <polyline points="15 3 21 3 21 9" />
+                          <line x1="10" y1="14" x2="21" y2="3" />
+                        </svg>
                       </a>
                     </div>
                     <div className="grid grid-cols-2 gap-1.5">
@@ -819,11 +899,21 @@ const MapComponent: React.FC<MapProps> = ({
                             </div>
                             {!isGreen && (
                               <div className="flex items-center gap-1 opacity-40">
-                                <Clock
-                                  size={7}
-                                  strokeWidth={2.5}
+                                <svg
+                                  xmlns="http://www.w3.org/2000/svg"
+                                  width="7"
+                                  height="7"
+                                  viewBox="0 0 24 24"
+                                  fill="none"
+                                  stroke="currentColor"
+                                  strokeWidth="3"
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
                                   aria-hidden="true"
-                                />
+                                >
+                                  <circle cx="12" cy="12" r="10" />
+                                  <polyline points="12 6 12 12 16 14" />
+                                </svg>
                                 <span className="text-[7px] font-mono">
                                   {new Date(warning.endTime).toLocaleTimeString(
                                     [],
