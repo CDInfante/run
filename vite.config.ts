@@ -22,7 +22,8 @@ export default defineConfig({
       manifest: {
         name: 'Run - CDInfante',
         short_name: 'RunCDI',
-        description: 'Community info for runners in Madeira & Porto Santo',
+        description:
+          'Desenvolvido pela CDInfante para ajudar os atletas com informações meteorológicas em tempo real, mapa da comunidade e horários de navios na Madeira e no Porto Santo.',
         theme_color: '#001e40',
         background_color: '#001e40',
         display: 'standalone',
@@ -45,6 +46,21 @@ export default defineConfig({
             sizes: '512x512',
             type: 'image/png',
             purpose: 'any maskable',
+          },
+        ],
+        // ENABLES RICH PWA INSTALL UI
+        screenshots: [
+          {
+            src: 'screenshot-mobile.png',
+            sizes: '1536x2752',
+            type: 'image/png',
+            form_factor: 'narrow',
+          },
+          {
+            src: 'screenshot-desktop.png',
+            sizes: '2832x1894',
+            type: 'image/png',
+            form_factor: 'wide',
           },
         ],
       },
@@ -105,7 +121,6 @@ export default defineConfig({
       },
     }),
   ],
-  // --- NEW BUILD CONFIGURATION FOR CHUNKING ---
   build: {
     rollupOptions: {
       output: {
@@ -123,12 +138,11 @@ export default defineConfig({
             if (id.includes('react') || id.includes('react-dom')) {
               return 'vendor-react'
             }
-            return 'vendor-core' // All other dependencies
+            return 'vendor-core'
           }
         },
       },
     },
-    // Slightly increase the warning limit since 500kb is quite strict for modern React apps
     chunkSizeWarningLimit: 600,
   },
 })
