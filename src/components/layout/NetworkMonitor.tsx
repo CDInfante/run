@@ -1,6 +1,6 @@
 /** @author Harry Vasanth (harryvasanth.com) */
 import type React from 'react'
-import { useEffect } from 'react'
+import { memo, useEffect } from 'react'
 import { useTranslation } from '../../hooks/useTranslation'
 import { toast } from '../../lib/toast'
 
@@ -25,7 +25,7 @@ const NetworkMonitor: React.FC = () => {
     }
   }, [t])
 
-  return null // This component doesn't render anything visually
+  return null
 }
 
-export default NetworkMonitor
+export default memo(NetworkMonitor)
