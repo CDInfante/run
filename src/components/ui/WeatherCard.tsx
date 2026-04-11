@@ -86,24 +86,28 @@ const WeatherCard: React.FC<{
 
     return [
       {
+        id: 'wind',
         icon: Wind,
         val: displayMetric(weather.current.windSpeed),
         unit: 'km/h',
         color: 'text-blue-500',
       },
       {
+        id: 'gusts',
         icon: Tornado,
         val: displayMetric(weather.current.windGusts),
         unit: 'km/h',
         color: 'text-indigo-400',
       },
       {
+        id: 'aqi',
         icon: Activity,
         val: displayMetric(weather.airQuality.european_aqi),
         unit: 'AQI',
         color: aqiColor,
       },
       {
+        id: 'uv',
         icon: Sun,
         val: displayMetric(weather.current.uvIndex, '', true),
         unit: 'UV',
@@ -284,7 +288,7 @@ const WeatherCard: React.FC<{
         <div className="grid grid-cols-4 gap-2 mt-auto w-full">
           {currentStats.map(stat => (
             <div
-              key={stat.unit}
+              key={stat.id}
               className="flex flex-col items-center justify-center p-2 bg-white/20 dark:bg-white/5 rounded-xl border border-white/10 dark:border-white/5"
             >
               <stat.icon className={`w-4 h-4 mb-1 ${stat.color}`} />
