@@ -63,16 +63,13 @@ const Navbar: React.FC<NavbarProps> = ({ setIsSettingsOpen }) => {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [handleScroll])
 
-  // PWA Install Logic
   useEffect(() => {
-    // Check if already installed
     const isStandalone =
       window.matchMedia('(display-mode: standalone)').matches ||
       (window.navigator as unknown as { standalone: boolean }).standalone ===
         true
     if (isStandalone) return
 
-    // Check iOS
     const ua = window.navigator.userAgent
     const webkit = !!ua.match(/WebKit/i)
     const isiOS =
@@ -84,7 +81,6 @@ const Navbar: React.FC<NavbarProps> = ({ setIsSettingsOpen }) => {
       setIsInstallable(true)
     }
 
-    // Check Android/Chrome (beforeinstallprompt)
     const handleBeforeInstallPrompt = (e: Event) => {
       e.preventDefault()
       setDeferredPrompt(e as BeforeInstallPromptEvent)
@@ -101,7 +97,8 @@ const Navbar: React.FC<NavbarProps> = ({ setIsSettingsOpen }) => {
     }
   }, [])
 
-  const handleInstall = async () => {
+  // OPTIMIZATION: Wrap in useCallback
+  const handleInstall = useCallback(async () => {
     if (deferredPrompt) {
       deferredPrompt.prompt()
       const { outcome } = await deferredPrompt.userChoice
@@ -117,27 +114,28 @@ const Navbar: React.FC<NavbarProps> = ({ setIsSettingsOpen }) => {
         ),
       )
     }
-  }
+  }, [deferredPrompt, isIOS, t])
 
-  // Navigation items used in both desktop and mobile views
   const navLinks = [
     { name: t('nav.dashboard'), href: '#dashboard' },
     { name: t('nav.map'), href: '#map' },
   ]
 
-  /**
-   * Handles internal navigation with smooth scrolling
-   */
-  const handleNavLinkClick = (href: string) => {
-    const id = href.replace('#', '')
-    const element = document.getElementById(id)
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' })
-    }
-    setIsMenuOpen(false)
-  }
+  // OPTIMIZATION & SEMANTICS: handle real anchor clicks for semantic HTML
+  const handleNavLinkClick = useCallback(
+    (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+      e.preventDefault()
+      const id = href.replace('#', '')
+      const element = document.getElementById(id)
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' })
+      }
+      setIsMenuOpen(false)
+    },
+    [],
+  )
 
-  const handleShare = async () => {
+  const handleShare = useCallback(async () => {
     const shareData = {
       title: 'Run - CDInfante',
       text: 'Meteorologia em tempo real, alertas, mapa comunitário e horários de navios para atletas na Madeira e Porto Santo.',
@@ -155,7 +153,7 @@ const Navbar: React.FC<NavbarProps> = ({ setIsSettingsOpen }) => {
     } catch (err) {
       console.error('Error sharing:', err)
     }
-  }
+  }, [])
 
   return (
     <>
@@ -194,13 +192,14 @@ const Navbar: React.FC<NavbarProps> = ({ setIsSettingsOpen }) => {
             <ul className="hidden lg:flex items-center gap-10">
               {navLinks.map(link => (
                 <li key={link.name}>
-                  <button
-                    type="button"
-                    onClick={() => handleNavLinkClick(link.href)}
+                  {/* SEMANTICS: Converted to anchor tag */}
+                  <a
+                    href={link.href}
+                    onClick={e => handleNavLinkClick(e, link.href)}
                     className="text-sm font-bold text-brand-navy/70 hover:text-brand-red dark:text-slate-300 dark:hover:text-brand-red transition-all py-2 px-1 tracking-widest uppercase cursor-pointer"
                   >
                     {link.name}
-                  </button>
+                  </a>
                 </li>
               ))}
             </ul>
@@ -212,7 +211,7 @@ const Navbar: React.FC<NavbarProps> = ({ setIsSettingsOpen }) => {
                   onClick={handleInstall}
                   className="flex items-center gap-2 px-4 py-2 bg-brand-red text-white rounded-full font-bold text-[10px] uppercase tracking-widest hover:scale-105 transition-all shadow-lg animate-pulse hover:animate-none"
                 >
-                  <Download size={14} />
+                  <Download size={14} aria-hidden="true" />
                   {t('nav.install')}
                 </button>
               )}
@@ -230,7 +229,11 @@ const Navbar: React.FC<NavbarProps> = ({ setIsSettingsOpen }) => {
                       animate={{ scale: 1, opacity: 1 }}
                       exit={{ scale: 0, opacity: 0 }}
                     >
-                      <Check size={20} className="text-green-500" />
+                      <Check
+                        size={20}
+                        className="text-green-500"
+                        aria-hidden="true"
+                      />
                     </motion.div>
                   ) : (
                     <motion.div
@@ -239,7 +242,7 @@ const Navbar: React.FC<NavbarProps> = ({ setIsSettingsOpen }) => {
                       animate={{ scale: 1, opacity: 1 }}
                       exit={{ scale: 0, opacity: 0 }}
                     >
-                      <Share2 size={20} />
+                      <Share2 size={20} aria-hidden="true" />
                     </motion.div>
                   )}
                 </AnimatePresence>
@@ -257,7 +260,7 @@ const Navbar: React.FC<NavbarProps> = ({ setIsSettingsOpen }) => {
                 className="p-2.5 hover:bg-slate-100 dark:hover:bg-white/5 rounded-full transition-all text-brand-navy dark:text-slate-300 cursor-pointer"
                 aria-label="Toggle language"
               >
-                <Globe size={20} />
+                <Globe size={20} aria-hidden="true" />
               </button>
               <button
                 type="button"
@@ -265,7 +268,7 @@ const Navbar: React.FC<NavbarProps> = ({ setIsSettingsOpen }) => {
                 className="p-2.5 hover:bg-slate-100 dark:hover:bg-white/5 rounded-full transition-all text-brand-navy dark:text-slate-300 cursor-pointer"
                 aria-label="Settings"
               >
-                <Settings size={20} />
+                <Settings size={20} aria-hidden="true" />
               </button>
               <button
                 type="button"
@@ -274,9 +277,13 @@ const Navbar: React.FC<NavbarProps> = ({ setIsSettingsOpen }) => {
                 aria-label="Toggle theme"
               >
                 {isDark ? (
-                  <Sun size={20} className="text-yellow-400" />
+                  <Sun
+                    size={20}
+                    className="text-yellow-400"
+                    aria-hidden="true"
+                  />
                 ) : (
-                  <Moon size={20} />
+                  <Moon size={20} aria-hidden="true" />
                 )}
               </button>
             </div>
@@ -287,9 +294,10 @@ const Navbar: React.FC<NavbarProps> = ({ setIsSettingsOpen }) => {
                 <button
                   type="button"
                   onClick={handleInstall}
+                  aria-label="Install App"
                   className="flex items-center gap-1.5 px-3 py-1.5 bg-brand-red text-white rounded-full font-bold text-[9px] uppercase tracking-widest animate-pulse shadow-lg"
                 >
-                  <Download size={12} />
+                  <Download size={12} aria-hidden="true" />
                 </button>
               )}
               <button
@@ -299,9 +307,13 @@ const Navbar: React.FC<NavbarProps> = ({ setIsSettingsOpen }) => {
                 aria-label="Toggle theme"
               >
                 {isDark ? (
-                  <Sun size={20} className="text-yellow-400" />
+                  <Sun
+                    size={20}
+                    className="text-yellow-400"
+                    aria-hidden="true"
+                  />
                 ) : (
-                  <Moon size={20} />
+                  <Moon size={20} aria-hidden="true" />
                 )}
               </button>
               <button
@@ -310,7 +322,7 @@ const Navbar: React.FC<NavbarProps> = ({ setIsSettingsOpen }) => {
                 className="p-2 text-brand-navy dark:text-slate-300 cursor-pointer"
                 aria-label="Menu"
               >
-                <Menu size={24} />
+                <Menu size={24} aria-hidden="true" />
               </button>
             </div>
           </div>
@@ -325,9 +337,11 @@ const Navbar: React.FC<NavbarProps> = ({ setIsSettingsOpen }) => {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: '100%' }}
             transition={{ type: 'spring', damping: 30, stiffness: 300 }}
+            role="dialog"
+            aria-modal="true"
+            aria-label="Mobile Navigation Menu"
             className="fixed inset-0 z-[1000] bg-white/95 dark:bg-black/95 backdrop-blur-xl pt-24 px-6 lg:hidden flex flex-col"
           >
-            {/* Updated Drawer Header */}
             <div className="flex justify-between items-center absolute top-8 left-6 right-6">
               <div className="flex items-center gap-3">
                 <img
@@ -347,22 +361,23 @@ const Navbar: React.FC<NavbarProps> = ({ setIsSettingsOpen }) => {
               <button
                 type="button"
                 onClick={() => setIsMenuOpen(false)}
+                aria-label="Close menu"
                 className="p-2 hover:bg-brand-red/10 rounded-xl transition-all text-brand-navy dark:text-white shrink-0"
               >
-                <X size={24} />
+                <X size={24} aria-hidden="true" />
               </button>
             </div>
 
             <div className="flex flex-col gap-8 text-center mt-20">
               {navLinks.map(link => (
-                <button
-                  type="button"
+                <a
                   key={link.name}
-                  onClick={() => handleNavLinkClick(link.href)}
-                  className="text-4xl font-black text-brand-navy dark:text-white uppercase tracking-tighter"
+                  href={link.href}
+                  onClick={e => handleNavLinkClick(e, link.href)}
+                  className="text-4xl font-black text-brand-navy dark:text-white uppercase tracking-tighter cursor-pointer"
                 >
                   {link.name}
-                </button>
+                </a>
               ))}
 
               <div className="h-px bg-slate-100 dark:bg-white/10 my-4" />
@@ -376,7 +391,7 @@ const Navbar: React.FC<NavbarProps> = ({ setIsSettingsOpen }) => {
                   }}
                   className="flex items-center justify-center gap-3 text-brand-red font-bold text-lg cursor-pointer uppercase tracking-widest mb-4 animate-pulse"
                 >
-                  <Download size={24} />
+                  <Download size={24} aria-hidden="true" />
                   {t('nav.install')}
                 </button>
               )}
@@ -389,7 +404,7 @@ const Navbar: React.FC<NavbarProps> = ({ setIsSettingsOpen }) => {
                 }}
                 className="flex items-center justify-center gap-3 text-brand-navy/70 dark:text-slate-400 font-bold text-lg cursor-pointer uppercase tracking-widest"
               >
-                <Globe size={24} />
+                <Globe size={24} aria-hidden="true" />
                 {language === 'pt-PT' ? 'English' : 'Português'}
               </button>
 
@@ -401,11 +416,10 @@ const Navbar: React.FC<NavbarProps> = ({ setIsSettingsOpen }) => {
                 }}
                 className="w-full flex items-center justify-center gap-3 py-5 rounded-3xl bg-brand-navy text-white dark:bg-white dark:text-brand-navy font-bold uppercase tracking-widest text-sm shadow-xl mt-4"
               >
-                <Settings size={20} />
+                <Settings size={20} aria-hidden="true" />
                 {t('settings.title')}
               </button>
 
-              {/* Share Button (Already in Drawer) */}
               <button
                 type="button"
                 onClick={() => {
@@ -415,15 +429,18 @@ const Navbar: React.FC<NavbarProps> = ({ setIsSettingsOpen }) => {
                 className="flex items-center justify-center gap-3 text-brand-navy/70 dark:text-slate-400 font-bold text-lg cursor-pointer uppercase tracking-widest mt-4"
               >
                 {showShareSuccess ? (
-                  <Check size={24} className="text-green-500" />
+                  <Check
+                    size={24}
+                    className="text-green-500"
+                    aria-hidden="true"
+                  />
                 ) : (
-                  <Share2 size={24} />
+                  <Share2 size={24} aria-hidden="true" />
                 )}
                 {showShareSuccess ? t('nav.share_success') : t('nav.share')}
               </button>
             </div>
 
-            {/* App Version at the bottom of Mobile Drawer */}
             <div className="mt-auto pb-8 pt-4">
               <p className="text-[10px] font-bold text-brand-navy/30 dark:text-slate-600 uppercase tracking-widest text-center">
                 {APP_VERSION}
