@@ -38,17 +38,31 @@ const SettingsModal: React.FC<SettingsModalProps> = ({
 
   return (
     <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
+      {/* Biome A11y Fix: Added role, tabIndex, and aria-label to the clickable backdrop */}
       <div
-        className="absolute inset-0 bg-black/60 backdrop-blur-md"
+        role="button"
+        tabIndex={0}
+        aria-label="Close settings"
+        className="absolute inset-0 bg-black/60 backdrop-blur-md cursor-default"
         onClick={onClose}
         onKeyUp={e => {
           if (e.key === 'Enter' || e.key === 'Escape') onClose()
         }}
       />
-      <div className="glass-heavy w-full max-w-lg p-6 md:p-8 rounded-[2.5rem] relative z-10 shadow-2xl animate-in zoom-in-95 duration-300">
+
+      {/* Biome A11y Fix: Added dialog roles for screen readers */}
+      <div
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="settings-title"
+        className="glass-heavy w-full max-w-lg p-6 md:p-8 rounded-[2.5rem] relative z-10 shadow-2xl animate-in zoom-in-95 duration-300"
+      >
         <div className="flex items-center justify-between mb-8">
           <div>
-            <h2 className="text-2xl font-bold uppercase tracking-tight">
+            <h2
+              id="settings-title"
+              className="text-2xl font-bold uppercase tracking-tight"
+            >
               {t('settings.title')}
             </h2>
             <div className="h-1 w-12 bg-brand-red mt-1 rounded-full" />
@@ -56,9 +70,10 @@ const SettingsModal: React.FC<SettingsModalProps> = ({
           <button
             type="button"
             onClick={onClose}
+            aria-label="Close modal"
             className="p-2 hover:bg-brand-red hover:text-white rounded-xl transition-all"
           >
-            <X size={24} />
+            <X size={24} aria-hidden="true" />
           </button>
         </div>
 
@@ -72,7 +87,7 @@ const SettingsModal: React.FC<SettingsModalProps> = ({
               }}
               className="w-full flex items-center justify-center gap-3 py-3 rounded-2xl bg-white/5 border border-white/10 hover:bg-brand-red hover:text-white hover:border-brand-red transition-all text-xs font-bold uppercase tracking-widest"
             >
-              <RefreshCw size={14} />
+              <RefreshCw size={14} aria-hidden="true" />
               {t('settings.reset')}
             </button>
           </div>
@@ -86,13 +101,14 @@ const SettingsModal: React.FC<SettingsModalProps> = ({
                 <Search
                   className="absolute left-3 top-1/2 -translate-y-1/2 opacity-40"
                   size={14}
+                  aria-hidden="true"
                 />
                 <input
                   type="text"
                   placeholder={t('settings.search')}
                   value={searchTerm}
                   onChange={e => setSearchTerm(e.target.value)}
-                  className="bg-white/5 border border-white/10 rounded-full py-1.5 pl-9 pr-4 text-xs focus:outline-none focus:border-brand-red/50 w-32 md:w-48 transition-all"
+                  className="bg-white/5 border border-white/10 rounded-full py-1.5 pl-9 pr-4 text-xs focus:outline-none focus:border-brand-red/50 w-32 md:w-48 transition-all text-brand-navy dark:text-white"
                 />
               </div>
             </div>
@@ -102,10 +118,11 @@ const SettingsModal: React.FC<SettingsModalProps> = ({
                   type="button"
                   key={loc.name}
                   onClick={() => toggleLocation(loc.name)}
+                  aria-pressed={visibleLocationNames.includes(loc.name)}
                   className={`flex items-center justify-between p-3 rounded-2xl border-2 transition-all ${
                     visibleLocationNames.includes(loc.name)
                       ? 'bg-brand-red text-white border-brand-red shadow-lg scale-[0.98]'
-                      : 'bg-white/5 border-white/5 opacity-60 hover:opacity-100 hover:border-white/20'
+                      : 'bg-white/5 border-white/5 opacity-60 hover:opacity-100 hover:border-white/20 text-brand-navy dark:text-white'
                   }`}
                 >
                   <div className="text-left">
@@ -123,9 +140,9 @@ const SettingsModal: React.FC<SettingsModalProps> = ({
                     </p>
                   </div>
                   {visibleLocationNames.includes(loc.name) ? (
-                    <Check size={16} />
+                    <Check size={16} aria-hidden="true" />
                   ) : (
-                    <Plus size={16} />
+                    <Plus size={16} aria-hidden="true" />
                   )}
                 </button>
               ))}
@@ -134,7 +151,7 @@ const SettingsModal: React.FC<SettingsModalProps> = ({
 
           <div>
             <div className="flex items-center justify-between mb-4">
-              <h3 className="text-xs font-bold uppercase opacity-50 tracking-widest">
+              <h3 className="text-xs font-bold uppercase opacity-50 tracking-widest text-brand-navy dark:text-white">
                 {t('settings.port_ships')}
               </h3>
               <span className="text-sm font-bold text-brand-red bg-brand-red/10 px-3 py-1 rounded-full">
@@ -147,9 +164,10 @@ const SettingsModal: React.FC<SettingsModalProps> = ({
               max="12"
               value={numShips}
               onChange={e => setNumShips(Number(e.target.value))}
-              className="w-full h-2 bg-white/10 rounded-lg appearance-none cursor-pointer accent-brand-red"
+              className="w-full h-2 bg-brand-navy/10 dark:bg-white/10 rounded-lg appearance-none cursor-pointer accent-brand-red"
+              aria-label="Number of ships to display"
             />
-            <div className="flex justify-between mt-3 text-[10px] font-bold opacity-50 uppercase tracking-widest">
+            <div className="flex justify-between mt-3 text-[10px] font-bold opacity-50 uppercase tracking-widest text-brand-navy dark:text-white">
               <span>1 {t('settings.ship')}</span>
               <span>12 {t('settings.ships')}</span>
             </div>
