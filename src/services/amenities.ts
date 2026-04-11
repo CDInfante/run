@@ -1,22 +1,12 @@
 /** @author Harry Vasanth (harryvasanth.com) */
 import type { Amenity } from '../types'
 
-interface AmenitiesData {
-  meta: {
-    scraped_at: string
-    total_amenities: number
-  }
-  amenities: Amenity[]
-}
-
 export const fetchAmenities = async (): Promise<Amenity[]> => {
   try {
     let response: Response
-
     const controller = new AbortController()
     const timeoutId = setTimeout(() => controller.abort(), 3000)
 
-    // Try GitHub raw first to bypass local PWA cache
     try {
       response = await fetch(
         'https://raw.githubusercontent.com/CDInfante/run/refs/heads/main/public/amenities.json',
@@ -26,18 +16,16 @@ export const fetchAmenities = async (): Promise<Amenity[]> => {
       if (!response.ok) throw new Error('GitHub fetch failed')
     } catch {
       clearTimeout(timeoutId)
-      // Fallback to local (cached) file if offline or blocked
       response = await fetch('/amenities.json')
+      if (!response.ok) throw new Error('Local fetch failed')
     }
 
-    if (!response.ok) {
-      throw new Error('Failed to fetch amenities')
-    }
+    const data = await response.json()
 
-    const data: AmenitiesData = await response.json()
-    return data.amenities
+    // Safely return the array, or an empty array if data structure is missing
+    return Array.isArray(data.amenities) ? data.amenities : []
   } catch (error) {
-    console.error('Error fetching amenities:', error)
-    return []
+    console.error('Failed to fetch amenities:', error)
+    throw new Error('Unable to retrieve amenities data')
   }
 }
