@@ -1,6 +1,7 @@
 /** @author Harry Vasanth (harryvasanth.com) */
 import { CloudSun } from 'lucide-react'
 import type React from 'react'
+import { useCallback } from 'react'
 import { useTranslation } from '../../hooks/useTranslation'
 import type { Location } from '../../types'
 import ShipsTab from '../ui/ShipsTab'
@@ -12,7 +13,9 @@ interface DashboardSectionProps {
   numShips: number
   activeWeatherLocations: Location[]
   expandedCard: string | null
-  setExpandedCard: (val: string | null) => void
+  setExpandedCard: (
+    val: string | null | ((prev: string | null) => string | null),
+  ) => void
   setIsSettingsOpen: (val: boolean) => void
   isShipsCollapsed: boolean
   setIsShipsCollapsed: (val: boolean) => void
@@ -36,6 +39,14 @@ const DashboardSection: React.FC<DashboardSectionProps> = ({
   setIsTrailsCollapsed,
 }) => {
   const { t } = useTranslation()
+
+  // OPTIMIZATION: Use useCallback and functional updater to prevent recreating functions on every render
+  const handleExpandToggle = useCallback(
+    (name: string) => {
+      setExpandedCard(prev => (prev === name ? null : name))
+    },
+    [setExpandedCard],
+  )
 
   return (
     <div
@@ -79,23 +90,19 @@ const DashboardSection: React.FC<DashboardSectionProps> = ({
           </button>
         </div>
 
-        {/* FIX: Removed auto-rows-fr and grid-flow-dense, added items-start */}
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 items-start transition-all duration-500 ease-in-out">
           {activeWeatherLocations.map(loc => (
             <div
               key={loc.name}
-              /* FIX: Changed wrapper to h-fit, and expanded cards use col-span-full */
               className={`transition-all duration-500 ease-in-out cursor-pointer h-fit ${
                 expandedCard === loc.name
                   ? 'md:col-span-full xl:col-span-full'
                   : 'col-span-1'
               }`}
-              onClick={() =>
-                setExpandedCard(expandedCard === loc.name ? null : loc.name)
-              }
+              onClick={() => handleExpandToggle(loc.name)}
               onKeyUp={e => {
                 if (e.key === 'Enter' || e.key === ' ') {
-                  setExpandedCard(expandedCard === loc.name ? null : loc.name)
+                  handleExpandToggle(loc.name)
                 }
               }}
             >

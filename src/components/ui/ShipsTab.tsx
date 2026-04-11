@@ -13,7 +13,7 @@ import {
   XCircle,
 } from 'lucide-react'
 import type React from 'react'
-import { memo, useEffect, useState } from 'react'
+import { memo, useEffect, useMemo, useState } from 'react'
 import { useTranslation } from '../../hooks/useTranslation'
 import { fetchShipStatus } from '../../services/ships'
 
@@ -21,6 +21,17 @@ interface ShipsTabProps {
   limit?: number
   isCollapsed: boolean
   setIsCollapsed: (val: boolean) => void
+}
+
+// OPTIMIZATION: Moved outside component to prevent recreation
+const getDurationString = (targetDate: Date, currentTime: Date): string => {
+  const diffMs = targetDate.getTime() - currentTime.getTime()
+  if (diffMs <= 0) return '0m'
+  const diffMins = Math.floor(diffMs / 60000)
+  const hours = Math.floor(diffMins / 60)
+  const mins = diffMins % 60
+  if (hours > 0) return `${hours}h ${mins}m`
+  return `${mins}m`
 }
 
 const ShipsTab: React.FC<ShipsTabProps> = ({
@@ -57,15 +68,57 @@ const ShipsTab: React.FC<ShipsTabProps> = ({
       .toUpperCase()
   }
 
-  const getDurationString = (targetDate: Date, currentTime: Date): string => {
-    const diffMs = targetDate.getTime() - currentTime.getTime()
-    if (diffMs <= 0) return '0m'
-    const diffMins = Math.floor(diffMs / 60000)
-    const hours = Math.floor(diffMins / 60)
-    const mins = diffMins % 60
-    if (hours > 0) return `${hours}h ${mins}m`
-    return `${mins}m`
-  }
+  // OPTIMIZATION: Memoize ship derived state so it doesn't calculate heavily on UI collapse toggles
+  const {
+    isPortClearNow,
+    dockedShipsCount,
+    todayShipsCount,
+    durationRemaining,
+  } = useMemo(() => {
+    if (!status) {
+      return {
+        isPortClearNow: true,
+        dockedShipsCount: 0,
+        todayShipsCount: 0,
+        durationRemaining: '',
+      }
+    }
+
+    const clearNow = !status.isDocked
+    const dockedCount = status.ships.filter(s => s.isDockedNow).length
+    const todayCount = status.ships.filter(
+      s =>
+        s.arrivalDate.toDateString() === now.toDateString() ||
+        s.departureDate.toDateString() === now.toDateString(),
+    ).length
+
+    let nextArrivalDate: Date | null = null
+    if (clearNow && status.ships.length > 0) {
+      const futureShips = status.ships.filter(
+        s => s.arrivalDate > now && s.terminal.includes('Terminal Sul'),
+      )
+      if (futureShips.length > 0) {
+        nextArrivalDate = futureShips.reduce(
+          (min, s) => (s.arrivalDate < min ? s.arrivalDate : min),
+          futureShips[0].arrivalDate,
+        )
+      }
+    }
+
+    let remaining = ''
+    if (clearNow && nextArrivalDate) {
+      remaining = getDurationString(nextArrivalDate, now)
+    } else if (!clearNow && status.nextAvailableDate) {
+      remaining = getDurationString(status.nextAvailableDate, now)
+    }
+
+    return {
+      isPortClearNow: clearNow,
+      dockedShipsCount: dockedCount,
+      todayShipsCount: todayCount,
+      durationRemaining: remaining,
+    }
+  }, [status, now])
 
   if (isLoading || !status) {
     return (
@@ -81,34 +134,6 @@ const ShipsTab: React.FC<ShipsTabProps> = ({
         </div>
       </div>
     )
-  }
-
-  const isPortClearNow = !status.isDocked
-  const dockedShipsCount = status.ships.filter(s => s.isDockedNow).length
-  const todayShipsCount = status.ships.filter(
-    s =>
-      s.arrivalDate.toDateString() === now.toDateString() ||
-      s.departureDate.toDateString() === now.toDateString(),
-  ).length
-
-  let nextArrivalDate: Date | null = null
-  if (isPortClearNow && status.ships.length > 0) {
-    const futureShips = status.ships.filter(
-      s => s.arrivalDate > now && s.terminal.includes('Terminal Sul'),
-    )
-    if (futureShips.length > 0) {
-      nextArrivalDate = futureShips.reduce(
-        (min, s) => (s.arrivalDate < min ? s.arrivalDate : min),
-        futureShips[0].arrivalDate,
-      )
-    }
-  }
-
-  let durationRemaining = ''
-  if (isPortClearNow && nextArrivalDate) {
-    durationRemaining = getDurationString(nextArrivalDate, now)
-  } else if (!isPortClearNow && status.nextAvailableDate) {
-    durationRemaining = getDurationString(status.nextAvailableDate, now)
   }
 
   return (
@@ -128,12 +153,12 @@ const ShipsTab: React.FC<ShipsTabProps> = ({
       >
         <div
           className={`p-2.5 md:p-3 rounded-2xl shrink-0 transition-colors ${
-            status.isDocked
+            !isPortClearNow
               ? 'bg-brand-red text-white shadow-lg shadow-brand-red/20'
               : 'bg-green-500 text-white shadow-lg shadow-green-500/20'
           }`}
         >
-          {status.isDocked ? (
+          {!isPortClearNow ? (
             <XCircle size={20} aria-hidden="true" />
           ) : (
             <CheckCircle size={20} aria-hidden="true" />
@@ -160,7 +185,7 @@ const ShipsTab: React.FC<ShipsTabProps> = ({
               )}
             </div>
             <h2 className="font-bold text-base md:text-lg uppercase tracking-tighter leading-tight text-brand-navy dark:text-white break-words">
-              {status.isDocked ? t('port.busy') : t('port.clear')}
+              {!isPortClearNow ? t('port.busy') : t('port.clear')}
             </h2>
           </div>
 
@@ -183,7 +208,7 @@ const ShipsTab: React.FC<ShipsTabProps> = ({
           {durationRemaining && (
             <div
               className={`flex items-center gap-1 px-2.5 py-1 md:px-3 md:py-1.5 rounded-full text-[9px] md:text-[10px] font-bold font-mono tracking-tight ${
-                status.isDocked
+                !isPortClearNow
                   ? 'bg-brand-red/10 text-brand-red shadow-sm'
                   : 'bg-green-500/10 text-green-500'
               }`}
