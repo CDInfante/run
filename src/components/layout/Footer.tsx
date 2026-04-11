@@ -1,5 +1,6 @@
 /** @author Harry Vasanth (harryvasanth.com) */
 import type React from 'react'
+import { memo } from 'react'
 import { useTranslation } from '../../hooks/useTranslation'
 import { APP_VERSION } from '../../lib/version'
 
@@ -38,4 +39,4 @@ const Footer: React.FC = () => {
   )
 }
 
-export default Footer
+export default memo(Footer)
