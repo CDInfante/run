@@ -8,6 +8,8 @@ import type React from 'react'
 import { useEffect, useMemo, useState } from 'react'
 import { MapContainer, Marker, Popup, TileLayer, useMap } from 'react-leaflet'
 import MarkerClusterGroup from 'react-leaflet-cluster'
+import type { WeatherWarning } from '../../types'
+
 import { useTranslation } from '../../hooks/useTranslation'
 import { fetchAmenities } from '../../services/amenities'
 import {
@@ -17,7 +19,6 @@ import {
 } from '../../services/ipma'
 import { fetchShipStatus } from '../../services/ships'
 import { fetchTrails } from '../../services/trails'
-import type { WeatherWarning } from '../../types'
 
 const mapStyles = `
   .user-location-icon {
@@ -463,7 +464,7 @@ const MapComponent: React.FC<MapProps> = ({
         <TileLayer
           attribution="&copy; CARTO"
           url={tileLayerUrl}
-          keepBuffer={4}
+          keepBuffer={2}
           updateWhenIdle={true}
           updateWhenZooming={false}
         />
