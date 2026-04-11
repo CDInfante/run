@@ -1,6 +1,6 @@
 {
   "meta": {
-    "scraped_at": "2026-04-10T23:31:39.081Z",
+    "scraped_at": "2026-04-11T21:32:52.287Z",
     "total_amenities": 727
   },
   "amenities": [
@@ -8,106 +8,91 @@
       "id": 289419324,
       "lat": 32.7189603,
       "lon": -16.7651923,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 298351860,
       "lat": 32.7350716,
       "lon": -16.9285859,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 300324114,
       "lat": 32.7838419,
       "lon": -16.9060003,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 300363362,
       "lat": 32.6508694,
       "lon": -16.9133867,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 300364401,
       "lat": 32.7177164,
       "lon": -16.7639431,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 325873199,
       "lat": 32.8305285,
       "lon": -16.9010548,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 327489039,
       "lat": 32.8056436,
       "lon": -16.8808825,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 327489106,
       "lat": 32.8055115,
       "lon": -16.8822028,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 333722066,
       "lat": 32.8674874,
       "lon": -17.1696484,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 359841619,
       "lat": 32.7431006,
       "lon": -16.7156874,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 552388051,
       "lat": 32.7394093,
       "lon": -17.2120071,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 553007706,
       "lat": 32.6474906,
       "lon": -16.8240752,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 564206784,
       "lat": 32.689428,
       "lon": -17.0920969,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 564206805,
       "lat": 32.8515425,
       "lon": -17.1663718,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 564206810,
       "lat": 32.8270648,
       "lon": -16.906595,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 905149929,
@@ -120,8 +105,7 @@
       "id": 927049433,
       "lat": 32.6586735,
       "lon": -16.8661429,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 927152528,
@@ -134,8 +118,7 @@
       "id": 927171503,
       "lat": 32.6744046,
       "lon": -16.9012917,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 957091446,
@@ -148,57 +131,49 @@
       "id": 972147639,
       "lat": 32.8228546,
       "lon": -17.1030092,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 1284455330,
       "lat": 32.7017773,
       "lon": -17.1341998,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 1316060460,
       "lat": 32.6754196,
       "lon": -16.9026855,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 1320036442,
       "lat": 32.6465045,
       "lon": -16.9101224,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 1320036496,
       "lat": 32.6453301,
       "lon": -16.9135465,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 1320338143,
       "lat": 32.6754943,
       "lon": -16.9004326,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 1342236167,
       "lat": 32.7352848,
       "lon": -17.193981,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 1342236168,
       "lat": 32.7387911,
       "lon": -17.1943578,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 1342248738,
@@ -211,29 +186,25 @@
       "id": 1361260810,
       "lat": 33.0585337,
       "lon": -16.335539,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 1401140730,
       "lat": 32.8171518,
       "lon": -17.2416797,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 1401140748,
       "lat": 32.8166007,
       "lon": -17.2398471,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 1475054080,
       "lat": 32.6769703,
       "lon": -16.9030595,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 1479454932,
@@ -295,8 +266,7 @@
       "id": 1493437708,
       "lat": 32.8112218,
       "lon": -16.9119167,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 1493448074,
@@ -309,99 +279,85 @@
       "id": 1493448383,
       "lat": 32.7891133,
       "lon": -16.8529696,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 1494341671,
       "lat": 32.8049067,
       "lon": -16.9003723,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 1495245769,
       "lat": 32.810239,
       "lon": -16.9119838,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 1496661590,
       "lat": 32.8266981,
       "lon": -16.955405,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 1496661594,
       "lat": 32.8222852,
       "lon": -16.9468879,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 1496661597,
       "lat": 32.822162,
       "lon": -16.9462109,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 1498434382,
       "lat": 32.8128618,
       "lon": -16.8916796,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 1498584564,
       "lat": 32.8142636,
       "lon": -16.8876255,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 1498584589,
       "lat": 32.8147274,
       "lon": -16.8924799,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 1498779908,
       "lat": 32.8164291,
       "lon": -16.8891088,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 1498779913,
       "lat": 32.8183668,
       "lon": -16.8891762,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 1498834554,
       "lat": 32.8200568,
       "lon": -16.8856217,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 1507400944,
       "lat": 32.8258811,
       "lon": -16.9580437,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 1508687991,
       "lat": 32.7103546,
       "lon": -16.9624734,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 1508888880,
@@ -414,22 +370,19 @@
       "id": 1508888882,
       "lat": 32.753624,
       "lon": -16.8722709,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 1508889034,
       "lat": 32.7709574,
       "lon": -16.8560009,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 1508920887,
       "lat": 32.8167648,
       "lon": -16.8869117,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 1508932073,
@@ -449,141 +402,121 @@
       "id": 1511880404,
       "lat": 32.6760167,
       "lon": -16.9026555,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 1513065521,
       "lat": 32.6385781,
       "lon": -16.8528647,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 1513518270,
       "lat": 32.6440488,
       "lon": -16.9180792,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 1514297130,
       "lat": 32.8050535,
       "lon": -16.8821749,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 1514624199,
       "lat": 32.6917642,
       "lon": -17.0865666,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 1514655324,
       "lat": 32.679495,
       "lon": -17.0877021,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 1514709576,
       "lat": 32.6802168,
       "lon": -17.1034204,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 1514713181,
       "lat": 32.6795894,
       "lon": -17.1049635,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 1516956381,
       "lat": 32.8674508,
       "lon": -17.1703288,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 1518293553,
       "lat": 32.6422381,
       "lon": -16.9552692,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 1520278526,
       "lat": 32.6489784,
       "lon": -16.915407,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 1521657402,
       "lat": 32.7525873,
       "lon": -17.2247243,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 1524047560,
       "lat": 32.8046614,
       "lon": -16.8822368,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 1524059773,
       "lat": 32.8286143,
       "lon": -16.9859039,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 1620870219,
       "lat": 32.8275989,
       "lon": -17.2205689,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 1620870222,
       "lat": 32.8397794,
       "lon": -17.2068028,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 1710925601,
       "lat": 32.7030976,
       "lon": -16.8882093,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 1710925603,
       "lat": 32.7019438,
       "lon": -16.8855563,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 1710925607,
       "lat": 32.7042503,
       "lon": -16.8892151,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 1711177889,
       "lat": 32.7978853,
       "lon": -16.8770882,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 1767713711,
@@ -603,15 +536,13 @@
       "id": 1767718094,
       "lat": 32.7606488,
       "lon": -16.8194385,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 1767719091,
       "lat": 32.7716145,
       "lon": -16.8286956,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 1767732141,
@@ -638,15 +569,13 @@
       "id": 1767820675,
       "lat": 32.7375242,
       "lon": -16.7377084,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 1767820721,
       "lat": 32.7396891,
       "lon": -16.7408557,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 1767874484,
@@ -659,57 +588,49 @@
       "id": 1767907741,
       "lat": 32.7253852,
       "lon": -16.8171224,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 1767907748,
       "lat": 32.7263954,
       "lon": -16.8165091,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 1767907749,
       "lat": 32.7265356,
       "lon": -16.8167889,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 1767907786,
       "lat": 32.7349621,
       "lon": -16.8187315,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 1767907966,
       "lat": 32.7463845,
       "lon": -16.8263484,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 1768092398,
       "lat": 32.7621457,
       "lon": -16.8224989,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 1768092413,
       "lat": 32.7727436,
       "lon": -16.8278885,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 1768092423,
       "lat": 32.7742349,
       "lon": -16.8286746,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 1768692693,
@@ -729,92 +650,79 @@
       "id": 1768810783,
       "lat": 32.6635,
       "lon": -16.9393403,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 1772891419,
       "lat": 32.6433149,
       "lon": -16.9458308,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 1772891489,
       "lat": 32.6442276,
       "lon": -16.945667,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 1772891522,
       "lat": 32.6446591,
       "lon": -16.9459085,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 1772891532,
       "lat": 32.644907,
       "lon": -16.9458299,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 1772891556,
       "lat": 32.644992,
       "lon": -16.9456196,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 1772891688,
       "lat": 32.6486746,
       "lon": -16.9428263,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 1772891717,
       "lat": 32.6487395,
       "lon": -16.9429618,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 1772891907,
       "lat": 32.649088,
       "lon": -16.9431593,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 1772891935,
       "lat": 32.6491486,
       "lon": -16.9424865,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 1773916878,
       "lat": 32.7161846,
       "lon": -16.765985,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 1773916886,
       "lat": 32.7176816,
       "lon": -16.7647407,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 1782120116,
       "lat": 32.6841496,
       "lon": -16.89891,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 1784227592,
@@ -827,22 +735,19 @@
       "id": 1787913720,
       "lat": 32.7559939,
       "lon": -17.0589635,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 1797359462,
       "lat": 32.7206237,
       "lon": -17.1773143,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 1798142541,
       "lat": 32.7183115,
       "lon": -16.7628398,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 1809880314,
@@ -855,8 +760,7 @@
       "id": 1813213976,
       "lat": 32.7049619,
       "lon": -16.8001351,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 1944601255,
@@ -869,43 +773,37 @@
       "id": 1944605708,
       "lat": 32.6746926,
       "lon": -16.8110415,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 1944983106,
       "lat": 32.6747215,
       "lon": -16.8012893,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 2012628258,
       "lat": 32.6644559,
       "lon": -16.9045564,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 2012681895,
       "lat": 32.666988,
       "lon": -16.904092,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 2012741585,
       "lat": 32.666032,
       "lon": -16.900245,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 2052567006,
       "lat": 32.6706867,
       "lon": -16.9120175,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 2058110522,
@@ -925,36 +823,31 @@
       "id": 2090165290,
       "lat": 32.7129403,
       "lon": -16.9073951,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 2090165293,
       "lat": 32.7138062,
       "lon": -16.9074565,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 2119397988,
       "lat": 32.7419675,
       "lon": -16.7091371,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 2119397989,
       "lat": 32.742041,
       "lon": -16.7110965,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 2145298052,
       "lat": 32.8546185,
       "lon": -17.1535593,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 2145342965,
@@ -974,141 +867,121 @@
       "id": 2145475352,
       "lat": 32.8534882,
       "lon": -17.1696054,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 2169038024,
       "lat": 32.6555024,
       "lon": -16.9080235,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 2266627682,
       "lat": 32.8146558,
       "lon": -16.8766896,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 2284387966,
       "lat": 32.8099089,
       "lon": -16.9527234,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 2284587378,
       "lat": 32.7424628,
       "lon": -16.7813263,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 2324576300,
       "lat": 32.6808169,
       "lon": -17.0440592,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 2469336936,
       "lat": 32.673,
       "lon": -16.9020542,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 2469337052,
       "lat": 32.6756981,
       "lon": -16.9009419,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 2498340426,
       "lat": 33.0634445,
       "lon": -16.3175323,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 2536295460,
       "lat": 32.6744791,
       "lon": -16.9032052,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 2549312203,
       "lat": 32.7565951,
       "lon": -17.2001188,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 2570186879,
       "lat": 32.8329317,
       "lon": -17.2360382,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 2904714773,
       "lat": 32.6584351,
       "lon": -16.9392452,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 2904715136,
       "lat": 32.6588005,
       "lon": -16.9396299,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 2905237487,
       "lat": 32.7039968,
       "lon": -16.7671762,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 2905237556,
       "lat": 32.7055133,
       "lon": -16.7646278,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 3203178352,
       "lat": 32.7375015,
       "lon": -17.2107748,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 3203178353,
       "lat": 32.7398314,
       "lon": -17.212532,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 3209351124,
       "lat": 32.6478957,
       "lon": -16.9057753,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 3210191244,
       "lat": 32.6841618,
       "lon": -16.8994964,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 3255821620,
@@ -1121,8 +994,7 @@
       "id": 3439368480,
       "lat": 32.7733809,
       "lon": -17.099216,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 3458226172,
@@ -1142,8 +1014,7 @@
       "id": 3458279923,
       "lat": 32.7242557,
       "lon": -17.164247,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 3458279934,
@@ -1156,36 +1027,31 @@
       "id": 3472105624,
       "lat": 32.8226141,
       "lon": -16.9738026,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 3681902169,
       "lat": 32.6514955,
       "lon": -16.8399615,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 3688836364,
       "lat": 32.6483297,
       "lon": -16.8734176,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 3688836369,
       "lat": 32.6482192,
       "lon": -16.8690941,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 3696111307,
       "lat": 32.6755352,
       "lon": -16.9005186,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 3696803642,
@@ -1198,43 +1064,37 @@
       "id": 3705814927,
       "lat": 32.6510626,
       "lon": -16.9144535,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 3705822376,
       "lat": 32.6495338,
       "lon": -16.9091581,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 3708118822,
       "lat": 32.6479111,
       "lon": -16.9131672,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 3783853198,
       "lat": 32.8226681,
       "lon": -17.102936,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 3783853200,
       "lat": 32.8247157,
       "lon": -17.1068203,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 3812624063,
       "lat": 32.8145861,
       "lon": -16.8766348,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 3830449596,
@@ -1261,22 +1121,19 @@
       "id": 3837044463,
       "lat": 32.6864451,
       "lon": -17.0494651,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 3837104136,
       "lat": 32.6707196,
       "lon": -17.0650884,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 3837108487,
       "lat": 32.6801874,
       "lon": -17.1049922,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 3851464880,
@@ -1310,15 +1167,13 @@
       "id": 3851464884,
       "lat": 32.7307723,
       "lon": -17.167763,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 3851507867,
       "lat": 32.7299001,
       "lon": -17.1574033,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 3851550664,
@@ -1338,22 +1193,19 @@
       "id": 3851550694,
       "lat": 32.7264311,
       "lon": -17.1611031,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 3851550702,
       "lat": 32.7294517,
       "lon": -17.162189,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 3851550778,
       "lat": 32.7344536,
       "lon": -17.1563824,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 3851554270,
@@ -1471,148 +1323,127 @@
       "id": 3851724213,
       "lat": 32.7656335,
       "lon": -17.2091393,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 3851724216,
       "lat": 32.7661092,
       "lon": -17.2097345,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 3851724220,
       "lat": 32.7675228,
       "lon": -17.2086638,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 3851724225,
       "lat": 32.7706782,
       "lon": -17.2382583,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 3851724228,
       "lat": 32.7735429,
       "lon": -17.2299322,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 3851724232,
       "lat": 32.7743742,
       "lon": -17.2341424,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 3851724233,
       "lat": 32.7745539,
       "lon": -17.2342388,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 3851724236,
       "lat": 32.7746412,
       "lon": -17.2349412,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 3851724238,
       "lat": 32.7751905,
       "lon": -17.227381,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 3851724242,
       "lat": 32.7766797,
       "lon": -17.2345229,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 3851724243,
       "lat": 32.7769117,
       "lon": -17.2231286,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 3851724249,
       "lat": 32.7873929,
       "lon": -17.2334948,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 3851724253,
       "lat": 32.7900176,
       "lon": -17.2359108,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 3851748985,
       "lat": 32.7637433,
       "lon": -17.2096348,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 3851748986,
       "lat": 32.7641674,
       "lon": -17.2188093,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 3851748995,
       "lat": 32.765821,
       "lon": -17.21668,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 3851749029,
       "lat": 32.7680649,
       "lon": -17.2195872,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 3851749047,
       "lat": 32.772774,
       "lon": -17.218446,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 3851749048,
       "lat": 32.7737593,
       "lon": -17.2170727,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 3851749054,
       "lat": 32.7744295,
       "lon": -17.21475,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 3851749058,
       "lat": 32.7751785,
       "lon": -17.2184567,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 3851759274,
@@ -1681,8 +1512,7 @@
       "id": 3851785284,
       "lat": 32.7192481,
       "lon": -17.1578809,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 3851797563,
@@ -1716,8 +1546,7 @@
       "id": 3851797620,
       "lat": 32.7133722,
       "lon": -17.1476456,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 3851799794,
@@ -1772,8 +1601,7 @@
       "id": 3851836267,
       "lat": 32.7545121,
       "lon": -17.2014994,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 3851851792,
@@ -1793,36 +1621,31 @@
       "id": 3852233758,
       "lat": 32.6693434,
       "lon": -16.8998527,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 3852571336,
       "lat": 32.7222442,
       "lon": -17.1725124,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 3853328640,
       "lat": 32.7389127,
       "lon": -17.2113208,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 3854321192,
       "lat": 32.7421725,
       "lon": -16.6833049,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 3854351708,
       "lat": 32.7300192,
       "lon": -17.1781152,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 3854420316,
@@ -1856,8 +1679,7 @@
       "id": 3854481866,
       "lat": 32.7385248,
       "lon": -17.1692107,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 3854644080,
@@ -1870,43 +1692,37 @@
       "id": 3854644138,
       "lat": 32.7306468,
       "lon": -17.177746,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 3867871869,
       "lat": 32.7197454,
       "lon": -17.1737462,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 3870794292,
       "lat": 32.6683074,
       "lon": -16.9172746,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 3871211325,
       "lat": 32.694757,
       "lon": -16.9040582,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 3872006796,
       "lat": 32.6659464,
       "lon": -16.9065657,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 3872006798,
       "lat": 32.6704203,
       "lon": -16.9150527,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 3872006799,
@@ -1919,8 +1735,7 @@
       "id": 3872006800,
       "lat": 32.672059,
       "lon": -16.9358383,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 3872030275,
@@ -1933,36 +1748,31 @@
       "id": 3872680954,
       "lat": 32.6589335,
       "lon": -16.9063069,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 3873165468,
       "lat": 32.6609109,
       "lon": -16.9075281,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 3873165479,
       "lat": 32.6620675,
       "lon": -16.9051543,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 3873197345,
       "lat": 32.6692692,
       "lon": -16.9042247,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 3874489838,
       "lat": 32.8062248,
       "lon": -16.9100577,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 3875248346,
@@ -1975,8 +1785,7 @@
       "id": 3875331155,
       "lat": 32.6729276,
       "lon": -16.9025808,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 3876761550,
@@ -1989,15 +1798,13 @@
       "id": 3877438772,
       "lat": 32.6440514,
       "lon": -16.964794,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 3880761655,
       "lat": 32.6479945,
       "lon": -16.9744712,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 3884742382,
@@ -2010,71 +1817,61 @@
       "id": 3884977823,
       "lat": 32.6476278,
       "lon": -16.9100365,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 3886994418,
       "lat": 32.667262,
       "lon": -16.9139714,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 3886994424,
       "lat": 32.6714826,
       "lon": -16.9293749,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 3891030860,
       "lat": 32.6512044,
       "lon": -16.906541,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 3891030861,
       "lat": 32.6605206,
       "lon": -16.9024659,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 3891096157,
       "lat": 32.6660439,
       "lon": -16.9019953,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 3891096158,
       "lat": 32.6644775,
       "lon": -16.9079592,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 3892971959,
       "lat": 32.6506294,
       "lon": -16.959729,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 3893667403,
       "lat": 32.6483487,
       "lon": -16.8906146,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 3895308530,
       "lat": 32.6497776,
       "lon": -16.9117246,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 3895613451,
@@ -2087,29 +1884,25 @@
       "id": 3895616220,
       "lat": 32.7530822,
       "lon": -17.2141557,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 3895907927,
       "lat": 32.7074071,
       "lon": -16.8910953,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 3895939268,
       "lat": 32.7070818,
       "lon": -16.8907333,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 3895943184,
       "lat": 32.7069737,
       "lon": -16.8910807,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 3895947569,
@@ -2122,92 +1915,79 @@
       "id": 3902452782,
       "lat": 32.850453,
       "lon": -17.2184314,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 3902452783,
       "lat": 32.8510886,
       "lon": -17.2183195,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 3902452784,
       "lat": 32.8517598,
       "lon": -17.2173846,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 3902452785,
       "lat": 32.8525836,
       "lon": -17.2164007,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 3902452786,
       "lat": 32.8527308,
       "lon": -17.209839,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 3902452790,
       "lat": 32.8545595,
       "lon": -17.2148674,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 3902452799,
       "lat": 32.8568582,
       "lon": -17.2116807,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 3905610058,
       "lat": 32.6577796,
       "lon": -16.9106301,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 3905685756,
       "lat": 32.6796787,
       "lon": -16.9117633,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 3997675691,
       "lat": 32.652521,
       "lon": -16.9626728,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 3999080930,
       "lat": 32.6806762,
       "lon": -17.0440815,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 4063168808,
       "lat": 32.6731827,
       "lon": -16.9108394,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 4065973048,
       "lat": 32.6781714,
       "lon": -16.9109078,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 4248117296,
@@ -2234,148 +2014,127 @@
       "id": 4258251853,
       "lat": 32.734368,
       "lon": -16.9914544,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 4269541675,
       "lat": 32.6491135,
       "lon": -16.9725334,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 4269541688,
       "lat": 32.6561613,
       "lon": -16.9789085,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 4275371930,
       "lat": 32.6480542,
       "lon": -16.9752418,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 4275371948,
       "lat": 32.6475585,
       "lon": -16.9765513,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 4278765167,
       "lat": 32.6712692,
       "lon": -16.9706126,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 4292229479,
       "lat": 32.6497813,
       "lon": -16.9026823,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 4297987517,
       "lat": 32.6690181,
       "lon": -16.9767918,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 4298041693,
       "lat": 32.6656415,
       "lon": -16.9795218,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 4298059237,
       "lat": 32.6643395,
       "lon": -16.9753248,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 4298059238,
       "lat": 32.6666714,
       "lon": -16.9758651,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 4305325550,
       "lat": 32.6671009,
       "lon": -16.9834734,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 4307984945,
       "lat": 32.6641959,
       "lon": -17.0079549,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 4307984946,
       "lat": 32.6727291,
       "lon": -17.0217159,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 4308497591,
       "lat": 32.6699224,
       "lon": -17.0646282,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 4309729145,
       "lat": 32.6721974,
       "lon": -17.0634954,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 4312783605,
       "lat": 32.6710358,
       "lon": -16.9802487,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 4312804089,
       "lat": 32.6485545,
       "lon": -16.9034459,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 4314121854,
       "lat": 32.6645975,
       "lon": -16.9624394,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 4324326468,
       "lat": 32.6756566,
       "lon": -16.9802438,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 4326831856,
       "lat": 32.6555357,
       "lon": -16.9491945,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 4397629296,
@@ -2388,372 +2147,319 @@
       "id": 4404709165,
       "lat": 32.8273982,
       "lon": -17.2205391,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 4407391528,
       "lat": 32.8665607,
       "lon": -17.1657445,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 4409695432,
       "lat": 32.6692243,
       "lon": -16.9501111,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 4410582026,
       "lat": 32.8225544,
       "lon": -16.9024028,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 4410595927,
       "lat": 32.8153311,
       "lon": -16.968129,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 4461069392,
       "lat": 32.8248861,
       "lon": -16.9784473,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 4467741580,
       "lat": 32.6495309,
       "lon": -16.9083401,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 4506067543,
       "lat": 32.646816,
       "lon": -16.9037391,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 4584010524,
       "lat": 32.733097,
       "lon": -16.973142,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 4584154943,
       "lat": 32.7655906,
       "lon": -17.0348662,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 4584154949,
       "lat": 32.7686089,
       "lon": -17.0340287,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 4584154954,
       "lat": 32.7705908,
       "lon": -17.0346074,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 4584154956,
       "lat": 32.7704656,
       "lon": -17.0319412,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 4584154957,
       "lat": 32.7693436,
       "lon": -17.030987,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 4584154958,
       "lat": 32.7688964,
       "lon": -17.0290968,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 4584191828,
       "lat": 32.8100807,
       "lon": -17.1410437,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 4584191864,
       "lat": 32.8144529,
       "lon": -17.1249973,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 4584193343,
       "lat": 32.8157068,
       "lon": -17.1131911,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 4584193344,
       "lat": 32.8167567,
       "lon": -17.112225,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 4585419242,
       "lat": 32.8486163,
       "lon": -17.1578915,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 4585474598,
       "lat": 32.7391525,
       "lon": -17.164777,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 4585474599,
       "lat": 32.7405459,
       "lon": -17.1643318,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 4585474603,
       "lat": 32.7587861,
       "lon": -17.188237,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 4585474604,
       "lat": 32.7896441,
       "lon": -17.2369287,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 4585474607,
       "lat": 32.7956711,
       "lon": -17.2332122,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 4585474612,
       "lat": 32.7955855,
       "lon": -17.2332515,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 4585474613,
       "lat": 32.8080966,
       "lon": -17.2353661,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 4585474614,
       "lat": 32.8099906,
       "lon": -17.241632,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 4585474623,
       "lat": 32.8189448,
       "lon": -17.2435089,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 4585474624,
       "lat": 32.8202905,
       "lon": -17.2431307,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 4585474625,
       "lat": 32.821839,
       "lon": -17.2413095,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 4585474626,
       "lat": 32.8254127,
       "lon": -17.2399214,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 4585474627,
       "lat": 32.8322066,
       "lon": -17.2349447,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 4585474628,
       "lat": 32.8321206,
       "lon": -17.2348233,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 4585474629,
       "lat": 32.8306163,
       "lon": -17.2316187,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 4585474634,
       "lat": 32.8598569,
       "lon": -17.1909803,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 4585474635,
       "lat": 32.8640035,
       "lon": -17.1702367,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 4585474638,
       "lat": 32.8564513,
       "lon": -17.16585,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 4585474641,
       "lat": 32.8561375,
       "lon": -17.1657668,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 4585474646,
       "lat": 32.8551276,
       "lon": -17.162465,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 4585474647,
       "lat": 32.8546826,
       "lon": -17.161773,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 4585474648,
       "lat": 32.8550881,
       "lon": -17.1593161,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 4596246363,
       "lat": 32.6540421,
       "lon": -16.9148274,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 4610247292,
       "lat": 32.6879628,
       "lon": -16.7930426,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 4610247293,
       "lat": 32.6878913,
       "lon": -16.7929583,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 4619536190,
       "lat": 32.6539983,
       "lon": -16.9115978,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 4663411793,
       "lat": 32.718821,
       "lon": -16.760259,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 4663411891,
       "lat": 32.7191454,
       "lon": -16.7647445,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 4761812067,
       "lat": 32.6500287,
       "lon": -16.907816,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 4762766626,
       "lat": 32.6479372,
       "lon": -16.90849,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 4762783725,
       "lat": 32.6447901,
       "lon": -16.9149885,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 4828624026,
       "lat": 32.7186177,
       "lon": -16.7624639,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 4917323524,
       "lat": 32.8237893,
       "lon": -16.9843127,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 4958434709,
@@ -2766,92 +2472,79 @@
       "id": 5003021384,
       "lat": 32.6640505,
       "lon": -16.9389747,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 5018422728,
       "lat": 32.7266694,
       "lon": -17.0280325,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 5029259584,
       "lat": 32.8322497,
       "lon": -17.234931,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 5095202921,
       "lat": 32.7196613,
       "lon": -17.1746592,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 5112857423,
       "lat": 32.646687,
       "lon": -16.8991687,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 5114827023,
       "lat": 32.6732646,
       "lon": -16.9032328,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 5115941121,
       "lat": 32.6471928,
       "lon": -16.9021979,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 5160167242,
       "lat": 32.7457804,
       "lon": -16.9150226,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 5202091295,
       "lat": 32.7346951,
       "lon": -16.8865138,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 5249478675,
       "lat": 32.8552449,
       "lon": -17.1637596,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 5274336874,
       "lat": 32.7617008,
       "lon": -17.134909,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 5331037821,
       "lat": 32.6348088,
       "lon": -16.9468159,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 5331304921,
       "lat": 32.6482849,
       "lon": -16.9779893,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 5373369864,
@@ -2885,127 +2578,109 @@
       "id": 5582202221,
       "lat": 32.753363,
       "lon": -16.9862815,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 5584203722,
       "lat": 32.7852102,
       "lon": -17.1056063,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 5584203723,
       "lat": 32.7690981,
       "lon": -17.099019,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 5630921521,
       "lat": 32.7257386,
       "lon": -16.8194569,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 5639620522,
       "lat": 32.6739101,
       "lon": -16.9018415,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 5654779071,
       "lat": 32.7191596,
       "lon": -16.8683307,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 5654779072,
       "lat": 32.7193615,
       "lon": -16.8676621,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 5679546920,
       "lat": 32.6388434,
       "lon": -16.9469473,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 5865491686,
       "lat": 32.825478,
       "lon": -17.1083368,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 6042072752,
       "lat": 32.7190136,
       "lon": -17.1727624,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 6045025126,
       "lat": 32.6454131,
       "lon": -16.9127595,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 6047329890,
       "lat": 32.662952,
       "lon": -16.8686063,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 6049150332,
       "lat": 32.673131,
       "lon": -16.9032664,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 6066154618,
       "lat": 32.7048505,
       "lon": -17.1163103,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 6143505403,
       "lat": 32.6693557,
       "lon": -17.0378432,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 6153738318,
       "lat": 32.6479437,
       "lon": -16.9044309,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 6184854283,
       "lat": 32.6519706,
       "lon": -16.9117266,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 6231023670,
       "lat": 32.6761368,
       "lon": -16.9022459,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 6403994177,
@@ -3018,64 +2693,55 @@
       "id": 6446164141,
       "lat": 32.8017154,
       "lon": -16.8709672,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 6447343355,
       "lat": 32.819143,
       "lon": -16.9164174,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 6447357288,
       "lat": 32.8186248,
       "lon": -16.9189644,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 6458598052,
       "lat": 32.7921898,
       "lon": -16.8540361,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 6541091637,
       "lat": 32.8118698,
       "lon": -16.8697784,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 6548110993,
       "lat": 32.8095515,
       "lon": -16.8767501,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 6551881664,
       "lat": 32.8031921,
       "lon": -16.8797187,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 6606059594,
       "lat": 32.7742335,
       "lon": -16.8503445,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 6614548674,
       "lat": 32.6692968,
       "lon": -16.9099328,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 6631667092,
@@ -3088,50 +2754,43 @@
       "id": 6641317987,
       "lat": 32.803364,
       "lon": -17.0461853,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 6765432395,
       "lat": 33.0574603,
       "lon": -16.3387625,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 6814935246,
       "lat": 32.7287293,
       "lon": -16.7747213,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 6814959889,
       "lat": 32.7233572,
       "lon": -16.77604,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 6814960785,
       "lat": 32.7251379,
       "lon": -16.7790693,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 6814960792,
       "lat": 32.726282,
       "lon": -16.7818375,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 6814960793,
       "lat": 32.7271962,
       "lon": -16.7831412,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 6835929517,
@@ -3144,64 +2803,55 @@
       "id": 6908655265,
       "lat": 32.6533358,
       "lon": -16.8413264,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 6908655266,
       "lat": 32.6532907,
       "lon": -16.8415383,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 6913389030,
       "lat": 32.7600816,
       "lon": -17.0172586,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 7011969871,
       "lat": 32.8116444,
       "lon": -17.2478472,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 7050417781,
       "lat": 32.6449174,
       "lon": -16.9150212,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 7087855708,
       "lat": 32.7723929,
       "lon": -17.2360744,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 7090756392,
       "lat": 32.7536902,
       "lon": -17.2023309,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 7124329186,
       "lat": 32.6585918,
       "lon": -16.8969979,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 7131219941,
       "lat": 32.7975383,
       "lon": -17.042156,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 7207330813,
@@ -3214,141 +2864,121 @@
       "id": 7207339738,
       "lat": 32.669908,
       "lon": -16.9394141,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 7207339747,
       "lat": 32.6674973,
       "lon": -16.9410038,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 7207356039,
       "lat": 32.6715658,
       "lon": -16.9378527,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 7207365306,
       "lat": 32.6716287,
       "lon": -16.9393358,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 7309774785,
       "lat": 32.6796662,
       "lon": -16.8453687,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 7387223650,
       "lat": 32.8090988,
       "lon": -17.1153204,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 7490506905,
       "lat": 32.7353875,
       "lon": -17.1864053,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 7700548785,
       "lat": 32.7226691,
       "lon": -16.8866436,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 7710787185,
       "lat": 32.7565438,
       "lon": -17.018571,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 7710787285,
       "lat": 32.7599586,
       "lon": -17.0170458,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 7710787385,
       "lat": 32.759653,
       "lon": -17.0169686,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 7710787485,
       "lat": 32.7596622,
       "lon": -17.0171903,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 7710787486,
       "lat": 32.7602901,
       "lon": -17.0163099,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 7710787585,
       "lat": 32.7598147,
       "lon": -17.0176559,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 7710787785,
       "lat": 32.8216565,
       "lon": -17.10833,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 7711787185,
       "lat": 32.8227636,
       "lon": -17.1059142,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 7723384685,
       "lat": 32.6508192,
       "lon": -16.8967234,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 8037647638,
       "lat": 32.8039787,
       "lon": -17.0462031,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 8040394582,
       "lat": 32.6359233,
       "lon": -16.9326111,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 8502857312,
       "lat": 32.6622317,
       "lon": -17.0371067,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 8591426190,
@@ -3361,64 +2991,55 @@
       "id": 8591426199,
       "lat": 32.6765862,
       "lon": -17.0303013,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 8712049058,
       "lat": 33.0561898,
       "lon": -16.3375339,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 8729881581,
       "lat": 32.8216542,
       "lon": -17.2313988,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 8855498359,
       "lat": 32.6648184,
       "lon": -16.9320421,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 8995623535,
       "lat": 32.8139907,
       "lon": -16.9798272,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 9004083771,
       "lat": 32.7347381,
       "lon": -17.1835755,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 9006794517,
       "lat": 32.8290692,
       "lon": -16.9877862,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 9006875010,
       "lat": 32.8018224,
       "lon": -16.885198,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 9007690117,
       "lat": 32.8270286,
       "lon": -16.9901732,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 9007701917,
@@ -3431,120 +3052,103 @@
       "id": 9007737918,
       "lat": 32.8247617,
       "lon": -16.9900774,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 9008021517,
       "lat": 32.8244431,
       "lon": -16.9920102,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 9008229517,
       "lat": 32.8040841,
       "lon": -17.0468636,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 9156352089,
       "lat": 32.6447314,
       "lon": -16.8275213,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 9169233417,
       "lat": 32.7062584,
       "lon": -16.76789,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 9169333618,
       "lat": 32.7081252,
       "lon": -16.7682891,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 9175296817,
       "lat": 32.7771038,
       "lon": -16.8971416,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 9178138117,
       "lat": 32.7428382,
       "lon": -16.7817168,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 9178138217,
       "lat": 32.7483446,
       "lon": -16.7955653,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 9212014217,
       "lat": 32.6464529,
       "lon": -16.8472431,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 9466124744,
       "lat": 32.6502925,
       "lon": -16.9028386,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 9577998307,
       "lat": 32.6429937,
       "lon": -16.9204081,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 9577998308,
       "lat": 32.642783,
       "lon": -16.9212966,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 9580987397,
       "lat": 32.85756,
       "lon": -17.1703194,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 9584990564,
       "lat": 32.7963343,
       "lon": -16.8708443,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 9585954460,
       "lat": 32.804994,
       "lon": -16.8830932,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 9587600817,
       "lat": 32.826284,
       "lon": -16.9568858,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 9588111658,
@@ -3557,204 +3161,175 @@
       "id": 9589828123,
       "lat": 32.8037157,
       "lon": -17.1154449,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 9611804232,
       "lat": 32.6466573,
       "lon": -16.9197385,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 9742964717,
       "lat": 32.809078,
       "lon": -17.1438743,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 9855710574,
       "lat": 32.6714504,
       "lon": -17.065064,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 9856272565,
       "lat": 32.8548482,
       "lon": -17.1534125,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 9856316990,
       "lat": 32.8548288,
       "lon": -17.153399,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 9862658482,
       "lat": 32.8682396,
       "lon": -17.1702685,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 9982308317,
       "lat": 33.057848,
       "lon": -16.3351488,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 10006342818,
       "lat": 32.8547535,
       "lon": -17.2143203,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 10006465817,
       "lat": 32.856835,
       "lon": -17.2113531,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 10006833421,
       "lat": 32.8675078,
       "lon": -17.1703976,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 10018575117,
       "lat": 32.6736948,
       "lon": -16.9020463,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 10018607218,
       "lat": 32.67266,
       "lon": -16.9019704,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 10018736923,
       "lat": 32.6744172,
       "lon": -16.903142,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 10022606317,
       "lat": 32.6475855,
       "lon": -16.9003831,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 10203656288,
       "lat": 32.6468541,
       "lon": -16.9033521,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 10204250022,
       "lat": 32.6767601,
       "lon": -16.9027388,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 10204250769,
       "lat": 32.6766966,
       "lon": -16.9026889,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 10216617265,
       "lat": 32.8486362,
       "lon": -17.1577757,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 10235719169,
       "lat": 32.6480502,
       "lon": -16.977265,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 10288054712,
       "lat": 32.6473305,
       "lon": -16.8962,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 10290274466,
       "lat": 32.6596371,
       "lon": -16.9128138,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 10290295953,
       "lat": 32.6519718,
       "lon": -16.9156713,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 10291442242,
       "lat": 32.664711,
       "lon": -16.9132751,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 10304863545,
       "lat": 32.7017142,
       "lon": -16.9895014,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 10311857102,
       "lat": 32.6497843,
       "lon": -16.9576174,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 10578813119,
       "lat": 32.6644121,
       "lon": -16.9044132,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 10720677537,
       "lat": 32.7102245,
       "lon": -16.9630406,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 10723195240,
       "lat": 32.648085,
       "lon": -16.9142932,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 10746697649,
@@ -3837,15 +3412,13 @@
       "id": 10746697660,
       "lat": 32.6704513,
       "lon": -16.8189148,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 10746697661,
       "lat": 32.6689974,
       "lon": -16.8175342,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 10746697662,
@@ -3879,8 +3452,7 @@
       "id": 10746697666,
       "lat": 32.6649752,
       "lon": -16.8091858,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 10746697667,
@@ -3984,64 +3556,55 @@
       "id": 10761333182,
       "lat": 32.8047069,
       "lon": -16.8828612,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 10761437024,
       "lat": 32.8030854,
       "lon": -16.8862697,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 10771435339,
       "lat": 32.7743178,
       "lon": -16.8288473,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 10771742105,
       "lat": 32.8124415,
       "lon": -17.0354797,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 10773511360,
       "lat": 32.6939606,
       "lon": -17.1264792,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 10790678523,
       "lat": 32.8397883,
       "lon": -17.2067445,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 10807023403,
       "lat": 32.7260152,
       "lon": -16.7749857,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 10835647319,
       "lat": 32.8403839,
       "lon": -17.1553747,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 10835647320,
       "lat": 32.8403541,
       "lon": -17.1554267,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 10921320331,
@@ -4054,113 +3617,97 @@
       "id": 10949504434,
       "lat": 32.7165522,
       "lon": -17.1686783,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 10962303114,
       "lat": 32.6880033,
       "lon": -16.7899975,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 10968940749,
       "lat": 32.6468373,
       "lon": -16.9028394,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 11027918005,
       "lat": 32.6380725,
       "lon": -16.9318994,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 11027918105,
       "lat": 32.6433423,
       "lon": -16.9224376,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 11028266411,
       "lat": 32.6365273,
       "lon": -16.936997,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 11076426426,
       "lat": 32.7743665,
       "lon": -16.8286508,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 11159757680,
       "lat": 32.7069873,
       "lon": -16.7681704,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 11169749210,
       "lat": 32.8224626,
       "lon": -17.1037351,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 11171805332,
       "lat": 32.7354482,
       "lon": -16.7402076,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 11257446887,
       "lat": 32.7199984,
       "lon": -16.9650289,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 11286890671,
       "lat": 32.7705251,
       "lon": -17.0757715,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 11293039236,
       "lat": 32.7355445,
       "lon": -16.7403101,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 11330762623,
       "lat": 32.868326,
       "lon": -17.1712253,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 11339488744,
       "lat": 32.7940754,
       "lon": -16.849551,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 11349410222,
       "lat": 32.7539212,
       "lon": -17.0192693,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 11459457306,
@@ -4173,22 +3720,19 @@
       "id": 11478643248,
       "lat": 32.6694976,
       "lon": -16.9772366,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 11488244122,
       "lat": 32.6935396,
       "lon": -17.0462755,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 11495570601,
       "lat": 32.6701436,
       "lon": -17.0647618,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 11696639948,
@@ -4222,288 +3766,247 @@
       "id": 11799790903,
       "lat": 32.8173515,
       "lon": -17.242207,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 11847298394,
       "lat": 32.6463518,
       "lon": -16.9060908,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 11849921662,
       "lat": 32.6481251,
       "lon": -16.910779,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 11850432386,
       "lat": 32.650983,
       "lon": -16.9162917,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 11860357534,
       "lat": 32.7187325,
       "lon": -17.1725229,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 11861852117,
       "lat": 33.0578093,
       "lon": -16.3350614,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 11866037324,
       "lat": 33.0401842,
       "lon": -16.3864285,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 11866958399,
       "lat": 33.0873186,
       "lon": -16.3547939,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 11866958403,
       "lat": 33.0871335,
       "lon": -16.3556123,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 11866958422,
       "lat": 33.0869731,
       "lon": -16.3554087,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 11868677897,
       "lat": 33.0780248,
       "lon": -16.3335604,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 11868792391,
       "lat": 33.0807663,
       "lon": -16.3336705,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 11869503784,
       "lat": 33.0658636,
       "lon": -16.3343834,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 11869510011,
       "lat": 33.0659595,
       "lon": -16.3346222,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 11873909668,
       "lat": 32.6601672,
       "lon": -17.0043579,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 11876701656,
       "lat": 32.8421784,
       "lon": -17.2049897,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 11878865856,
       "lat": 32.8536547,
       "lon": -17.1699159,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 11881541866,
       "lat": 32.8480705,
       "lon": -17.1530607,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 11882067223,
       "lat": 32.6593789,
       "lon": -17.0116546,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 11887314970,
       "lat": 32.8286672,
       "lon": -16.954254,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 11888684213,
       "lat": 32.7617015,
       "lon": -17.1350448,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 11889258447,
       "lat": 32.7779655,
       "lon": -17.2192582,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 11891223566,
       "lat": 32.7920508,
       "lon": -17.1820975,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 11895114843,
       "lat": 32.6453935,
       "lon": -16.8257232,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 11895153118,
       "lat": 32.6461167,
       "lon": -16.8246191,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 11898528156,
       "lat": 32.7723739,
       "lon": -16.8274961,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 11898722119,
       "lat": 32.7893138,
       "lon": -16.8527322,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 11898952068,
       "lat": 32.8047095,
       "lon": -16.882458,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 11910444585,
       "lat": 32.6486218,
       "lon": -16.9108493,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 11917643007,
       "lat": 32.6451252,
       "lon": -16.9144363,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 11936896858,
       "lat": 32.6868428,
       "lon": -17.0928142,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 12075477445,
       "lat": 32.645666,
       "lon": -16.9146201,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 12075477450,
       "lat": 32.6477345,
       "lon": -16.9118736,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 12081616064,
       "lat": 32.6480379,
       "lon": -16.9779854,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 12081616067,
       "lat": 32.6478899,
       "lon": -16.9777776,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 12082706470,
       "lat": 32.6933501,
       "lon": -16.7757199,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 12084658329,
       "lat": 32.8551661,
       "lon": -17.1764347,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 12103296495,
       "lat": 32.7153711,
       "lon": -16.7651124,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 12105875578,
       "lat": 32.8578419,
       "lon": -17.2004669,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 12208787016,
       "lat": 32.6384478,
       "lon": -16.942529,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 12248950604,
       "lat": 32.669639,
       "lon": -17.0310206,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 12316357050,
@@ -4516,8 +4019,7 @@
       "id": 12316357565,
       "lat": 32.7148339,
       "lon": -16.8439752,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 12319533506,
@@ -4530,162 +4032,139 @@
       "id": 12321130377,
       "lat": 32.73917,
       "lon": -16.8881251,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 12328521568,
       "lat": 32.6612644,
       "lon": -16.9303277,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 12391834452,
       "lat": 32.7350832,
       "lon": -16.7897879,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 12398605191,
       "lat": 32.8274064,
       "lon": -17.1111781,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 12514049577,
       "lat": 32.68544,
       "lon": -16.7935832,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 12517895519,
       "lat": 32.8671556,
       "lon": -17.1656401,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 12518078054,
       "lat": 32.6476228,
       "lon": -16.9004649,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 12518567508,
       "lat": 32.6948922,
       "lon": -17.1108554,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 12520695548,
       "lat": 32.8599693,
       "lon": -17.1917652,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 12520720172,
       "lat": 32.8653658,
       "lon": -17.1714308,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 12522724937,
       "lat": 32.6993023,
       "lon": -17.0975523,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 12522782853,
       "lat": 32.7295857,
       "lon": -17.0959647,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 12522996987,
       "lat": 32.6940287,
       "lon": -17.0834071,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 12522996988,
       "lat": 32.6938828,
       "lon": -17.0833499,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 12523331591,
       "lat": 32.8258807,
       "lon": -17.109156,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 12526286177,
       "lat": 32.8119462,
       "lon": -16.9670224,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 12526348650,
       "lat": 32.7127337,
       "lon": -16.8870362,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 12534415214,
       "lat": 32.6793388,
       "lon": -16.8444838,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 12640694600,
       "lat": 32.7138055,
       "lon": -16.9109477,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 12644021301,
       "lat": 32.7925133,
       "lon": -16.8487533,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 12737487969,
       "lat": 32.7526993,
       "lon": -17.223834,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 12762114459,
       "lat": 32.653435,
       "lon": -16.8961806,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 12772270401,
       "lat": 32.7539724,
       "lon": -17.1493362,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 12819296802,
@@ -4698,400 +4177,343 @@
       "id": 12918958231,
       "lat": 32.6372746,
       "lon": -16.9280061,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 12962058638,
       "lat": 32.8682818,
       "lon": -17.1705865,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 12962093987,
       "lat": 32.867746,
       "lon": -17.1657558,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 12974077430,
       "lat": 32.6960691,
       "lon": -16.7836705,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 13030970485,
       "lat": 32.7298359,
       "lon": -17.1593511,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 13052297861,
       "lat": 32.7737935,
       "lon": -17.0232004,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 13059888170,
       "lat": 32.7370053,
       "lon": -16.8174201,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 13063870243,
       "lat": 32.8264289,
       "lon": -16.9849567,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 13064145032,
       "lat": 32.8026887,
       "lon": -17.0456212,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 13073890261,
       "lat": 32.6499035,
       "lon": -16.9188303,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 13075998766,
       "lat": 32.6451335,
       "lon": -16.9457724,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 13075998767,
       "lat": 32.6444461,
       "lon": -16.9457778,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 13131904492,
       "lat": 32.7091432,
       "lon": -16.7804911,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 13142914599,
       "lat": 32.7768587,
       "lon": -16.8971719,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 13146025527,
       "lat": 32.8239363,
       "lon": -16.9946519,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 13149121085,
       "lat": 32.6486267,
       "lon": -16.903683,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 13160017313,
       "lat": 32.6803352,
       "lon": -17.1044077,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 13200177169,
       "lat": 32.6364351,
       "lon": -16.9391989,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 13232683522,
       "lat": 32.7592941,
       "lon": -16.8782318,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 13232685054,
       "lat": 32.820414,
       "lon": -16.9736463,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 13232713430,
       "lat": 32.7932323,
       "lon": -17.0289722,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 13233230817,
       "lat": 33.0873332,
       "lon": -16.3548137,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 13240089521,
       "lat": 32.691006,
       "lon": -17.0897416,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 13240089522,
       "lat": 32.6898241,
       "lon": -17.0908156,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 13240100096,
       "lat": 32.7433158,
       "lon": -16.7010722,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 13240105545,
       "lat": 32.7729919,
       "lon": -17.1226402,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 13242748501,
       "lat": 32.6557401,
       "lon": -16.9422604,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 13243600130,
       "lat": 33.0589552,
       "lon": -16.3348414,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 13244607047,
       "lat": 33.0595465,
       "lon": -16.3353209,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 13247178651,
       "lat": 33.0662864,
       "lon": -16.3349282,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 13276804163,
       "lat": 32.7080002,
       "lon": -17.0102323,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 13297115962,
       "lat": 32.7212608,
       "lon": -16.9659495,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 13308257394,
       "lat": 32.7733314,
       "lon": -17.0838039,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 13462070857,
       "lat": 32.6481243,
       "lon": -16.9143768,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 13462265784,
       "lat": 32.7128993,
       "lon": -16.907431,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 13462265785,
       "lat": 32.7129886,
       "lon": -16.9073445,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 13529091201,
       "lat": 32.7107691,
       "lon": -17.123776,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 13529093201,
       "lat": 32.7107842,
       "lon": -17.1237899,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 13595389985,
       "lat": 32.7275025,
       "lon": -17.0255993,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 13607331970,
       "lat": 32.8676288,
       "lon": -17.1681515,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 13626646747,
       "lat": 32.6614187,
       "lon": -16.8969019,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 13626658448,
       "lat": 32.6616803,
       "lon": -16.8963254,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 13626668439,
       "lat": 32.6615319,
       "lon": -16.8958972,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 13633597457,
       "lat": 32.6795984,
       "lon": -17.1049967,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 13652804901,
       "lat": 32.6731135,
       "lon": -17.0639439,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 13705315617,
       "lat": 32.6445747,
       "lon": -16.9244811,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 13705315618,
       "lat": 32.64447,
       "lon": -16.9240248,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 13705354245,
       "lat": 32.6438065,
       "lon": -16.9249536,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 13705360182,
       "lat": 32.6444138,
       "lon": -16.9254291,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 13708109420,
       "lat": 32.6366854,
       "lon": -16.9382334,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 13711333509,
       "lat": 32.6611102,
       "lon": -16.8957116,
-      "type": "fountain",
-      "name": null
+      "type": "fountain"
     },
     {
       "id": 13712209676,
       "lat": 32.6431843,
       "lon": -16.9203311,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 13712217455,
       "lat": 32.6776695,
       "lon": -16.8979557,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 13712229901,
       "lat": 32.6633866,
       "lon": -16.8956474,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 13714589402,
       "lat": 32.7239722,
       "lon": -16.7588169,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 13714598001,
       "lat": 32.7297788,
       "lon": -16.7716379,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     },
     {
       "id": 13716239301,
       "lat": 32.7204029,
       "lon": -16.9651171,
-      "type": "toilet",
-      "name": null
+      "type": "toilet"
     }
   ]
 }
