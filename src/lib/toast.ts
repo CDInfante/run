@@ -9,7 +9,11 @@ export interface ToastEvent {
 
 export const toast = {
   emit: (message: string, type: ToastType = 'info') => {
-    const id = Math.random().toString(36).substring(2, 9)
+    const id =
+      typeof crypto !== 'undefined' && crypto.randomUUID
+        ? crypto.randomUUID()
+        : Math.random().toString(36).substring(2, 9)
+
     const event = new CustomEvent<ToastEvent>('app-toast', {
       detail: { id, message, type },
     })
