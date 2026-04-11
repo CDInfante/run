@@ -144,7 +144,6 @@ const REGION_COORDS_OVERRIDE: Record<string, [number, number]> = {
 
 const FUNCHAL_PORT_COORDS: [number, number] = [32.6432113, -16.9148545]
 
-// Standard HTML SVG elements (using stroke-width instead of strokeWidth for browser rendering)
 const ICONS_SVG = {
   fountain: `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5s-3.5-4-4-6.5c-.5 2.5-2 4.9-4 6.5C6 11.1 5 13 5 15a7 7 0 0 0 7 7z" /></svg>`,
   toilet: `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 12h13a1 1 0 0 1 1 1 5 5 0 0 1-5 5h-.598a.5.5 0 0 0-.424.765l1.544 2.47a.5.5 0 0 1-.424.765H5.402a.5.5 0 0 1-.424-.765L7 18" /><path d="M8 18a5 5 0 0 1-5-5V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v8" /></svg>`,
@@ -167,7 +166,6 @@ const getClusterIcon = (colorClass: string) => {
   }
 }
 
-// Pure HTML string generation replaces the heavy react-dom/server renderToString
 const createCustomIcon = (
   type: 'fountain' | 'toilet' | 'warning' | 'trail' | 'port',
   level?: string,
@@ -277,7 +275,6 @@ const LocationMarker = ({
   useEffect(() => {
     map.locate({ setView: false, maxZoom: 16 })
 
-    // Explicitly define handlers to allow for proper cleanup
     const onLocationFound = (e: L.LocationEvent) => {
       setPosition(e.latlng)
       setUserLocation(e.latlng)
@@ -291,7 +288,6 @@ const LocationMarker = ({
     map.on('locationfound', onLocationFound)
     map.on('locationerror', onLocationError)
 
-    // Cleanup listeners on unmount to prevent memory leaks
     return () => {
       map.off('locationfound', onLocationFound)
       map.off('locationerror', onLocationError)
@@ -464,7 +460,14 @@ const MapComponent: React.FC<MapProps> = ({
         ref={setMapInstance}
         style={{ height: '100%', width: '100%' }}
       >
-        <TileLayer attribution="&copy; CARTO" url={tileLayerUrl} />
+        {/* LEAFLET RENDERING OPTIMIZATION */}
+        <TileLayer
+          attribution="&copy; CARTO"
+          url={tileLayerUrl}
+          keepBuffer={4}
+          updateWhenIdle={true}
+          updateWhenZooming={false}
+        />
         <MapBounds />
         <LocationMarker setUserLocation={setUserLocation} />
 
@@ -635,9 +638,10 @@ const MapComponent: React.FC<MapProps> = ({
                         className="text-brand-white animate-pulse"
                         aria-hidden="true"
                       >
-                        <circle cx="12" cy="5" r="3" />
-                        <line x1="12" y1="22" x2="12" y2="8" />
-                        <path d="M5 12H2a10 10 0 0 0 20 0h-3" />
+                        <path d="M12 6v16" />
+                        <path d="m19 13 2-1a9 9 0 0 1-18 0l2 1" />
+                        <path d="M9 11h6" />
+                        <circle cx="12" cy="4" r="2" />
                       </svg>
                       {portStatus.isDocked ? t('port.busy') : t('port.clear')}
                     </div>
@@ -668,9 +672,10 @@ const MapComponent: React.FC<MapProps> = ({
                                   className="text-brand-red"
                                   aria-hidden="true"
                                 >
-                                  <circle cx="12" cy="5" r="3" />
-                                  <line x1="12" y1="22" x2="12" y2="8" />
-                                  <path d="M5 12H2a10 10 0 0 0 20 0h-3" />
+                                  <path d="M12 6v16" />
+                                  <path d="m19 13 2-1a9 9 0 0 1-18 0l2 1" />
+                                  <path d="M9 11h6" />
+                                  <circle cx="12" cy="4" r="2" />
                                 </svg>
                               </div>
                               <span className="text-[10px] font-bold uppercase tracking-wide truncate">
