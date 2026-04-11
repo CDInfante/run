@@ -58,6 +58,15 @@ async function scrapeAmenities() {
       name: el.tags.name || undefined, // undefined drops it from JSON if null, saving space
     }))
 
+    // Defensive Check: Overpass should return hundreds of amenities for Madeira.
+    // If it drops to an absurdly low number, the query failed silently or the API is glitching.
+    if (amenities.length < 50) {
+      console.error(
+        `Scraped only ${amenities.length} amenities, which is abnormally low. Aborting to protect existing data.`,
+      )
+      process.exit(1)
+    }
+
     const outputPath = path.join(process.cwd(), 'public', 'amenities.json')
     fs.writeFileSync(
       outputPath,

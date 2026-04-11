@@ -142,6 +142,14 @@ async function scrapeTrails() {
         })
     })
 
+    // Defensive Check: Prevent overwriting JSON if IFCN changes website table format
+    if (trails.length === 0) {
+      console.error(
+        'Failed to scrape any trails. IFCN site layout might have changed.',
+      )
+      process.exit(1)
+    }
+
     const outputPath = path.join(process.cwd(), 'public', 'trails-madeira.json')
     const updatedOnSite = $('.modified time')
       .text()

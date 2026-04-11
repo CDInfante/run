@@ -98,59 +98,57 @@ async function scrapeShips() {
       }
     }
 
-    if (ships.length > 0) {
-      const outputPath = path.join(
-        process.cwd(),
-        'public',
-        'ships-funchal.json',
+    // Defensive Check: Ensure we actually scraped data before proceeding
+    if (ships.length === 0) {
+      console.error(
+        'Failed to scrape any ships. Target site layout may have changed.',
       )
-
-      let oldShips: RawShip[] = []
-      try {
-        if (fs.existsSync(outputPath)) {
-          const raw = JSON.parse(fs.readFileSync(outputPath, 'utf8'))
-          oldShips = Array.isArray(raw) ? raw : raw.ships || []
-        }
-      } catch (_err) {
-        console.warn('Could not read existing data. Starting fresh.')
-      }
-
-      const outputData = {
-        meta: {
-          scraped_at: new Date().toISOString(),
-          total_ships: ships.length,
-        },
-        ships: ships,
-      }
-
-      fs.writeFileSync(outputPath, JSON.stringify(outputData, null, 2))
-      console.log(
-        `✅ Successfully scraped ${ships.length} ships and updated ${outputPath}`,
-      )
-
-      const added = ships.filter(
-        s =>
-          !oldShips.some(os => os.ship === s.ship && os.arrival === s.arrival),
-      )
-      const removed = oldShips.filter(
-        os => !ships.some(s => s.ship === os.ship && s.arrival === os.arrival),
-      )
-
-      if (added.length > 0) {
-        console.log('Added ships:')
-        for (const s of added) {
-          console.log(` - ${s.ship} (${s.arrival})`)
-        }
-      }
-      if (removed.length > 0) {
-        console.log('Removed ships:')
-        for (const s of removed) {
-          console.log(` - ${s.ship} (${s.arrival})`)
-        }
-      }
-    } else {
-      console.error('Failed to scrape any ships. Output not updated.')
       process.exit(1)
+    }
+
+    const outputPath = path.join(process.cwd(), 'public', 'ships-funchal.json')
+
+    let oldShips: RawShip[] = []
+    try {
+      if (fs.existsSync(outputPath)) {
+        const raw = JSON.parse(fs.readFileSync(outputPath, 'utf8'))
+        oldShips = Array.isArray(raw) ? raw : raw.ships || []
+      }
+    } catch {
+      console.warn('Could not read existing data. Starting fresh.')
+    }
+
+    const outputData = {
+      meta: {
+        scraped_at: new Date().toISOString(),
+        total_ships: ships.length,
+      },
+      ships: ships,
+    }
+
+    fs.writeFileSync(outputPath, JSON.stringify(outputData, null, 2))
+    console.log(
+      `✅ Successfully scraped ${ships.length} ships and updated ${outputPath}`,
+    )
+
+    const added = ships.filter(
+      s => !oldShips.some(os => os.ship === s.ship && os.arrival === s.arrival),
+    )
+    const removed = oldShips.filter(
+      os => !ships.some(s => s.ship === os.ship && s.arrival === os.arrival),
+    )
+
+    if (added.length > 0) {
+      console.log('Added ships:')
+      for (const s of added) {
+        console.log(` - ${s.ship} (${s.arrival})`)
+      }
+    }
+    if (removed.length > 0) {
+      console.log('Removed ships:')
+      for (const s of removed) {
+        console.log(` - ${s.ship} (${s.arrival})`)
+      }
     }
   } catch (error) {
     if (axios.isAxiosError(error)) {
