@@ -8,9 +8,9 @@ import {
   Toilet,
 } from 'lucide-react'
 import type React from 'react'
-import { memo } from 'react'
+import { memo, useCallback } from 'react'
 import { useTranslation } from '../../hooks/useTranslation'
-import MapComponent from '../ui/Map' // Renamed from Map to MapComponent to prevent global shadowing
+import MapComponent from '../ui/Map'
 
 interface MapSectionProps {
   showWater: boolean
@@ -34,47 +34,53 @@ interface ToggleProps {
   activeShadow: string
 }
 
-const Toggle: React.FC<ToggleProps> = ({
-  active,
-  onClick,
-  icon: Icon,
-  label,
-  activeBg,
-  activeText,
-  activeBorder,
-  activeShadow,
-}) => (
-  <motion.button
-    layout // This ensures the button smoothly animates its width when the text expands/collapses
-    type="button"
-    onClick={onClick}
-    whileHover={{ scale: 1.02 }}
-    whileTap={{ scale: 0.95 }}
-    transition={{ type: 'spring', stiffness: 400, damping: 25 }}
-    className={`flex items-center justify-center px-3.5 py-3 md:px-5 md:py-2.5 rounded-2xl md:rounded-full transition-colors duration-300 border font-bold uppercase text-[9px] md:text-[10px] tracking-widest ${
-      active
-        ? `${activeBg} ${activeText} ${activeBorder} ${activeShadow} shadow-lg`
-        : 'glass hover:bg-white/10 border-white/10 text-brand-navy dark:text-white opacity-80 hover:opacity-100 shadow-sm'
-    }`}
-  >
-    <Icon size={14} className={`shrink-0 ${active ? '' : 'opacity-60'}`} />
-
-    {/* Responsive Label Logic:
-      - Mobile & Inactive: max-width 0, no margin, invisible.
-      - Mobile & Active: max-width expands, margin added, visible.
-      - Desktop (md+): Always visible, standard margin.
-    */}
-    <span
-      className={`truncate transition-all duration-300 ease-in-out ${
+// OPTIMIZATION: Wrap Toggle in memo so it doesn't re-render unless its own active state changes
+const Toggle: React.FC<ToggleProps> = memo(
+  ({
+    active,
+    onClick,
+    icon: Icon,
+    label,
+    activeBg,
+    activeText,
+    activeBorder,
+    activeShadow,
+  }) => (
+    <motion.button
+      layout
+      type="button"
+      onClick={onClick}
+      aria-pressed={active}
+      whileHover={{ scale: 1.02 }}
+      whileTap={{ scale: 0.95 }}
+      transition={{ type: 'spring', stiffness: 400, damping: 25 }}
+      className={`flex items-center justify-center px-3.5 py-3 md:px-5 md:py-2.5 rounded-2xl md:rounded-full transition-colors duration-300 border font-bold uppercase text-[9px] md:text-[10px] tracking-widest ${
         active
-          ? 'max-w-[100px] opacity-100 ml-2'
-          : 'max-w-0 opacity-0 ml-0 md:max-w-[100px] md:opacity-100 md:ml-2'
+          ? `${activeBg} ${activeText} ${activeBorder} ${activeShadow} shadow-lg`
+          : 'glass hover:bg-white/10 border-white/10 text-brand-navy dark:text-white opacity-80 hover:opacity-100 shadow-sm'
       }`}
     >
-      {label}
-    </span>
-  </motion.button>
+      <Icon
+        size={14}
+        className={`shrink-0 ${active ? '' : 'opacity-60'}`}
+        aria-hidden="true"
+      />
+
+      <span
+        className={`truncate transition-all duration-300 ease-in-out ${
+          active
+            ? 'max-w-[100px] opacity-100 ml-2'
+            : 'max-w-0 opacity-0 ml-0 md:max-w-[100px] md:opacity-100 md:ml-2'
+        }`}
+      >
+        {label}
+      </span>
+    </motion.button>
+  ),
 )
+
+// Prevent missing display name warning for memoized components
+Toggle.displayName = 'Toggle'
 
 const MapSection: React.FC<MapSectionProps> = ({
   showWater,
@@ -88,14 +94,30 @@ const MapSection: React.FC<MapSectionProps> = ({
 }) => {
   const { t } = useTranslation()
 
+  // OPTIMIZATION: Wrap handlers in useCallback so the Toggle components receive stable function references
+  const handleToggleWater = useCallback(
+    () => setShowWater(!showWater),
+    [showWater, setShowWater],
+  )
+  const handleToggleToilets = useCallback(
+    () => setShowToilets(!showToilets),
+    [showToilets, setShowToilets],
+  )
+  const handleToggleAlerts = useCallback(
+    () => setShowAlerts(!showAlerts),
+    [showAlerts, setShowAlerts],
+  )
+  const handleToggleTrails = useCallback(
+    () => setShowTrails(!showTrails),
+    [showTrails, setShowTrails],
+  )
+
   return (
     <section id="map" className="space-y-6 scroll-mt-24 pt-18 w-full">
-      {/* Header & Controls Container */}
       <div className="flex flex-col xl:flex-row xl:items-end justify-between gap-6">
-        {/* Title Area */}
         <div className="flex flex-col flex-shrink-0">
           <div className="flex items-center gap-2 mb-2 opacity-80">
-            <MapIcon size={12} className="text-brand-red" />
+            <MapIcon size={12} className="text-brand-red" aria-hidden="true" />
             <span className="text-[9px] font-bold text-brand-red dark:text-white/80 uppercase tracking-[0.2em] leading-none">
               {t('map.title')}
             </span>
@@ -106,11 +128,10 @@ const MapSection: React.FC<MapSectionProps> = ({
           <div className="h-1.5 w-24 bg-brand-red rounded-full mt-2" />
         </div>
 
-        {/* Filters (Flex Wrap for fluid expansion) */}
         <div className="flex flex-row flex-wrap md:flex-nowrap gap-2 md:gap-3 w-full xl:w-auto">
           <Toggle
             active={showWater}
-            onClick={() => setShowWater(!showWater)}
+            onClick={handleToggleWater}
             icon={Droplet}
             label={t('map.water')}
             activeBg="bg-blue-500/10"
@@ -120,7 +141,7 @@ const MapSection: React.FC<MapSectionProps> = ({
           />
           <Toggle
             active={showToilets}
-            onClick={() => setShowToilets(!showToilets)}
+            onClick={handleToggleToilets}
             icon={Toilet}
             label={t('map.toilets')}
             activeBg="bg-violet-500/10"
@@ -130,7 +151,7 @@ const MapSection: React.FC<MapSectionProps> = ({
           />
           <Toggle
             active={showAlerts}
-            onClick={() => setShowAlerts(!showAlerts)}
+            onClick={handleToggleAlerts}
             icon={AlertTriangle}
             label={t('map.alerts')}
             activeBg="bg-orange-500/10"
@@ -140,7 +161,7 @@ const MapSection: React.FC<MapSectionProps> = ({
           />
           <Toggle
             active={showTrails}
-            onClick={() => setShowTrails(!showTrails)}
+            onClick={handleToggleTrails}
             icon={Mountain}
             label={t('map.prs')}
             activeBg="bg-emerald-500/10"
@@ -151,7 +172,6 @@ const MapSection: React.FC<MapSectionProps> = ({
         </div>
       </div>
 
-      {/* Map Container (Premium Tablet Bezel Effect) */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
