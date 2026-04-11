@@ -431,7 +431,7 @@ const MapComponent: React.FC<MapProps> = ({
           >
             <Loader2 size={12} className="animate-spin text-brand-red" />
             <span className="text-[9px] font-bold uppercase tracking-widest text-brand-navy dark:text-white/90">
-              {t('map.syncing_data', 'Syncing Data')}
+              {t('map.syncing_data')}
             </span>
           </motion.div>
         )}
@@ -446,7 +446,7 @@ const MapComponent: React.FC<MapProps> = ({
               mapInstance.locate({ setView: true, maxZoom: 16 })
           }}
           className="pointer-events-auto p-4 bg-white/90 dark:bg-brand-navy/90 backdrop-blur-xl rounded-2xl shadow-[0_10px_30px_rgba(0,0,0,0.2)] border border-white/20 hover:scale-110 active:scale-95 transition-all group/btn"
-          title={t('map.locate_me', 'Locate Me')}
+          title={t('map.locate_me')}
         >
           <Navigation className="w-6 h-6 text-brand-red group-hover/btn:rotate-12 transition-transform" />
         </button>
@@ -551,9 +551,7 @@ const MapComponent: React.FC<MapProps> = ({
                     </h3>
                     <div className="space-y-2">
                       <p className="text-[10px] uppercase tracking-wider">
-                        <span className="opacity-50">
-                          {t('map.status', 'Status:')}
-                        </span>{' '}
+                        <span className="opacity-50">{t('map.status')}</span>{' '}
                         <span
                           className={
                             trail.status === 'Aberto'
@@ -567,9 +565,7 @@ const MapComponent: React.FC<MapProps> = ({
                         </span>
                       </p>
                       <p className="text-[10px] uppercase tracking-wider">
-                        <span className="opacity-50">
-                          {t('map.dist', 'Dist:')}
-                        </span>{' '}
+                        <span className="opacity-50">{t('map.dist')}</span>{' '}
                         {trail.distance}
                       </p>
                       <a
@@ -579,10 +575,7 @@ const MapComponent: React.FC<MapProps> = ({
                         className="flex items-center justify-center gap-2 mt-4 p-2 bg-emerald-500 text-white rounded-xl text-[10px] font-bold uppercase tracking-widest hover:opacity-90 transition-all"
                       >
                         <span className="sr-only">
-                          {t(
-                            'map.ifcnInformationLink',
-                            'IFCN Information link',
-                          )}
+                          {t('map.ifcnInformationLink')}
                         </span>
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
@@ -600,7 +593,7 @@ const MapComponent: React.FC<MapProps> = ({
                           <polyline points="15 3 21 3 21 9" />
                           <line x1="10" y1="14" x2="21" y2="3" />
                         </svg>
-                        {t('map.ifcn_info', 'IFCN Info')}
+                        {t('map.ifcn_info')}
                       </a>
                     </div>
                   </div>
@@ -767,7 +760,7 @@ const MapComponent: React.FC<MapProps> = ({
                         {nextArrival && (
                           <div className="flex flex-col gap-1 pl-9 border-l border-emerald-500/10 ml-2.5 py-1">
                             <span className="text-[8px] uppercase tracking-widest opacity-50 font-bold">
-                              {t('port.next_stop', 'Próxima Escala')}
+                              {t('port.next_stop')}
                             </span>
                             <div className="flex items-center gap-2">
                               <span className="text-[11px] font-mono font-bold">
@@ -797,12 +790,9 @@ const MapComponent: React.FC<MapProps> = ({
                       className="group/btn flex items-center justify-center gap-2.5 w-full p-3 bg-brand-navy dark:bg-white text-white dark:text-brand-navy rounded-2xl text-[10px] font-bold uppercase tracking-widest hover:scale-[1.02] active:scale-[0.98] transition-all shadow-lg shadow-brand-navy/10 dark:shadow-white/5"
                     >
                       <span className="sr-only">
-                        {t(
-                          'map.apramInformationLink',
-                          'APRAM Information link',
-                        )}
+                        {t('map.apramInformationLink')}
                       </span>
-                      <span>{t('map.apram_info', 'APRAM Info')}</span>
+                      <span>{t('map.apram_info')}</span>
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width="12"
@@ -862,7 +852,7 @@ const MapComponent: React.FC<MapProps> = ({
                         className="p-1.5 bg-white/5 hover:bg-white/10 rounded-lg transition-colors flex items-center justify-center"
                       >
                         <span className="sr-only">
-                          {`${t('weather.more_info_region', 'More info for region ')}${getRegionName(regionId)}`}
+                          {`${t('weather.more_info_region')}${getRegionName(regionId)}`}
                         </span>
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
