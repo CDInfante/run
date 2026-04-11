@@ -65,9 +65,13 @@ export const fetchShipStatus = async (): Promise<ShipStatus> => {
     if (currentlyDockedSul.length === 0) {
       nextAvailableDate = now
     } else {
-      let chainEnd = new Date(
-        Math.max(...currentlyDockedSul.map(s => s.departure.getTime())),
+      // OPTIMIZATION: Prevent Call Stack Exceeded crash for large arrays by using reduce instead of spread syntax
+      const maxDepartureMs = currentlyDockedSul.reduce(
+        (max, s) => Math.max(max, s.departure.getTime()),
+        0,
       )
+
+      let chainEnd = new Date(maxDepartureMs)
       for (const ship of sulShips) {
         if (ship.arrival <= chainEnd && ship.departure > chainEnd)
           chainEnd = ship.departure
@@ -79,7 +83,7 @@ export const fetchShipStatus = async (): Promise<ShipStatus> => {
       isDocked: currentlyDockedSul.length > 0,
       count: currentlyDockedSul.length,
       nextAvailableDate,
-      scrapedAt: scrapedAt || null, // <--- Return the timestamp
+      scrapedAt: scrapedAt || null,
       ships: processedShips.map(s => ({
         name: s.name,
         terminal: s.terminal,
