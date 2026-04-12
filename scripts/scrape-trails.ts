@@ -3,7 +3,7 @@ import fs from 'node:fs'
 import path from 'node:path'
 import axios from 'axios'
 import axiosRetry from 'axios-retry'
-import * as cheerio from 'cheerio'
+import * as cheerio from 'cheerio/slim'
 import type { Trail } from '../src/types/index'
 
 // Apply retry logic with exponential backoff
