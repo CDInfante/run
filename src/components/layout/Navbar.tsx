@@ -174,7 +174,7 @@ const Navbar: React.FC<NavbarProps> = ({ setIsSettingsOpen }) => {
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
               <img
-                src="/apple-touch-icon.png"
+                src="/logo-touch-icon.png"
                 alt="CDI-M"
                 className="h-10 md:h-12 w-auto"
               />
@@ -345,7 +345,7 @@ const Navbar: React.FC<NavbarProps> = ({ setIsSettingsOpen }) => {
             <div className="flex justify-between items-center absolute top-8 left-6 right-6">
               <div className="flex items-center gap-3">
                 <img
-                  src="/apple-touch-icon.png"
+                  src="/logo-touch-icon.png"
                   alt="CDI-M"
                   className="h-10 w-auto"
                 />
