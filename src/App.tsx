@@ -1,3 +1,4 @@
+// run-cdinfante/src/App.tsx
 import { useRegisterSW } from 'virtual:pwa-register/react'
 /** @author Harry Vasanth (harryvasanth.com) */
 import { Loader2 } from 'lucide-react'
@@ -40,6 +41,10 @@ const App: React.FC = () => {
     'showTrails',
     false,
   )
+  const [showMarine, setShowMarine] = useLocalStorage<boolean>(
+    'showMarine',
+    false,
+  )
   const [numShips, setNumShips] = useLocalStorage<number>('numShips', 4)
   const [visibleLocationNames, setVisibleLocationNames] = useLocalStorage<
     string[]
@@ -55,6 +60,10 @@ const App: React.FC = () => {
   )
   const [isTrailsCollapsed, setIsTrailsCollapsed] = useLocalStorage<boolean>(
     'isTrailsCollapsed',
+    isMobileInitial,
+  )
+  const [isMarineCollapsed, setIsMarineCollapsed] = useLocalStorage<boolean>(
+    'isMarineCollapsed',
     isMobileInitial,
   )
 
@@ -167,6 +176,8 @@ const App: React.FC = () => {
             setShowAlerts={setShowAlerts}
             showTrails={showTrails}
             setShowTrails={setShowTrails}
+            showMarine={showMarine}
+            setShowMarine={setShowMarine}
           />
 
           <DashboardSection
@@ -181,6 +192,8 @@ const App: React.FC = () => {
             setIsWeatherCollapsed={setIsWeatherCollapsed}
             isTrailsCollapsed={isTrailsCollapsed}
             setIsTrailsCollapsed={setIsTrailsCollapsed}
+            isMarineCollapsed={isMarineCollapsed}
+            setIsMarineCollapsed={setIsMarineCollapsed}
           />
         </Suspense>
 

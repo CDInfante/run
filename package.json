@@ -12,7 +12,8 @@
     "scrape:amenities": "tsx scripts/scrape-amenities.ts",
     "scrape:ships": "tsx scripts/scrape-ships.ts",
     "scrape:trails": "tsx scripts/scrape-trails.ts",
-    "scrape:all": "npm run scrape:amenities && npm run scrape:ships && npm run scrape:trails"
+    "scrape:marine": "tsx scripts/scrape-marine.ts",
+    "scrape:all": "npm run scrape:amenities && npm run scrape:ships && npm run scrape:trails && npm run scrape:marine"
   },
   "dependencies": {
     "@tailwindcss/forms": "^0.5.11",
@@ -57,7 +58,6 @@
     "vite-plugin-pwa": {
       "vite": "$vite"
     },
-    "whatwg-encoding": "npm:@exodus/bytes@latest",
     "sourcemap-codec": "npm:@jridgewell/sourcemap-codec@latest",
     "source-map": "latest",
     "glob": "latest"

@@ -29,14 +29,16 @@ jobs:
         run: node scripts/scrape-trails.ts
       - name: "⛲ Run amenity scraper"
         run: node scripts/scrape-amenities.ts
+      - name: "🌊 Run marine scraper"
+        run: node scripts/scrape-marine.ts
       - name: "🔄 Commit changes"
         run: |
           git config --global user.name "HarryVasanth"
           git config --global user.email "hello@harryvasanth.com"
-          git add public/ships-funchal.json public/trails-madeira.json public/amenities.json
+          git add public/ships-funchal.json public/trails-madeira.json public/amenities.json public/marine-data.json
           if git diff --staged --quiet; then
             echo "No changes in data."
           else
-            git commit -m "chore(data): 🔄 update ship, trail, and amenity data"
+            git commit -m "chore(data): 🔄 update ship, trail, amenity, and marine data"
             git push
           fi

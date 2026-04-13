@@ -1,9 +1,11 @@
+// run-cdinfante/src/components/sections/DashboardSection.tsx
 /** @author Harry Vasanth (harryvasanth.com) */
 import { CloudSun } from 'lucide-react'
 import type React from 'react'
 import { useCallback } from 'react'
 import { useTranslation } from '../../hooks/useTranslation'
 import type { Location } from '../../types'
+import MarineCard from '../ui/MarineCard'
 import ShipsTab from '../ui/ShipsTab'
 import TrailsCard from '../ui/TrailsCard'
 import WeatherCard from '../ui/WeatherCard'
@@ -23,6 +25,8 @@ interface DashboardSectionProps {
   setIsWeatherCollapsed: (val: boolean) => void
   isTrailsCollapsed: boolean
   setIsTrailsCollapsed: (val: boolean) => void
+  isMarineCollapsed: boolean
+  setIsMarineCollapsed: (val: boolean) => void
 }
 
 const DashboardSection: React.FC<DashboardSectionProps> = ({
@@ -37,6 +41,8 @@ const DashboardSection: React.FC<DashboardSectionProps> = ({
   setIsWeatherCollapsed,
   isTrailsCollapsed,
   setIsTrailsCollapsed,
+  isMarineCollapsed,
+  setIsMarineCollapsed,
 }) => {
   const { t } = useTranslation()
 
@@ -69,6 +75,11 @@ const DashboardSection: React.FC<DashboardSectionProps> = ({
         <TrailsCard
           isCollapsed={isTrailsCollapsed}
           setIsCollapsed={setIsTrailsCollapsed}
+        />
+
+        <MarineCard
+          isCollapsed={isMarineCollapsed}
+          setIsCollapsed={setIsMarineCollapsed}
         />
       </div>
 

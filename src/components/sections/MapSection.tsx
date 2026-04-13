@@ -1,3 +1,4 @@
+// run-cdinfante/src/components/sections/MapSection.tsx
 /** @author Harry Vasanth (harryvasanth.com) */
 import { motion } from 'framer-motion'
 import {
@@ -6,6 +7,7 @@ import {
   Map as MapIcon,
   Mountain,
   Toilet,
+  Waves,
 } from 'lucide-react'
 import type React from 'react'
 import { memo, useCallback } from 'react'
@@ -21,6 +23,8 @@ interface MapSectionProps {
   setShowAlerts: (val: boolean) => void
   showTrails: boolean
   setShowTrails: (val: boolean) => void
+  showMarine: boolean
+  setShowMarine: (val: boolean) => void
 }
 
 interface ToggleProps {
@@ -91,6 +95,8 @@ const MapSection: React.FC<MapSectionProps> = ({
   setShowAlerts,
   showTrails,
   setShowTrails,
+  showMarine,
+  setShowMarine,
 }) => {
   const { t } = useTranslation()
 
@@ -110,6 +116,10 @@ const MapSection: React.FC<MapSectionProps> = ({
   const handleToggleTrails = useCallback(
     () => setShowTrails(!showTrails),
     [showTrails, setShowTrails],
+  )
+  const handleToggleMarine = useCallback(
+    () => setShowMarine(!showMarine),
+    [showMarine, setShowMarine],
   )
 
   return (
@@ -169,6 +179,16 @@ const MapSection: React.FC<MapSectionProps> = ({
             activeBorder="border-emerald-500/30"
             activeShadow="shadow-emerald-500/20"
           />
+          <Toggle
+            active={showMarine}
+            onClick={handleToggleMarine}
+            icon={Waves}
+            label={t('map.marine')}
+            activeBg="bg-cyan-500/10"
+            activeText="text-cyan-600 dark:text-cyan-400"
+            activeBorder="border-cyan-500/30"
+            activeShadow="shadow-cyan-500/20"
+          />
         </div>
       </div>
 
@@ -185,6 +205,7 @@ const MapSection: React.FC<MapSectionProps> = ({
             showToilets={showToilets}
             showAlerts={showAlerts}
             showTrails={showTrails}
+            showMarine={showMarine}
           />
         </div>
       </motion.div>

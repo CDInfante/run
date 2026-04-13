@@ -1,3 +1,4 @@
+// run-cdinfante/src/contexts/I18nTranslations.ts
 /** @author Harry Vasanth (harryvasanth.com) */
 export type Language = 'en-GB' | 'pt-PT'
 
@@ -29,6 +30,7 @@ export const translations: Translations = {
     'map.toilets': 'Toilets',
     'map.alerts': 'Alerts',
     'map.prs': 'PRs',
+    'map.marine': 'Marine',
     'map.syncing_data': 'Syncing Data',
     'map.locate_me': 'Locate Me',
     'map.ifcnInformationLink': 'IFCN Information link',
@@ -48,6 +50,7 @@ export const translations: Translations = {
     'port.clear_now': 'Port is Clear Now',
     'port.clear_from': 'Clear from',
     'port.next_stop': 'Next Stop',
+    'port.live_traffic': 'Live Traffic',
     'weather.regional': 'Regional Forecast',
     'weather.warnings': 'Weather Warnings',
     'weather.active': 'Active',
@@ -155,6 +158,13 @@ export const translations: Translations = {
     'toast.offline': 'You are offline. Showing cached data.',
     'toast.online': 'Back online. Syncing data...',
     'toast.sync_error': 'Background sync failed:',
+    'marine.title': 'Sea Conditions',
+    'marine.sea_temp': 'Sea Temp',
+    'marine.wave_height': 'Main Waves',
+    'marine.swell': 'Swell',
+    'marine.wind_waves': 'Wind Chop',
+    'marine.currents': 'Currents',
+    'marine.select_instruction': 'Select a location to view metrics',
   },
   'pt-PT': {
     'app.title': 'Run - CDInfante',
@@ -177,6 +187,7 @@ export const translations: Translations = {
     'map.toilets': 'WCs',
     'map.alerts': 'Alertas',
     'map.prs': 'PRs',
+    'map.marine': 'Mar',
     'map.syncing_data': 'A Sincronizar Dados',
     'map.locate_me': 'Localizar-me',
     'map.ifcnInformationLink': 'Link de informação IFCN',
@@ -196,6 +207,7 @@ export const translations: Translations = {
     'port.clear_now': 'Porto Livre Agora',
     'port.clear_from': 'Livre a partir de',
     'port.next_stop': 'Próxima Escala',
+    'port.live_traffic': 'Tráfego em Tempo Real',
     'weather.regional': 'Previsão Regional',
     'weather.warnings': 'Avisos Meteorológicos',
     'weather.active': 'Ativo',
@@ -304,5 +316,12 @@ export const translations: Translations = {
     'toast.offline': 'Está offline. A mostrar dados em cache.',
     'toast.online': 'Novamente online. A sincronizar dados...',
     'toast.sync_error': 'A sincronização falhou:',
+    'marine.title': 'Condições do Mar',
+    'marine.sea_temp': 'Temp. Mar',
+    'marine.wave_height': 'Ondulação',
+    'marine.swell': 'Swell',
+    'marine.wind_waves': 'Vaga (Vento)',
+    'marine.currents': 'Correntes',
+    'marine.select_instruction': 'Selecione um local para ver as métricas',
   },
 }
