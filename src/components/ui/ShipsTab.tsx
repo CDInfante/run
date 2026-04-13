@@ -34,6 +34,25 @@ const getDurationString = (targetDate: Date, currentTime: Date): string => {
   return `${mins}m`
 }
 
+const getPortTheme = (isClear: boolean) => {
+  if (!isClear) {
+    return {
+      container: 'border-brand-red/20 bg-brand-red/[0.02]',
+      chevron:
+        'bg-brand-red/10 border-brand-red/20 text-brand-red group-hover/header:bg-brand-red/20',
+      iconBox: 'bg-brand-red text-white shadow-brand-red/20',
+      innerBox: 'border-brand-red/10 bg-brand-red/[0.02]',
+    }
+  }
+  return {
+    container: 'border-green-500/20 bg-green-500/[0.02]',
+    chevron:
+      'bg-green-500/10 border-green-500/20 text-green-500 group-hover/header:bg-green-500/20',
+    iconBox: 'bg-green-500 text-white shadow-green-500/20',
+    innerBox: 'border-green-500/10 bg-green-500/[0.02]',
+  }
+}
+
 const ShipsTab: React.FC<ShipsTabProps> = ({
   limit = 4,
   isCollapsed,
@@ -123,11 +142,11 @@ const ShipsTab: React.FC<ShipsTabProps> = ({
   if (isLoading || !status) {
     return (
       <div className="space-y-4">
-        <div className="p-4 md:p-5 glass rounded-[2rem] flex items-center gap-3 md:gap-4 animate-pulse bg-white/5 dark:bg-slate-900/40 shadow-sm">
+        <div className="p-4 md:p-5 glass rounded-[2rem] flex items-center gap-3 md:gap-4 animate-pulse bg-white/[0.02] border border-white/10 shadow-sm">
           <div className="p-2.5 md:p-3 rounded-2xl shrink-0 bg-brand-navy/10 dark:bg-white/10 w-10 h-10" />
           <div className="flex-1 min-w-0 space-y-2.5">
-            <div className="h-2 w-16 bg-brand-navy/15 dark:bg-white/15 rounded-full" />
-            <div className="h-3 w-32 bg-brand-navy/20 dark:bg-white/20 rounded-full" />
+            <div className="h-2 w-16 bg-brand-navy/20 dark:bg-white/20 rounded-full" />
+            <div className="h-3 w-32 bg-brand-navy/15 dark:bg-white/15 rounded-full" />
             <div className="h-2 w-20 bg-brand-navy/10 dark:bg-white/10 rounded-full" />
           </div>
           <div className="w-8 h-8 bg-brand-navy/10 dark:bg-white/10 rounded-full shrink-0" />
@@ -135,6 +154,8 @@ const ShipsTab: React.FC<ShipsTabProps> = ({
       </div>
     )
   }
+
+  const theme = getPortTheme(isPortClearNow)
 
   return (
     <div className="space-y-4">
@@ -149,14 +170,10 @@ const ShipsTab: React.FC<ShipsTabProps> = ({
             setIsCollapsed(!isCollapsed)
           }
         }}
-        className="p-4 md:p-5 glass rounded-[2rem] flex items-center gap-3 md:gap-4 transition-all duration-300 cursor-pointer group/header relative"
+        className={`p-4 md:p-5 glass rounded-[2rem] flex items-center gap-3 md:gap-4 transition-all duration-300 cursor-pointer hover:bg-white/10 group/header relative border ${theme.container}`}
       >
         <div
-          className={`p-2.5 md:p-3 rounded-2xl shrink-0 transition-colors ${
-            !isPortClearNow
-              ? 'bg-brand-red text-white shadow-lg shadow-brand-red/20'
-              : 'bg-green-500 text-white shadow-lg shadow-green-500/20'
-          }`}
+          className={`p-2.5 md:p-3 rounded-2xl shrink-0 transition-colors ${theme.iconBox}`}
         >
           {!isPortClearNow ? (
             <XCircle size={20} aria-hidden="true" />
@@ -217,15 +234,13 @@ const ShipsTab: React.FC<ShipsTabProps> = ({
               <span>{durationRemaining}</span>
             </div>
           )}
-          <div className="p-1 hover:bg-white/10 rounded-full transition-all">
+          <div
+            className={`p-1 md:p-1.5 rounded-full border transition-colors ${theme.chevron}`}
+          >
             {isCollapsed ? (
-              <ChevronDown
-                size={16}
-                className="opacity-40"
-                aria-hidden="true"
-              />
+              <ChevronDown size={14} aria-hidden="true" />
             ) : (
-              <ChevronUp size={16} className="opacity-40" aria-hidden="true" />
+              <ChevronUp size={14} aria-hidden="true" />
             )}
           </div>
         </div>
@@ -238,16 +253,19 @@ const ShipsTab: React.FC<ShipsTabProps> = ({
             initial={{ opacity: 0, height: 0, marginTop: 0 }}
             animate={{ opacity: 1, height: 'auto', marginTop: 16 }}
             exit={{ opacity: 0, height: 0, marginTop: 0 }}
-            className="overflow-hidden space-y-6"
+            className="overflow-hidden space-y-4"
           >
-            <div className="space-y-2">
+            {/* Themed Inner Bounding Box for the Ship List */}
+            <div
+              className={`border ${theme.innerBox} rounded-2xl p-3 md:p-4 space-y-2 relative z-10 overflow-y-auto custom-scrollbar max-h-[350px] pr-2`}
+            >
               {status.ships.slice(0, limit).map(ship => (
                 <div
                   key={`${ship.name}-${ship.arrival}`}
-                  className={`px-4 py-3 rounded-2xl border transition-all ${
+                  className={`px-4 py-3 rounded-xl border transition-all ${
                     ship.isDockedNow
-                      ? 'bg-brand-red/[0.03] border-brand-red/10'
-                      : 'bg-white/[0.03] border-white/5 hover:border-white/10'
+                      ? 'bg-brand-red/[0.05] border-brand-red/10'
+                      : 'bg-white/5 border-white/5 hover:border-white/10'
                   }`}
                 >
                   <div className="flex justify-between items-start gap-2 mb-2">
@@ -318,6 +336,7 @@ const ShipsTab: React.FC<ShipsTabProps> = ({
                 </div>
               ))}
             </div>
+
             <div className="grid grid-cols-2 gap-3 pt-2 px-1 pb-1">
               <a
                 href="https://apram.pt/movimento-navios"

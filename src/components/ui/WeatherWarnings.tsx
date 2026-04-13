@@ -52,6 +52,39 @@ const getWarningIcon = (type: string, className = '') => {
   }
 }
 
+const getSeverityStyles = (severity: string) => {
+  switch (severity) {
+    case 'red':
+      return {
+        container: 'border-red-500/20 bg-red-500/[0.02]',
+        chevron:
+          'bg-red-500/10 border-red-500/20 text-red-500 group-hover/header:bg-red-500/20',
+        iconBox: 'bg-red-500 text-white shadow-red-500/20',
+      }
+    case 'orange':
+      return {
+        container: 'border-orange-500/20 bg-orange-500/[0.02]',
+        chevron:
+          'bg-orange-500/10 border-orange-500/20 text-orange-500 group-hover/header:bg-orange-500/20',
+        iconBox: 'bg-orange-500 text-white shadow-orange-500/20',
+      }
+    case 'yellow':
+      return {
+        container: 'border-yellow-500/20 bg-yellow-500/[0.02]',
+        chevron:
+          'bg-yellow-500/10 border-yellow-500/20 text-yellow-500 group-hover/header:bg-yellow-500/20',
+        iconBox: 'bg-yellow-500 text-white shadow-yellow-500/20',
+      }
+    default: // 'green'
+      return {
+        container: 'border-green-500/20 bg-green-500/[0.02]',
+        chevron:
+          'bg-green-500/10 border-green-500/20 text-green-500 group-hover/header:bg-green-500/20',
+        iconBox: 'bg-green-500 text-white shadow-green-500/20',
+      }
+  }
+}
+
 const REGION_ORDER = [
   IPMA_REGIONS.NORTH_COAST,
   IPMA_REGIONS.MOUNTAIN_REGIONS,
@@ -146,7 +179,7 @@ const WeatherWarnings: React.FC<WeatherWarningsProps> = ({
 
   if (isLoading) {
     return (
-      <div className="p-4 md:p-5 glass rounded-[2rem] flex items-center gap-3 md:gap-4 animate-pulse bg-white/5 dark:bg-slate-900/40">
+      <div className="p-4 md:p-5 glass rounded-[2rem] flex items-center gap-3 md:gap-4 animate-pulse bg-white/[0.02] border border-white/10 shadow-sm">
         <div className="p-2.5 md:p-3 rounded-2xl shrink-0 bg-brand-navy/10 dark:bg-white/10 w-10 h-10" />
         <div className="flex-1 min-w-0 space-y-2">
           <div className="h-4 w-32 bg-brand-navy/20 dark:bg-white/20 rounded-full" />
@@ -158,8 +191,8 @@ const WeatherWarnings: React.FC<WeatherWarningsProps> = ({
 
   if (isError) {
     return (
-      <div className="p-4 md:p-5 glass rounded-[2rem] flex items-center gap-3 md:gap-4 bg-brand-red/5 border border-brand-red/20 transition-all duration-300">
-        <div className="p-2.5 rounded-2xl shrink-0 bg-brand-red/10 text-brand-red">
+      <div className="p-4 md:p-5 glass rounded-[2rem] flex items-center gap-3 md:gap-4 bg-brand-red/[0.02] border border-brand-red/20 transition-all duration-300">
+        <div className="p-2.5 rounded-2xl shrink-0 bg-brand-red/10 text-brand-red shadow-lg shadow-brand-red/20">
           <CloudOff size={20} aria-hidden="true" />
         </div>
         <div className="flex-1 min-w-0">
@@ -174,6 +207,8 @@ const WeatherWarnings: React.FC<WeatherWarningsProps> = ({
     )
   }
 
+  const theme = getSeverityStyles(highestSeverity)
+
   return (
     <div className="space-y-4">
       <div
@@ -187,18 +222,10 @@ const WeatherWarnings: React.FC<WeatherWarningsProps> = ({
             setIsCollapsed(!isCollapsed)
           }
         }}
-        className="p-4 md:p-5 glass rounded-[2rem] flex items-center gap-3 md:gap-4 transition-all duration-300 cursor-pointer hover:bg-white/10 group relative"
+        className={`p-4 md:p-5 glass rounded-[2rem] flex items-center gap-3 md:gap-4 transition-all duration-300 cursor-pointer hover:bg-white/10 group/header relative border ${theme.container}`}
       >
         <div
-          className={`p-2.5 rounded-2xl shrink-0 shadow-lg ${
-            highestSeverity === 'red'
-              ? 'bg-red-500 text-white shadow-red-500/20'
-              : highestSeverity === 'orange'
-                ? 'bg-orange-500 text-white shadow-orange-500/20'
-                : highestSeverity === 'yellow'
-                  ? 'bg-yellow-500 text-white shadow-yellow-500/20'
-                  : 'bg-green-500 text-white shadow-green-500/20'
-          }`}
+          className={`p-2.5 rounded-2xl shrink-0 shadow-lg ${theme.iconBox}`}
         >
           {highestSeverity === 'green' ? (
             <CheckCircle size={20} aria-hidden="true" />
@@ -243,15 +270,13 @@ const WeatherWarnings: React.FC<WeatherWarningsProps> = ({
               </div>
             </div>
           )}
-          <div className="p-1 md:p-1.5 bg-white/5 rounded-full border border-white/10 group-hover:bg-white/10 transition-colors">
+          <div
+            className={`p-1 md:p-1.5 rounded-full border transition-colors ${theme.chevron}`}
+          >
             {isCollapsed ? (
-              <ChevronDown
-                size={14}
-                className="opacity-60"
-                aria-hidden="true"
-              />
+              <ChevronDown size={14} aria-hidden="true" />
             ) : (
-              <ChevronUp size={14} className="opacity-60" aria-hidden="true" />
+              <ChevronUp size={14} aria-hidden="true" />
             )}
           </div>
         </div>

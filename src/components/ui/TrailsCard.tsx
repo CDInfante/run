@@ -45,15 +45,15 @@ const TrailsCard: React.FC<TrailsCardProps> = ({
 
   if (isLoading) {
     return (
-      <div className="p-4 md:p-5 glass rounded-[2rem] flex items-center gap-3 md:gap-4 animate-pulse bg-white/5 dark:bg-slate-900/40 shadow-sm">
-        <div className="p-2.5 md:p-3 rounded-2xl shrink-0 bg-brand-navy/10 dark:bg-white/10 w-10 h-10" />
+      <div className="p-4 md:p-5 glass rounded-[2rem] flex items-center gap-3 md:gap-4 animate-pulse bg-emerald-500/[0.02] shadow-sm border border-emerald-500/10">
+        <div className="p-2.5 md:p-3 rounded-2xl shrink-0 bg-emerald-500/20 w-10 h-10" />
         <div className="flex-1 min-w-0 space-y-2.5">
-          <div className="h-3 w-28 bg-brand-navy/20 dark:bg-white/20 rounded-full" />
-          <div className="h-2 w-40 bg-brand-navy/10 dark:bg-white/10 rounded-full" />
+          <div className="h-3 w-28 bg-emerald-500/20 rounded-full" />
+          <div className="h-2 w-40 bg-emerald-500/10 rounded-full" />
         </div>
         <div className="flex gap-1.5 shrink-0">
-          <div className="w-10 h-6 bg-brand-navy/10 dark:bg-white/10 rounded-full" />
-          <div className="w-6 h-6 bg-brand-navy/10 dark:bg-white/10 rounded-full" />
+          <div className="w-10 h-6 bg-emerald-500/10 rounded-full" />
+          <div className="w-6 h-6 bg-emerald-500/10 rounded-full" />
         </div>
       </div>
     )
@@ -83,7 +83,7 @@ const TrailsCard: React.FC<TrailsCardProps> = ({
             setIsCollapsed(!isCollapsed)
           }
         }}
-        className="p-4 md:p-5 glass rounded-[2rem] flex items-center gap-3 md:gap-4 transition-all duration-300 cursor-pointer hover:bg-white/10 group relative"
+        className="p-4 md:p-5 glass rounded-[2rem] flex items-center gap-3 md:gap-4 transition-all duration-300 cursor-pointer hover:bg-white/10 group relative border border-emerald-500/20 bg-emerald-500/[0.02]"
       >
         <div className="p-2.5 rounded-2xl bg-emerald-500 text-white shadow-lg shadow-emerald-500/20 shrink-0">
           <Mountain size={20} aria-hidden="true" />
@@ -147,15 +147,11 @@ const TrailsCard: React.FC<TrailsCardProps> = ({
               )}
             </div>
           )}
-          <div className="p-1 md:p-1.5 bg-white/5 rounded-full border border-white/10 group-hover:bg-white/10 transition-colors">
+          <div className="p-1 md:p-1.5 bg-emerald-500/10 rounded-full border border-emerald-500/20 text-emerald-500 group-hover:bg-emerald-500/20 transition-colors">
             {isCollapsed ? (
-              <ChevronDown
-                size={14}
-                className="opacity-60"
-                aria-hidden="true"
-              />
+              <ChevronDown size={14} aria-hidden="true" />
             ) : (
-              <ChevronUp size={14} className="opacity-60" aria-hidden="true" />
+              <ChevronUp size={14} aria-hidden="true" />
             )}
           </div>
         </div>
@@ -209,7 +205,7 @@ const TrailsCard: React.FC<TrailsCardProps> = ({
               })}
             </div>
 
-            <div className="bg-white/[0.03] border border-white/5 rounded-2xl p-4 relative z-10 min-h-[100px]">
+            <div className="bg-emerald-500/[0.03] border border-emerald-500/10 rounded-2xl p-4 relative z-10 min-h-[100px]">
               {selectedTrail ? (
                 <div className="space-y-3 animate-in fade-in slide-in-from-bottom-2 duration-300">
                   <div className="flex justify-between items-start">
