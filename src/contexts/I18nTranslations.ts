@@ -12,6 +12,9 @@ export const translations: Translations = {
   'en-GB': {
     'app.title': 'Run - CDInfante',
     'app.subtitle': 'DOM HENRIQUE',
+    'app.loading': 'Loading...',
+    'app.share_description':
+      'Real-time weather, alerts, community map, and ship schedules for athletes in Madeira and Porto Santo.',
     'nav.home': 'Home',
     'nav.dashboard': 'Dashboard',
     'app.update_available': 'New update available!',
@@ -22,6 +25,8 @@ export const translations: Translations = {
     'nav.ships': 'Ships',
     'nav.settings': 'Settings',
     'nav.trails': 'Trails',
+    'nav.menu': 'Menu',
+    'nav.toggle_theme': 'Toggle theme',
     'nav.install': 'Install App',
     'nav.ios_install_instructions':
       "To install: tap Share, then 'Add to Home Screen'",
@@ -78,6 +83,9 @@ export const translations: Translations = {
     'weather.visibility': 'Visibility',
     'weather.cloud_cover': 'Cloud Cover',
     'weather.no_warnings': 'No Active Warnings',
+    'weather.no_data': 'No data',
+    'weather.backup': 'Backup',
+    'weather.backup_desc': 'Showing cached data',
     'weather.safe_conditions':
       'Conditions are currently safe for outdoor activities in Madeira.',
     'weather.more_info_region': 'More info for region ',
@@ -155,6 +163,7 @@ export const translations: Translations = {
     'settings.search': 'Search...',
     'settings.reset': 'Reset',
     'status.open': 'Open',
+    'status.closed': 'Closed',
     'toast.offline': 'You are offline. Showing cached data.',
     'toast.online': 'Back online. Syncing data...',
     'toast.sync_error': 'Background sync failed:',
@@ -169,6 +178,9 @@ export const translations: Translations = {
   'pt-PT': {
     'app.title': 'Run - CDInfante',
     'app.subtitle': 'DOM HENRIQUE',
+    'app.loading': 'A carregar...',
+    'app.share_description':
+      'Meteorologia em tempo real, alertas, mapa comunitário e horários de navios para atletas na Madeira e Porto Santo.',
     'app.update_available': 'Nova atualização disponível!',
     'app.update_btn': 'Atualizar',
     'app.close_btn': 'Fechar',
@@ -179,6 +191,8 @@ export const translations: Translations = {
     'nav.ships': 'Navios',
     'nav.settings': 'Ajustes',
     'nav.trails': 'Trilhos',
+    'nav.menu': 'Menu',
+    'nav.toggle_theme': 'Alternar tema',
     'nav.install': 'Instalar App',
     'nav.ios_install_instructions':
       "Para instalar: toque em Partilhar e depois 'Adicionar ao Ecrã Principal'",
@@ -235,6 +249,9 @@ export const translations: Translations = {
     'weather.visibility': 'Visibilidade',
     'weather.cloud_cover': 'Nuvens',
     'weather.no_warnings': 'Sem Avisos Ativos',
+    'weather.no_data': 'Sem dados',
+    'weather.backup': 'Cópia',
+    'weather.backup_desc': 'A mostrar dados em cache',
     'weather.safe_conditions':
       'As condições estão atualmente seguras para atividades ao ar livre na Madeira.',
     'weather.more_info_region': 'Mais informações para a região ',
@@ -313,6 +330,7 @@ export const translations: Translations = {
     'settings.search': 'Procurar...',
     'settings.reset': 'Redefinir',
     'status.open': 'Aberto',
+    'status.closed': 'Fechado',
     'toast.offline': 'Está offline. A mostrar dados em cache.',
     'toast.online': 'Novamente online. A sincronizar dados...',
     'toast.sync_error': 'A sincronização falhou:',
