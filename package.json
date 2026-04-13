@@ -60,6 +60,7 @@
     },
     "sourcemap-codec": "npm:@jridgewell/sourcemap-codec@latest",
     "source-map": "latest",
-    "glob": "latest"
+    "glob": "latest",
+    "encoding-sniffer": "^1.0.2"
   }
 }

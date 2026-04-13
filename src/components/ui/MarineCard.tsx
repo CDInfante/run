@@ -18,8 +18,8 @@ import type React from 'react'
 import { memo, useMemo, useState } from 'react'
 import { useTranslation } from '../../hooks/useTranslation'
 import { getDirection } from '../../lib/utils'
-import { fetchMarineData } from '../../services/marine'
 import type { MarineLocationData } from '../../services/marine'
+import { fetchMarineData } from '../../services/marine'
 
 interface MarineCardProps {
   isCollapsed: boolean
