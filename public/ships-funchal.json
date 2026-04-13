@@ -1,7 +1,7 @@
 {
   "meta": {
-    "scraped_at": "2026-04-13T11:15:30.865Z",
-    "total_ships": 14
+    "scraped_at": "2026-04-13T13:17:57.514Z",
+    "total_ships": 17
   },
   "ships": [
     {
@@ -77,6 +77,15 @@
       "destination_port": "Casablanca"
     },
     {
+      "ship": "NORWEGIAN GEM",
+      "port_of_call": "Funchal - Terminal Sul",
+      "agent": "JFM Shipping, Lda.",
+      "arrival": "2026-04-16T09:00",
+      "origin_port": "New York",
+      "departure": "2026-04-16T20:00",
+      "destination_port": "Gibraltar"
+    },
+    {
       "ship": "ELYSIAN",
       "port_of_call": "Funchal - Terminal Sul",
       "agent": "Transinsular (Madeira)-Transp. Marit. Insulares, Lda.",
@@ -104,6 +113,15 @@
       "destination_port": "Gibraltar"
     },
     {
+      "ship": "WORLD NAVIGATOR",
+      "port_of_call": "Funchal - Terminal Norte",
+      "agent": "Transinsular (Madeira)-Transp. Marit. Insulares, Lda.",
+      "arrival": "2026-04-18T14:00",
+      "origin_port": "Santa Cruz De Tenerife",
+      "departure": "2026-04-19T15:00",
+      "destination_port": "Lisboa"
+    },
+    {
       "ship": "ARCADIA",
       "port_of_call": "Funchal - Terminal Sul",
       "agent": "Blatas, Lda.",
@@ -111,6 +129,15 @@
       "origin_port": "La Coruna (A Coruna)",
       "departure": "2026-04-21T16:00",
       "destination_port": "Santa Cruz De La Palma"
+    },
+    {
+      "ship": "LE CHAMPLAIN",
+      "port_of_call": "Funchal - Terminal Norte",
+      "agent": "Blatas, Lda.",
+      "arrival": "2026-04-20T10:00",
+      "origin_port": "Santa Cruz De La Palma",
+      "departure": "2026-04-21T14:00",
+      "destination_port": "Cadiz"
     },
     {
       "ship": "BOLETTE",
