@@ -1,4 +1,3 @@
-// run-cdinfante/src/App.tsx
 import { useRegisterSW } from 'virtual:pwa-register/react'
 /** @author Harry Vasanth (harryvasanth.com) */
 import { Loader2 } from 'lucide-react'
@@ -20,14 +19,13 @@ const DashboardSection = lazy(
   () => import('./components/sections/DashboardSection'),
 )
 
+const DEFAULT_LOCATIONS = ['Sé', 'Pico Ruivo', 'Porto Moniz', 'Machico']
+const IS_MOBILE_INITIAL =
+  typeof window !== 'undefined' ? window.innerWidth < 1024 : false
+
 const App: React.FC = () => {
   const { t } = useTranslation()
 
-  const defaultLocations = ['Sé', 'Pico Ruivo', 'Porto Moniz', 'Machico']
-  const isMobileInitial =
-    typeof window !== 'undefined' ? window.innerWidth < 1024 : false
-
-  // Refactored LocalStorage States
   const [showWater, setShowWater] = useLocalStorage<boolean>('showWater', false)
   const [showToilets, setShowToilets] = useLocalStorage<boolean>(
     'showToilets',
@@ -48,23 +46,23 @@ const App: React.FC = () => {
   const [numShips, setNumShips] = useLocalStorage<number>('numShips', 4)
   const [visibleLocationNames, setVisibleLocationNames] = useLocalStorage<
     string[]
-  >('visibleLocationNames', defaultLocations)
+  >('visibleLocationNames', DEFAULT_LOCATIONS)
 
   const [isShipsCollapsed, setIsShipsCollapsed] = useLocalStorage<boolean>(
     'isShipsCollapsed',
-    isMobileInitial,
+    IS_MOBILE_INITIAL,
   )
   const [isWeatherCollapsed, setIsWeatherCollapsed] = useLocalStorage<boolean>(
     'isWeatherCollapsed',
-    isMobileInitial,
+    IS_MOBILE_INITIAL,
   )
   const [isTrailsCollapsed, setIsTrailsCollapsed] = useLocalStorage<boolean>(
     'isTrailsCollapsed',
-    isMobileInitial,
+    IS_MOBILE_INITIAL,
   )
   const [isMarineCollapsed, setIsMarineCollapsed] = useLocalStorage<boolean>(
     'isMarineCollapsed',
-    isMobileInitial,
+    IS_MOBILE_INITIAL,
   )
 
   const [isSettingsOpen, setIsSettingsOpen] = useState(false)
@@ -122,11 +120,11 @@ const App: React.FC = () => {
     // Failsafe in case localStorage was corrupted and isn't an array
     const safeLocations = Array.isArray(visibleLocationNames)
       ? visibleLocationNames
-      : defaultLocations
+      : DEFAULT_LOCATIONS
     return (locationsData as Location[]).filter(loc =>
       safeLocations.includes(loc.name),
     )
-  }, [visibleLocationNames, defaultLocations]) // Added missing dependency to satisfy linters
+  }, [visibleLocationNames]) // DEFAULT_LOCATIONS is removed from deps because it is now a module-level constant
 
   return (
     <div
@@ -137,7 +135,8 @@ const App: React.FC = () => {
         ref={glowRef}
         className="pointer-events-none fixed inset-0 z-30 transition-opacity duration-300"
         style={{
-          background: `radial-gradient(600px at -1000px -1000px, rgba(182, 23, 30, 0.1), transparent 80%)`, // Default off-screen
+          background:
+            'radial-gradient(600px at -1000px -1000px, rgba(182, 23, 30, 0.1), transparent 80%)', // Default off-screen
         }}
       />
 
@@ -152,7 +151,7 @@ const App: React.FC = () => {
         visibleLocationNames={
           Array.isArray(visibleLocationNames)
             ? visibleLocationNames
-            : defaultLocations
+            : DEFAULT_LOCATIONS
         }
         toggleLocation={toggleLocation}
         numShips={numShips}
