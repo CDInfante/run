@@ -1,7 +1,3 @@
-// run-cdinfante/src/services/marine.ts
-/** @author Harry Vasanth (harryvasanth.com) */
-import axios from 'axios'
-
 export interface MarineLocationData {
   id: string
   name: string
@@ -31,6 +27,29 @@ export interface MarineResponse {
 }
 
 export const fetchMarineData = async (): Promise<MarineResponse> => {
-  const response = await axios.get<MarineResponse>('/marine-data.json')
-  return response.data
+  try {
+    let response: Response
+    const controller = new AbortController()
+    // 3-second timeout before falling back to local storage
+    const timeoutId = setTimeout(() => controller.abort(), 3000)
+
+    try {
+      response = await fetch(
+        'https://raw.githubusercontent.com/CDInfante/run/refs/heads/main/public/marine-data.json',
+        { signal: controller.signal },
+      )
+      clearTimeout(timeoutId)
+      if (!response.ok) throw new Error('GitHub fetch failed')
+    } catch {
+      clearTimeout(timeoutId)
+      response = await fetch('/marine-data.json')
+      if (!response.ok) throw new Error('Local fetch failed')
+    }
+
+    return await response.json()
+  } catch (error) {
+    console.error('Failed to fetch marine data:', error)
+    // Throw error so React Query knows the fetch completely failed
+    throw new Error('Unable to retrieve marine data')
+  }
 }
