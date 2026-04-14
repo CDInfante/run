@@ -1,18 +1,9 @@
 {
   "meta": {
-    "scraped_at": "2026-04-13T23:38:53.900Z",
-    "total_ships": 17
+    "scraped_at": "2026-04-14T02:07:53.694Z",
+    "total_ships": 16
   },
   "ships": [
-    {
-      "ship": "AIDAbella",
-      "port_of_call": "Funchal - Terminal Norte",
-      "agent": "Blatas, Lda.",
-      "arrival": "2026-04-13T09:00",
-      "origin_port": "Santa Cruz De La Palma",
-      "departure": "2026-04-13T20:00",
-      "destination_port": "Lisboa"
-    },
     {
       "ship": "MEIN SCHIFF RELAX",
       "port_of_call": "Funchal - Terminal Sul",
