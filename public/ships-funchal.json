@@ -1,7 +1,7 @@
 {
   "meta": {
-    "scraped_at": "2026-04-14T16:05:01.213Z",
-    "total_ships": 17
+    "scraped_at": "2026-04-14T18:01:29.716Z",
+    "total_ships": 18
   },
   "ships": [
     {
@@ -147,6 +147,15 @@
       "origin_port": "Ponta Delgada",
       "departure": "2026-04-23T18:30",
       "destination_port": "Lisboa"
+    },
+    {
+      "ship": "MEIN SCHIFF 1",
+      "port_of_call": "Funchal - Terminal Sul",
+      "agent": "JFM Shipping, Lda.",
+      "arrival": "2026-04-24T06:45",
+      "origin_port": "Castries",
+      "departure": "2026-04-24T17:30",
+      "destination_port": "Malaga"
     },
     {
       "ship": "VENTURA",
