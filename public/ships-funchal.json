@@ -1,6 +1,6 @@
 {
   "meta": {
-    "scraped_at": "2026-04-14T09:14:10.951Z",
+    "scraped_at": "2026-04-14T10:59:35.696Z",
     "total_ships": 16
   },
   "ships": [
@@ -83,7 +83,7 @@
       "arrival": "2026-04-17T07:00",
       "origin_port": "San Juan",
       "departure": "2026-04-18T12:00",
-      "destination_port": "Barcelona"
+      "destination_port": "Gibraltar"
     },
     {
       "ship": "MARINA",
