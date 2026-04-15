@@ -1,7 +1,7 @@
 {
   "meta": {
-    "scraped_at": "2026-04-15T13:18:29.853Z",
-    "total_ships": 16
+    "scraped_at": "2026-04-15T15:07:05.311Z",
+    "total_ships": 18
   },
   "ships": [
     {
@@ -120,6 +120,24 @@
       "origin_port": "Santa Cruz De La Palma",
       "departure": "2026-04-21T14:00",
       "destination_port": "Cadiz"
+    },
+    {
+      "ship": "MEIN SCHIFF RELAX",
+      "port_of_call": "Funchal - Terminal Sul",
+      "agent": "JFM Shipping, Lda.",
+      "arrival": "2026-04-21T06:00",
+      "origin_port": "Las Palmas (Gran Canaria)",
+      "departure": "2026-04-21T18:00",
+      "destination_port": "Cadiz"
+    },
+    {
+      "ship": "MEIN SCHIFF 7",
+      "port_of_call": "Funchal - Terminal Sul",
+      "agent": "JFM Shipping, Lda.",
+      "arrival": "2026-04-22T00:01",
+      "origin_port": "Las Palmas (Gran Canaria)",
+      "departure": "2026-04-23T14:00",
+      "destination_port": "Santa Cruz De La Palma"
     },
     {
       "ship": "BOLETTE",
