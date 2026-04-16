@@ -1,7 +1,7 @@
 {
   "meta": {
-    "scraped_at": "2026-04-16T16:19:49.728Z",
-    "total_ships": 15
+    "scraped_at": "2026-04-16T18:05:32.076Z",
+    "total_ships": 16
   },
   "ships": [
     {
@@ -75,6 +75,15 @@
       "origin_port": "Santa Cruz De Tenerife",
       "departure": "2026-04-19T14:30",
       "destination_port": "Lisboa"
+    },
+    {
+      "ship": "CEMENT TRADER",
+      "port_of_call": "Funchal - Terminal Cimenteiro",
+      "agent": "Transinsular (Madeira)-Transp. Marit. Insulares, Lda.",
+      "arrival": "2026-04-18T17:00",
+      "origin_port": "Setúbal",
+      "departure": "2026-04-20T14:00",
+      "destination_port": "Porto Santo Island"
     },
     {
       "ship": "ARCADIA",
