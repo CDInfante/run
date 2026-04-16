@@ -1,6 +1,6 @@
 {
   "meta": {
-    "scraped_at": "2026-04-16T09:14:44.855Z",
+    "scraped_at": "2026-04-16T10:59:16.462Z",
     "total_amenities": 724
   },
   "amenities": [
@@ -1980,10 +1980,9 @@
     },
     {
       "id": 4248140197,
-      "lat": 32.8520178,
-      "lon": -17.166427,
-      "type": "fountain",
-      "name": "Miradouro da Lagoa-Lamaceiros PMZ"
+      "lat": 32.8516446,
+      "lon": -17.1663469,
+      "type": "fountain"
     },
     {
       "id": 4248140391,
