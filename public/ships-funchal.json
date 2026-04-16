@@ -1,27 +1,9 @@
 {
   "meta": {
-    "scraped_at": "2026-04-15T23:38:50.688Z",
-    "total_ships": 17
+    "scraped_at": "2026-04-16T05:27:26.954Z",
+    "total_ships": 15
   },
   "ships": [
-    {
-      "ship": "MARELLA VOYAGER",
-      "port_of_call": "Funchal - Terminal Sul",
-      "agent": "Agência Ferraz - J. M. Ferraz Simões, Lda.",
-      "arrival": "2026-04-15T06:00",
-      "origin_port": "Puerto Del Rosario-Fuerteventura",
-      "departure": "2026-04-15T18:00",
-      "destination_port": "San Sebastian De La Gomera"
-    },
-    {
-      "ship": "QUEEN VICTORIA",
-      "port_of_call": "Funchal - Terminal Sul",
-      "agent": "Blatas, Lda.",
-      "arrival": "2026-04-15T07:15",
-      "origin_port": "Southampton",
-      "departure": "2026-04-15T16:30",
-      "destination_port": "Santa Cruz De Tenerife"
-    },
     {
       "ship": "LE BOUGAINVILLE",
       "port_of_call": "Funchal - Terminal Norte",
