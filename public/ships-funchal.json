@@ -1,6 +1,6 @@
 {
   "meta": {
-    "scraped_at": "2026-04-16T05:27:26.954Z",
+    "scraped_at": "2026-04-16T09:14:34.982Z",
     "total_ships": 15
   },
   "ships": [
@@ -8,7 +8,7 @@
       "ship": "LE BOUGAINVILLE",
       "port_of_call": "Funchal - Terminal Norte",
       "agent": "Blatas, Lda.",
-      "arrival": "2026-04-16T07:00",
+      "arrival": "2026-04-16T06:30",
       "origin_port": "La Estaca",
       "departure": "2026-04-17T11:00",
       "destination_port": "Santa Cruz De La Palma"
@@ -17,7 +17,7 @@
       "ship": "SEVEN SEAS GRANDEUR",
       "port_of_call": "Funchal - Terminal Sul",
       "agent": "JFM Shipping, Lda.",
-      "arrival": "2026-04-16T08:00",
+      "arrival": "2026-04-16T08:10",
       "origin_port": "Miami",
       "departure": "2026-04-16T18:00",
       "destination_port": "Casablanca"
@@ -26,7 +26,7 @@
       "ship": "NORWEGIAN GEM",
       "port_of_call": "Funchal - Terminal Sul",
       "agent": "JFM Shipping, Lda.",
-      "arrival": "2026-04-16T09:00",
+      "arrival": "2026-04-16T07:15",
       "origin_port": "New York",
       "departure": "2026-04-16T20:00",
       "destination_port": "Gibraltar"
@@ -73,7 +73,7 @@
       "agent": "Transinsular (Madeira)-Transp. Marit. Insulares, Lda.",
       "arrival": "2026-04-18T14:00",
       "origin_port": "Santa Cruz De Tenerife",
-      "departure": "2026-04-19T15:00",
+      "departure": "2026-04-19T14:30",
       "destination_port": "Lisboa"
     },
     {
