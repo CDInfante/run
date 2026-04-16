@@ -1,6 +1,6 @@
 {
   "meta": {
-    "scraped_at": "2026-04-16T10:59:04.239Z",
+    "scraped_at": "2026-04-16T12:01:34.791Z",
     "total_ships": 15
   },
   "ships": [
@@ -37,7 +37,7 @@
       "agent": "Transinsular (Madeira)-Transp. Marit. Insulares, Lda.",
       "arrival": "2026-04-17T07:00",
       "origin_port": "San Juan",
-      "departure": "2026-04-18T12:00",
+      "departure": "2026-04-18T10:00",
       "destination_port": "Gibraltar"
     },
     {
