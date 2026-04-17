@@ -1,18 +1,9 @@
 {
   "meta": {
-    "scraped_at": "2026-04-17T10:52:00.171Z",
-    "total_ships": 14
+    "scraped_at": "2026-04-17T11:48:57.899Z",
+    "total_ships": 13
   },
   "ships": [
-    {
-      "ship": "LE BOUGAINVILLE",
-      "port_of_call": "Funchal - Terminal Norte",
-      "agent": "Blatas, Lda.",
-      "arrival": "2026-04-16T06:30",
-      "origin_port": "La Estaca",
-      "departure": "2026-04-17T11:00",
-      "destination_port": "Santa Cruz De La Palma"
-    },
     {
       "ship": "ELYSIAN",
       "port_of_call": "Funchal - Terminal Sul",
