@@ -1,7 +1,7 @@
 {
   "meta": {
-    "scraped_at": "2026-04-17T13:10:27.765Z",
-    "total_amenities": 724
+    "scraped_at": "2026-04-17T17:46:05.215Z",
+    "total_amenities": 725
   },
   "amenities": [
     {
@@ -4495,6 +4495,12 @@
       "lat": 32.7204029,
       "lon": -16.9651171,
       "type": "toilet"
+    },
+    {
+      "id": 13737983817,
+      "lat": 32.6364619,
+      "lon": -16.9327206,
+      "type": "fountain"
     }
   ]
 }
