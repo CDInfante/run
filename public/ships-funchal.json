@@ -1,7 +1,7 @@
 {
   "meta": {
-    "scraped_at": "2026-04-16T23:37:21.170Z",
-    "total_ships": 16
+    "scraped_at": "2026-04-17T02:08:47.775Z",
+    "total_ships": 14
   },
   "ships": [
     {
@@ -12,24 +12,6 @@
       "origin_port": "La Estaca",
       "departure": "2026-04-17T11:00",
       "destination_port": "Santa Cruz De La Palma"
-    },
-    {
-      "ship": "SEVEN SEAS GRANDEUR",
-      "port_of_call": "Funchal - Terminal Sul",
-      "agent": "JFM Shipping, Lda.",
-      "arrival": "2026-04-16T08:10",
-      "origin_port": "Miami",
-      "departure": "2026-04-16T18:00",
-      "destination_port": "Casablanca"
-    },
-    {
-      "ship": "NORWEGIAN GEM",
-      "port_of_call": "Funchal - Terminal Sul",
-      "agent": "JFM Shipping, Lda.",
-      "arrival": "2026-04-16T07:15",
-      "origin_port": "New York",
-      "departure": "2026-04-16T20:00",
-      "destination_port": "Gibraltar"
     },
     {
       "ship": "ELYSIAN",
