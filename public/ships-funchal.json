@@ -1,27 +1,9 @@
 {
   "meta": {
-    "scraped_at": "2026-04-18T09:47:03.840Z",
-    "total_ships": 12
+    "scraped_at": "2026-04-18T10:36:34.755Z",
+    "total_ships": 10
   },
   "ships": [
-    {
-      "ship": "ELYSIAN",
-      "port_of_call": "Funchal - Terminal Sul",
-      "agent": "Transinsular (Madeira)-Transp. Marit. Insulares, Lda.",
-      "arrival": "2026-04-17T02:00",
-      "origin_port": "San Juan",
-      "departure": "2026-04-18T10:00",
-      "destination_port": "Gibraltar"
-    },
-    {
-      "ship": "TT ELYSIAN",
-      "port_of_call": "Funchal - Terminal Sul",
-      "agent": "Transinsular (Madeira)-Transp. Marit. Insulares, Lda.",
-      "arrival": "2026-04-17T02:00",
-      "origin_port": "San Juan",
-      "departure": "2026-04-18T10:00",
-      "destination_port": "Gibraltar"
-    },
     {
       "ship": "OOSTERDAM",
       "port_of_call": "Funchal - Terminal Sul",
