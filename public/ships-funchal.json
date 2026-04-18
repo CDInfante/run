@@ -1,6 +1,6 @@
 {
   "meta": {
-    "scraped_at": "2026-04-18T17:33:16.250Z",
+    "scraped_at": "2026-04-18T18:41:51.667Z",
     "total_ships": 11
   },
   "ships": [
@@ -26,7 +26,7 @@
       "ship": "CEMENT TRADER",
       "port_of_call": "Funchal - Terminal Cimenteiro",
       "agent": "Transinsular (Madeira)-Transp. Marit. Insulares, Lda.",
-      "arrival": "2026-04-18T17:00",
+      "arrival": "2026-04-18T18:15",
       "origin_port": "Setúbal",
       "departure": "2026-04-20T14:00",
       "destination_port": "Porto Santo Island"
