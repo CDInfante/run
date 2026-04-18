@@ -1,7 +1,7 @@
 {
   "meta": {
-    "scraped_at": "2026-04-18T14:49:49.594Z",
-    "total_ships": 10
+    "scraped_at": "2026-04-18T15:34:35.974Z",
+    "total_ships": 11
   },
   "ships": [
     {
@@ -17,7 +17,7 @@
       "ship": "WORLD NAVIGATOR",
       "port_of_call": "Funchal - Terminal Norte",
       "agent": "Transinsular (Madeira)-Transp. Marit. Insulares, Lda.",
-      "arrival": "2026-04-18T14:00",
+      "arrival": "2026-04-18T13:45",
       "origin_port": "Santa Cruz De Tenerife",
       "departure": "2026-04-19T14:30",
       "destination_port": "Lisboa"
@@ -84,6 +84,15 @@
       "origin_port": "Castries",
       "departure": "2026-04-24T17:30",
       "destination_port": "Malaga"
+    },
+    {
+      "ship": "LE BOUGAINVILLE",
+      "port_of_call": "Funchal - Terminal Norte",
+      "agent": "Blatas, Lda.",
+      "arrival": "2026-04-24T12:45",
+      "origin_port": "Santa Cruz De Tenerife",
+      "departure": "2026-04-25T12:15",
+      "destination_port": "Tangier"
     },
     {
       "ship": "VENTURA",
