@@ -1,7 +1,7 @@
 {
   "meta": {
-    "scraped_at": "2026-04-19T10:35:49.162Z",
-    "total_ships": 10
+    "scraped_at": "2026-04-19T12:53:57.569Z",
+    "total_ships": 11
   },
   "ships": [
     {
@@ -39,6 +39,15 @@
       "origin_port": "Santa Cruz De La Palma",
       "departure": "2026-04-21T13:30",
       "destination_port": "Cadiz"
+    },
+    {
+      "ship": "SEVEN SINS",
+      "port_of_call": "Funchal - Terminal Sul",
+      "agent": "Transinsular (Madeira)-Transp. Marit. Insulares, Lda.",
+      "arrival": "2026-04-20T22:00",
+      "origin_port": "Philipsburg",
+      "departure": "2026-04-21T01:00",
+      "destination_port": "Viareggio"
     },
     {
       "ship": "MEIN SCHIFF RELAX",
