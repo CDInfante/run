@@ -1,18 +1,9 @@
 {
   "meta": {
-    "scraped_at": "2026-04-19T13:58:11.993Z",
-    "total_ships": 11
+    "scraped_at": "2026-04-19T14:43:26.155Z",
+    "total_ships": 10
   },
   "ships": [
-    {
-      "ship": "WORLD NAVIGATOR",
-      "port_of_call": "Funchal - Terminal Norte",
-      "agent": "Transinsular (Madeira)-Transp. Marit. Insulares, Lda.",
-      "arrival": "2026-04-18T13:45",
-      "origin_port": "Santa Cruz De Tenerife",
-      "departure": "2026-04-19T14:30",
-      "destination_port": "Lisboa"
-    },
     {
       "ship": "CEMENT TRADER",
       "port_of_call": "Funchal - Terminal Cimenteiro",
