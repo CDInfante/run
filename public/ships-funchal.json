@@ -1,18 +1,9 @@
 {
   "meta": {
-    "scraped_at": "2026-04-18T22:30:10.454Z",
-    "total_ships": 11
+    "scraped_at": "2026-04-19T02:12:56.856Z",
+    "total_ships": 10
   },
   "ships": [
-    {
-      "ship": "OOSTERDAM",
-      "port_of_call": "Funchal - Terminal Sul",
-      "agent": "Blatas, Lda.",
-      "arrival": "2026-04-18T07:00",
-      "origin_port": "Ponta Delgada",
-      "departure": "2026-04-18T17:00",
-      "destination_port": "Gibraltar"
-    },
     {
       "ship": "WORLD NAVIGATOR",
       "port_of_call": "Funchal - Terminal Norte",
