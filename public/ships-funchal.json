@@ -1,7 +1,7 @@
 {
   "meta": {
-    "scraped_at": "2026-04-20T17:54:23.682Z",
-    "total_ships": 10
+    "scraped_at": "2026-04-20T18:59:05.151Z",
+    "total_ships": 11
   },
   "ships": [
     {
@@ -10,7 +10,7 @@
       "agent": "Transinsular (Madeira)-Transp. Marit. Insulares, Lda.",
       "arrival": "2026-04-18T18:15",
       "origin_port": "Setúbal",
-      "departure": "2026-04-20T23:59",
+      "departure": "2026-04-24T23:59",
       "destination_port": "Porto Santo Island"
     },
     {
@@ -84,6 +84,15 @@
       "origin_port": "Santa Cruz De Tenerife",
       "departure": "2026-04-25T12:15",
       "destination_port": "Tangier"
+    },
+    {
+      "ship": "MSC VIRTUOSA",
+      "port_of_call": "Funchal - Terminal Sul",
+      "agent": "JFM Shipping, Lda.",
+      "arrival": "2026-04-25T07:00",
+      "origin_port": "Lisboa",
+      "departure": "2026-04-25T18:00",
+      "destination_port": "Las Palmas (Gran Canaria)"
     },
     {
       "ship": "VENTURA",
