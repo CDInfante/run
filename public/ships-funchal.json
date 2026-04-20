@@ -1,6 +1,6 @@
 {
   "meta": {
-    "scraped_at": "2026-04-20T08:00:26.018Z",
+    "scraped_at": "2026-04-20T10:07:03.308Z",
     "total_ships": 10
   },
   "ships": [
@@ -37,7 +37,7 @@
       "agent": "Transinsular (Madeira)-Transp. Marit. Insulares, Lda.",
       "arrival": "2026-04-20T22:00",
       "origin_port": "Philipsburg",
-      "departure": "2026-04-21T01:00",
+      "departure": "2026-04-21T03:15",
       "destination_port": "Viareggio"
     },
     {
