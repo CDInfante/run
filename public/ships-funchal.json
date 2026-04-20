@@ -1,6 +1,6 @@
 {
   "meta": {
-    "scraped_at": "2026-04-20T05:37:02.532Z",
+    "scraped_at": "2026-04-20T08:00:26.018Z",
     "total_ships": 10
   },
   "ships": [
@@ -10,7 +10,7 @@
       "agent": "Transinsular (Madeira)-Transp. Marit. Insulares, Lda.",
       "arrival": "2026-04-18T18:15",
       "origin_port": "Setúbal",
-      "departure": "2026-04-20T14:00",
+      "departure": "2026-04-20T23:59",
       "destination_port": "Porto Santo Island"
     },
     {
