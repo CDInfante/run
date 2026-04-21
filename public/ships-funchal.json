@@ -1,7 +1,7 @@
 {
   "meta": {
-    "scraped_at": "2026-04-21T07:29:25.942Z",
-    "total_ships": 10
+    "scraped_at": "2026-04-21T09:21:44.647Z",
+    "total_ships": 13
   },
   "ships": [
     {
@@ -77,6 +77,15 @@
       "destination_port": "Tangier"
     },
     {
+      "ship": "EUROPA 2",
+      "port_of_call": "Funchal - Terminal Sul",
+      "agent": "JFM Shipping, Lda.",
+      "arrival": "2026-04-24T17:30",
+      "origin_port": "Lanzarote",
+      "departure": "2026-04-25T18:00",
+      "destination_port": "Portimão"
+    },
+    {
       "ship": "MSC VIRTUOSA",
       "port_of_call": "Funchal - Terminal Sul",
       "agent": "JFM Shipping, Lda.",
@@ -84,6 +93,24 @@
       "origin_port": "Lisboa",
       "departure": "2026-04-25T18:00",
       "destination_port": "Las Palmas (Gran Canaria)"
+    },
+    {
+      "ship": "ALALUNGA",
+      "port_of_call": "Funchal - Terminal Sul",
+      "agent": "Transinsular (Madeira)-Transp. Marit. Insulares, Lda.",
+      "arrival": "2026-04-25T09:00",
+      "origin_port": "Portos Desconhecidos / Alto Mar (Ao Largo)",
+      "departure": "2026-04-29T16:59",
+      "destination_port": "Gibraltar"
+    },
+    {
+      "ship": "HANSEATIC NATURE",
+      "port_of_call": "Funchal - Terminal Norte",
+      "agent": "JFM Shipping, Lda.",
+      "arrival": "2026-04-26T07:00",
+      "origin_port": "Safi",
+      "departure": "2026-04-27T05:30",
+      "destination_port": "Porto Santo Island"
     },
     {
       "ship": "VENTURA",
