@@ -25,13 +25,22 @@ jobs:
         
       - name: "🚢 Run ship scraper"
         run: node scripts/scrape-ships.ts
+        continue-on-error: true
+        id: scrape-ships
       - name: "🥾 Run trail scraper"
         run: node scripts/scrape-trails.ts
+        continue-on-error: true
+        id: scrape-trails
       - name: "⛲ Run amenity scraper"
         run: node scripts/scrape-amenities.ts
+        continue-on-error: true
+        id: scrape-amenities
       - name: "🌊 Run marine scraper"
         run: node scripts/scrape-marine.ts
+        continue-on-error: true
+        id: scrape-marine
       - name: "🔄 Commit changes"
+        if: always()
         run: |
           git config --global user.name "HarryVasanth"
           git config --global user.email "hello@harryvasanth.com"
@@ -42,3 +51,10 @@ jobs:
             git commit -m "chore(data): 🔄 update ship, trail, amenity, and marine data"
             git push
           fi
+      - name: "❌ Fail if any scraper failed"
+        if: always()
+        run: |
+          test "${{ steps.scrape-ships.outcome }}" = "success" &&
+          test "${{ steps.scrape-trails.outcome }}" = "success" &&
+          test "${{ steps.scrape-amenities.outcome }}" = "success" &&
+          test "${{ steps.scrape-marine.outcome }}" = "success"
