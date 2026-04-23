@@ -1,18 +1,9 @@
 {
   "meta": {
-    "scraped_at": "2026-04-23T13:18:56.429Z",
-    "total_ships": 15
+    "scraped_at": "2026-04-23T15:49:11.701Z",
+    "total_ships": 16
   },
   "ships": [
-    {
-      "ship": "MEIN SCHIFF 7",
-      "port_of_call": "Funchal - Terminal Sul",
-      "agent": "JFM Shipping, Lda.",
-      "arrival": "2026-04-22T00:01",
-      "origin_port": "Las Palmas (Gran Canaria)",
-      "departure": "2026-04-23T14:00",
-      "destination_port": "Santa Cruz De La Palma"
-    },
     {
       "ship": "BOLETTE",
       "port_of_call": "Funchal - Terminal Sul",
@@ -104,6 +95,15 @@
       "destination_port": "Porto Santo Island"
     },
     {
+      "ship": "AMORE",
+      "port_of_call": "Funchal - Terminal Sul",
+      "agent": "Transinsular (Madeira)-Transp. Marit. Insulares, Lda.",
+      "arrival": "2026-04-26T08:00",
+      "origin_port": "Portos Desconhecidos / Alto Mar (Ao Largo)",
+      "departure": "2026-04-29T16:59",
+      "destination_port": "Portos Desconhecidos / Alto Mar (Ao Largo)"
+    },
+    {
       "ship": "SIRENA",
       "port_of_call": "Funchal - Terminal Norte",
       "agent": "JFM Shipping, Lda.",
@@ -111,6 +111,15 @@
       "origin_port": "Leixões",
       "departure": "2026-04-27T17:00",
       "destination_port": "Santa Cruz De La Palma"
+    },
+    {
+      "ship": "APSARA",
+      "port_of_call": "Funchal - Terminal Sul",
+      "agent": "Transinsular (Madeira)-Transp. Marit. Insulares, Lda.",
+      "arrival": "2026-04-27T08:15",
+      "origin_port": "West Palm Beach",
+      "departure": "2026-05-01T17:00",
+      "destination_port": "Gibraltar"
     },
     {
       "ship": "NURI",
