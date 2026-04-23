@@ -1,18 +1,9 @@
 {
   "meta": {
-    "scraped_at": "2026-04-23T17:15:37.393Z",
-    "total_ships": 16
+    "scraped_at": "2026-04-23T19:02:51.555Z",
+    "total_ships": 15
   },
   "ships": [
-    {
-      "ship": "BOLETTE",
-      "port_of_call": "Funchal - Terminal Sul",
-      "agent": "JFM Shipping, Lda.",
-      "arrival": "2026-04-22T11:00",
-      "origin_port": "Ponta Delgada",
-      "departure": "2026-04-23T18:30",
-      "destination_port": "Lisboa"
-    },
     {
       "ship": "MEIN SCHIFF 1",
       "port_of_call": "Funchal - Terminal Sul",
@@ -55,7 +46,7 @@
       "agent": "Transinsular (Madeira)-Transp. Marit. Insulares, Lda.",
       "arrival": "2026-04-25T09:00",
       "origin_port": "Portos Desconhecidos / Alto Mar (Ao Largo)",
-      "departure": "2026-04-29T16:59",
+      "departure": "2026-04-28T09:00",
       "destination_port": "Gibraltar"
     },
     {
@@ -64,7 +55,7 @@
       "agent": "Transinsular (Madeira)-Transp. Marit. Insulares, Lda.",
       "arrival": "2026-04-25T09:00",
       "origin_port": "Portos Desconhecidos / Alto Mar (Ao Largo)",
-      "departure": "2026-04-27T16:59",
+      "departure": "2026-04-28T16:59",
       "destination_port": "Gibraltar"
     },
     {
@@ -100,7 +91,7 @@
       "agent": "Transinsular (Madeira)-Transp. Marit. Insulares, Lda.",
       "arrival": "2026-04-26T08:00",
       "origin_port": "Portos Desconhecidos / Alto Mar (Ao Largo)",
-      "departure": "2026-04-29T16:59",
+      "departure": "2026-04-28T09:00",
       "destination_port": "Portos Desconhecidos / Alto Mar (Ao Largo)"
     },
     {
