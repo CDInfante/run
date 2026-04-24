@@ -1,6 +1,6 @@
 {
   "meta": {
-    "scraped_at": "2026-04-24T17:47:13.356Z",
+    "scraped_at": "2026-04-24T18:43:29.405Z",
     "total_ships": 16
   },
   "ships": [
@@ -26,7 +26,7 @@
       "ship": "EUROPA 2",
       "port_of_call": "Funchal - Terminal Sul",
       "agent": "JFM Shipping, Lda.",
-      "arrival": "2026-04-24T17:30",
+      "arrival": "2026-04-24T17:45",
       "origin_port": "Lanzarote",
       "departure": "2026-04-25T18:00",
       "destination_port": "Portimão"
