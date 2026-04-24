@@ -1,6 +1,6 @@
 {
   "meta": {
-    "scraped_at": "2026-04-24T11:03:07.340Z",
+    "scraped_at": "2026-04-24T13:14:45.039Z",
     "total_ships": 16
   },
   "ships": [
@@ -17,7 +17,7 @@
       "ship": "LE BOUGAINVILLE",
       "port_of_call": "Funchal - Terminal Norte",
       "agent": "Blatas, Lda.",
-      "arrival": "2026-04-24T12:45",
+      "arrival": "2026-04-24T11:30",
       "origin_port": "Santa Cruz De Tenerife",
       "departure": "2026-04-25T12:15",
       "destination_port": "Tangier"
