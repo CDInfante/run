@@ -1,6 +1,6 @@
 {
   "meta": {
-    "scraped_at": "2026-04-24T02:12:03.870Z",
+    "scraped_at": "2026-04-24T05:31:43.460Z",
     "site_last_updated": "16 abril 2026",
     "total_trails": 42
   },
@@ -18,7 +18,7 @@
         "lat": 32.7355,
         "lon": -16.9281
       },
-      "last_checked": "2026-04-24T02:12:03.861Z"
+      "last_checked": "2026-04-24T05:31:43.452Z"
     },
     {
       "id": "Vereda da Ilha",
@@ -33,7 +33,7 @@
         "lat": 32.7639,
         "lon": -16.9039
       },
-      "last_checked": "2026-04-24T02:12:03.862Z"
+      "last_checked": "2026-04-24T05:31:43.452Z"
     },
     {
       "id": "Vereda do Pico Ruivo",
@@ -48,7 +48,7 @@
         "lat": 32.7638,
         "lon": -16.9201
       },
-      "last_checked": "2026-04-24T02:12:03.862Z"
+      "last_checked": "2026-04-24T05:31:43.452Z"
     },
     {
       "id": "Vereda da Encumeada",
@@ -63,7 +63,7 @@
         "lat": 32.7535,
         "lon": -17.0211
       },
-      "last_checked": "2026-04-24T02:12:03.862Z"
+      "last_checked": "2026-04-24T05:31:43.452Z"
     },
     {
       "id": "Vereda do Urzal",
@@ -78,7 +78,7 @@
         "lat": 32.7214,
         "lon": -16.985
       },
-      "last_checked": "2026-04-24T02:12:03.862Z"
+      "last_checked": "2026-04-24T05:31:43.453Z"
     },
     {
       "id": "Vereda do Burro",
@@ -93,7 +93,7 @@
         "lat": 32.735,
         "lon": -16.928
       },
-      "last_checked": "2026-04-24T02:12:03.862Z"
+      "last_checked": "2026-04-24T05:31:43.453Z"
     },
     {
       "id": "Caminho Real do Monte",
@@ -108,7 +108,7 @@
         "lat": 32.715,
         "lon": -16.915
       },
-      "last_checked": "2026-04-24T02:12:03.863Z"
+      "last_checked": "2026-04-24T05:31:43.453Z"
     },
     {
       "id": "Levada do Barreiro",
@@ -123,7 +123,7 @@
         "lat": 32.71,
         "lon": -16.94
       },
-      "last_checked": "2026-04-24T02:12:03.863Z"
+      "last_checked": "2026-04-24T05:31:43.453Z"
     },
     {
       "id": "Vereda das Funduras",
@@ -138,7 +138,7 @@
         "lat": 32.7445,
         "lon": -16.8261
       },
-      "last_checked": "2026-04-24T02:12:03.863Z"
+      "last_checked": "2026-04-24T05:31:43.453Z"
     },
     {
       "id": "Levada das 25 Fontes",
@@ -153,7 +153,7 @@
         "lat": 32.7617,
         "lon": -17.1344
       },
-      "last_checked": "2026-04-24T02:12:03.863Z"
+      "last_checked": "2026-04-24T05:31:43.453Z"
     },
     {
       "id": "Levada do Risco",
@@ -168,7 +168,7 @@
         "lat": 32.7617,
         "lon": -17.1344
       },
-      "last_checked": "2026-04-24T02:12:03.863Z"
+      "last_checked": "2026-04-24T05:31:43.453Z"
     },
     {
       "id": "Levada do Alecrim",
@@ -183,7 +183,7 @@
         "lat": 32.7547,
         "lon": -17.1339
       },
-      "last_checked": "2026-04-24T02:12:03.864Z"
+      "last_checked": "2026-04-24T05:31:43.454Z"
     },
     {
       "id": "Vereda da Lagoa do Vento",
@@ -198,7 +198,7 @@
         "lat": 32.7547,
         "lon": -17.1339
       },
-      "last_checked": "2026-04-24T02:12:03.864Z"
+      "last_checked": "2026-04-24T05:31:43.454Z"
     },
     {
       "id": "Levada Velha do Rabaçal",
@@ -213,7 +213,7 @@
         "lat": 32.7551,
         "lon": -17.1331
       },
-      "last_checked": "2026-04-24T02:12:03.864Z"
+      "last_checked": "2026-04-24T05:31:43.454Z"
     },
     {
       "id": "Vereda do Pico Fernandes",
@@ -228,7 +228,7 @@
         "lat": 32.7541,
         "lon": -17.1154
       },
-      "last_checked": "2026-04-24T02:12:03.864Z"
+      "last_checked": "2026-04-24T05:31:43.454Z"
     },
     {
       "id": "Vereda do Túnel do Cavalo",
@@ -243,7 +243,7 @@
         "lat": 32.7511,
         "lon": -17.1147
       },
-      "last_checked": "2026-04-24T02:12:03.864Z"
+      "last_checked": "2026-04-24T05:31:43.454Z"
     },
     {
       "id": "Vereda da Câmara de Carga do Rabaçal",
@@ -258,7 +258,7 @@
         "lat": 32.7511,
         "lon": -17.1147
       },
-      "last_checked": "2026-04-24T02:12:03.864Z"
+      "last_checked": "2026-04-24T05:31:43.454Z"
     },
     {
       "id": "Levada do Paul II – Um Caminho para todos",
@@ -273,7 +273,7 @@
         "lat": 32.7602,
         "lon": -17.1008
       },
-      "last_checked": "2026-04-24T02:12:03.864Z"
+      "last_checked": "2026-04-24T05:31:43.454Z"
     },
     {
       "id": "Levada do Moinho",
@@ -288,7 +288,7 @@
         "lat": 32.8444,
         "lon": -17.1936
       },
-      "last_checked": "2026-04-24T02:12:03.864Z"
+      "last_checked": "2026-04-24T05:31:43.454Z"
     },
     {
       "id": "Vereda da Ponta de S. Lourenço",
@@ -303,7 +303,7 @@
         "lat": 32.7431,
         "lon": -16.7011
       },
-      "last_checked": "2026-04-24T02:12:03.865Z"
+      "last_checked": "2026-04-24T05:31:43.454Z"
     },
     {
       "id": "Levada do Caldeirão Verde",
@@ -318,7 +318,7 @@
         "lat": 32.7836,
         "lon": -16.9055
       },
-      "last_checked": "2026-04-24T02:12:03.865Z"
+      "last_checked": "2026-04-24T05:31:43.455Z"
     },
     {
       "id": "Levada do Caldeirão Verde - Um Caminho para todos",
@@ -333,7 +333,7 @@
         "lat": 32.7836,
         "lon": -16.9055
       },
-      "last_checked": "2026-04-24T02:12:03.865Z"
+      "last_checked": "2026-04-24T05:31:43.455Z"
     },
     {
       "id": "Levada do Furado",
@@ -348,7 +348,7 @@
         "lat": 32.7358,
         "lon": -16.8858
       },
-      "last_checked": "2026-04-24T02:12:03.865Z"
+      "last_checked": "2026-04-24T05:31:43.455Z"
     },
     {
       "id": "Vereda dos Balcões",
@@ -363,7 +363,7 @@
         "lat": 32.7358,
         "lon": -16.8858
       },
-      "last_checked": "2026-04-24T02:12:03.865Z"
+      "last_checked": "2026-04-24T05:31:43.455Z"
     },
     {
       "id": "Caminho Real da Encumeada",
@@ -378,7 +378,7 @@
         "lat": 32.7155,
         "lon": -17.0135
       },
-      "last_checked": "2026-04-24T02:12:03.865Z"
+      "last_checked": "2026-04-24T05:31:43.455Z"
     },
     {
       "id": "Vereda do Fanal",
@@ -393,7 +393,7 @@
         "lat": 32.7511,
         "lon": -17.1147
       },
-      "last_checked": "2026-04-24T02:12:03.865Z"
+      "last_checked": "2026-04-24T05:31:43.455Z"
     },
     {
       "id": "Vereda da Palha Carga",
@@ -408,7 +408,7 @@
         "lat": 32.7511,
         "lon": -17.1147
       },
-      "last_checked": "2026-04-24T02:12:03.865Z"
+      "last_checked": "2026-04-24T05:31:43.455Z"
     },
     {
       "id": "Levada dos Cedros",
@@ -423,7 +423,7 @@
         "lat": 32.8083,
         "lon": -17.1417
       },
-      "last_checked": "2026-04-24T02:12:03.865Z"
+      "last_checked": "2026-04-24T05:31:43.455Z"
     },
     {
       "id": "Vereda da Ribeira da Janela",
@@ -438,7 +438,7 @@
         "lat": 32.8242,
         "lon": -17.1517
       },
-      "last_checked": "2026-04-24T02:12:03.865Z"
+      "last_checked": "2026-04-24T05:31:43.455Z"
     },
     {
       "id": "Levada Fajã do Rodrigues",
@@ -453,7 +453,7 @@
         "lat": 32.7824,
         "lon": -17.0366
       },
-      "last_checked": "2026-04-24T02:12:03.866Z"
+      "last_checked": "2026-04-24T05:31:43.455Z"
     },
     {
       "id": "Caminho do Pináculo e Folhadal",
@@ -468,7 +468,7 @@
         "lat": 32.7536,
         "lon": -17.0212
       },
-      "last_checked": "2026-04-24T02:12:03.866Z"
+      "last_checked": "2026-04-24T05:31:43.456Z"
     },
     {
       "id": "Levada do Rei",
@@ -483,7 +483,7 @@
         "lat": 32.8094,
         "lon": -16.9158
       },
-      "last_checked": "2026-04-24T02:12:03.866Z"
+      "last_checked": "2026-04-24T05:31:43.456Z"
     },
     {
       "id": "Caminho Real do Paul do Mar",
@@ -498,7 +498,7 @@
         "lat": 32.7575,
         "lon": -17.2119
       },
-      "last_checked": "2026-04-24T02:12:03.866Z"
+      "last_checked": "2026-04-24T05:31:43.456Z"
     },
     {
       "id": "Vereda do Jardim do Mar",
@@ -513,7 +513,7 @@
         "lat": 32.7572,
         "lon": -17.2105
       },
-      "last_checked": "2026-04-24T02:12:03.866Z"
+      "last_checked": "2026-04-24T05:31:43.456Z"
     },
     {
       "id": "Caminho do Norte",
@@ -528,7 +528,7 @@
         "lat": 32.7536,
         "lon": -17.0211
       },
-      "last_checked": "2026-04-24T02:12:03.866Z"
+      "last_checked": "2026-04-24T05:31:43.456Z"
     },
     {
       "id": "Vereda do Chão dos Louros",
@@ -543,7 +543,7 @@
         "lat": 32.7445,
         "lon": -17.0208
       },
-      "last_checked": "2026-04-24T02:12:03.866Z"
+      "last_checked": "2026-04-24T05:31:43.456Z"
     },
     {
       "id": "Levada da Azenha",
@@ -558,7 +558,7 @@
         "lat": 32.6517,
         "lon": -16.8365
       },
-      "last_checked": "2026-04-24T02:12:03.866Z"
+      "last_checked": "2026-04-24T05:31:43.456Z"
     },
     {
       "id": "Glaciar de Planalto",
@@ -573,7 +573,7 @@
         "lat": 32.7544,
         "lon": -17.0519
       },
-      "last_checked": "2026-04-24T02:12:03.866Z"
+      "last_checked": "2026-04-24T05:31:43.456Z"
     },
     {
       "id": "Levada da Rocha Vermelha",
@@ -588,7 +588,7 @@
         "lat": 32.7617,
         "lon": -17.1344
       },
-      "last_checked": "2026-04-24T02:12:03.867Z"
+      "last_checked": "2026-04-24T05:31:43.456Z"
     },
     {
       "id": "Vereda do Pico Branco e Terra Chã",
@@ -603,7 +603,7 @@
         "lat": 33.0833,
         "lon": -16.2994
       },
-      "last_checked": "2026-04-24T02:12:03.867Z"
+      "last_checked": "2026-04-24T05:31:43.456Z"
     },
     {
       "id": "Vereda do Pico do Castelo",
@@ -618,7 +618,7 @@
         "lat": 33.0722,
         "lon": -16.3294
       },
-      "last_checked": "2026-04-24T02:12:03.867Z"
+      "last_checked": "2026-04-24T05:31:43.456Z"
     },
     {
       "id": "Levada do Pico Castelo",
@@ -633,7 +633,7 @@
         "lat": 33.0722,
         "lon": -16.3294
       },
-      "last_checked": "2026-04-24T02:12:03.867Z"
+      "last_checked": "2026-04-24T05:31:43.457Z"
     }
   ]
 }
