@@ -1,18 +1,9 @@
 {
   "meta": {
-    "scraped_at": "2026-04-24T23:36:37.767Z",
-    "total_ships": 16
+    "scraped_at": "2026-04-25T02:02:17.950Z",
+    "total_ships": 15
   },
   "ships": [
-    {
-      "ship": "MEIN SCHIFF 1",
-      "port_of_call": "Funchal - Terminal Sul",
-      "agent": "JFM Shipping, Lda.",
-      "arrival": "2026-04-24T06:45",
-      "origin_port": "Castries",
-      "departure": "2026-04-24T17:30",
-      "destination_port": "Malaga"
-    },
     {
       "ship": "LE BOUGAINVILLE",
       "port_of_call": "Funchal - Terminal Norte",
