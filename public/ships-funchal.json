@@ -1,18 +1,9 @@
 {
   "meta": {
-    "scraped_at": "2026-04-25T17:35:13.601Z",
+    "scraped_at": "2026-04-25T18:43:35.656Z",
     "total_ships": 15
   },
   "ships": [
-    {
-      "ship": "EUROPA 2",
-      "port_of_call": "Funchal - Terminal Sul",
-      "agent": "JFM Shipping, Lda.",
-      "arrival": "2026-04-24T17:45",
-      "origin_port": "Lanzarote",
-      "departure": "2026-04-25T18:00",
-      "destination_port": "Portimão"
-    },
     {
       "ship": "MSC VIRTUOSA",
       "port_of_call": "Funchal - Terminal Sul",
@@ -35,7 +26,7 @@
       "ship": "LUNASEA",
       "port_of_call": "Funchal - Terminal Sul",
       "agent": "Transinsular (Madeira)-Transp. Marit. Insulares, Lda.",
-      "arrival": "2026-04-25T09:00",
+      "arrival": "2026-04-25T18:30",
       "origin_port": "Portos Desconhecidos / Alto Mar (Ao Largo)",
       "departure": "2026-04-28T16:59",
       "destination_port": "Gibraltar"
@@ -120,6 +111,15 @@
       "origin_port": "Philipsburg",
       "departure": "2026-04-29T17:00",
       "destination_port": "Barcelona"
+    },
+    {
+      "ship": "SEADREAM II",
+      "port_of_call": "Funchal - Terminal Sul",
+      "agent": "Blatas, Lda.",
+      "arrival": "2026-05-01T07:00",
+      "origin_port": "West Palm Beach",
+      "departure": "2026-05-01T13:00",
+      "destination_port": "Lisboa"
     },
     {
       "ship": "L&#039;AUSTRAL",
