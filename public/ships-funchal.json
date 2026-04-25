@@ -1,6 +1,6 @@
 {
   "meta": {
-    "scraped_at": "2026-04-25T14:02:32.690Z",
+    "scraped_at": "2026-04-25T15:36:30.265Z",
     "total_ships": 15
   },
   "ships": [
@@ -26,7 +26,7 @@
       "ship": "ALALUNGA",
       "port_of_call": "Funchal - Terminal Sul",
       "agent": "Transinsular (Madeira)-Transp. Marit. Insulares, Lda.",
-      "arrival": "2026-04-25T09:00",
+      "arrival": "2026-04-25T13:15",
       "origin_port": "Portos Desconhecidos / Alto Mar (Ao Largo)",
       "departure": "2026-04-28T09:00",
       "destination_port": "Gibraltar"
