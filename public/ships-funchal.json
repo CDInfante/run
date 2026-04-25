@@ -1,6 +1,6 @@
 {
   "meta": {
-    "scraped_at": "2026-04-25T07:08:34.731Z",
+    "scraped_at": "2026-04-25T08:46:48.617Z",
     "total_ships": 15
   },
   "ships": [
@@ -26,7 +26,7 @@
       "ship": "MSC VIRTUOSA",
       "port_of_call": "Funchal - Terminal Sul",
       "agent": "JFM Shipping, Lda.",
-      "arrival": "2026-04-25T07:00",
+      "arrival": "2026-04-25T06:55",
       "origin_port": "Lisboa",
       "departure": "2026-04-25T18:00",
       "destination_port": "Las Palmas (Gran Canaria)"
