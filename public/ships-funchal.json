@@ -1,7 +1,7 @@
 {
   "meta": {
-    "scraped_at": "2026-04-26T07:23:14.218Z",
-    "total_ships": 14
+    "scraped_at": "2026-04-26T08:56:01.426Z",
+    "total_ships": 13
   },
   "ships": [
     {
@@ -23,15 +23,6 @@
       "destination_port": "Gibraltar"
     },
     {
-      "ship": "ATTESSA IV",
-      "port_of_call": "Funchal - Terminal Sul",
-      "agent": "Funchal Marítima - Agência de Navegação, Lda.",
-      "arrival": "2026-04-25T18:00",
-      "origin_port": "Savannah",
-      "departure": "2026-04-26T08:00",
-      "destination_port": "Gibraltar"
-    },
-    {
       "ship": "NORWEGIAN EPIC",
       "port_of_call": "Funchal - Terminal Sul",
       "agent": "JFM Shipping, Lda.",
@@ -44,7 +35,7 @@
       "ship": "HANSEATIC NATURE",
       "port_of_call": "Funchal - Terminal Norte",
       "agent": "JFM Shipping, Lda.",
-      "arrival": "2026-04-26T07:00",
+      "arrival": "2026-04-26T06:55",
       "origin_port": "Safi",
       "departure": "2026-04-27T05:30",
       "destination_port": "Porto Santo Island"
