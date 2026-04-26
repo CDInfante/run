@@ -1,6 +1,6 @@
 {
   "meta": {
-    "scraped_at": "2026-04-26T11:36:35.616Z",
+    "scraped_at": "2026-04-26T12:58:10.335Z",
     "total_ships": 13
   },
   "ships": [
@@ -44,7 +44,7 @@
       "ship": "AMORE",
       "port_of_call": "Funchal - Terminal Sul",
       "agent": "Transinsular (Madeira)-Transp. Marit. Insulares, Lda.",
-      "arrival": "2026-04-26T08:00",
+      "arrival": "2026-04-26T10:45",
       "origin_port": "Portos Desconhecidos / Alto Mar (Ao Largo)",
       "departure": "2026-04-28T09:00",
       "destination_port": "Portos Desconhecidos / Alto Mar (Ao Largo)"
