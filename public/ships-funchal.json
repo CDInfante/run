@@ -1,6 +1,6 @@
 {
   "meta": {
-    "scraped_at": "2026-04-26T14:05:41.191Z",
+    "scraped_at": "2026-04-26T15:38:46.871Z",
     "total_ships": 13
   },
   "ships": [
@@ -47,7 +47,7 @@
       "arrival": "2026-04-26T10:45",
       "origin_port": "Portos Desconhecidos / Alto Mar (Ao Largo)",
       "departure": "2026-04-28T09:00",
-      "destination_port": "Portos Desconhecidos / Alto Mar (Ao Largo)"
+      "destination_port": "Gibraltar"
     },
     {
       "ship": "SIRENA",
