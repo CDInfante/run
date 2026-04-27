@@ -1,6 +1,6 @@
 {
   "meta": {
-    "scraped_at": "2026-04-27T12:22:54.488Z",
+    "scraped_at": "2026-04-27T15:04:42.798Z",
     "total_ships": 12
   },
   "ships": [
@@ -19,7 +19,7 @@
       "agent": "Transinsular (Madeira)-Transp. Marit. Insulares, Lda.",
       "arrival": "2026-04-25T18:30",
       "origin_port": "Portos Desconhecidos / Alto Mar (Ao Largo)",
-      "departure": "2026-04-28T16:59",
+      "departure": "2026-04-28T07:00",
       "destination_port": "Gibraltar"
     },
     {
