@@ -1,6 +1,6 @@
 {
   "meta": {
-    "scraped_at": "2026-04-27T08:14:54.230Z",
+    "scraped_at": "2026-04-27T10:59:54.177Z",
     "total_ships": 11
   },
   "ships": [
@@ -46,8 +46,8 @@
       "agent": "Transinsular (Madeira)-Transp. Marit. Insulares, Lda.",
       "arrival": "2026-04-27T08:10",
       "origin_port": "West Palm Beach",
-      "departure": "2026-05-01T17:00",
-      "destination_port": "Gibraltar"
+      "departure": "2026-04-29T06:00",
+      "destination_port": "Palma De Mallorca"
     },
     {
       "ship": "NURI",
@@ -55,7 +55,7 @@
       "agent": "Wilhelmsen Port Services Portugal, S.A.",
       "arrival": "2026-04-27T18:00",
       "origin_port": "West Palm Beach",
-      "departure": "2026-04-29T17:00",
+      "departure": "2026-04-28T16:00",
       "destination_port": "Gibraltar"
     },
     {
@@ -82,7 +82,7 @@
       "agent": "Blatas, Lda.",
       "arrival": "2026-05-01T07:00",
       "origin_port": "West Palm Beach",
-      "departure": "2026-05-01T13:00",
+      "departure": "2026-05-01T14:00",
       "destination_port": "Lisboa"
     },
     {
