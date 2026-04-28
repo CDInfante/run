@@ -1,34 +1,16 @@
 {
   "meta": {
-    "scraped_at": "2026-04-28T08:21:21.899Z",
-    "total_ships": 12
+    "scraped_at": "2026-04-28T11:01:29.278Z",
+    "total_ships": 10
   },
   "ships": [
-    {
-      "ship": "ALALUNGA",
-      "port_of_call": "Funchal - Terminal Sul",
-      "agent": "Transinsular (Madeira)-Transp. Marit. Insulares, Lda.",
-      "arrival": "2026-04-25T13:15",
-      "origin_port": "Portos Desconhecidos / Alto Mar (Ao Largo)",
-      "departure": "2026-04-28T09:00",
-      "destination_port": "Gibraltar"
-    },
-    {
-      "ship": "AMORE",
-      "port_of_call": "Funchal - Terminal Sul",
-      "agent": "Transinsular (Madeira)-Transp. Marit. Insulares, Lda.",
-      "arrival": "2026-04-26T10:45",
-      "origin_port": "Portos Desconhecidos / Alto Mar (Ao Largo)",
-      "departure": "2026-04-28T09:00",
-      "destination_port": "Gibraltar"
-    },
     {
       "ship": "APSARA",
       "port_of_call": "Funchal - Terminal Sul",
       "agent": "Transinsular (Madeira)-Transp. Marit. Insulares, Lda.",
       "arrival": "2026-04-27T08:10",
       "origin_port": "West Palm Beach",
-      "departure": "2026-04-29T06:00",
+      "departure": "2026-04-29T06:30",
       "destination_port": "Palma De Mallorca"
     },
     {
