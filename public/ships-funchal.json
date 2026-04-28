@@ -1,7 +1,7 @@
 {
   "meta": {
-    "scraped_at": "2026-04-28T05:55:40.184Z",
-    "total_ships": 11
+    "scraped_at": "2026-04-28T08:21:21.899Z",
+    "total_ships": 12
   },
   "ships": [
     {
@@ -11,15 +11,6 @@
       "arrival": "2026-04-25T13:15",
       "origin_port": "Portos Desconhecidos / Alto Mar (Ao Largo)",
       "departure": "2026-04-28T09:00",
-      "destination_port": "Gibraltar"
-    },
-    {
-      "ship": "LUNASEA",
-      "port_of_call": "Funchal - Terminal Sul",
-      "agent": "Transinsular (Madeira)-Transp. Marit. Insulares, Lda.",
-      "arrival": "2026-04-25T18:30",
-      "origin_port": "Portos Desconhecidos / Alto Mar (Ao Largo)",
-      "departure": "2026-04-28T07:00",
       "destination_port": "Gibraltar"
     },
     {
@@ -44,7 +35,7 @@
       "ship": "NURI",
       "port_of_call": "Funchal - Terminal Sul",
       "agent": "Wilhelmsen Port Services Portugal, S.A.",
-      "arrival": "2026-04-27T18:00",
+      "arrival": "2026-04-27T22:00",
       "origin_port": "West Palm Beach",
       "departure": "2026-04-28T14:00",
       "destination_port": "Gibraltar"
@@ -53,7 +44,7 @@
       "ship": "VENTURA",
       "port_of_call": "Funchal - Terminal Sul",
       "agent": "Blatas, Lda.",
-      "arrival": "2026-04-28T08:00",
+      "arrival": "2026-04-28T08:05",
       "origin_port": "Santa Cruz De La Palma",
       "departure": "2026-04-28T18:00",
       "destination_port": "Southampton"
@@ -77,6 +68,15 @@
       "destination_port": "Lisboa"
     },
     {
+      "ship": "LOON",
+      "port_of_call": "Funchal - Terminal Sul",
+      "agent": "Wilhelmsen Port Services Portugal, S.A.",
+      "arrival": "2026-05-01T10:00",
+      "origin_port": "San Juan",
+      "departure": "2026-05-03T05:00",
+      "destination_port": "Portos Desconhecidos / Alto Mar (Ao Largo)"
+    },
+    {
       "ship": "L&#039;AUSTRAL",
       "port_of_call": "Funchal - Terminal Norte",
       "agent": "Blatas, Lda.",
@@ -93,6 +93,15 @@
       "origin_port": "Fort Lauderdale",
       "departure": "2026-05-03T19:00",
       "destination_port": "Leixões"
+    },
+    {
+      "ship": "VALIANT LADY",
+      "port_of_call": "Funchal - Terminal Sul",
+      "agent": "JFM Shipping, Lda.",
+      "arrival": "2026-05-03T07:00",
+      "origin_port": "Ponta Delgada",
+      "departure": "2026-05-03T18:00",
+      "destination_port": "Tangier"
     },
     {
       "ship": "SILVER DAWN",
