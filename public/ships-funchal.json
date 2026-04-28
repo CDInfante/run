@@ -1,7 +1,7 @@
 {
   "meta": {
-    "scraped_at": "2026-04-28T13:54:41.037Z",
-    "total_ships": 10
+    "scraped_at": "2026-04-28T16:06:17.882Z",
+    "total_ships": 9
   },
   "ships": [
     {
@@ -12,15 +12,6 @@
       "origin_port": "West Palm Beach",
       "departure": "2026-04-29T06:30",
       "destination_port": "Palma De Mallorca"
-    },
-    {
-      "ship": "NURI",
-      "port_of_call": "Funchal - Terminal Sul",
-      "agent": "Wilhelmsen Port Services Portugal, S.A.",
-      "arrival": "2026-04-27T22:00",
-      "origin_port": "West Palm Beach",
-      "departure": "2026-04-28T14:00",
-      "destination_port": "Gibraltar"
     },
     {
       "ship": "VENTURA",
