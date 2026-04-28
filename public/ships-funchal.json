@@ -1,7 +1,7 @@
 {
   "meta": {
-    "scraped_at": "2026-04-27T23:50:44.081Z",
-    "total_ships": 12
+    "scraped_at": "2026-04-28T02:34:16.651Z",
+    "total_ships": 11
   },
   "ships": [
     {
@@ -30,15 +30,6 @@
       "origin_port": "Portos Desconhecidos / Alto Mar (Ao Largo)",
       "departure": "2026-04-28T09:00",
       "destination_port": "Gibraltar"
-    },
-    {
-      "ship": "SIRENA",
-      "port_of_call": "Funchal - Terminal Norte",
-      "agent": "JFM Shipping, Lda.",
-      "arrival": "2026-04-27T06:00",
-      "origin_port": "Leixões",
-      "departure": "2026-04-27T17:00",
-      "destination_port": "Santa Cruz De La Palma"
     },
     {
       "ship": "APSARA",
