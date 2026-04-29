@@ -1,23 +1,14 @@
 {
   "meta": {
-    "scraped_at": "2026-04-29T05:51:15.568Z",
-    "total_ships": 8
+    "scraped_at": "2026-04-29T08:10:10.072Z",
+    "total_ships": 7
   },
   "ships": [
-    {
-      "ship": "APSARA",
-      "port_of_call": "Funchal - Terminal Sul",
-      "agent": "Transinsular (Madeira)-Transp. Marit. Insulares, Lda.",
-      "arrival": "2026-04-27T08:10",
-      "origin_port": "West Palm Beach",
-      "departure": "2026-04-29T06:30",
-      "destination_port": "Palma De Mallorca"
-    },
     {
       "ship": "MSC GRANDIOSA",
       "port_of_call": "Funchal - Terminal Sul",
       "agent": "JFM Shipping, Lda.",
-      "arrival": "2026-04-29T08:00",
+      "arrival": "2026-04-29T08:05",
       "origin_port": "Philipsburg",
       "departure": "2026-04-29T17:00",
       "destination_port": "Barcelona"
