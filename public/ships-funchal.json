@@ -1,9 +1,18 @@
 {
   "meta": {
-    "scraped_at": "2026-04-29T12:14:42.378Z",
-    "total_ships": 7
+    "scraped_at": "2026-04-29T15:09:18.565Z",
+    "total_ships": 8
   },
   "ships": [
+    {
+      "ship": "BIRUBI",
+      "port_of_call": "Funchal - Terminal Sul",
+      "agent": "JFM Shipping, Lda.",
+      "arrival": "2026-04-02T00:01",
+      "origin_port": "Vieux Fort",
+      "departure": "2026-05-01T18:30",
+      "destination_port": "Palma De Mallorca"
+    },
     {
       "ship": "MSC GRANDIOSA",
       "port_of_call": "Funchal - Terminal Sul",
