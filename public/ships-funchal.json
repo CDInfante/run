@@ -1,7 +1,7 @@
 {
   "meta": {
-    "scraped_at": "2026-04-28T23:52:36.470Z",
-    "total_ships": 9
+    "scraped_at": "2026-04-29T02:34:19.509Z",
+    "total_ships": 8
   },
   "ships": [
     {
@@ -12,15 +12,6 @@
       "origin_port": "West Palm Beach",
       "departure": "2026-04-29T06:30",
       "destination_port": "Palma De Mallorca"
-    },
-    {
-      "ship": "VENTURA",
-      "port_of_call": "Funchal - Terminal Sul",
-      "agent": "Blatas, Lda.",
-      "arrival": "2026-04-28T08:05",
-      "origin_port": "Santa Cruz De La Palma",
-      "departure": "2026-04-28T18:00",
-      "destination_port": "Southampton"
     },
     {
       "ship": "MSC GRANDIOSA",
