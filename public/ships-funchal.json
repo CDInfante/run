@@ -1,6 +1,6 @@
 {
   "meta": {
-    "scraped_at": "2026-04-30T12:12:54.301Z",
+    "scraped_at": "2026-04-30T15:05:55.883Z",
     "total_ships": 8
   },
   "ships": [
@@ -10,7 +10,7 @@
       "agent": "JFM Shipping, Lda.",
       "arrival": "2026-04-02T00:01",
       "origin_port": "Vieux Fort",
-      "departure": "2026-05-01T15:30",
+      "departure": "2026-05-01T13:30",
       "destination_port": "Palma De Mallorca"
     },
     {
