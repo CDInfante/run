@@ -1,7 +1,7 @@
 {
   "meta": {
-    "scraped_at": "2026-04-29T23:51:50.724Z",
-    "total_ships": 8
+    "scraped_at": "2026-04-30T02:35:06.454Z",
+    "total_ships": 7
   },
   "ships": [
     {
@@ -12,15 +12,6 @@
       "origin_port": "Vieux Fort",
       "departure": "2026-05-01T18:30",
       "destination_port": "Palma De Mallorca"
-    },
-    {
-      "ship": "MSC GRANDIOSA",
-      "port_of_call": "Funchal - Terminal Sul",
-      "agent": "JFM Shipping, Lda.",
-      "arrival": "2026-04-29T08:05",
-      "origin_port": "Philipsburg",
-      "departure": "2026-04-29T17:00",
-      "destination_port": "Barcelona"
     },
     {
       "ship": "SEADREAM II",
