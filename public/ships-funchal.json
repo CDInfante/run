@@ -1,18 +1,9 @@
 {
   "meta": {
-    "scraped_at": "2026-05-01T15:53:59.516Z",
-    "total_ships": 9
+    "scraped_at": "2026-05-01T16:53:14.189Z",
+    "total_ships": 8
   },
   "ships": [
-    {
-      "ship": "BIRUBI",
-      "port_of_call": "Funchal - Terminal Sul",
-      "agent": "JFM Shipping, Lda.",
-      "arrival": "2026-05-01T11:00",
-      "origin_port": "Vieux Fort",
-      "departure": "2026-05-01T16:00",
-      "destination_port": "Palma De Mallorca"
-    },
     {
       "ship": "SEADREAM II",
       "port_of_call": "Funchal - Terminal Sul",
