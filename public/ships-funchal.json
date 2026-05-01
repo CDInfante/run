@@ -1,7 +1,7 @@
 {
   "meta": {
-    "scraped_at": "2026-05-01T21:49:40.718Z",
-    "total_ships": 8
+    "scraped_at": "2026-05-01T22:44:32.172Z",
+    "total_ships": 7
   },
   "ships": [
     {
@@ -12,15 +12,6 @@
       "origin_port": "West Palm Beach",
       "departure": "2026-05-01T14:00",
       "destination_port": "Lisboa"
-    },
-    {
-      "ship": "LOON",
-      "port_of_call": "Funchal - Terminal Sul",
-      "agent": "Wilhelmsen Port Services Portugal, S.A.",
-      "arrival": "2026-05-01T10:00",
-      "origin_port": "San Juan",
-      "departure": "2026-05-03T05:00",
-      "destination_port": "Portos Desconhecidos / Alto Mar (Ao Largo)"
     },
     {
       "ship": "L&#039;AUSTRAL",
