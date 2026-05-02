@@ -1,6 +1,6 @@
 {
   "meta": {
-    "scraped_at": "2026-05-02T14:42:30.302Z",
+    "scraped_at": "2026-05-02T15:42:00.287Z",
     "total_ships": 6
   },
   "ships": [
@@ -8,7 +8,7 @@
       "ship": "L&#039;AUSTRAL",
       "port_of_call": "Funchal - Terminal Norte",
       "agent": "Blatas, Lda.",
-      "arrival": "2026-05-02T12:00",
+      "arrival": "2026-05-02T12:30",
       "origin_port": "Santa Cruz De La Palma",
       "departure": "2026-05-03T13:00",
       "destination_port": "Cadiz"
