@@ -1,18 +1,9 @@
 {
   "meta": {
-    "scraped_at": "2026-05-01T23:47:18.300Z",
-    "total_ships": 7
+    "scraped_at": "2026-05-02T02:24:16.136Z",
+    "total_ships": 6
   },
   "ships": [
-    {
-      "ship": "SEADREAM II",
-      "port_of_call": "Funchal - Terminal Sul",
-      "agent": "Blatas, Lda.",
-      "arrival": "2026-04-30T19:00",
-      "origin_port": "West Palm Beach",
-      "departure": "2026-05-01T14:00",
-      "destination_port": "Lisboa"
-    },
     {
       "ship": "L&#039;AUSTRAL",
       "port_of_call": "Funchal - Terminal Norte",
