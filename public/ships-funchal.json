@@ -1,18 +1,9 @@
 {
   "meta": {
-    "scraped_at": "2026-05-03T11:39:00.271Z",
-    "total_ships": 6
+    "scraped_at": "2026-05-03T13:00:18.714Z",
+    "total_ships": 5
   },
   "ships": [
-    {
-      "ship": "L&#039;AUSTRAL",
-      "port_of_call": "Funchal - Terminal Norte",
-      "agent": "Blatas, Lda.",
-      "arrival": "2026-05-02T12:30",
-      "origin_port": "Santa Cruz De La Palma",
-      "departure": "2026-05-03T13:00",
-      "destination_port": "Cadiz"
-    },
     {
       "ship": "CELEBRITY ECLIPSE",
       "port_of_call": "Funchal - Terminal Sul",
