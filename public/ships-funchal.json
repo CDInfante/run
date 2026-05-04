@@ -1,7 +1,7 @@
 {
   "meta": {
-    "scraped_at": "2026-05-04T17:45:32.753Z",
-    "total_ships": 4
+    "scraped_at": "2026-05-04T19:23:45.719Z",
+    "total_ships": 5
   },
   "ships": [
     {
@@ -21,6 +21,15 @@
       "origin_port": "Palma De Mallorca",
       "departure": "2026-05-05T23:30",
       "destination_port": "Portos Desconhecidos / Alto Mar (Ao Largo)"
+    },
+    {
+      "ship": "MARINA",
+      "port_of_call": "Funchal - Terminal Norte",
+      "agent": "JFM Shipping, Lda.",
+      "arrival": "2026-05-10T08:10",
+      "origin_port": "Santa Cruz De La Palma",
+      "departure": "2026-05-10T18:00",
+      "destination_port": "Lisboa"
     },
     {
       "ship": "VENTURA",
