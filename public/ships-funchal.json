@@ -1,27 +1,9 @@
 {
   "meta": {
-    "scraped_at": "2026-05-03T23:40:18.657Z",
-    "total_ships": 5
+    "scraped_at": "2026-05-04T02:30:58.337Z",
+    "total_ships": 3
   },
   "ships": [
-    {
-      "ship": "CELEBRITY ECLIPSE",
-      "port_of_call": "Funchal - Terminal Sul",
-      "agent": "JFM Shipping, Lda.",
-      "arrival": "2026-05-03T06:30",
-      "origin_port": "Fort Lauderdale",
-      "departure": "2026-05-03T19:00",
-      "destination_port": "Leixões"
-    },
-    {
-      "ship": "VALIANT LADY",
-      "port_of_call": "Funchal - Terminal Sul",
-      "agent": "JFM Shipping, Lda.",
-      "arrival": "2026-05-03T07:00",
-      "origin_port": "Ponta Delgada",
-      "departure": "2026-05-03T18:00",
-      "destination_port": "Tangier"
-    },
     {
       "ship": "ABSA UNO",
       "port_of_call": "Funchal - Fora das 3 Milhas",
