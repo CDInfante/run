@@ -1,7 +1,7 @@
 {
   "meta": {
-    "scraped_at": "2026-05-05T10:42:44.299Z",
-    "total_ships": 5
+    "scraped_at": "2026-05-05T11:58:00.827Z",
+    "total_ships": 8
   },
   "ships": [
     {
@@ -14,6 +14,15 @@
       "destination_port": "Casablanca"
     },
     {
+      "ship": "HAZE 2",
+      "port_of_call": "Funchal - Terminal Sul",
+      "agent": "JFM Shipping, Lda.",
+      "arrival": "2026-05-05T22:00",
+      "origin_port": "Falmouth",
+      "departure": "2026-05-06T08:00",
+      "destination_port": "Palma De Mallorca"
+    },
+    {
       "ship": "ABSA UNO",
       "port_of_call": "Funchal - Fora das 3 Milhas",
       "agent": "Transinsular (Madeira)-Transp. Marit. Insulares, Lda.",
@@ -21,6 +30,24 @@
       "origin_port": "Palma De Mallorca",
       "departure": "2026-05-05T23:30",
       "destination_port": "Portos Desconhecidos / Alto Mar (Ao Largo)"
+    },
+    {
+      "ship": "LIFE SAGA",
+      "port_of_call": "Funchal - Terminal Sul",
+      "agent": "JFM Shipping, Lda.",
+      "arrival": "2026-05-07T07:00",
+      "origin_port": "Marigot",
+      "departure": "2026-05-09T18:00",
+      "destination_port": "Zaandam"
+    },
+    {
+      "ship": "MY FELICITA",
+      "port_of_call": "Funchal - Terminal Sul",
+      "agent": "Funchal Marítima - Agência de Navegação, Lda.",
+      "arrival": "2026-05-07T09:00",
+      "origin_port": "Saint George",
+      "departure": "2026-05-07T12:00",
+      "destination_port": "Viareggio"
     },
     {
       "ship": "MARINA",
