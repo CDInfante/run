@@ -1,6 +1,6 @@
 {
   "meta": {
-    "scraped_at": "2026-05-05T08:02:59.559Z",
+    "scraped_at": "2026-05-05T10:42:44.299Z",
     "total_ships": 5
   },
   "ships": [
@@ -8,7 +8,7 @@
       "ship": "SCARLET LADY",
       "port_of_call": "Funchal - Terminal Sul",
       "agent": "JFM Shipping, Lda.",
-      "arrival": "2026-05-05T10:00",
+      "arrival": "2026-05-05T09:35",
       "origin_port": "Miami",
       "departure": "2026-05-05T19:00",
       "destination_port": "Casablanca"
