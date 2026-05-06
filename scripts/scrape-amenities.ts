@@ -43,6 +43,11 @@ async function scrapeAmenities() {
     console.log('Fetching amenities from Overpass API...')
     const response = await axios.get<OverpassResponse>(OVERPASS_URL, {
       params: { data: query },
+      headers: {
+        'User-Agent':
+          'Run-CDInfante/1.3.0 (https://run.cdinfante.org; hello@harryvasanth.com)',
+        Referer: 'https://run.cdinfante.org',
+      },
       timeout: 30000,
     })
 
