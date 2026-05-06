@@ -1,18 +1,9 @@
 {
   "meta": {
-    "scraped_at": "2026-05-05T23:44:00.086Z",
-    "total_ships": 8
+    "scraped_at": "2026-05-06T02:29:43.798Z",
+    "total_ships": 7
   },
   "ships": [
-    {
-      "ship": "SCARLET LADY",
-      "port_of_call": "Funchal - Terminal Sul",
-      "agent": "JFM Shipping, Lda.",
-      "arrival": "2026-05-05T09:35",
-      "origin_port": "Miami",
-      "departure": "2026-05-05T19:00",
-      "destination_port": "Casablanca"
-    },
     {
       "ship": "HAZE 2",
       "port_of_call": "Funchal - Terminal Sul",
