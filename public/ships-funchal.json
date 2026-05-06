@@ -1,18 +1,9 @@
 {
   "meta": {
-    "scraped_at": "2026-05-06T05:53:56.201Z",
+    "scraped_at": "2026-05-06T08:20:25.744Z",
     "total_ships": 7
   },
   "ships": [
-    {
-      "ship": "HAZE 2",
-      "port_of_call": "Funchal - Terminal Sul",
-      "agent": "JFM Shipping, Lda.",
-      "arrival": "2026-05-05T22:00",
-      "origin_port": "Falmouth",
-      "departure": "2026-05-06T08:00",
-      "destination_port": "Palma De Mallorca"
-    },
     {
       "ship": "ABSA UNO",
       "port_of_call": "Funchal - Fora das 3 Milhas",
@@ -57,6 +48,15 @@
       "origin_port": "Southampton",
       "departure": "2026-05-13T17:00",
       "destination_port": "Santa Cruz De La Palma"
+    },
+    {
+      "ship": "AMADEA",
+      "port_of_call": "Funchal - Terminal Sul",
+      "agent": "Blatas, Lda.",
+      "arrival": "2026-05-19T12:00",
+      "origin_port": "Lanzarote",
+      "departure": "2026-05-20T17:00",
+      "destination_port": "Tangier"
     },
     {
       "ship": "SILVER DAWN",
