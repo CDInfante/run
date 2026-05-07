@@ -1,6 +1,6 @@
 {
   "meta": {
-    "scraped_at": "2026-05-07T05:58:10.454Z",
+    "scraped_at": "2026-05-07T08:38:40.581Z",
     "total_ships": 8
   },
   "ships": [
@@ -19,7 +19,7 @@
       "agent": "Funchal Marítima - Agência de Navegação, Lda.",
       "arrival": "2026-05-07T09:00",
       "origin_port": "Saint George",
-      "departure": "2026-05-07T12:00",
+      "departure": "2026-05-07T17:00",
       "destination_port": "Viareggio"
     },
     {
