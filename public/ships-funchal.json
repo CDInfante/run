@@ -1,6 +1,6 @@
 {
   "meta": {
-    "scraped_at": "2026-05-07T11:06:29.899Z",
+    "scraped_at": "2026-05-07T13:56:52.714Z",
     "total_ships": 8
   },
   "ships": [
@@ -8,7 +8,7 @@
       "ship": "LIFE SAGA",
       "port_of_call": "Funchal - Terminal Sul",
       "agent": "JFM Shipping, Lda.",
-      "arrival": "2026-05-07T07:00",
+      "arrival": "2026-05-07T11:15",
       "origin_port": "Marigot",
       "departure": "2026-05-09T18:00",
       "destination_port": "Zaandam"
