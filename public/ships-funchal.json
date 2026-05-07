@@ -1,18 +1,9 @@
 {
   "meta": {
-    "scraped_at": "2026-05-06T23:45:19.442Z",
-    "total_ships": 9
+    "scraped_at": "2026-05-07T02:31:14.697Z",
+    "total_ships": 8
   },
   "ships": [
-    {
-      "ship": "ABSA UNO",
-      "port_of_call": "Funchal - Fora das 3 Milhas",
-      "agent": "Transinsular (Madeira)-Transp. Marit. Insulares, Lda.",
-      "arrival": "2026-05-05T08:00",
-      "origin_port": "Palma De Mallorca",
-      "departure": "2026-05-05T23:30",
-      "destination_port": "Palma De Mallorca"
-    },
     {
       "ship": "LIFE SAGA",
       "port_of_call": "Funchal - Terminal Sul",
