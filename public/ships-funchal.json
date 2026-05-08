@@ -1,7 +1,7 @@
 {
   "meta": {
-    "scraped_at": "2026-05-08T17:11:19.166Z",
-    "total_ships": 7
+    "scraped_at": "2026-05-08T19:11:31.929Z",
+    "total_ships": 8
   },
   "ships": [
     {
@@ -30,6 +30,15 @@
       "origin_port": "Southampton",
       "departure": "2026-05-13T17:00",
       "destination_port": "Santa Cruz De La Palma"
+    },
+    {
+      "ship": "OCEAN PROTECTOR",
+      "port_of_call": "Funchal - Terminal Norte",
+      "agent": "Blatas, Lda.",
+      "arrival": "2026-05-15T07:00",
+      "origin_port": "Praia da Vitoria",
+      "departure": "2026-05-18T11:00",
+      "destination_port": "Faro"
     },
     {
       "ship": "HEBRIDEAN SKY",
