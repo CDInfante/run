@@ -1,6 +1,6 @@
 {
   "meta": {
-    "scraped_at": "2026-05-08T09:14:02.362Z",
+    "scraped_at": "2026-05-08T11:09:07.590Z",
     "total_ships": 7
   },
   "ships": [
@@ -10,7 +10,7 @@
       "agent": "JFM Shipping, Lda.",
       "arrival": "2026-05-07T11:15",
       "origin_port": "Marigot",
-      "departure": "2026-05-09T10:00",
+      "departure": "2026-05-09T07:45",
       "destination_port": "Zaandam"
     },
     {
