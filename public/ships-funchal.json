@@ -1,7 +1,7 @@
 {
   "meta": {
-    "scraped_at": "2026-05-09T11:47:13.946Z",
-    "total_ships": 7
+    "scraped_at": "2026-05-09T13:07:17.009Z",
+    "total_ships": 8
   },
   "ships": [
     {
@@ -21,6 +21,15 @@
       "origin_port": "Southampton",
       "departure": "2026-05-13T17:00",
       "destination_port": "Santa Cruz De La Palma"
+    },
+    {
+      "ship": "TRIUMPH",
+      "port_of_call": "Funchal - Terminal Sul",
+      "agent": "Funchal Marítima - Agência de Navegação, Lda.",
+      "arrival": "2026-05-14T08:00",
+      "origin_port": "Castries",
+      "departure": "2026-05-14T12:00",
+      "destination_port": "Gibraltar"
     },
     {
       "ship": "OCEAN PROTECTOR",
