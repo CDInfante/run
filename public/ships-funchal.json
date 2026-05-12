@@ -1,7 +1,7 @@
 {
   "meta": {
-    "scraped_at": "2026-05-12T09:33:45.428Z",
-    "total_ships": 7
+    "scraped_at": "2026-05-12T11:50:51.555Z",
+    "total_ships": 11
   },
   "ships": [
     {
@@ -23,6 +23,15 @@
       "destination_port": "Gibraltar"
     },
     {
+      "ship": "LONIAN",
+      "port_of_call": "Funchal - Terminal Sul",
+      "agent": "Blatas, Lda.",
+      "arrival": "2026-05-14T13:00",
+      "origin_port": "Saint Thomas",
+      "departure": "2026-05-14T17:00",
+      "destination_port": "Genova"
+    },
+    {
       "ship": "OCEAN PROTECTOR",
       "port_of_call": "Funchal - Terminal Norte",
       "agent": "Blatas, Lda.",
@@ -30,6 +39,24 @@
       "origin_port": "Praia da Vitoria",
       "departure": "2026-05-18T11:00",
       "destination_port": "Faro"
+    },
+    {
+      "ship": "WORLD VOYAGER",
+      "port_of_call": "Funchal - Terminal Norte",
+      "agent": "Transinsular (Madeira)-Transp. Marit. Insulares, Lda.",
+      "arrival": "2026-05-15T09:00",
+      "origin_port": "Leixões",
+      "departure": "2026-05-16T14:00",
+      "destination_port": "Santa Cruz De La Palma"
+    },
+    {
+      "ship": "CELEBRITY XCEL",
+      "port_of_call": "Funchal - Terminal Sul",
+      "agent": "JFM Shipping, Lda.",
+      "arrival": "2026-05-16T07:00",
+      "origin_port": "Lisboa",
+      "departure": "2026-05-17T17:00",
+      "destination_port": "Tangier"
     },
     {
       "ship": "HEBRIDEAN SKY",
@@ -66,6 +93,15 @@
       "origin_port": "Santa Cruz De Tenerife",
       "departure": "2026-05-24T18:00",
       "destination_port": "Portimão"
+    },
+    {
+      "ship": "SILVER NOVA",
+      "port_of_call": "Funchal - Terminal Norte",
+      "agent": "Agência Ferraz - J. M. Ferraz Simões, Lda.",
+      "arrival": "2026-06-11T08:00",
+      "origin_port": "Ponta Delgada",
+      "departure": "2026-06-12T18:00",
+      "destination_port": "Lisboa"
     }
   ]
 }
