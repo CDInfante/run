@@ -1,7 +1,7 @@
 {
   "meta": {
-    "scraped_at": "2026-05-13T17:58:07.229Z",
-    "total_ships": 10
+    "scraped_at": "2026-05-13T19:58:51.800Z",
+    "total_ships": 11
   },
   "ships": [
     {
@@ -84,6 +84,15 @@
       "origin_port": "Santa Cruz De Tenerife",
       "departure": "2026-05-24T18:00",
       "destination_port": "Portimão"
+    },
+    {
+      "ship": "SEVEN SEAS MARINER",
+      "port_of_call": "Funchal - Terminal Sul",
+      "agent": "JFM Shipping, Lda.",
+      "arrival": "2026-05-30T08:00",
+      "origin_port": "Santa Cruz De La Palma",
+      "departure": "2026-05-30T18:00",
+      "destination_port": "Cadiz"
     },
     {
       "ship": "SILVER NOVA",
