@@ -1,14 +1,14 @@
 {
   "meta": {
-    "scraped_at": "2026-05-13T06:44:35.101Z",
-    "total_ships": 11
+    "scraped_at": "2026-05-13T09:41:27.474Z",
+    "total_ships": 10
   },
   "ships": [
     {
       "ship": "VENTURA",
       "port_of_call": "Funchal - Terminal Sul",
       "agent": "Blatas, Lda.",
-      "arrival": "2026-05-13T07:00",
+      "arrival": "2026-05-13T07:15",
       "origin_port": "Southampton",
       "departure": "2026-05-13T17:00",
       "destination_port": "Santa Cruz De La Palma"
@@ -19,17 +19,8 @@
       "agent": "Funchal Marítima - Agência de Navegação, Lda.",
       "arrival": "2026-05-14T08:00",
       "origin_port": "Castries",
-      "departure": "2026-05-14T12:00",
+      "departure": "2026-05-14T10:30",
       "destination_port": "Gibraltar"
-    },
-    {
-      "ship": "LONIAN",
-      "port_of_call": "Funchal - Terminal Sul",
-      "agent": "Blatas, Lda.",
-      "arrival": "2026-05-14T13:00",
-      "origin_port": "Saint Thomas",
-      "departure": "2026-05-14T17:00",
-      "destination_port": "Genova"
     },
     {
       "ship": "OCEAN PROTECTOR",
