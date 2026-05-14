@@ -1,6 +1,6 @@
 {
   "meta": {
-    "scraped_at": "2026-05-14T06:21:14.794Z",
+    "scraped_at": "2026-05-14T09:31:27.126Z",
     "total_ships": 10
   },
   "ships": [
@@ -8,7 +8,7 @@
       "ship": "TRIUMPH",
       "port_of_call": "Funchal - Terminal Sul",
       "agent": "Funchal Marítima - Agência de Navegação, Lda.",
-      "arrival": "2026-05-14T08:00",
+      "arrival": "2026-05-14T06:55",
       "origin_port": "Castries",
       "departure": "2026-05-14T10:30",
       "destination_port": "Gibraltar"
