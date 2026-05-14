@@ -1,7 +1,7 @@
 {
   "meta": {
-    "scraped_at": "2026-05-14T09:31:27.126Z",
-    "total_ships": 10
+    "scraped_at": "2026-05-14T11:48:39.107Z",
+    "total_ships": 11
   },
   "ships": [
     {
@@ -75,6 +75,15 @@
       "origin_port": "Santa Cruz De Tenerife",
       "departure": "2026-05-24T18:00",
       "destination_port": "Portimão"
+    },
+    {
+      "ship": "NORWEGIAN SUN",
+      "port_of_call": "Funchal - Terminal Sul",
+      "agent": "JFM Shipping, Lda.",
+      "arrival": "2026-05-27T08:00",
+      "origin_port": "Santa Cruz De Tenerife",
+      "departure": "2026-05-27T23:00",
+      "destination_port": "Vigo"
     },
     {
       "ship": "SEVEN SEAS MARINER",
