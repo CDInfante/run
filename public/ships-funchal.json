@@ -1,6 +1,6 @@
 {
   "meta": {
-    "scraped_at": "2026-05-14T11:48:39.107Z",
+    "scraped_at": "2026-05-14T14:00:07.822Z",
     "total_ships": 11
   },
   "ships": [
@@ -29,7 +29,7 @@
       "arrival": "2026-05-15T09:00",
       "origin_port": "Leixões",
       "departure": "2026-05-16T14:00",
-      "destination_port": "Santa Cruz De La Palma"
+      "destination_port": "Santa Cruz De Tenerife"
     },
     {
       "ship": "CELEBRITY XCEL",
