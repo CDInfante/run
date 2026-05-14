@@ -1,18 +1,9 @@
 {
   "meta": {
-    "scraped_at": "2026-05-13T23:02:53.216Z",
-    "total_ships": 11
+    "scraped_at": "2026-05-14T02:44:23.879Z",
+    "total_ships": 10
   },
   "ships": [
-    {
-      "ship": "VENTURA",
-      "port_of_call": "Funchal - Terminal Sul",
-      "agent": "Blatas, Lda.",
-      "arrival": "2026-05-13T07:15",
-      "origin_port": "Southampton",
-      "departure": "2026-05-13T17:00",
-      "destination_port": "Santa Cruz De La Palma"
-    },
     {
       "ship": "TRIUMPH",
       "port_of_call": "Funchal - Terminal Sul",
