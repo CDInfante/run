@@ -1,7 +1,7 @@
 {
   "meta": {
-    "scraped_at": "2026-05-15T16:03:46.387Z",
-    "total_ships": 10
+    "scraped_at": "2026-05-15T18:19:18.283Z",
+    "total_ships": 11
   },
   "ships": [
     {
@@ -17,7 +17,7 @@
       "ship": "WORLD VOYAGER",
       "port_of_call": "Funchal - Terminal Norte",
       "agent": "Transinsular (Madeira)-Transp. Marit. Insulares, Lda.",
-      "arrival": "2026-05-15T09:00",
+      "arrival": "2026-05-15T16:00",
       "origin_port": "Leixões",
       "departure": "2026-05-16T14:00",
       "destination_port": "Santa Cruz De Tenerife"
@@ -50,12 +50,21 @@
       "destination_port": "Tangier"
     },
     {
+      "ship": "AKULA",
+      "port_of_call": "Funchal - Terminal Sul",
+      "agent": "Transinsular (Madeira)-Transp. Marit. Insulares, Lda.",
+      "arrival": "2026-05-20T08:00",
+      "origin_port": "Saint George",
+      "departure": "2026-05-23T17:00",
+      "destination_port": "Gibraltar"
+    },
+    {
       "ship": "SPIRIT OF ADVENTURE",
       "port_of_call": "Funchal - Terminal Norte",
       "agent": "Wilhelmsen Port Services Portugal, S.A.",
       "arrival": "2026-05-23T08:00",
       "origin_port": "Ponta Delgada",
-      "departure": "2026-05-23T17:00",
+      "departure": "2026-05-23T23:00",
       "destination_port": "Porto Santo Island"
     },
     {
