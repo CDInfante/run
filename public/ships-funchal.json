@@ -1,7 +1,7 @@
 {
   "meta": {
-    "scraped_at": "2026-05-16T13:20:58.799Z",
-    "total_ships": 11
+    "scraped_at": "2026-05-16T14:52:37.394Z",
+    "total_ships": 10
   },
   "ships": [
     {
@@ -12,15 +12,6 @@
       "origin_port": "Praia da Vitoria",
       "departure": "2026-05-18T11:00",
       "destination_port": "Faro"
-    },
-    {
-      "ship": "WORLD VOYAGER",
-      "port_of_call": "Funchal - Terminal Norte",
-      "agent": "Transinsular (Madeira)-Transp. Marit. Insulares, Lda.",
-      "arrival": "2026-05-15T16:00",
-      "origin_port": "Leixões",
-      "departure": "2026-05-16T14:00",
-      "destination_port": "Santa Cruz De Tenerife"
     },
     {
       "ship": "CELEBRITY XCEL",
