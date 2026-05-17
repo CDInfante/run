@@ -1,7 +1,7 @@
 {
   "meta": {
-    "scraped_at": "2026-05-17T16:53:42.466Z",
-    "total_ships": 10
+    "scraped_at": "2026-05-17T17:55:34.184Z",
+    "total_ships": 9
   },
   "ships": [
     {
@@ -12,15 +12,6 @@
       "origin_port": "Praia da Vitoria",
       "departure": "2026-05-18T11:00",
       "destination_port": "Faro"
-    },
-    {
-      "ship": "CELEBRITY XCEL",
-      "port_of_call": "Funchal - Terminal Sul",
-      "agent": "JFM Shipping, Lda.",
-      "arrival": "2026-05-16T07:00",
-      "origin_port": "Lisboa",
-      "departure": "2026-05-17T17:00",
-      "destination_port": "Tangier"
     },
     {
       "ship": "HEBRIDEAN SKY",
