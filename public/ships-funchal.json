@@ -1,6 +1,6 @@
 {
   "meta": {
-    "scraped_at": "2026-05-18T11:04:21.873Z",
+    "scraped_at": "2026-05-18T15:20:46.725Z",
     "total_ships": 8
   },
   "ships": [
@@ -8,7 +8,7 @@
       "ship": "HEBRIDEAN SKY",
       "port_of_call": "Funchal - Terminal Norte",
       "agent": "Wilhelmsen Port Services Portugal, S.A.",
-      "arrival": "2026-05-18T13:30",
+      "arrival": "2026-05-18T13:00",
       "origin_port": "Santa Cruz De La Palma",
       "departure": "2026-05-19T23:00",
       "destination_port": "Porto Santo Island"
