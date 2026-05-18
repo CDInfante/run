@@ -1,18 +1,9 @@
 {
   "meta": {
-    "scraped_at": "2026-05-18T06:53:42.825Z",
-    "total_ships": 9
+    "scraped_at": "2026-05-18T11:04:21.873Z",
+    "total_ships": 8
   },
   "ships": [
-    {
-      "ship": "OCEAN PROTECTOR",
-      "port_of_call": "Funchal - Terminal Norte",
-      "agent": "Blatas, Lda.",
-      "arrival": "2026-05-15T07:00",
-      "origin_port": "Praia da Vitoria",
-      "departure": "2026-05-18T11:00",
-      "destination_port": "Faro"
-    },
     {
       "ship": "HEBRIDEAN SKY",
       "port_of_call": "Funchal - Terminal Norte",
@@ -46,7 +37,7 @@
       "agent": "Wilhelmsen Port Services Portugal, S.A.",
       "arrival": "2026-05-23T08:00",
       "origin_port": "Ponta Delgada",
-      "departure": "2026-05-23T23:00",
+      "departure": "2026-05-24T06:00",
       "destination_port": "Porto Santo Island"
     },
     {
