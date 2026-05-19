@@ -1,6 +1,6 @@
 {
   "meta": {
-    "scraped_at": "2026-05-19T08:27:22.742Z",
+    "scraped_at": "2026-05-19T11:59:07.683Z",
     "total_ships": 11
   },
   "ships": [
@@ -17,7 +17,7 @@
       "ship": "HOME",
       "port_of_call": "Funchal - Terminal Sul",
       "agent": "Transinsular (Madeira)-Transp. Marit. Insulares, Lda.",
-      "arrival": "2026-05-19T11:59",
+      "arrival": "2026-05-19T10:00",
       "origin_port": "San Juan",
       "departure": "2026-05-25T16:59",
       "destination_port": "Gibraltar"
