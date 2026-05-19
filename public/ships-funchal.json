@@ -1,7 +1,7 @@
 {
   "meta": {
-    "scraped_at": "2026-05-19T04:56:56.435Z",
-    "total_ships": 9
+    "scraped_at": "2026-05-19T08:27:22.742Z",
+    "total_ships": 11
   },
   "ships": [
     {
@@ -12,6 +12,15 @@
       "origin_port": "Santa Cruz De La Palma",
       "departure": "2026-05-19T23:00",
       "destination_port": "Porto Santo Island"
+    },
+    {
+      "ship": "HOME",
+      "port_of_call": "Funchal - Terminal Sul",
+      "agent": "Transinsular (Madeira)-Transp. Marit. Insulares, Lda.",
+      "arrival": "2026-05-19T11:59",
+      "origin_port": "San Juan",
+      "departure": "2026-05-25T16:59",
+      "destination_port": "Gibraltar"
     },
     {
       "ship": "AMADEA",
@@ -30,6 +39,15 @@
       "origin_port": "Saint George",
       "departure": "2026-05-23T17:00",
       "destination_port": "Gibraltar"
+    },
+    {
+      "ship": "CAPRICORN",
+      "port_of_call": "Funchal - Terminal Sul",
+      "agent": "Transinsular (Madeira)-Transp. Marit. Insulares, Lda.",
+      "arrival": "2026-05-20T08:00",
+      "origin_port": "Portos Desconhecidos / Alto Mar (Ao Largo)",
+      "departure": "2026-05-27T07:00",
+      "destination_port": "Portos Desconhecidos / Alto Mar (Ao Largo)"
     },
     {
       "ship": "SPIRIT OF ADVENTURE",
