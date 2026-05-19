@@ -1,6 +1,6 @@
 {
   "meta": {
-    "scraped_at": "2026-05-19T15:36:39.433Z",
+    "scraped_at": "2026-05-19T18:01:54.490Z",
     "total_ships": 11
   },
   "ships": [
@@ -46,7 +46,7 @@
       "agent": "Transinsular (Madeira)-Transp. Marit. Insulares, Lda.",
       "arrival": "2026-05-20T08:00",
       "origin_port": "Portos Desconhecidos / Alto Mar (Ao Largo)",
-      "departure": "2026-05-27T07:00",
+      "departure": "2026-07-10T16:59",
       "destination_port": "Portos Desconhecidos / Alto Mar (Ao Largo)"
     },
     {
