@@ -1,6 +1,6 @@
 {
   "meta": {
-    "scraped_at": "2026-05-19T11:59:07.683Z",
+    "scraped_at": "2026-05-19T15:36:39.433Z",
     "total_ships": 11
   },
   "ships": [
@@ -26,7 +26,7 @@
       "ship": "AMADEA",
       "port_of_call": "Funchal - Terminal Sul",
       "agent": "Blatas, Lda.",
-      "arrival": "2026-05-19T12:00",
+      "arrival": "2026-05-19T11:00",
       "origin_port": "Lanzarote",
       "departure": "2026-05-20T17:00",
       "destination_port": "Tangier"
