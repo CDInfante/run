@@ -1,6 +1,6 @@
 {
   "meta": {
-    "scraped_at": "2026-05-20T11:46:59.242Z",
+    "scraped_at": "2026-05-20T14:52:49.075Z",
     "total_ships": 10
   },
   "ships": [
@@ -26,7 +26,7 @@
       "ship": "AKULA",
       "port_of_call": "Funchal - Terminal Sul",
       "agent": "Transinsular (Madeira)-Transp. Marit. Insulares, Lda.",
-      "arrival": "2026-05-20T08:00",
+      "arrival": "2026-05-20T11:00",
       "origin_port": "Saint George",
       "departure": "2026-05-23T17:00",
       "destination_port": "Gibraltar"
