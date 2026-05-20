@@ -1,6 +1,6 @@
 {
   "meta": {
-    "scraped_at": "2026-05-20T17:52:29.086Z",
+    "scraped_at": "2026-05-20T20:09:04.079Z",
     "total_ships": 9
   },
   "ships": [
@@ -19,7 +19,7 @@
       "agent": "Transinsular (Madeira)-Transp. Marit. Insulares, Lda.",
       "arrival": "2026-05-20T11:00",
       "origin_port": "Saint George",
-      "departure": "2026-05-23T17:00",
+      "departure": "2026-05-21T08:01",
       "destination_port": "Gibraltar"
     },
     {
