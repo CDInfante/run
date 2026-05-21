@@ -1,7 +1,7 @@
 {
   "meta": {
-    "scraped_at": "2026-05-21T05:06:55.778Z",
-    "total_ships": 9
+    "scraped_at": "2026-05-21T09:32:46.564Z",
+    "total_ships": 8
   },
   "ships": [
     {
@@ -11,15 +11,6 @@
       "arrival": "2026-05-19T10:00",
       "origin_port": "San Juan",
       "departure": "2026-05-25T16:59",
-      "destination_port": "Gibraltar"
-    },
-    {
-      "ship": "AKULA",
-      "port_of_call": "Funchal - Terminal Sul",
-      "agent": "Transinsular (Madeira)-Transp. Marit. Insulares, Lda.",
-      "arrival": "2026-05-20T11:00",
-      "origin_port": "Saint George",
-      "departure": "2026-05-21T08:01",
       "destination_port": "Gibraltar"
     },
     {
